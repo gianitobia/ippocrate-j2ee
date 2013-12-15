@@ -28,7 +28,7 @@ public class StudioMedico extends StrutturaMedica implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @ManyToMany
+    @OneToMany
     private List<Paziente> lista_pazienti;
 
     /**

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package StruttureMediche;
 
 import Persone.Medico;
@@ -15,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -22,6 +22,7 @@ import javax.persistence.OneToMany;
  */
 @Entity
 public class Reparto implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,6 +30,32 @@ public class Reparto implements Serializable {
 
     @OneToMany
     private List<Medico> lista_medici;
+
+    @OneToMany
+    private List<Sala> lista_sale;
+
+    @OneToMany
+    private List<Paziente> lista_pazienti;
+    @OneToOne
+    private Medico primario;
+
+    /**
+     * Get the value of primario
+     *
+     * @return the value of primario
+     */
+    public Medico getPrimario() {
+        return primario;
+    }
+
+    /**
+     * Set the value of primario
+     *
+     * @param primario new value of primario
+     */
+    public void setPrimario(Medico primario) {
+        this.primario = primario;
+    }
 
     /**
      * Get the value of lista_medici
@@ -48,9 +75,6 @@ public class Reparto implements Serializable {
         this.lista_medici = lista_medici;
     }
 
-    @OneToMany
-    private List<Sala> lista_sale;
-
     /**
      * Get the value of lista_sale
      *
@@ -68,9 +92,6 @@ public class Reparto implements Serializable {
     public void setLista_sale(List<Sala> lista_sale) {
         this.lista_sale = lista_sale;
     }
-
-    @OneToMany
-    private List<Paziente> lista_pazienti;
 
     /**
      * Get the value of lista_pazienti
@@ -122,5 +143,5 @@ public class Reparto implements Serializable {
     public String toString() {
         return "StruttureMediche.Reparto[ id=" + id + " ]";
     }
-    
+
 }
