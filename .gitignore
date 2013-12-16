@@ -40,3 +40,11 @@ nbproject/private/
 *.lock
 *.swp
 *.out
+/Ippocrate-ejb/nbproject/private/
+/Ippocrate-war/nbproject/private/
+/Ippocrate-ejb/build/
+/Ippocrate-ejb/dist/
+/dist/
+/build/
+/Ippocrate-war/dist/
+/Ippocrate-war/build/

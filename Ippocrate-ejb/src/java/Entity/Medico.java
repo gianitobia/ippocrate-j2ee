@@ -35,7 +35,7 @@ public abstract class Medico implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date data_nascita;
     
-        private String username;
+    private String username;
 
     private String password;
 
