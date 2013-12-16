@@ -16,8 +16,13 @@
             <div id="form_medico">
                 <h1>Login medico</h1>
                 <input type="text" value="username"/>
+                <input type="password" value="password"/>
+                <input type="text" value="pin code"/>
             </div>
             <div id="form_paziente">
+                <h1>Login paziente</h1>
+                <p></p><input type="text" value="Codice Fiscale"/>
+                <input type="password" value="password"/>
             </div>
         </form>
     </body>
