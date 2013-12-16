@@ -3,10 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Entity;
 
-import Entity.Agenda;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -22,6 +20,7 @@ import javax.persistence.Temporal;
  */
 @Entity
 public abstract class Medico implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,7 +34,7 @@ public abstract class Medico implements Serializable {
 
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date data_nascita;
-    
+
     @OneToOne
     private Agenda visite;
 
@@ -80,27 +79,27 @@ public abstract class Medico implements Serializable {
      *
      * @return the value of specializzazione
      */
-        public String getSpecializzazione() {
-            return specializzazione;
-        }
+    public String getSpecializzazione() {
+        return specializzazione;
+    }
 
     /**
      * Set the value of specializzazione
      *
      * @param specializzazione new value of specializzazione
      */
-        public void setSpecializzazione(String specializzazione) {
-            this.specializzazione = specializzazione;
-        }
+    public void setSpecializzazione(String specializzazione) {
+        this.specializzazione = specializzazione;
+    }
 
     /**
      * Get the value of data_nascita
      *
      * @return the value of data_nascita
      */
-        public Date getData_nascita() {
-            return data_nascita;
-        }
+    public Date getData_nascita() {
+        return data_nascita;
+    }
 
     /**
      * Set the value of data_nascita
@@ -161,5 +160,5 @@ public abstract class Medico implements Serializable {
     public String toString() {
         return "Persone.Medico[ id=" + id + " ]";
     }
-    
+
 }

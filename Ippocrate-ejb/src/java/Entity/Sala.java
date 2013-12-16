@@ -3,12 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Entity;
 
-import Entity.Agenda;
-import Entity.Medico;
-import Entity.Prestazione;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
@@ -24,13 +20,13 @@ import javax.persistence.OneToOne;
  */
 @Entity
 public class Sala implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    
-    
+
     private Long id;
-    
+
     @ManyToMany
     private List<Prestazione> lista_prestazioni;
 
@@ -59,7 +55,6 @@ public class Sala implements Serializable {
         this.agenda = agenda;
     }
 
-
     /**
      * Get the value of medico_responsabile
      *
@@ -77,7 +72,6 @@ public class Sala implements Serializable {
     public void setMedico_responsabile(Medico medico_responsabile) {
         this.medico_responsabile = medico_responsabile;
     }
-
 
     /**
      * Get the value of lista_prestazioni
@@ -97,7 +91,6 @@ public class Sala implements Serializable {
         this.lista_prestazioni = lista_prestazioni;
     }
 
-
     /**
      * Get the value of tipoLaboratorio
      *
@@ -116,13 +109,13 @@ public class Sala implements Serializable {
         this.tipoLaboratorio = tipoLaboratorio;
     }
 
-        public Long getId() {
-            return id;
-        }
+    public Long getId() {
+        return id;
+    }
 
-        public void setId(Long id) {
-            this.id = id;
-        }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     @Override
     public int hashCode() {
@@ -148,5 +141,5 @@ public class Sala implements Serializable {
     public String toString() {
         return "StruttureMediche.Sala[ id=" + id + " ]";
     }
-    
+
 }

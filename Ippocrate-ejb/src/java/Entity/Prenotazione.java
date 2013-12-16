@@ -5,7 +5,6 @@
  */
 package Entity;
 
-import Entity.Paziente;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -20,15 +19,12 @@ import javax.persistence.Temporal;
  * @author toby
  */
 @Entity
-public class Prenotazione implements Serializable {
+public abstract class Prenotazione implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @OneToOne
-    private Sala sala;
 
     @OneToOne
     private StrutturaMedica struttura_medica;
@@ -75,24 +71,6 @@ public class Prenotazione implements Serializable {
      */
     public void setTipo_prestazione(Prestazione tipo_prestazione) {
         this.tipo_prestazione = tipo_prestazione;
-    }
-
-    /**
-     * Get the value of sala
-     *
-     * @return the value of sala
-     */
-    public Sala getSala() {
-        return sala;
-    }
-
-    /**
-     * Set the value of sala
-     *
-     * @param sala new value of sala
-     */
-    public void setSala(Sala sala) {
-        this.sala = sala;
     }
 
     /**
