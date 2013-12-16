@@ -9,21 +9,25 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Ippocrate :: Login</title>
+        <link href="CSS/style.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <form id="login_form" action="#">
-            <div id="form_medico">
-                <h1>Login medico</h1>
-                <input type="text" value="username"/>
-                <input type="password" value="password"/>
-                <input type="text" value="pin code"/>
-            </div>
-            <div id="form_paziente">
-                <h1>Login paziente</h1>
-                <p></p><input type="text" value="Codice Fiscale"/>
-                <input type="password" value="password"/>
-            </div>
+        <h1>Sei un ...</h1>
+        <ul>
+            <li class="login-scelta"><a href="">Medico</a></li>
+            <li class="login-scelta"><a href="">Paziente</a></li>
+        </ul>
+        <form id="form_medico" action="#">
+            <h1>Login medico</h1>
+            <label for="username-medico">Username : </label><input name="username-medico" type="text" value=""/><br/>
+            <label for="password-medico">Password : </label><input name="password-medico" type="password" value=""/><br/>
+            <label for="pincode-medico">Pin code : </label><input name="pincode-medico"type="text" value=""/><br/>
+        </form>
+        <form id="form_paziente" action="#">
+            <h1>Login paziente</h1>
+            <label for="codfisc-paziente">Codice fiscale : </label><input name="codfisc-paziente" type="text" value=""/><br/>
+            <label for="password-paziente">Password : </label><input name="password-paziente" type="password" value=""/><br/>
         </form>
     </body>
 </html>
