@@ -5,7 +5,6 @@
  */
 package Entity;
 
-import Entity.CartellaClinica;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -33,6 +32,8 @@ public class Paziente implements Serializable {
 
     private String cognome;
 
+    private String password;
+
     private String cf;
 
     private String sesso;
@@ -46,6 +47,24 @@ public class Paziente implements Serializable {
 
     @OneToOne
     private CartellaClinica cartella_clinica;
+
+    /**
+     * Get the value of password
+     *
+     * @return the value of password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * Set the value of password
+     *
+     * @param password new value of password
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     /**
      * Get the value of nome
@@ -191,13 +210,13 @@ public class Paziente implements Serializable {
         this.cartella_clinica = cartella_clinica;
     }
 
-    public Long getId() {
-        return id;
-    }
+        public Long getId() {
+            return id;
+        }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+        public void setId(Long id) {
+            this.id = id;
+        }
 
     @Override
     public int hashCode() {
