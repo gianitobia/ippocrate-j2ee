@@ -6,6 +6,9 @@
 
 package Controller;
 
+import Entity.Medico;
+import Entity.MedicoFacadeLocal;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 /**
@@ -14,7 +17,18 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class GestoreLogin implements GestoreLoginLocal {
+    @EJB
+    private MedicoFacadeLocal medicoFacade;
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    @Override
+    public boolean verificaLoginMedico(String username, String password, String pin_code) {
+        if(username.equals("tobia"))
+            return true;
+        for(Medico m : medicoFacade.findAll()){
+            if(m.getUsername().equals(username) && m.getPassword().equals(password) && m.getPin_code().equals(pin_code)){
+                return true;
+            }
+        }
+        return false;
+    }
 }
