@@ -11,4 +11,11 @@ and open the template in the editor.
 .login-scelta {
     list-style: none;
     display: inline-block;
+    background-color: #99ccff;
+    border-radius: 10px;
+    cursor:pointer;
+}
+
+body{
+    text-align: center;
 }
