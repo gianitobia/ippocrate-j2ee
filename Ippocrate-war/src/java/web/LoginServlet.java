@@ -7,6 +7,7 @@
 package web;
 
 import Controller.GestoreLoginLocal;
+import Entity.Paziente;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
@@ -37,31 +38,28 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        
+               
         try (PrintWriter out = response.getWriter()) {
-            if(request.getParameter("action").equals("login"))
-            {
+            if(request.getParameter("action").equals("loginM")) {
                 String user = request.getParameter("username-medico");
                 String password = request.getParameter("password-medico");
                 String pincode = request.getParameter("pincode-medico");
                 if(gestoreLogin.verificaLoginMedico(user, password, pincode))
                     response.sendRedirect("home-medico.jsp");
-                else{
-                    out.println("Dati di accesso errati");
+                else
+                    response.sendRedirect("errore.jsp");
+            } 
+            else if (request.getParameter("action").equals("loginP")) {
+                String cf = request.getParameter("codfisc-paziente");
+                String password = request.getParameter("password-paziente");
+                Paziente p = gestoreLogin.verificaLoginPaziente(cf, password);
+                if(p != null) {
+                    request.getSession().setAttribute("paziente", p);
+                    response.sendRedirect("home-paziente.jsp");           
                 }
-            } else {
-            
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet LoginServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>"); }
+                else
+                    response.sendRedirect("errore.jsp");
+            }            
         }
     }
 

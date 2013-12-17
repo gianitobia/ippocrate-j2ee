@@ -6,8 +6,7 @@
 
 package Controller;
 
-import Entity.Medico;
-import Entity.MedicoFacadeLocal;
+import Entity.*;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -17,6 +16,9 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class GestoreLogin implements GestoreLoginLocal {
+    @EJB
+    private PazienteFacadeLocal pazienteFacade;
+    
     @EJB
     private MedicoFacadeLocal medicoFacade;
 
@@ -31,4 +33,16 @@ public class GestoreLogin implements GestoreLoginLocal {
         }
         return false;
     }
+
+    @Override
+    public Paziente verificaLoginPaziente(String cf, String password) {
+        //if(cf.equals("1234"))
+            //return true;
+        for(Paziente p : pazienteFacade.findAll()){
+            if(p.getCf().equals(cf) && p.getPassword().equals(password)){
+                return p;
+            }
+        }
+        return null;
+    } 
 }

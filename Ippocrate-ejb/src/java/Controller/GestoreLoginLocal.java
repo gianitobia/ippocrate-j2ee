@@ -6,6 +6,7 @@
 
 package Controller;
 
+import Entity.Paziente;
 import javax.ejb.Local;
 
 /**
@@ -16,5 +17,7 @@ import javax.ejb.Local;
 public interface GestoreLoginLocal {
 
     boolean verificaLoginMedico(String username, String password, String pin_code);
+
+    Paziente verificaLoginPaziente(String cf, String password);
     
 }
