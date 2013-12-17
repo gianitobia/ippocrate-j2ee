@@ -21,9 +21,11 @@ public class PopolaTabelle {
         Connection c = DriverManager.getConnection(url,user,pwd);
         Statement st = c.createStatement();
         Scanner s = new Scanner(new File("src/java/Utility/CartellaClinica.txt"));
+        String[] valori;
         while(s.hasNextLine()){
+            valori = s.nextLine().split(",");          
             st.executeUpdate("INSERT INTO CARTELLACLINICA(ID, ANAMNESI) " +
-                    "VALUES('"+s.nextLine()+"','"+s.nextLine()+"')" );
+                    "VALUES('"+valori[0]+"','"+valori[1]+"')" );
         }
         st.close();
         c.close();
@@ -35,12 +37,14 @@ public class PopolaTabelle {
         Connection c = DriverManager.getConnection(url,user,pwd);
         Statement st = c.createStatement();
         Scanner s = new Scanner(new File("src/java/Utility/Paziente.txt"));
+        String[] valori;
         while(s.hasNextLine()){
+            valori = s.nextLine().split(",");                      
             st.executeUpdate("INSERT INTO PAZIENTE(ID, CF, COGNOME, DATA_NASCITA,"
-                    + " INDIRIZZO, LUOGO_NASCITA, NOME, SESSO, CARTELLA_CLINICA_ID) " +
-                    "VALUES('"+s.nextLine()+"','"+s.nextLine()+"','"+s.nextLine()+"','"+s.nextLine()+
-                    "','"+s.nextLine()+"','"+s.nextLine()+"','"+s.nextLine()+
-                    "','"+s.nextLine()+"','"+s.nextLine()+"')" );
+                    + " INDIRIZZO, LUOGO_NASCITA, NOME, PASSWORD, SESSO, CARTELLA_CLINICA_ID) " +
+                    "VALUES('"+valori[0]+"','"+valori[1]+"','"+valori[2]+"','"+valori[3]+
+                    "','"+valori[4]+"','"+valori[5]+"','"+valori[6]+
+                    "','"+valori[7]+"','"+valori[8]+"','"+valori[9]+"')" );
         }
         st.close();
         c.close();
@@ -48,6 +52,7 @@ public class PopolaTabelle {
 
     public static void main(String[] args) {
         String url = "jdbc:mysql://localhost:3306/ippocrate?zeroDateTimeBehavior=convertToNull";
+ /* Inserisci il tuo user e la tua password */
         String user = "root";
         String pwd = "password";
 
@@ -58,6 +63,7 @@ public class PopolaTabelle {
             //Connection conn = DriverManager.getConnection(url, user, pwd);
             
             popolaCartellaClinica(url,user,pwd);
+            popolaPaziente(url,user,pwd);
             //creaTabellaUtenti(url,user,pwd);
 //            popolaTabellaUtentiDaFile(url,user,pwd);
 //            creaTabellaCorsi(url,user,pwd);
