@@ -35,6 +35,7 @@ Thumbs.db
 
 #netbeans ignore personal stuff
 nbproject/private/
+/Ippocrate-ejb/src/conf/persistence.xml 
 ## generic files to ignore
 *~
 *.lock
