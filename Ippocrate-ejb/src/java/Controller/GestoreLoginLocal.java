@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import Entity.Paziente;
 import javax.ejb.Local;
 
 /**
