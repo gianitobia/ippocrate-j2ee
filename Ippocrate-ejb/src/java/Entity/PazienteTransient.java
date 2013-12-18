@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Entity;
 
 import java.util.Date;
@@ -13,7 +12,7 @@ import java.util.Date;
  * @author toby
  */
 public class PazienteTransient {
-    
+
     private String nome;
 
     private String cognome;

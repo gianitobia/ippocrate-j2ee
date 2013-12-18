@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Controller;
 
 import Entity.Medico;
@@ -20,5 +19,5 @@ public interface GestoreUtenteLocal {
     PazienteTransient ottieniPaziente(long user_id);
 
     Medico ottieniMedico(long user_id);
-    
+
 }

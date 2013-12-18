@@ -15,6 +15,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class RepartoFacade extends AbstractFacade<Reparto> implements RepartoFacadeLocal {
+
     @PersistenceContext(unitName = "Ippocrate-ejbPU")
     private EntityManager em;
 

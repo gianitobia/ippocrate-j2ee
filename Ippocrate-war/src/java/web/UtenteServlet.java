@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package web;
 
 import Controller.GestoreUtenteLocal;
@@ -25,6 +24,7 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "Utente", urlPatterns = {"/Utente"})
 public class UtenteServlet extends HttpServlet {
+
     @EJB
     private GestoreUtenteLocal gestoreUtente;
 
@@ -42,31 +42,28 @@ public class UtenteServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             HttpSession s = request.getSession();
-            String type = (String)s.getAttribute("type");
-            long user = (long)s.getAttribute("user_id");
-            if(type != null && user != -1) {
-                if(request.getParameter("action").equals("pagina_personale"))
-                {
-                    if(type.equals("paziente")){
+            String type = (String) s.getAttribute("type");
+            long user = (long) s.getAttribute("user_id");
+            if (type != null && user != -1) {
+                if (request.getParameter("action").equals("pagina_personale")) {
+                    if (type.equals("paziente")) {
                         PazienteTransient p = gestoreUtente.ottieniPaziente(user);
                         s.setAttribute("paziente", p);
                         response.sendRedirect("home_paziente.jsp");
-                    }
-                    else if(type.equals("medico")){
+                    } else if (type.equals("medico")) {
                         Medico m = gestoreUtente.ottieniMedico(user);
                         response.sendRedirect("home_medico.jsp");
-                    }
-                    else{
+                    } else {
                         s.setAttribute("error", "Tipo di utente non riconosciuto");
                         response.sendRedirect("errore.jsp");
                     }
-                
+
                 }
             } else {
                 s.setAttribute("error", "Accesso negato per la risorsa richiesta");
                 response.sendRedirect("errore.jsp");
             }
-            
+
         }
     }
 

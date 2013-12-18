@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Entity;
 
 import java.io.Serializable;
@@ -20,6 +19,7 @@ import javax.persistence.ManyToMany;
  */
 @Entity
 public class Prestazione implements Serializable {
+
     @ManyToMany(mappedBy = "lista_prestazioni")
     private List<Sala> lista_sale;
     private static final long serialVersionUID = 1L;
@@ -67,13 +67,13 @@ public class Prestazione implements Serializable {
         this.nome = nome;
     }
 
-        public Long getId() {
-            return id;
-        }
+    public Long getId() {
+        return id;
+    }
 
-        public void setId(Long id) {
-            this.id = id;
-        }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     @Override
     public int hashCode() {
@@ -99,5 +99,5 @@ public class Prestazione implements Serializable {
     public String toString() {
         return "Prenotazioni.Prestazione[ id=" + id + " ]";
     }
-    
+
 }

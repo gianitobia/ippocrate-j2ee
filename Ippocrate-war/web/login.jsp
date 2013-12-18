@@ -12,17 +12,17 @@
         <title>Ippocrate :: Login</title>
         <link href="CSS/style.css" rel="stylesheet" type="text/css">
         <script>
-            function cambio_login(elem_id){
-                switch(elem_id){
+            function cambio_login(elem_id) {
+                switch (elem_id) {
                     case 1:
-                        document.getElementById("form_medico").style.display="block";
-                        document.getElementById("form_paziente").style.display="none";
-                        
+                        document.getElementById("form_medico").style.display = "block";
+                        document.getElementById("form_paziente").style.display = "none";
+
                         break;
                     case 2:
-                        document.getElementById("form_paziente").style.display="block";
-                        document.getElementById("form_medico").style.display="none";
-                    break;
+                        document.getElementById("form_paziente").style.display = "block";
+                        document.getElementById("form_medico").style.display = "none";
+                        break;
                 }
             }
         </script>

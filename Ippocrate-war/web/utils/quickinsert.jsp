@@ -26,7 +26,7 @@
             <input name="num_ufficio" type="text" value="num_ufficio"/><br/>
             <input type="submit" value="crea"/>
         </form>
-        
+
         <form id="form_paziente" action="quickinsert?action=crea_paziente" method="post">
             <h1>Crea paziente</h1>
             <input name="cf" type="text" value="cf"/><br/>

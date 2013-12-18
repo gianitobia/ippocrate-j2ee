@@ -34,13 +34,12 @@ public abstract class Medico implements Serializable {
 
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date data_nascita;
-    
+
     private String username;
 
     private String password;
 
     private String pin_code = "111111";
-
 
     @OneToOne
     private Agenda visite;
@@ -158,27 +157,27 @@ public abstract class Medico implements Serializable {
      *
      * @return the value of data_nascita
      */
-        public Date getData_nascita() {
-            return data_nascita;
-        }
+    public Date getData_nascita() {
+        return data_nascita;
+    }
 
     /**
      * Set the value of data_nascita
      *
      * @param data_nascita new value of data_nascita
      */
-        public void setData_nascita(Date data_nascita) {
-            this.data_nascita = data_nascita;
-        }
+    public void setData_nascita(Date data_nascita) {
+        this.data_nascita = data_nascita;
+    }
 
     /**
      * Get the value of prenotazioni
      *
      * @return the value of prenotazioni
      */
-        public Agenda getPrenotazioni() {
-            return visite;
-        }
+    public Agenda getPrenotazioni() {
+        return visite;
+    }
 
     /**
      * Set the value of prenotazioni

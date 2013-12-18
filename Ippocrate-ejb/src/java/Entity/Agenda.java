@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Entity;
 
 import java.io.Serializable;
@@ -18,11 +17,12 @@ import javax.persistence.Id;
  */
 @Entity
 public class Agenda implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
     private String developer_key;
 
     private String client_id;
@@ -76,27 +76,27 @@ public class Agenda implements Serializable {
      *
      * @return the value of secret_key
      */
-        public String getSecret_key() {
-            return secret_key;
-        }
+    public String getSecret_key() {
+        return secret_key;
+    }
 
     /**
      * Set the value of secret_key
      *
      * @param secret_key new value of secret_key
      */
-        public void setSecret_key(String secret_key) {
-            this.secret_key = secret_key;
-        }
+    public void setSecret_key(String secret_key) {
+        this.secret_key = secret_key;
+    }
 
     /**
      * Get the value of id_calendario
      *
      * @return the value of id_calendario
      */
-        public String getId_calendario() {
-            return id_calendario;
-        }
+    public String getId_calendario() {
+        return id_calendario;
+    }
 
     /**
      * Set the value of id_calendario
@@ -144,7 +144,6 @@ public class Agenda implements Serializable {
     }
 
     //Aggiungere informazioni account google calendar
-
     public Long getId() {
         return id;
     }
@@ -177,5 +176,5 @@ public class Agenda implements Serializable {
     public String toString() {
         return "Organizzazione.Agenda[ id=" + id + " ]";
     }
-    
+
 }

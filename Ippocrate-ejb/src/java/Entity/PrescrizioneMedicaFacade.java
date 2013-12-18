@@ -15,6 +15,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class PrescrizioneMedicaFacade extends AbstractFacade<PrescrizioneMedica> implements PrescrizioneMedicaFacadeLocal {
+
     @PersistenceContext(unitName = "Ippocrate-ejbPU")
     private EntityManager em;
 

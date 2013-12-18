@@ -35,7 +35,6 @@ public class RefertoMedico implements Serializable {
     @OneToMany
     private List<PrescrizioneMedica> lista_prescrizioni;
 
-
     private String diagnosi;
 
     @OneToOne
@@ -151,13 +150,13 @@ public class RefertoMedico implements Serializable {
         this.paziente = paziente;
     }
 
-        public Long getId() {
-            return id;
-        }
+    public Long getId() {
+        return id;
+    }
 
-        public void setId(Long id) {
-            this.id = id;
-        }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     @Override
     public int hashCode() {

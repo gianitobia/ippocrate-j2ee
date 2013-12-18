@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Controller;
 
 import Entity.Medico;
@@ -20,6 +19,7 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class GestoreUtente implements GestoreUtenteLocal {
+
     @EJB
     private MedicoFacadeLocal medicoFacade;
     @EJB

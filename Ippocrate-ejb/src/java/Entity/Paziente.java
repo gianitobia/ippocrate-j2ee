@@ -22,7 +22,7 @@ import javax.persistence.Temporal;
 public class Paziente implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -209,13 +209,13 @@ public class Paziente implements Serializable {
         this.cartella_clinica = cartella_clinica;
     }
 
-        public Long getId() {
-            return id;
-        }
+    public Long getId() {
+        return id;
+    }
 
-        public void setId(Long id) {
-            this.id = id;
-        }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     @Override
     public int hashCode() {

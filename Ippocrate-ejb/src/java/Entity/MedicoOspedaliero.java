@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Entity;
 
 import java.io.Serializable;
@@ -18,11 +17,12 @@ import javax.persistence.Id;
  */
 @Entity
 public class MedicoOspedaliero extends Medico implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
     private String num_ufficio;
 
     @Override
@@ -34,24 +34,24 @@ public class MedicoOspedaliero extends Medico implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    
+
     /**
      * Get the value of num_ufficio
      *
      * @return the value of num_ufficio
      */
-        public String getNum_ufficio() {
-            return num_ufficio;
-        }
+    public String getNum_ufficio() {
+        return num_ufficio;
+    }
 
     /**
      * Set the value of num_ufficio
      *
      * @param num_ufficio new value of num_ufficio
      */
-        public void setNum_ufficio(String num_ufficio) {
-            this.num_ufficio = num_ufficio;
-        }
+    public void setNum_ufficio(String num_ufficio) {
+        this.num_ufficio = num_ufficio;
+    }
 
     @Override
     public int hashCode() {
@@ -77,5 +77,5 @@ public class MedicoOspedaliero extends Medico implements Serializable {
     public String toString() {
         return "Persone.MedicoOspedaliero[ id=" + id + " ]";
     }
-    
+
 }

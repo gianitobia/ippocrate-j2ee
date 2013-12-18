@@ -3,11 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package web;
 
 import Controller.GestoreLoginLocal;
-import Entity.Paziente;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
@@ -24,6 +22,7 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
 public class LoginServlet extends HttpServlet {
+
     @EJB
     private GestoreLoginLocal gestoreLogin;
 
@@ -39,41 +38,35 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-               
+
         try (PrintWriter out = response.getWriter()) {
             HttpSession s = request.getSession();
-            if(request.getParameter("action").equals("login_medico"))
-            {
+            if (request.getParameter("action").equals("login_medico")) {
                 String user = request.getParameter("username-medico");
                 String password = request.getParameter("password-medico");
                 String pincode = request.getParameter("pincode-medico");
                 long user_id = gestoreLogin.verificaLoginMedico(user, password, pincode);
-                if(user_id!=-1){
+                if (user_id != -1) {
                     s.setAttribute("user_id", user_id);
                     s.setAttribute("type", "medico");
                     response.sendRedirect("UtenteServlet?action=pagina_personale");
-                }
-                else{
+                } else {
                     s.setAttribute("error", "Dati di accesso medico errati");
                     response.sendRedirect("errore.jsp");
                 }
-            } 
-            else if(request.getParameter("action").equals("login_paziente"))
-            {
+            } else if (request.getParameter("action").equals("login_paziente")) {
                 String cf = request.getParameter("codfisc-paziente");
                 String password = request.getParameter("password-paziente");
                 long user_id = gestoreLogin.verificaLoginPaziente(cf, password);
-                if(user_id!=-1){
+                if (user_id != -1) {
                     s.setAttribute("user_id", user_id);
                     s.setAttribute("type", "paziente");
                     response.sendRedirect("UtenteServlet?action=pagina_personale");
-                }
-                else{
+                } else {
                     s.setAttribute("error", "Dati di accesso paziente errati");
                     response.sendRedirect("errore.jsp");
                 }
-            }
-            else {
+            } else {
                 response.sendRedirect("index.html");
             }
         }

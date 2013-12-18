@@ -15,6 +15,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class PrenotazioneMedicoFacade extends AbstractFacade<PrenotazioneMedico> implements PrenotazioneMedicoFacadeLocal {
+
     @PersistenceContext(unitName = "Ippocrate-ejbPU")
     private EntityManager em;
 

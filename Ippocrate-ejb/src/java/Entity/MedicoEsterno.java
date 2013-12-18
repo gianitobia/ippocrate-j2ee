@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Entity;
 
 import java.io.Serializable;
@@ -20,11 +19,12 @@ import javax.persistence.OneToMany;
  */
 @Entity
 public class MedicoEsterno extends Medico implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
     @OneToMany
     private List<Paziente> lista_pazienti;
 
@@ -45,7 +45,6 @@ public class MedicoEsterno extends Medico implements Serializable {
     public void setLista_pazienti(List<Paziente> lista_pazienti) {
         this.lista_pazienti = lista_pazienti;
     }
-
 
     @Override
     public Long getId() {
@@ -81,5 +80,5 @@ public class MedicoEsterno extends Medico implements Serializable {
     public String toString() {
         return "Persone.MedicoEsterno[ id=" + id + " ]";
     }
-    
+
 }
