@@ -17,4 +17,6 @@ public interface GestoreLoginLocal {
 
     long verificaLoginMedico(String username, String password, String pin_code);
     
+    long verificaLoginPaziente(String cf, String password);
+    
 }

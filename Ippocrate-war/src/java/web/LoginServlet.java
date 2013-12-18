@@ -38,42 +38,42 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        
+               
         try (PrintWriter out = response.getWriter()) {
+            HttpSession s = request.getSession();
             if(request.getParameter("action").equals("login_medico"))
             {
                 String user = request.getParameter("username-medico");
                 String password = request.getParameter("password-medico");
                 String pincode = request.getParameter("pincode-medico");
                 long user_id = gestoreLogin.verificaLoginMedico(user, password, pincode);
-                if(user_id!=0){
+                if(user_id!=-1){
                     response.sendRedirect("home-medico.jsp");
-                    HttpSession s = request.getSession();
                     s.setAttribute("user_id", user_id);
+                    s.setAttribute("type", "medico");
                 }
                 else{
-                    out.println("Dati di accesso errati");
+                    s.setAttribute("error", "Dati di accesso medico errati");
+                    response.sendRedirect("errore.jsp");
                 }
             } 
             else if(request.getParameter("action").equals("login_paziente"))
             {
-                String user = request.getParameter("username-paziente");
-                String password = request.getParameter("password-medico");
-                String pincode = request.getParameter("pincode-medico");
-                long user_id = gestoreLogin.verificaLoginMedico(user, password, pincode);
-                if(user_id!=0){
-                    response.sendRedirect("home-medico.jsp");
-                    HttpSession s = request.getSession();
+                String cf = request.getParameter("codfisc-paziente");
+                String password = request.getParameter("password-paziente");
+                long user_id = gestoreLogin.verificaLoginPaziente(cf, password);
+                if(user_id!=-1){
+                    response.sendRedirect("home-paziente.jsp");
                     s.setAttribute("user_id", user_id);
+                    s.setAttribute("type", "paziente");
                 }
                 else{
-                    out.println("Dati di accesso errati");
+                    s.setAttribute("error", "Dati di accesso paziente errati");
+                    response.sendRedirect("errore.jsp");
                 }
             }
             else {
-            
-            response.sendRedirect("index.jsp");
+                response.sendRedirect("index.html");
             }
         }
     }

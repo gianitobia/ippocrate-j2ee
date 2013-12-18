@@ -17,7 +17,7 @@
             <legend>Nuova prenotazione</legend>
             <form>
                 <!-- Selezione della tipologia di visita medica -->
-                <label>Tipologia visita:</label>
+                <label>Tipologia visita : </label>
                 <select name="tipologia">
                     <option>selezionare tipologia visita</option>
                     <option>Visita cardiologica</option>
@@ -26,7 +26,7 @@
                     <option>Visita psichiatrica</option>
                 </select>
                 <!-- Selezione della struttura medica disponibile -->
-                <label>Struttura medica:</label>
+                <label>Struttura medica : </label>
                 <select name="struttura">
                     <option>selezionare struttura medica</option>
                     <option>Osp. Molinette</option>
@@ -34,7 +34,7 @@
                     <option>Centro Fisiatrico da Pippo</option>
                 </select>
                 <!-- Selezione della data in cui effettuare la visita medica -->
-                <label>Data visita:</label>
+                <label>Data visita : </label>
                 <iframe src="https://www.google.com"></iframe>
             </form>
         </fieldset>

@@ -8,6 +8,8 @@ package Controller;
 
 import Entity.Medico;
 import Entity.MedicoFacadeLocal;
+import Entity.Paziente;
+import Entity.PazienteFacadeLocal;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -18,6 +20,9 @@ import javax.ejb.Stateless;
 @Stateless
 public class GestoreLogin implements GestoreLoginLocal {
     @EJB
+    private PazienteFacadeLocal pazienteFacade;
+    
+    @EJB
     private MedicoFacadeLocal medicoFacade;
 
     @Override
@@ -27,6 +32,18 @@ public class GestoreLogin implements GestoreLoginLocal {
                 return m.getId();
             }
         }
-        return 0;
+        return -1;
     }
+
+    @Override
+    public long verificaLoginPaziente(String cf, String password) {
+        //if(cf.equals("1234"))
+            //return true;
+        for(Paziente p : pazienteFacade.findAll()){
+            if(p.getCf().equals(cf) && p.getPassword().equals(password)){
+                return p.getId();
+            }
+        }
+        return -1;
+    } 
 }
