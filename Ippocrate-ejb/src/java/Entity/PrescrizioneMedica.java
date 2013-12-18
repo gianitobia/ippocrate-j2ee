@@ -29,6 +29,7 @@ public class PrescrizioneMedica implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date data_scadenza;
 
+    @OneToOne
     private RefertoMedico referto;
 
     @OneToOne

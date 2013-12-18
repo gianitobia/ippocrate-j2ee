@@ -6,10 +6,12 @@
 package Entity;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
@@ -30,12 +32,52 @@ public class RefertoMedico implements Serializable {
     @OneToOne
     private Prestazione tipoVisita;
 
-    private PrescrizioneMedica prescrizioneMedica = null;
+    @OneToMany
+    private List<PrescrizioneMedica> lista_prescrizioni;
+
 
     private String diagnosi;
 
     @OneToOne
     private Paziente paziente;
+
+    private List<String> lista_images;
+
+    /**
+     * Get the value of lista_prescrizioni
+     *
+     * @return the value of lista_prescrizioni
+     */
+    public List<PrescrizioneMedica> getLista_prescrizioni() {
+        return lista_prescrizioni;
+    }
+
+    /**
+     * Set the value of lista_prescrizioni
+     *
+     * @param lista_prescrizioni new value of lista_prescrizioni
+     */
+    public void setLista_prescrizioni(List<PrescrizioneMedica> lista_prescrizioni) {
+        this.lista_prescrizioni = lista_prescrizioni;
+    }
+
+    /**
+     * Get the value of lista_images
+     *
+     * @return the value of lista_images
+     */
+    public List<String> getLista_images() {
+        return lista_images;
+    }
+
+    /**
+     * Set the value of lista_images
+     *
+     * @param lista_images new value of lista_images
+     */
+    public void setLista_images(List<String> lista_images) {
+        this.lista_images = lista_images;
+    }
 
     /**
      * Get the value of medico
@@ -74,24 +116,6 @@ public class RefertoMedico implements Serializable {
     }
 
     /**
-     * Get the value of prescrizioneMedica
-     *
-     * @return the value of prescrizioneMedica
-     */
-    public PrescrizioneMedica getPrescrizioneMedica() {
-        return prescrizioneMedica;
-    }
-
-    /**
-     * Set the value of prescrizioneMedica
-     *
-     * @param prescrizioneMedica new value of prescrizioneMedica
-     */
-    public void setPrescrizioneMedica(PrescrizioneMedica prescrizioneMedica) {
-        this.prescrizioneMedica = prescrizioneMedica;
-    }
-
-    /**
      * Get the value of diagnosi
      *
      * @return the value of diagnosi
@@ -127,13 +151,13 @@ public class RefertoMedico implements Serializable {
         this.paziente = paziente;
     }
 
-    public Long getId() {
-        return id;
-    }
+        public Long getId() {
+            return id;
+        }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+        public void setId(Long id) {
+            this.id = id;
+        }
 
     @Override
     public int hashCode() {

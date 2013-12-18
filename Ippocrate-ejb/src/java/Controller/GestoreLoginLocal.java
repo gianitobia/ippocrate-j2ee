@@ -15,6 +15,6 @@ import javax.ejb.Local;
 @Local
 public interface GestoreLoginLocal {
 
-    boolean verificaLoginMedico(String username, String password, String pin_code);
+    long verificaLoginMedico(String username, String password, String pin_code);
     
 }

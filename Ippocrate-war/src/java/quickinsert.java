@@ -4,27 +4,18 @@
  * and open the template in the editor.
  */
 
-package web;
-
-import Controller.GestoreLoginLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.ejb.EJB;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author toby
  */
-@WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
-public class LoginServlet extends HttpServlet {
-    @EJB
-    private GestoreLoginLocal gestoreLogin;
+public class quickinsert extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,43 +29,9 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        
         try (PrintWriter out = response.getWriter()) {
-            if(request.getParameter("action").equals("login_medico"))
-            {
-                String user = request.getParameter("username-medico");
-                String password = request.getParameter("password-medico");
-                String pincode = request.getParameter("pincode-medico");
-                long user_id = gestoreLogin.verificaLoginMedico(user, password, pincode);
-                if(user_id!=0){
-                    response.sendRedirect("home-medico.jsp");
-                    HttpSession s = request.getSession();
-                    s.setAttribute("user_id", user_id);
-                }
-                else{
-                    out.println("Dati di accesso errati");
-                }
-            } 
-            else if(request.getParameter("action").equals("login_paziente"))
-            {
-                String user = request.getParameter("username-paziente");
-                String password = request.getParameter("password-medico");
-                String pincode = request.getParameter("pincode-medico");
-                long user_id = gestoreLogin.verificaLoginMedico(user, password, pincode);
-                if(user_id!=0){
-                    response.sendRedirect("home-medico.jsp");
-                    HttpSession s = request.getSession();
-                    s.setAttribute("user_id", user_id);
-                }
-                else{
-                    out.println("Dati di accesso errati");
-                }
-            }
-            else {
             
-            response.sendRedirect("index.jsp");
-            }
+            response.sendRedirect("quickinsert.jsp");
         }
     }
 
