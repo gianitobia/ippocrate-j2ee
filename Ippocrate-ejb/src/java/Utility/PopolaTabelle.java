@@ -1,8 +1,13 @@
 package Utility;
 
-import java.io.*;
-import java.sql.*;
-import java.util.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Scanner;
 
 /*
  * To change this template, choose Tools | Templates
@@ -53,8 +58,8 @@ public class PopolaTabelle {
     public static void main(String[] args) {
         String url = "jdbc:mysql://localhost:3306/ippocrate?zeroDateTimeBehavior=convertToNull";
  /* Inserisci il tuo user e la tua password */
-        String user = "root";
-        String pwd = "password";
+        String user = MySqlAuth.user;
+        String pwd = MySqlAuth.pwd;
 
         try {     
             //Class.forName("com.mysql.jdbc.Driver").newInstance();
