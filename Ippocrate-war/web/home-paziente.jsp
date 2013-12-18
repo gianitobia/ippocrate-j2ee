@@ -15,7 +15,7 @@
     </head>
     <body>              
         <h1>
-            <% paziente.getNome(); %>
+            <%= paziente.getNome() %>
         </h1>
     </body>
 </html>

@@ -7,6 +7,9 @@ and open the template in the editor.
     Created on : 16-dic-2013, 16.02.32
     Author     : toby
 */
+p.start {
+    text-align: center;
+}
 
 .login-scelta {
     list-style: none;

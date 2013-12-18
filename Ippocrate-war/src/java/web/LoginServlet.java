@@ -7,6 +7,7 @@
 package web;
 
 import Controller.GestoreLoginLocal;
+import Entity.Paziente;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
