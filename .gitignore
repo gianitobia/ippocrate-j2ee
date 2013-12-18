@@ -1,5 +1,4 @@
-Ippocrate-ejb/src/conf/persistence.*
-persistence.*
+Ippocrate-ejb/src/conf/
 
 # Compiled source #
 ###################
