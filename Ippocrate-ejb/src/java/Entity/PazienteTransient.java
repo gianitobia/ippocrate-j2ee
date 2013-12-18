@@ -3,35 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package Entity;
 
-import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
 
 /**
  *
  * @author toby
  */
-@Entity
-public class Paziente implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class PazienteTransient {
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
     private String nome;
 
     private String cognome;
-
-    private String password;
 
     private String cf;
 
@@ -39,31 +24,9 @@ public class Paziente implements Serializable {
 
     private String indirizzo;
 
-    @Temporal(javax.persistence.TemporalType.DATE)
     private Date data_nascita;
 
     private String luogo_nascita;
-
-    @OneToOne
-    private CartellaClinica cartella_clinica;
-
-    /**
-     * Get the value of password
-     *
-     * @return the value of password
-     */
-    public String getPassword() {
-        return password;
-    }
-
-    /**
-     * Set the value of password
-     *
-     * @param password new value of password
-     */
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     /**
      * Get the value of nome
@@ -190,56 +153,4 @@ public class Paziente implements Serializable {
     public void setLuogo_nascita(String luogo_nascita) {
         this.luogo_nascita = luogo_nascita;
     }
-
-    /**
-     * Get the value of cartella_clinica
-     *
-     * @return the value of cartella_clinica
-     */
-    public CartellaClinica getCartella_clinica() {
-        return cartella_clinica;
-    }
-
-    /**
-     * Set the value of cartella_clinica
-     *
-     * @param cartella_clinica new value of cartella_clinica
-     */
-    public void setCartella_clinica(CartellaClinica cartella_clinica) {
-        this.cartella_clinica = cartella_clinica;
-    }
-
-        public Long getId() {
-            return id;
-        }
-
-        public void setId(Long id) {
-            this.id = id;
-        }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Paziente)) {
-            return false;
-        }
-        Paziente other = (Paziente) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "Persone.Paziente[ id=" + id + " ]";
-    }
-
 }

@@ -4,7 +4,7 @@
     Author     : Marco
 --%>
 
-<jsp:useBean id="paziente" class="Entity.Paziente" scope="session" />
+<jsp:useBean id="paziente" class="Entity.PazienteTransient" scope="session" />
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,8 +14,8 @@
         <title>Ippocrate :: Home Paziente</title>
     </head>
     <body>              
-        <h1>Benvenuto 
-            <%= paziente.getCognome() %> <%= paziente.getNome() %>!
+        <h1>
+            <% paziente.getNome(); %>
         </h1>
     </body>
 </html>

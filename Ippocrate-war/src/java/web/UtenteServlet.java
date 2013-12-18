@@ -6,7 +6,9 @@
 
 package web;
 
-import Controller.GestoreLoginLocal;
+import Controller.GestoreUtenteLocal;
+import Entity.Medico;
+import Entity.PazienteTransient;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
@@ -21,10 +23,10 @@ import javax.servlet.http.HttpSession;
  *
  * @author toby
  */
-@WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "Utente", urlPatterns = {"/Utente"})
+public class UtenteServlet extends HttpServlet {
     @EJB
-    private GestoreLoginLocal gestoreLogin;
+    private GestoreUtenteLocal gestoreUtente;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,43 +40,33 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-               
         try (PrintWriter out = response.getWriter()) {
             HttpSession s = request.getSession();
-            if(request.getParameter("action").equals("login_medico"))
-            {
-                String user = request.getParameter("username-medico");
-                String password = request.getParameter("password-medico");
-                String pincode = request.getParameter("pincode-medico");
-                long user_id = gestoreLogin.verificaLoginMedico(user, password, pincode);
-                if(user_id!=-1){
-                    s.setAttribute("user_id", user_id);
-                    s.setAttribute("type", "medico");
-                    response.sendRedirect("UtenteServlet?action=pagina_personale");
+            String type = (String)s.getAttribute("type");
+            long user = (long)s.getAttribute("user_id");
+            if(type != null && user != -1) {
+                if(request.getParameter("action").equals("pagina_personale"))
+                {
+                    if(type.equals("paziente")){
+                        PazienteTransient p = gestoreUtente.ottieniPaziente(user);
+                        s.setAttribute("paziente", p);
+                        response.sendRedirect("home_paziente.jsp");
+                    }
+                    else if(type.equals("medico")){
+                        Medico m = gestoreUtente.ottieniMedico(user);
+                        response.sendRedirect("home_medico.jsp");
+                    }
+                    else{
+                        s.setAttribute("error", "Tipo di utente non riconosciuto");
+                        response.sendRedirect("errore.jsp");
+                    }
+                
                 }
-                else{
-                    s.setAttribute("error", "Dati di accesso medico errati");
-                    response.sendRedirect("errore.jsp");
-                }
-            } 
-            else if(request.getParameter("action").equals("login_paziente"))
-            {
-                String cf = request.getParameter("codfisc-paziente");
-                String password = request.getParameter("password-paziente");
-                long user_id = gestoreLogin.verificaLoginPaziente(cf, password);
-                if(user_id!=-1){
-                    s.setAttribute("user_id", user_id);
-                    s.setAttribute("type", "paziente");
-                    response.sendRedirect("UtenteServlet?action=pagina_personale");
-                }
-                else{
-                    s.setAttribute("error", "Dati di accesso paziente errati");
-                    response.sendRedirect("errore.jsp");
-                }
+            } else {
+                s.setAttribute("error", "Accesso negato per la risorsa richiesta");
+                response.sendRedirect("errore.jsp");
             }
-            else {
-                response.sendRedirect("index.html");
-            }
+            
         }
     }
 

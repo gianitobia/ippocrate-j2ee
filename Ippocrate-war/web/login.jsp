@@ -40,7 +40,7 @@
             <label for="pincode-medico">Pin code : </label><input name="pincode-medico"type="text" value=""/><br/>
             <input type="submit" value="Accedi"/>
         </form>
-        <form id="form_paziente" action="LoginServlet?action=login_paziente" style="display:none;">
+        <form id="form_paziente" action="LoginServlet?action=login_paziente" style="display:none;" method="post">
             <h1>Login paziente</h1>
             <label for="codfisc-paziente">Codice fiscale : </label><input name="codfisc-paziente" type="text" value=""/><br/>
             <label for="password-paziente">Password : </label><input name="password-paziente" type="password" value=""/><br/>
