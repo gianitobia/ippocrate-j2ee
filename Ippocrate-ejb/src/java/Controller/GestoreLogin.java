@@ -46,16 +46,4 @@ public class GestoreLogin implements GestoreLoginLocal {
         }
         return -1;
     }
-
-    @Override
-    public Paziente verificaLoginPaziente(String cf, String password) {
-        //if(cf.equals("1234"))
-            //return true;
-        for(Paziente p : pazienteFacade.findAll()){
-            if(p.getCf().equals(cf) && p.getPassword().equals(password)){
-                return p;
-            }
-        }
-        return null;
-    } 
 }
