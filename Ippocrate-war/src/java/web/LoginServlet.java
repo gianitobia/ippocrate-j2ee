@@ -52,7 +52,7 @@ public class LoginServlet extends HttpServlet {
                     s.setAttribute("type", "medico");
                     response.sendRedirect("UtenteServlet?action=pagina_personale");
                 } else {
-                    s.setAttribute("error", "Dati di accesso medico errati");
+                    s.setAttribute("error", "Dati di accesso medico errati.");
                     response.sendRedirect("errore.jsp");
                 }
             } else if (request.getParameter("action").equals("login_paziente")) {
@@ -64,7 +64,7 @@ public class LoginServlet extends HttpServlet {
                     s.setAttribute("type", "paziente");
                     response.sendRedirect("UtenteServlet?action=pagina_personale");
                 } else {
-                    s.setAttribute("error", "Dati di accesso paziente errati");
+                    s.setAttribute("error", "Dati di accesso paziente errati.");
                     response.sendRedirect("errore.jsp");
                 }
             } else {
