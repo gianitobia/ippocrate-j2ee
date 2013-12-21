@@ -44,11 +44,29 @@ public class PopolaTabelle {
         String[] valori;
         while (s.hasNextLine()) {
             valori = s.nextLine().split(",");
-            st.executeUpdate("INSERT INTO PAZIENTE(ID, CF, COGNOME, DATA_NASCITA,"
-                    + " INDIRIZZO, LUOGO_NASCITA, NOME, PASSWORD, SESSO, CARTELLA_CLINICA_ID) "
+            st.executeUpdate("INSERT INTO PAZIENTE(ID, NOME, COGNOME, PASSWORD"
+                    + ", CF, SESSO, INDIRIZZO, DATA_NASCITA, LUOGO_NASCITA, CARTELLA_CLINICA_ID) "
                     + "VALUES('" + valori[0] + "','" + valori[1] + "','" + valori[2] + "','" + valori[3]
                     + "','" + valori[4] + "','" + valori[5] + "','" + valori[6]
                     + "','" + valori[7] + "','" + valori[8] + "','" + valori[9] + "')");
+        }
+        st.close();
+        c.close();
+    }
+
+    public static void popolaAgenda(String url, String user, String pwd)
+            throws SQLException, FileNotFoundException, IOException {
+
+        Connection c = DriverManager.getConnection(url, user, pwd);
+        Statement st = c.createStatement();
+        Scanner s = new Scanner(new File("src/java/Utility/Agenda.txt"));
+        String[] valori;
+        while (s.hasNextLine()) {
+            valori = s.nextLine().split(",");
+            st.executeUpdate("INSERT INTO AGENDA(ID, CLIENT_ID, DEVELOPER_KEY, ID_CALENDARIO,"
+                    + " NOME_UTENTE, PASSWORD, SECRET_KEY) "
+                    + "VALUES('" + valori[0] + "','" + valori[1] + "','" + valori[2] + "','" + valori[3]
+                    + "','" + valori[4] + "','" + valori[5] + "','" + valori[6] + "')");
         }
         st.close();
         c.close();
@@ -65,18 +83,11 @@ public class PopolaTabelle {
 
             //Establish connection using DriverManager 
             //Connection conn = DriverManager.getConnection(url, user, pwd);
+            
             popolaCartellaClinica(url, user, pwd);
             popolaPaziente(url, user, pwd);
-            //creaTabellaUtenti(url,user,pwd);
-//            popolaTabellaUtentiDaFile(url,user,pwd);
-//            creaTabellaCorsi(url,user,pwd);
-//            popolaTabellaCorsiDaFile(url,user,pwd);
-//            creaTabellaAppelli(url,user,pwd);
-//            popolaTabellaAppelliDaFile(url,user,pwd);
-//            creaTabellaIscrizione(url, user, pwd);
-//            popolaTabellaIscrizioneDaFile(url, user, pwd);
-//            creaTabellaCaricoDidattico(url, user, pwd);
-//            popolaTabellaCaricoDidatticoDaFile(url, user, pwd);
+            popolaAgenda(url, user, pwd);
+
             //conn.close();      
         } catch (Exception e) {
             System.out.println(e);
