@@ -40,6 +40,7 @@ public class GestorePaziente implements GestorePazienteLocal {
         p.setIndirizzo(indirizzo);
 
         CartellaClinica cc = new CartellaClinica();
+        cc.setPaziente(p);
         cartellaClinicaFacade.create(cc);
         p.setCartella_clinica(cc);
         pazienteFacade.create(p);

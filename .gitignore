@@ -1,5 +1,5 @@
 Ippocrate-ejb/src/conf/
-
+Ippocrate-ejb/src/Utility/MySqlAuth.java
 # Compiled source #
 ###################
 *.com
