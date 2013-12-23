@@ -5,6 +5,8 @@
  */
 package Controller;
 
+import Entity.Agenda;
+import Entity.AgendaFacadeLocal;
 import Entity.CartellaClinica;
 import Entity.CartellaClinicaFacadeLocal;
 import Entity.MedicoEsterno;
@@ -28,6 +30,9 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
+
+    @EJB
+    private AgendaFacadeLocal agendaFacade;
 
     @EJB
     private PrestazioneFacadeLocal prestazioneFacade;
@@ -81,7 +86,9 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
         m.setPassword(password);
         m.setPin_code(pin_code);
         m.setNum_ufficio(num_ufficio);
-
+        Agenda a = new Agenda();
+        agendaFacade.create(a);
+        m.setVisite(a);
         medicoOspedalieroFacade.create(m);
         return m.getId();
     }

@@ -44,6 +44,14 @@ public abstract class Medico implements Serializable {
     @OneToOne
     private Agenda visite;
 
+    public Agenda getVisite() {
+        return visite;
+    }
+
+    public void setVisite(Agenda visite) {
+        this.visite = visite;
+    }
+
     /**
      * Get the value of username
      *
