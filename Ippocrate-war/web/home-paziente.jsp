@@ -51,7 +51,7 @@
                 <h1>Benvenuto,<br>sig. <%= paziente.getCognome()%>!</h1>
                 <br>
                 <p>Il nuovo portale Ippocrate ti permette di prenotare comodamente
-                    una nuova visita medica ma anche di vedere tutti i tuoi referti medici.
+                    una nuova visita medica<br> ma anche di vedere tutti i tuoi referti medici.
                 </p>
             </div>
         </div> <!-- /container -->

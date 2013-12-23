@@ -16,7 +16,7 @@
         <form id="form_medico" action="QuickInsert?action=crea_medico" method="post">
             <h1>Crea medico</h1>
             <div class="btn-group" data-toggle="buttons">
-                <label class="btn btn-default **active**">
+                <label class="btn btn-default active">
                     <input type="radio" name="tipo_medico" id="inputWalls" value="Medico esterno" checked>
                     Medico esterno </label>
                 <label class="btn btn-default">
@@ -57,7 +57,7 @@
         <form id="form_ospedale" action="QuickInsert?action=crea_struttura" method="post">
             <h1>Crea ospedale</h1>
             <div class="btn-group" data-toggle="buttons">
-                <label class="btn btn-default **active**">
+                <label class="btn btn-default active">
                     <input type="radio" name="tipo_strutturaMedica" id="inputWalls" value="Studio medico" checked>
                     Studio medico </label>
                 <label class="btn btn-default">

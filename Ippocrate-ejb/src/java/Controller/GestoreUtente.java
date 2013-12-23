@@ -7,6 +7,7 @@ package Controller;
 
 import Entity.Medico;
 import Entity.MedicoFacadeLocal;
+import Entity.MedicoTransient;
 import Entity.Paziente;
 import Entity.PazienteFacadeLocal;
 import Entity.PazienteTransient;
@@ -40,8 +41,20 @@ public class GestoreUtente implements GestoreUtenteLocal {
     }
 
     @Override
-    public Medico ottieniMedico(long user_id) {
-        Medico m = medicoFacade.find(user_id);
-        return m;
+    public MedicoTransient ottieniMedico(long user_id) {
+        Medico m = medicoFacade.find(user_id);       
+        MedicoTransient mt = new MedicoTransient();
+        mt.setCognome(m.getCognome());
+        mt.setNome(m.getNome());
+        mt.setData_nascita(m.getData_nascita());
+        mt.setSpecializzazione(m.getSpecializzazione());
+        if (m.getClass().getName().equals("Entity.MedicoOspedaliero")) {
+            mt.setTipo("O");
+            mt.setNum_ufficio(((Entity.MedicoOspedaliero) m).getNum_ufficio());            
+        }
+        else
+            mt.setTipo("E");
+        
+        return mt;
     }
 }

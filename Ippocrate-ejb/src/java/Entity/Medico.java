@@ -39,7 +39,7 @@ public abstract class Medico implements Serializable {
 
     private String password;
 
-    private String pin_code = "111111";
+    private String pin_code;
 
     @OneToOne
     private Agenda visite;

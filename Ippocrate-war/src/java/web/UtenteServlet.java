@@ -6,7 +6,7 @@
 package web;
 
 import Controller.GestoreUtenteLocal;
-import Entity.Medico;
+import Entity.MedicoTransient;
 import Entity.PazienteTransient;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,7 +22,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author toby
  */
-@WebServlet(name = "Utente", urlPatterns = {"/Utente"})
+@WebServlet(name = "UtenteServlet", urlPatterns = {"/UtenteServlet"})
 public class UtenteServlet extends HttpServlet {
 
     @EJB
@@ -40,6 +40,7 @@ public class UtenteServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+
         try (PrintWriter out = response.getWriter()) {
             HttpSession s = request.getSession();
             String type = (String) s.getAttribute("type");
@@ -49,15 +50,13 @@ public class UtenteServlet extends HttpServlet {
                     if (type.equals("paziente")) {
                         PazienteTransient p = gestoreUtente.ottieniPaziente(user);
                         s.setAttribute("paziente", p);
-                        response.sendRedirect("home_paziente.jsp");
-                    } else if (type.equals("medico")) {
-                        Medico m = gestoreUtente.ottieniMedico(user);
-                        response.sendRedirect("home_medico.jsp");
-                    } else {
-                        s.setAttribute("error", "Tipo di utente non riconosciuto");
-                        response.sendRedirect("errore.jsp");
+                        response.sendRedirect("home-paziente.jsp");
                     }
-
+                    else if (type.equals("medico")) {
+                        MedicoTransient m = gestoreUtente.ottieniMedico(user);
+                        s.setAttribute("medico",m);
+                        response.sendRedirect("home-medico.jsp");
+                    }
                 }
             } else {
                 s.setAttribute("error", "Accesso negato per la risorsa richiesta");

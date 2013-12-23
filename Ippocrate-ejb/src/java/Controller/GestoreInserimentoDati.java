@@ -76,6 +76,24 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
     }
 
     @Override
+    public Long addMedicoEsterno(String nome, String cognome, String specializzazione, Date data_nascita, String username, String password, String pin_code) {
+        MedicoEsterno m = new MedicoEsterno();
+        m.setNome(nome);
+        m.setCognome(cognome);
+        m.setSpecializzazione(specializzazione);
+        m.setData_nascita(data_nascita);
+        m.setUsername(username);
+        m.setPassword(password);
+        m.setPin_code(pin_code);
+        Agenda a = new Agenda();
+        agendaFacade.create(a);
+        m.setVisite(a);
+        m.setLista_pazienti(new ArrayList<Paziente>());
+        medicoEsternoFacade.create(m);
+        return m.getId();
+    }
+
+    @Override
     public Long addMedicoOspedaliero(String nome, String cognome, String specializzazione, Date data_nascita, String username, String password, String pin_code, String num_ufficio) {
         MedicoOspedaliero m = new MedicoOspedaliero();
         m.setNome(nome);
@@ -107,21 +125,4 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
     public Long addPrestazione(String durata, String nome) {
         return null;
     }
-
-    @Override
-    public Long addMedicoEsterno(String nome, String cognome, String specializzazione, Date data_nascita, String username, String password, String pin_code) {
-        MedicoEsterno m = new MedicoEsterno();
-        m.setNome(nome);
-        m.setCognome(cognome);
-        m.setSpecializzazione(specializzazione);
-        m.setData_nascita(data_nascita);
-        m.setUsername(username);
-        m.setPassword(password);
-        m.setPin_code(pin_code);
-        m.setLista_pazienti(new ArrayList<Paziente>());
-
-        medicoEsternoFacade.create(m);
-        return m.getId();
-    }
-
 }

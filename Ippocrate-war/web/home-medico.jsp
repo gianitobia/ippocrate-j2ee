@@ -4,6 +4,8 @@
     Author     : toby
 --%>
 
+<jsp:useBean id="medico" class="Entity.MedicoTransient" scope="session" />
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="it">
@@ -30,6 +32,7 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="home-medico.jsp">Home</a></li>
+                        <li><a href="#">I miei pazienti</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Primo <b class="caret"></b></a>
                             <ul class="dropdown-menu">
@@ -46,9 +49,9 @@
             </div>
             <!-- Main component for a primary marketing message or call to action -->
             <div class="jumbotron">
-                <h1>Benvenuto,<br>dott. Rossi!</h1>
+                <h1>Benvenuto,<br>dott. <%= medico.getCognome()%>!</h1>
                 <br>
-                <p>Il nuovo portale Ippocrate ti permette di ...</p>
+                <p>Il nuovo portale Ippocrate ti permette di vedere l'elenco dei tuoi pazienti.</p>
             </div>
         </div> <!-- /container -->
         <!-- Bootstrap core JavaScript

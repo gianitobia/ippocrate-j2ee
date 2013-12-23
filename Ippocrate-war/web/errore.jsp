@@ -5,9 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<% if (session.getAttribute("error") == null) { %>
-<jsp:forward page="index.html"></jsp:forward>
-<% } else {
+<%
     String error = (String) session.getAttribute("error");
     session.setAttribute("error", null);
 %>
@@ -34,6 +32,3 @@
         </div>
     </body>
 </html>
-<%
-    }
-%>
