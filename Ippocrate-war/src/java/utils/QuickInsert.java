@@ -2,10 +2,24 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
+ *//*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ *//*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ *//*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
+
+
 package utils;
 
-import Controller.GestorePazienteLocal;
+import Controller.GestoreInserimentoDatiLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
@@ -20,8 +34,9 @@ import javax.servlet.http.HttpServletResponse;
  * @author Marco
  */
 public class QuickInsert extends HttpServlet {
+
     @EJB
-    private GestorePazienteLocal gestorePaziente;
+    private GestoreInserimentoDatiLocal gestoreIns;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,12 +52,23 @@ public class QuickInsert extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
+
             if (request.getParameter("action").equals("crea_medico")) {
-                
-            }
-            
-            else if (request.getParameter("action").equals("crea_paziente")) {
+                String nome = request.getParameter("nome");
+                String cognome = request.getParameter("cognome");
+                String password = request.getParameter("password");
+                String pin_code = request.getParameter("pin_code");
+                String specializzazione = request.getParameter("specializzazione");
+                String username = request.getParameter("username");
+                String num_ufficio = request.getParameter("num_ufficio");
+                Date data_nascita = new Date(request.getParameter("data_nascita"));
+                String tipo = request.getParameter("tipo_medico");
+                if (tipo.equals("Medico ospedaliero")) {
+                    gestoreIns.addMedicoOspedaliero();
+                } else {
+                    gestoreIns.addMedicoEsterno();
+                }
+            } else if (request.getParameter("action").equals("crea_paziente")) {
                 String nome = request.getParameter("nome");
                 String cognome = request.getParameter("cognome");
                 String password = request.getParameter("password");
@@ -52,15 +78,25 @@ public class QuickInsert extends HttpServlet {
                 String luogo_nascita = request.getParameter("luogo_nascita");
                 Date data_nascita = new Date(request.getParameter("data_nascita"));
 
-                gestorePaziente.addPaziente(nome, cognome, password, cf, sesso,
+                gestoreIns.addPaziente(nome, cognome, password, cf, sesso,
                         indirizzo, data_nascita, luogo_nascita);
-                
+
                 out.println("Inserimento avvenuto!");
+            } else if (request.getParameter("action").equals("crea_prestazione")) {
+
+            } else if (request.getParameter("action").equals("crea_struttura")) {
+                String tipo = request.getParameter("tipo_strutturaMedica");
+                String nome = request.getParameter("nome");
+                String indirizzo = request.getParameter("indirizzo");
+                if (tipo.equals("Ospedale")) {
+                    gestoreIns.addOspedale(nome, indirizzo);
+                } else if (tipo.equals("Studio medico")) {
+                    gestoreIns.addStudioMedico(nome, indirizzo);
+                }
             }
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("### errore creazione!, " + e);
-        } 
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

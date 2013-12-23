@@ -9,6 +9,8 @@ import Entity.CartellaClinica;
 import Entity.CartellaClinicaFacadeLocal;
 import Entity.Paziente;
 import Entity.PazienteFacadeLocal;
+import Entity.RefertoMedico;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -18,7 +20,8 @@ import javax.ejb.Stateless;
  * @author Marco
  */
 @Stateless
-public class GestorePaziente implements GestorePazienteLocal {
+public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
+
     @EJB
     private CartellaClinicaFacadeLocal cartellaClinicaFacade;
 
@@ -26,7 +29,7 @@ public class GestorePaziente implements GestorePazienteLocal {
     private PazienteFacadeLocal pazienteFacade;
 
     @Override
-    public void addPaziente(String nome, String cognome, String cf, String password,
+    public Long addPaziente(String nome, String cognome, String cf, String password,
             String sesso, String indirizzo, Date data_nascita, String luogo_nascita) {
 
         Paziente p = new Paziente();
@@ -41,8 +44,37 @@ public class GestorePaziente implements GestorePazienteLocal {
 
         CartellaClinica cc = new CartellaClinica();
         cc.setPaziente(p);
+        cc.setLista_referti(new ArrayList<RefertoMedico>());
+        cc.setAnamnesi("");
         cartellaClinicaFacade.create(cc);
         p.setCartella_clinica(cc);
         pazienteFacade.create(p);
+        return p.getId();
     }
+
+    @Override
+    public Long addMedicoOspedaliero(String nome, String cognome, String specializzazione, Date data_nascita, String username, String password, String pin_code, String num_ufficio) {
+        return null;
+    }
+
+    @Override
+    public Long addOspedale(String nome, String indrizzo) {
+        return null;
+    }
+
+    @Override
+    public Long addStudioMedico(String nome, String indirizzo) {
+        return null;
+    }
+
+    @Override
+    public Long addPrestazione(String durata, String nome) {
+        return null;
+    }
+
+    @Override
+    public Long addMedicoEsterno(String nome, String cognome, String specializzazione, Date data_nascita, String username, String password, String pin_code) {
+        return null;
+    }
+
 }

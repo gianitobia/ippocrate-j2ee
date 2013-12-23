@@ -20,9 +20,9 @@ import javax.persistence.ManyToMany;
 @Entity
 public class Prestazione implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     @ManyToMany(mappedBy = "lista_prestazioni")
     private List<Sala> lista_sale;
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
