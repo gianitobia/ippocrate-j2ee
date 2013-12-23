@@ -53,48 +53,63 @@ public class QuickInsert extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
-            if (request.getParameter("action").equals("crea_medico")) {
-                String nome = request.getParameter("nome");
-                String cognome = request.getParameter("cognome");
-                String password = request.getParameter("password");
-                String pin_code = request.getParameter("pin_code");
-                String specializzazione = request.getParameter("specializzazione");
-                String username = request.getParameter("username");
-                String num_ufficio = request.getParameter("num_ufficio");
-                Date data_nascita = new Date(request.getParameter("data_nascita"));
-                String tipo = request.getParameter("tipo_medico");
-                out.print(tipo);
-                if (tipo.equals("Medico ospedaliero")) {
-                    out.println("1");
-                    gestoreIns.addMedicoOspedaliero(nome, cognome, specializzazione, data_nascita, username, password, pin_code, num_ufficio);
-                } else if (tipo.equals("Medico esterno")) {
-                    out.println("2");
-                    gestoreIns.addMedicoEsterno(nome, cognome, specializzazione, data_nascita, username, password, pin_code);
+            switch (request.getParameter("action")) {
+                case "crea_medico": {
+                    String nome = request.getParameter("nome");
+                    String cognome = request.getParameter("cognome");
+                    String password = request.getParameter("password");
+                    String pin_code = request.getParameter("pin_code");
+                    String specializzazione = request.getParameter("specializzazione");
+                    String username = request.getParameter("username");
+                    String num_ufficio = request.getParameter("num_ufficio");
+                    Date data_nascita = new Date(request.getParameter("data_nascita"));
+                    String tipo = request.getParameter("tipo_medico");
+                    switch (tipo) {
+                        case "Medico ospedaliero":
+                            gestoreIns.addMedicoOspedaliero(nome, cognome, specializzazione, data_nascita, username, password, pin_code, num_ufficio);
+                            break;
+                        case "Medico esterno":
+                            gestoreIns.addMedicoEsterno(nome, cognome, specializzazione, data_nascita, username, password, pin_code);
+                            break;
+                    }
+                    out.println("Inserimento avvenuto!");
+                    break;
                 }
-            } else if (request.getParameter("action").equals("crea_paziente")) {
-                String nome = request.getParameter("nome");
-                String cognome = request.getParameter("cognome");
-                String password = request.getParameter("password");
-                String cf = request.getParameter("cf");
-                String sesso = request.getParameter("sesso");
-                String indirizzo = request.getParameter("indirizzo");
-                String luogo_nascita = request.getParameter("luogo_nascita");
-                Date data_nascita = new Date(request.getParameter("data_nascita"));
-
-                gestoreIns.addPaziente(nome, cognome, password, cf, sesso,
-                        indirizzo, data_nascita, luogo_nascita);
-
-                out.println("Inserimento avvenuto!");
-            } else if (request.getParameter("action").equals("crea_prestazione")) {
-
-            } else if (request.getParameter("action").equals("crea_struttura")) {
-                String tipo = request.getParameter("tipo_strutturaMedica");
-                String nome = request.getParameter("nome");
-                String indirizzo = request.getParameter("indirizzo");
-                if (tipo.equals("Ospedale")) {
-                    gestoreIns.addOspedale(nome, indirizzo);
-                } else if (tipo.equals("Studio medico")) {
-                    gestoreIns.addStudioMedico(nome, indirizzo);
+                case "crea_paziente": {
+                    String nome = request.getParameter("nome");
+                    String cognome = request.getParameter("cognome");
+                    String password = request.getParameter("password");
+                    String cf = request.getParameter("cf");
+                    String sesso = request.getParameter("sesso");
+                    String indirizzo = request.getParameter("indirizzo");
+                    String luogo_nascita = request.getParameter("luogo_nascita");
+                    Date data_nascita = new Date(request.getParameter("data_nascita"));
+                    gestoreIns.addPaziente(nome, cognome, password, cf, sesso,
+                            indirizzo, data_nascita, luogo_nascita);
+                    out.println("Inserimento avvenuto!");
+                    break;
+                }
+                case "crea_prestazione": {
+                    String nome = request.getParameter("nome");
+                    String durata = request.getParameter("durata");
+                    gestoreIns.addPrestazione(durata, nome);
+                    out.println("Inserimento avvenuto!");
+                    break;
+                }
+                case "crea_struttura": {
+                    String tipo = request.getParameter("tipo_strutturaMedica");
+                    String nome = request.getParameter("nome");
+                    String indirizzo = request.getParameter("indirizzo");
+                    switch (tipo) {
+                        case "Ospedale":
+                            gestoreIns.addOspedale(nome, indirizzo);
+                            break;
+                        case "Studio medico":
+                            gestoreIns.addStudioMedico(nome, indirizzo);
+                            break;
+                    }
+                    out.println("Inserimento avvenuto!");
+                    break;
                 }
             }
         } catch (Exception e) {
