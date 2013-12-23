@@ -7,9 +7,16 @@ package Controller;
 
 import Entity.CartellaClinica;
 import Entity.CartellaClinicaFacadeLocal;
+import Entity.MedicoEsterno;
+import Entity.MedicoEsternoFacadeLocal;
+import Entity.MedicoOspedaliero;
+import Entity.MedicoOspedalieroFacadeLocal;
+import Entity.OspedaleFacadeLocal;
 import Entity.Paziente;
 import Entity.PazienteFacadeLocal;
+import Entity.PrestazioneFacadeLocal;
 import Entity.RefertoMedico;
+import Entity.StudioMedicoFacadeLocal;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.ejb.EJB;
@@ -21,6 +28,17 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
+
+    @EJB
+    private PrestazioneFacadeLocal prestazioneFacade;
+    @EJB
+    private OspedaleFacadeLocal ospedaleFacade;
+    @EJB
+    private StudioMedicoFacadeLocal studioMedicoFacade;
+    @EJB
+    private MedicoEsternoFacadeLocal medicoEsternoFacade;
+    @EJB
+    private MedicoOspedalieroFacadeLocal medicoOspedalieroFacade;
 
     @EJB
     private CartellaClinicaFacadeLocal cartellaClinicaFacade;
@@ -54,7 +72,18 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
 
     @Override
     public Long addMedicoOspedaliero(String nome, String cognome, String specializzazione, Date data_nascita, String username, String password, String pin_code, String num_ufficio) {
-        return null;
+        MedicoOspedaliero m = new MedicoOspedaliero();
+        m.setNome(nome);
+        m.setCognome(cognome);
+        m.setSpecializzazione(specializzazione);
+        m.setData_nascita(data_nascita);
+        m.setUsername(username);
+        m.setPassword(password);
+        m.setPin_code(pin_code);
+        m.setNum_ufficio(num_ufficio);
+
+        medicoOspedalieroFacade.create(m);
+        return m.getId();
     }
 
     @Override
@@ -74,7 +103,18 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
 
     @Override
     public Long addMedicoEsterno(String nome, String cognome, String specializzazione, Date data_nascita, String username, String password, String pin_code) {
-        return null;
+        MedicoEsterno m = new MedicoEsterno();
+        m.setNome(nome);
+        m.setCognome(cognome);
+        m.setSpecializzazione(specializzazione);
+        m.setData_nascita(data_nascita);
+        m.setUsername(username);
+        m.setPassword(password);
+        m.setPin_code(pin_code);
+        m.setLista_pazienti(new ArrayList<Paziente>());
+
+        medicoEsternoFacade.create(m);
+        return m.getId();
     }
 
 }

@@ -63,10 +63,11 @@ public class QuickInsert extends HttpServlet {
                 String num_ufficio = request.getParameter("num_ufficio");
                 Date data_nascita = new Date(request.getParameter("data_nascita"));
                 String tipo = request.getParameter("tipo_medico");
+                out.print(tipo);
                 if (tipo.equals("Medico ospedaliero")) {
-                    gestoreIns.addMedicoOspedaliero();
+                    gestoreIns.addMedicoOspedaliero(nome, cognome, specializzazione, data_nascita, username, password, pin_code, num_ufficio);
                 } else {
-                    gestoreIns.addMedicoEsterno();
+                    gestoreIns.addMedicoEsterno(nome, cognome, specializzazione, data_nascita, username, password, pin_code);
                 }
             } else if (request.getParameter("action").equals("crea_paziente")) {
                 String nome = request.getParameter("nome");
