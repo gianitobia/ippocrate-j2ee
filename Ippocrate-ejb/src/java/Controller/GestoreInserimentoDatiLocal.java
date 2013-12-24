@@ -39,5 +39,5 @@ public interface GestoreInserimentoDatiLocal {
 
     Long addStudioMedico(String nome, String indirizzo);
 
-    Long addPrestazione(String durata, String nome);
+    Long addPrestazione(int durata, String nome);
 }

@@ -5,20 +5,7 @@
  */
 package Controller;
 
-import Entity.Agenda;
-import Entity.AgendaFacadeLocal;
-import Entity.CartellaClinica;
-import Entity.CartellaClinicaFacadeLocal;
-import Entity.MedicoEsterno;
-import Entity.MedicoEsternoFacadeLocal;
-import Entity.MedicoOspedaliero;
-import Entity.MedicoOspedalieroFacadeLocal;
-import Entity.OspedaleFacadeLocal;
-import Entity.Paziente;
-import Entity.PazienteFacadeLocal;
-import Entity.PrestazioneFacadeLocal;
-import Entity.RefertoMedico;
-import Entity.StudioMedicoFacadeLocal;
+import Entity.*;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.ejb.EJB;
@@ -30,10 +17,9 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
-
+    
     @EJB
     private AgendaFacadeLocal agendaFacade;
-
     @EJB
     private PrestazioneFacadeLocal prestazioneFacade;
     @EJB
@@ -44,13 +30,12 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
     private MedicoEsternoFacadeLocal medicoEsternoFacade;
     @EJB
     private MedicoOspedalieroFacadeLocal medicoOspedalieroFacade;
-
     @EJB
     private CartellaClinicaFacadeLocal cartellaClinicaFacade;
-
     @EJB
     private PazienteFacadeLocal pazienteFacade;
 
+    
     @Override
     public Long addPaziente(String nome, String cognome, String cf, String password,
             String sesso, String indirizzo, Date data_nascita, String luogo_nascita) {
@@ -112,17 +97,33 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
     }
 
     @Override
-    public Long addOspedale(String nome, String indrizzo) {
-        return null;
+    public Long addOspedale(String nome, String indirizzo) {
+        Ospedale o = new Ospedale();
+        o.setNome(nome);
+        o.setIndirizzo(indirizzo);
+        // da completare l'aggiunta di reparti
+        o.setLista_reparti(new ArrayList<Reparto>());
+        ospedaleFacade.create(o);
+        return o.getId();
     }
 
     @Override
     public Long addStudioMedico(String nome, String indirizzo) {
-        return null;
+        StudioMedico sm = new StudioMedico();
+        sm.setNome(nome);
+        sm.setIndirizzo(indirizzo);
+        // da completare l'aggiunta dei pazienti
+        sm.setLista_pazienti(new ArrayList<Paziente>());
+        studioMedicoFacade.create(sm);
+        return sm.getId();
     }
 
     @Override
-    public Long addPrestazione(String durata, String nome) {
-        return null;
+    public Long addPrestazione(int durata, String nome) {
+        Prestazione p = new Prestazione();
+        p.setNome(nome);
+        p.setDurata(durata);
+        prestazioneFacade.create(p);
+        return p.getId();
     }
 }
