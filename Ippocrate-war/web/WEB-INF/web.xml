@@ -4,9 +4,17 @@
         <servlet-name>QuickInsert</servlet-name>
         <servlet-class>utils.QuickInsert</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PrenotazioneServlet</servlet-name>
+        <servlet-class>web.PrenotazioneServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>QuickInsert</servlet-name>
         <url-pattern>/QuickInsert</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PrenotazioneServlet</servlet-name>
+        <url-pattern>/PrenotazioneServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

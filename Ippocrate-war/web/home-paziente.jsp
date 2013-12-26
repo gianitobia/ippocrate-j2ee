@@ -35,7 +35,7 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Prenotazioni <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Le mie prenotazioni</a></li>
+                                <li><a href="PrenotazioneServlet?action=ottieni">Le mie prenotazioni</a></li>
                                 <li><a href="#">Nuova prenotazione</a></li>
                             </ul>
                         </li>
