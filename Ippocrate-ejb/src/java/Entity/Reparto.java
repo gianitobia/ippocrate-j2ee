@@ -5,8 +5,6 @@
  */
 package Entity;
 
-import Entity.Medico;
-import Entity.Paziente;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
@@ -29,7 +27,7 @@ public class Reparto implements Serializable {
     private Long id;
 
     @OneToMany
-    private List<Medico> lista_medici;
+    private List<MedicoOspedaliero> lista_medici;
 
     @OneToMany
     private List<Sala> lista_sale;
@@ -37,14 +35,14 @@ public class Reparto implements Serializable {
     @OneToMany
     private List<Paziente> lista_pazienti;
     @OneToOne
-    private Medico primario;
+    private MedicoOspedaliero primario;
 
     /**
      * Get the value of primario
      *
      * @return the value of primario
      */
-    public Medico getPrimario() {
+    public MedicoOspedaliero getPrimario() {
         return primario;
     }
 
@@ -53,7 +51,7 @@ public class Reparto implements Serializable {
      *
      * @param primario new value of primario
      */
-    public void setPrimario(Medico primario) {
+    public void setPrimario(MedicoOspedaliero primario) {
         this.primario = primario;
     }
 
@@ -62,7 +60,7 @@ public class Reparto implements Serializable {
      *
      * @return the value of lista_medici
      */
-    public List<Medico> getLista_medici() {
+    public List<MedicoOspedaliero> getLista_medici() {
         return lista_medici;
     }
 
@@ -71,7 +69,7 @@ public class Reparto implements Serializable {
      *
      * @param lista_medici new value of lista_medici
      */
-    public void setLista_medici(List<Medico> lista_medici) {
+    public void setLista_medici(List<MedicoOspedaliero> lista_medici) {
         this.lista_medici = lista_medici;
     }
 

@@ -129,6 +129,7 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
         sm.setNome(nome);
         sm.setIndirizzo(indirizzo);
         // da completare l'aggiunta dei pazienti
+        sm.setLista_medici(new ArrayList<MedicoEsterno>());
         sm.setLista_pazienti(new ArrayList<Paziente>());
         studioMedicoFacade.create(sm);
         return sm.getId();

@@ -47,14 +47,14 @@ public class StudioMedico extends StrutturaMedica implements Serializable {
     }
 
     @OneToMany
-    private List<Medico> lista_medici;
+    private List<MedicoEsterno> lista_medici;
 
     /**
      * Get the value of lista_medici
      *
      * @return the value of lista_medici
      */
-    public List<Medico> getLista_medici() {
+    public List<MedicoEsterno> getLista_medici() {
         return lista_medici;
     }
 
@@ -63,7 +63,7 @@ public class StudioMedico extends StrutturaMedica implements Serializable {
      *
      * @param lista_medici new value of lista_medici
      */
-    public void setLista_medici(List<Medico> lista_medici) {
+    public void setLista_medici(List<MedicoEsterno> lista_medici) {
         this.lista_medici = lista_medici;
     }
 
