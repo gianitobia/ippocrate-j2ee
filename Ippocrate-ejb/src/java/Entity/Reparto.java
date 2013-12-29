@@ -25,6 +25,7 @@ public class Reparto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String nome;
 
     @OneToMany
     private List<MedicoOspedaliero> lista_medici;
@@ -36,6 +37,24 @@ public class Reparto implements Serializable {
     private List<Paziente> lista_pazienti;
     @OneToOne
     private MedicoOspedaliero primario;
+
+    /**
+     * Get the value of nome
+     *
+     * @return the value of nome
+     */
+    public String getNome() {
+        return nome;
+    }
+
+    /**
+     * Set the value of nome
+     *
+     * @param nome new value of nome
+     */
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
     /**
      * Get the value of primario

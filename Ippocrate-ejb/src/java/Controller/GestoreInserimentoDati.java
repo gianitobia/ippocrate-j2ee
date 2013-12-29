@@ -21,10 +21,14 @@ import Entity.Prestazione;
 import Entity.PrestazioneFacadeLocal;
 import Entity.RefertoMedico;
 import Entity.Reparto;
+import Entity.RepartoFacadeLocal;
+import Entity.Sala;
+import Entity.SalaFacadeLocal;
 import Entity.StudioMedico;
 import Entity.StudioMedicoFacadeLocal;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -35,6 +39,11 @@ import javax.ejb.Stateless;
 @Stateless
 public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
 
+    @EJB
+    private SalaFacadeLocal salaFacade;
+
+    @EJB
+    private RepartoFacadeLocal repartoFacade;
     @EJB
     private AgendaFacadeLocal agendaFacade;
     @EJB
@@ -142,5 +151,58 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
         p.setDurata(durata);
         prestazioneFacade.create(p);
         return p.getId();
+    }
+
+    @Override
+    public Long addReparto(long id_ospedale, String nome, long id_primario) {
+        Reparto r = new Reparto();
+        r.setNome(nome);
+        MedicoOspedaliero p = medicoOspedalieroFacade.find(id_primario);
+        r.setPrimario(p);
+        r.setLista_medici(new ArrayList<MedicoOspedaliero>());
+        r.setLista_pazienti(new ArrayList<Paziente>());
+        r.setLista_sale(new ArrayList<Sala>());
+        Ospedale o = ospedaleFacade.find(id_ospedale);
+        o.getLista_reparti().add(r);
+        repartoFacade.create(r);
+        return r.getId();
+    }
+
+    @Override
+    public Long addSalaOspedale(long id_reparto, String tipo_laboratorio, long id_medico_responsabile) {
+        Sala s = new Sala();
+        s.setTipoLaboratorio(tipo_laboratorio);
+        Agenda a = new Agenda();
+        agendaFacade.create(a);
+        s.setAgenda(a);
+        s.setLista_prestazioni(new ArrayList<Prestazione>());
+        MedicoOspedaliero m = medicoOspedalieroFacade.find(id_medico_responsabile);
+        s.setMedico_responsabile(m);
+        salaFacade.create(s);
+        Reparto r = repartoFacade.find(id_reparto);
+        r.getLista_sale().add(s);
+        return s.getId();
+    }
+
+    @Override
+    public Long addSalaStudio(long id_studio_medico, String tipo_laboratorio, long id_medico_responsabile) {
+        Sala s = new Sala();
+        s.setTipoLaboratorio(tipo_laboratorio);
+        Agenda a = new Agenda();
+        agendaFacade.create(a);
+        s.setAgenda(a);
+        s.setLista_prestazioni(new ArrayList<Prestazione>());
+        MedicoEsterno m = medicoEsternoFacade.find(id_medico_responsabile);
+        s.setMedico_responsabile(m);
+        salaFacade.create(s);
+        StudioMedico sm = studioMedicoFacade.find(id_studio_medico);
+        sm.getLista_sale().add(s);
+        return s.getId();
+    }
+
+    @Override
+    public void addPrestazioniToSala(long id_sala, List<Prestazione> prestazioni) {
+        Sala s = salaFacade.find(id_sala);
+        s.getLista_prestazioni().addAll(prestazioni);
     }
 }

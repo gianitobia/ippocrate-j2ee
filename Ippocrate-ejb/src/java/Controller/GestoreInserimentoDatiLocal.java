@@ -19,7 +19,9 @@
 
 package Controller;
 
+import Entity.Prestazione;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -40,4 +42,13 @@ public interface GestoreInserimentoDatiLocal {
     Long addStudioMedico(String nome, String indirizzo);
 
     Long addPrestazione(int durata, String nome);
+
+    Long addReparto(long id_ospedale, String nome, long id_primario);
+
+    Long addSalaOspedale(long id_reparto, String tipo_laboratorio, long id_medico_responsabile);
+
+    Long addSalaStudio(long id_studio_medico, String tipo_laboratorio, long id_medico_responsabile);
+
+    void addPrestazioniToSala(long id_sala, List<Prestazione> prestazioni);
+
 }

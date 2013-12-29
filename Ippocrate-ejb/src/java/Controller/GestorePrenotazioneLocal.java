@@ -6,6 +6,9 @@
 package Controller;
 
 import Entity.Prenotazione;
+import Entity.Prestazione;
+import Entity.Sala;
+import Entity.StrutturaMedica;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -17,5 +20,11 @@ import javax.ejb.Local;
 public interface GestorePrenotazioneLocal {
 
     List<Prenotazione> ottieniPrenotazioni(long pazienteId);
+
+    List<Prestazione> ottieniPrestazioniPrenotabili();
+
+    List<Sala> ottieniSalePerPrestazione(Prestazione prestazione);
+
+    List<StrutturaMedica> ottieniStruttureMedichePerPrestazione(Prestazione prestazione);
 
 }

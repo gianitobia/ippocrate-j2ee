@@ -31,6 +31,14 @@ public class Prestazione implements Serializable {
 
     private String nome;
 
+    public List<Sala> getLista_sale() {
+        return lista_sale;
+    }
+
+    public void setLista_sale(List<Sala> lista_sale) {
+        this.lista_sale = lista_sale;
+    }
+
     /**
      * Get the value of durata
      *
