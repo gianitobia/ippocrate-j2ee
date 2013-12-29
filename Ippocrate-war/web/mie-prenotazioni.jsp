@@ -4,10 +4,9 @@
     Author     : Marco
 --%>
 
-<%@page import="Entity.Prenotazione"%>
+<%@page import="Entity.PrenotazioneTransient"%>
 <%@page import="java.util.List"%>
-<jsp:useBean id="paziente" class="Entity.PazienteTransient" scope="session" />
-<jsp:useBean id="prenotazioni" type="List<Prenotazione>" scope="session" />
+<jsp:useBean id="prenotazioni" type="List<PrenotazioneTransient>" scope="session" />
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -55,38 +54,55 @@
             </div>
             <div class="page-header">
                 <h1>Le mie prenotazioni</h1>
-            </div><!-- Table -->
-            <table class="table table-hover">
+            </div>
+            <table class="table table-condensed table-hover">
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>Tipo visita</th>
                         <th>Data</th>
                         <th>Luogo</th>
+                        <th>Info</th>
                     </tr>
                 </thead>
                 <tbody>
                     <% for (int i = 0; i < prenotazioni.size(); i++) {%>
                     <tr>
                         <td><%= i + 1%></td>
-                        <td><%= prenotazioni.get(i).getTipo_prestazione().getNome()%></td>
-                        <td><%= prenotazioni.get(i).getData_prenotazione()%></td>
-                        <td><%= prenotazioni.get(i).getStruttura_medica().getNome()%></td>
+                        <td><%= prenotazioni.get(i).getNomePr()%></td>
+                        <td><%= prenotazioni.get(i).getData()%></td>
+                        <td><%= prenotazioni.get(i).getNomeSM()%></td>
+                        <td>
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <dl class="dl-horizontal">
+                                        <dt>Nome struttura medica</dt>
+                                        <dd><%= prenotazioni.get(i).getNomeSM()%></dd>
+                                        <dt>Indirizzo</dt>
+                                        <dd><%= prenotazioni.get(i).getIndirizzoSM()%></dd>
+                                        <dt>Data</dt>
+                                        <dd><%= prenotazioni.get(i).getData()%></dd>
+                                        <dt>Tipo visita</dt>
+                                        <dd><%= prenotazioni.get(i).getNomePr()%></dd>
+                                        <dt>Durata visita</dt>
+                                        <dd><%= prenotazioni.get(i).getDurataPr()%> minuti</dd>
+                                        <% if (prenotazioni.get(i).getTipo().equals("M")) {%>
+                                        <dt>Medico</dt>
+                                        <dd><%= prenotazioni.get(i).getCognomeM()%></dd>
+                                        <% if (prenotazioni.get(i).getUfficioM() != null) {%>
+                                        <dt>Ufficio</dt>
+                                        <dd><%= prenotazioni.get(i).getUfficioM()%></dd>
+                                        <%}%>
+                                        <%} else {%>
+                                        <dt>Tipo laboratorio</dt>
+                                        <dd><%= prenotazioni.get(i).getTipoLaboratorioS()%></dd>
+                                        <%}%>
+                                    </dl>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
-                    <tr class="hidden">
-                <table class="table">
-                    <!-- Usare class="hidden" per nascondere le info aggiuntive -->
-                    <div class="well">
-                        <dl class="dl-horizontal">
-                            <dt>Orario</dt>
-                            <dd>Leggi l'orario della visita</dd>
-                            <dt>Altro</dt>
-                            <dd>Inserire tutti i dettagli della prenotazione</dd>
-                        </dl>
-                    </div>
-                </table>
-                </tr>
-                <%}%>
+                    <%}%>
                 </tbody>
             </table>
         </div> <!-- /container -->

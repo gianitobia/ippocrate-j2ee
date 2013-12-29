@@ -6,8 +6,13 @@
 package Controller;
 
 import Entity.AgendaFacadeLocal;
+import Entity.Medico;
+import Entity.MedicoOspedaliero;
 import Entity.Prenotazione;
 import Entity.PrenotazioneFacadeLocal;
+import Entity.PrenotazioneMedico;
+import Entity.PrenotazioneSala;
+import Entity.PrenotazioneTransient;
 import Entity.Prestazione;
 import Entity.PrestazioneFacadeLocal;
 import Entity.Sala;
@@ -38,15 +43,32 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
     private PrenotazioneFacadeLocal prenotazioneFacade;
 
     @Override
-    public List<Prenotazione> ottieniPrenotazioni(long pazienteId) {
+    public List<PrenotazioneTransient> ottieniPrenotazioni(long pazienteId) {
         ArrayList l = new ArrayList();
 
         for (Prenotazione p : prenotazioneFacade.findAll()) {
             if (p.getPaziente().getId() == pazienteId) {
-                l.add(p);
+                PrenotazioneTransient pt = new PrenotazioneTransient();
+                pt.setNomeSM(p.getStruttura_medica().getNome());
+                pt.setIndirizzoSM(p.getStruttura_medica().getIndirizzo());
+                pt.setData(p.getData_prenotazione());
+                pt.setNomePr(p.getTipo_prestazione().getNome());
+                pt.setDurataPr(p.getTipo_prestazione().getDurata());
+                
+                if (p.getClass().getName().equals("Entity.PrenotazioneMedico")) {
+                    pt.setTipo("M");
+                    Medico m = ((PrenotazioneMedico) p).getMedico();
+                    pt.setCognomeM(m.getCognome());
+                    if (m.getClass().getName().equals("Entity.MedicoOspedaliero")) {
+                        pt.setUfficioM(((MedicoOspedaliero) m).getNum_ufficio());
+                    }
+                } else {
+                    pt.setTipo("S");
+                    pt.setTipoLaboratorioS(((PrenotazioneSala) p).getSala().getTipoLaboratorio());
+                }
+                l.add(pt);
             }
         }
-
         return l;
     }
 
