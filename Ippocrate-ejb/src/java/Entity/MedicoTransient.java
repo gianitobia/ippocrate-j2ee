@@ -15,7 +15,7 @@ public class MedicoTransient {
 
     /* Permette di identificare se si tratta di MedicoEsterno o MedicoOspedaliero */
     private String tipo;
-    
+
     private String nome;
 
     private String cognome;

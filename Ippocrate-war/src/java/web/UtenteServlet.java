@@ -51,10 +51,9 @@ public class UtenteServlet extends HttpServlet {
                         PazienteTransient p = gestoreUtente.ottieniPaziente(user);
                         s.setAttribute("paziente", p);
                         response.sendRedirect("home-paziente.jsp");
-                    }
-                    else if (type.equals("medico")) {
+                    } else if (type.equals("medico")) {
                         MedicoTransient m = gestoreUtente.ottieniMedico(user);
-                        s.setAttribute("medico",m);
+                        s.setAttribute("medico", m);
                         response.sendRedirect("home-medico.jsp");
                     }
                 }

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package web;
 
 import Controller.GestorePrenotazioneLocal;
@@ -21,6 +20,7 @@ import javax.servlet.http.HttpSession;
  * @author Marco
  */
 public class PrenotazioneServlet extends HttpServlet {
+
     @EJB
     private GestorePrenotazioneLocal gestorePrenotazione;
 
@@ -38,7 +38,7 @@ public class PrenotazioneServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             HttpSession s = request.getSession();
-            
+
             if (request.getParameter("action").equals("ottieni")) {
                 long pazienteId = (long) s.getAttribute("user_id");
                 s.setAttribute("prenotazioni", gestorePrenotazione.ottieniPrenotazioni(pazienteId));

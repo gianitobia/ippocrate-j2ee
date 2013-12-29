@@ -42,7 +42,7 @@ public class GestoreUtente implements GestoreUtenteLocal {
 
     @Override
     public MedicoTransient ottieniMedico(long user_id) {
-        Medico m = medicoFacade.find(user_id);       
+        Medico m = medicoFacade.find(user_id);
         MedicoTransient mt = new MedicoTransient();
         mt.setCognome(m.getCognome());
         mt.setNome(m.getNome());
@@ -50,11 +50,11 @@ public class GestoreUtente implements GestoreUtenteLocal {
         mt.setSpecializzazione(m.getSpecializzazione());
         if (m.getClass().getName().equals("Entity.MedicoOspedaliero")) {
             mt.setTipo("O");
-            mt.setNum_ufficio(((Entity.MedicoOspedaliero) m).getNum_ufficio());            
-        }
-        else
+            mt.setNum_ufficio(((Entity.MedicoOspedaliero) m).getNum_ufficio());
+        } else {
             mt.setTipo("E");
-        
+        }
+
         return mt;
     }
 }

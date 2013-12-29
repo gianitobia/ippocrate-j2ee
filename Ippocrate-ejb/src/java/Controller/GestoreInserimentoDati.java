@@ -5,7 +5,24 @@
  */
 package Controller;
 
-import Entity.*;
+import Entity.Agenda;
+import Entity.AgendaFacadeLocal;
+import Entity.CartellaClinica;
+import Entity.CartellaClinicaFacadeLocal;
+import Entity.MedicoEsterno;
+import Entity.MedicoEsternoFacadeLocal;
+import Entity.MedicoOspedaliero;
+import Entity.MedicoOspedalieroFacadeLocal;
+import Entity.Ospedale;
+import Entity.OspedaleFacadeLocal;
+import Entity.Paziente;
+import Entity.PazienteFacadeLocal;
+import Entity.Prestazione;
+import Entity.PrestazioneFacadeLocal;
+import Entity.RefertoMedico;
+import Entity.Reparto;
+import Entity.StudioMedico;
+import Entity.StudioMedicoFacadeLocal;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.ejb.EJB;
@@ -17,7 +34,7 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
-    
+
     @EJB
     private AgendaFacadeLocal agendaFacade;
     @EJB
@@ -35,7 +52,6 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
     @EJB
     private PazienteFacadeLocal pazienteFacade;
 
-    
     @Override
     public Long addPaziente(String nome, String cognome, String cf, String password,
             String sesso, String indirizzo, Date data_nascita, String luogo_nascita) {

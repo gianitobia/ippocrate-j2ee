@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Controller;
 
 import Entity.Prenotazione;
@@ -18,5 +17,5 @@ import javax.ejb.Local;
 public interface GestorePrenotazioneLocal {
 
     List<Prenotazione> ottieniPrenotazioni(long pazienteId);
-    
+
 }

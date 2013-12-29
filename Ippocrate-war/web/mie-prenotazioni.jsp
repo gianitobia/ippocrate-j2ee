@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : mie-prenotazioni
     Created on : 26-dic-2013, 17.17.27
     Author     : Marco
@@ -25,11 +25,11 @@
         <!-- Custom styles for this template -->
         <link href="css/navbar.css" rel="stylesheet">
     </head>
-    <body> 
+    <body>
         <div class="container">
             <!-- Static navbar -->
             <div class="navbar navbar-default" role="navigation">
-                <div class="navbar-header">         
+                <div class="navbar-header">
                     <a class="navbar-brand" href="home-paziente.jsp">Ippocrate</a>
                 </div>
                 <div class="navbar-collapse collapse">
@@ -67,25 +67,25 @@
                 </thead>
                 <tbody>
                     <% for (int i = 0; i < prenotazioni.size(); i++) {%>
-                        <tr>
-                            <td><%= i + 1%></td>
-                            <td><%= prenotazioni.get(i).getTipo_prestazione().getNome()%></td>
-                            <td><%= prenotazioni.get(i).getData_prenotazione()%></td>
-                            <td><%= prenotazioni.get(i).getStruttura_medica().getNome()%></td>
-                        </tr>
-                        <tr class="hidden">
-                            <table class="table">
-                                <!-- Usare class="hidden" per nascondere le info aggiuntive -->
-                                <div class="well">
-                                    <dl class="dl-horizontal">
-                                        <dt>Orario</dt>
-                                        <dd>Leggi l'orario della visita</dd>
-                                        <dt>Altro</dt>
-                                        <dd>Inserire tutti i dettagli della prenotazione</dd>
-                                    </dl>
-                                </div>
-                            </table>
-                        </tr>
+                    <tr>
+                        <td><%= i + 1%></td>
+                        <td><%= prenotazioni.get(i).getTipo_prestazione().getNome()%></td>
+                        <td><%= prenotazioni.get(i).getData_prenotazione()%></td>
+                        <td><%= prenotazioni.get(i).getStruttura_medica().getNome()%></td>
+                    </tr>
+                    <tr class="hidden">
+                <table class="table">
+                    <!-- Usare class="hidden" per nascondere le info aggiuntive -->
+                    <div class="well">
+                        <dl class="dl-horizontal">
+                            <dt>Orario</dt>
+                            <dd>Leggi l'orario della visita</dd>
+                            <dt>Altro</dt>
+                            <dd>Inserire tutti i dettagli della prenotazione</dd>
+                        </dl>
+                    </div>
+                </table>
+                </tr>
                 <%}%>
                 </tbody>
             </table>

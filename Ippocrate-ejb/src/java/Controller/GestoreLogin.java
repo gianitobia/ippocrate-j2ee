@@ -28,7 +28,7 @@ public class GestoreLogin implements GestoreLoginLocal {
     @Override
     public long verificaLoginMedico(String username, String password, String pin_code) {
         for (Medico m : medicoFacade.findAll()) {
-            if (m.getUsername().equals(username) && m.getPassword().equals(password) 
+            if (m.getUsername().equals(username) && m.getPassword().equals(password)
                     && m.getPin_code().equals(pin_code)) {
                 return m.getId();
             }

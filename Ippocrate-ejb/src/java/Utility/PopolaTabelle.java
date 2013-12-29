@@ -81,14 +81,13 @@ public class PopolaTabelle {
         try {
             //Class.forName("com.mysql.jdbc.Driver").newInstance();
 
-            //Establish connection using DriverManager 
+            //Establish connection using DriverManager
             //Connection conn = DriverManager.getConnection(url, user, pwd);
-            
             popolaCartellaClinica(url, user, pwd);
             popolaPaziente(url, user, pwd);
             popolaAgenda(url, user, pwd);
 
-            //conn.close();      
+            //conn.close();
         } catch (Exception e) {
             System.out.println(e);
         }
