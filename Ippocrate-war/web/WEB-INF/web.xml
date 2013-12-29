@@ -8,6 +8,14 @@
         <servlet-name>PrenotazioneServlet</servlet-name>
         <servlet-class>web.PrenotazioneServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>web.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>QuickInsert</servlet-name>
         <url-pattern>/QuickInsert</url-pattern>
