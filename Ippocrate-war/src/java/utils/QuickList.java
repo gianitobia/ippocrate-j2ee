@@ -17,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -40,15 +41,22 @@ public class QuickList extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            HttpSession s = request.getSession();
             switch (request.getParameter("action")) {
                 case "Pazienti": {
                     List<Paziente> pazienti = gestoreListeDati.ottieniListaPazienti();
+                    s.setAttribute("pazienti", pazienti);
+                    response.sendRedirect("quicklist-pazienti.jsp");
                 }
                 case "Ospedali": {
                     List<Ospedale> ospedali = gestoreListeDati.ottieniListaOspedali();
+                    s.setAttribute("ospedali", ospedali);
+                    response.sendRedirect("quicklist-strutturemediche.jsp");
                 }
                 case "StudiMedici": {
                     List<StudioMedico> studi = gestoreListeDati.ottieniListaStudiMedici();
+                    s.setAttribute("studimedici", studi);
+                    response.sendRedirect("quicklist-strutturemediche.jsp");
                 }
             }
         }
