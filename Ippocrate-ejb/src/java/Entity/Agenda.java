@@ -174,7 +174,7 @@ public class Agenda implements Serializable {
 
     @Override
     public String toString() {
-        return "Organizzazione.Agenda[ id=" + id + " ]";
+        return "Agenda [" + "client_id " + client_id + " " + "developer_key " + developer_key + " " + "id " + id + " " + "id_calendario " + id_calendario + " " + "nome_utente " + nome_utente + " " + "password " + password + " " + "secret_key " + secret_key + "]";
     }
 
 }

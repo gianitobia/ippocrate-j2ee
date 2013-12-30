@@ -239,7 +239,7 @@ public class Paziente implements Serializable {
 
     @Override
     public String toString() {
-        return "Persone.Paziente[ id=" + id + " ]";
+        return "Paziente [" + "id " + id + " " + "cartella_clinica " + cartella_clinica + " " + "cf " + cf + " " + "cognome " + cognome + " " + "data_nascita " + data_nascita + " " + "indirizzo " + indirizzo + " " + "luogo_nascita " + luogo_nascita + " " + "nome " + nome + " " + "password " + password + " " + "sesso " + sesso + "]";
     }
 
 }

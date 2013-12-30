@@ -152,4 +152,9 @@ public class PazienteTransient {
     public void setLuogo_nascita(String luogo_nascita) {
         this.luogo_nascita = luogo_nascita;
     }
+
+    @Override
+    public String toString() {
+        return "PazienteTransient [" + "cf " + cf + " " + "cognome " + cognome + " " + "data_nascita " + data_nascita + " " + "indirizzo " + indirizzo + " " + "luogo_nascita " + luogo_nascita + " " + "nome " + nome + " " + "sesso " + sesso + "]";
+    }
 }

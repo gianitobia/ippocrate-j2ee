@@ -78,7 +78,7 @@ public class Ospedale extends StrutturaMedica implements Serializable {
 
     @Override
     public String toString() {
-        return "StruttureMediche.Ospedale[ id=" + id + " ]";
+        return "Ospedale [" + "id " + id + " " + "getIndirizzo " + getIndirizzo() + " " + "getNome " + getNome() + "]";
     }
 
 }

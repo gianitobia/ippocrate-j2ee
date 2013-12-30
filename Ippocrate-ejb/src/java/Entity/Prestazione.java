@@ -91,6 +91,11 @@ public class Prestazione implements Serializable {
     }
 
     @Override
+    public String toString() {
+        return "Prestazione [" + "id " + id + " " + "durata " + durata + " " + "nome " + nome + "]";
+    }
+
+    @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Prestazione)) {
@@ -101,11 +106,6 @@ public class Prestazione implements Serializable {
             return false;
         }
         return true;
-    }
-
-    @Override
-    public String toString() {
-        return "Prenotazioni.Prestazione[ id=" + id + " ]";
     }
 
 }

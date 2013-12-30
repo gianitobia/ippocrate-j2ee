@@ -77,7 +77,7 @@ public class PrenotazioneMedico extends Prenotazione implements Serializable {
 
     @Override
     public String toString() {
-        return "Entity.PrenotazioneMedico[ id=" + id + " ]";
+        return "PrenotazioneMedico [" + "id " + id + " " + "medico " + medico + " " + "getData_prenotazione " + getData_prenotazione() + " " + "getPaziente " + getPaziente() + " " + "getTipo_prestazione " + getTipo_prestazione() + "]";
     }
 
 }

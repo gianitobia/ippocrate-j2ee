@@ -125,6 +125,11 @@ public class Sala implements Serializable {
     }
 
     @Override
+    public String toString() {
+        return "Sala [" + "id " + id + " " + "lista_prestazioni " + lista_prestazioni + " " + "medico_responsabile " + medico_responsabile + " " + "tipoLaboratorio " + tipoLaboratorio + "]";
+    }
+
+    @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Sala)) {
@@ -135,11 +140,6 @@ public class Sala implements Serializable {
             return false;
         }
         return true;
-    }
-
-    @Override
-    public String toString() {
-        return "StruttureMediche.Sala[ id=" + id + " ]";
     }
 
 }

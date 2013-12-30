@@ -29,7 +29,7 @@ public class PrenotazioneTransient {
     private String cognomeM;
 
     private String ufficioM;
-    
+
     /* Se la Prenotazione e' di tipo PrenotazioneSala */
     private String tipoLaboratorioS;
 
@@ -193,6 +193,11 @@ public class PrenotazioneTransient {
      */
     public void setNomeSM(String nomeSM) {
         this.nomeSM = nomeSM;
+    }
+
+    @Override
+    public String toString() {
+        return "PrenotazioneTransient [" + "cognomeM " + cognomeM + " " + "data " + data + " " + "durataPr " + durataPr + " " + "indirizzoSM " + indirizzoSM + " " + "nomePr " + nomePr + " " + "nomeSM " + nomeSM + " " + "tipo " + tipo + " " + "tipoLaboratorioS " + tipoLaboratorioS + " " + "ufficioM " + ufficioM + "]";
     }
 
 }

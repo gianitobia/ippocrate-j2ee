@@ -207,6 +207,11 @@ public class PrescrizioneMedica implements Serializable {
     }
 
     @Override
+    public String toString() {
+        return "PrescrizioneMedica [" + "id " + id + " " + "consegnata " + consegnata + " " + "medicinale " + medicinale + " " + "medico " + medico + " " + "numero_confezioni " + numero_confezioni + " " + "paziente " + paziente + "]";
+    }
+
+    @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof PrescrizioneMedica)) {
@@ -217,11 +222,6 @@ public class PrescrizioneMedica implements Serializable {
             return false;
         }
         return true;
-    }
-
-    @Override
-    public String toString() {
-        return "Documenti.PrescrizioneMedica[ id=" + id + " ]";
     }
 
 }

@@ -158,7 +158,7 @@ public class Reparto implements Serializable {
 
     @Override
     public String toString() {
-        return "StruttureMediche.Reparto[ id=" + id + " ]";
+        return "Reparto [" + "id " + id + " " + "nome " + nome + " " + "primario " + primario + "]";
     }
 
 }

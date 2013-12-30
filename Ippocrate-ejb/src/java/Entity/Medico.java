@@ -226,7 +226,7 @@ public abstract class Medico implements Serializable {
 
     @Override
     public String toString() {
-        return "Persone.Medico[ id=" + id + " ]";
+        return "Medico [" + "id " + id + " " + "cognome " + cognome + " " + "data_nascita " + data_nascita + " " + "nome " + nome + " " + "password " + password + " " + "pin_code " + pin_code + " " + "specializzazione " + specializzazione + " " + "username " + username + "]";
     }
 
 }

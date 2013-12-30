@@ -93,7 +93,7 @@ public abstract class StrutturaMedica implements Serializable {
 
     @Override
     public String toString() {
-        return "StruttureMediche.StrutturaMedica[ id=" + id + " ]";
+        return "StrutturaMedica [" + "id " + id + " " + "indirizzo " + indirizzo + " " + "nome " + nome + "]";
     }
 
 }

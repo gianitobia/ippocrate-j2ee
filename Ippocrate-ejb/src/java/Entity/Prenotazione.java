@@ -139,7 +139,7 @@ public abstract class Prenotazione implements Serializable {
 
     @Override
     public String toString() {
-        return "Prenotazioni.Prenotazione[ id=" + id + " ]";
+        return "Prenotazione [" + "id " + id + " " + "data_prenotazione " + data_prenotazione + " " + "paziente " + paziente + " " + "tipo_prestazione " + tipo_prestazione + "]";
     }
 
 }

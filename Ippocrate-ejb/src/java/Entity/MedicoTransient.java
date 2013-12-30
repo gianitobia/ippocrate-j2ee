@@ -134,4 +134,9 @@ public class MedicoTransient {
         this.nome = nome;
     }
 
+    @Override
+    public String toString() {
+        return "MedicoTransient [" + "cognome " + cognome + " " + "data_nascita " + data_nascita + " " + "nome " + nome + " " + "num_ufficio " + num_ufficio + " " + "specializzazione " + specializzazione + " " + "tipo " + tipo + "]";
+    }
+
 }

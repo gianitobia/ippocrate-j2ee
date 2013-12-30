@@ -61,6 +61,11 @@ public class PrenotazioneSala extends Prenotazione implements Serializable {
     }
 
     @Override
+    public String toString() {
+        return "PrenotazioneSala [" + "id " + id + " " + "sala " + sala + " " + "getData_prenotazione " + getData_prenotazione() + " " + "getPaziente " + getPaziente() + " " + "getTipo_prestazione " + getTipo_prestazione() + "]";
+    }
+
+    @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof PrenotazioneSala)) {
@@ -71,11 +76,6 @@ public class PrenotazioneSala extends Prenotazione implements Serializable {
             return false;
         }
         return true;
-    }
-
-    @Override
-    public String toString() {
-        return "Entity.PrenotazioneSala[ id=" + id + " ]";
     }
 
 }

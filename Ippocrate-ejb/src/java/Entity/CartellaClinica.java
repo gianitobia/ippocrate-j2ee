@@ -118,7 +118,7 @@ public class CartellaClinica implements Serializable {
 
     @Override
     public String toString() {
-        return "Documenti.CartellaClinica[ id=" + id + " ]";
+        return "CartellaClinica [" + "id " + id + " " + "anamnesi " + anamnesi + " " + "paziente " + paziente + "]";
     }
 
 }

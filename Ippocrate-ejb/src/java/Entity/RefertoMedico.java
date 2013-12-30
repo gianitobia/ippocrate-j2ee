@@ -180,7 +180,7 @@ public class RefertoMedico implements Serializable {
 
     @Override
     public String toString() {
-        return "Documenti.RefertoMedico[ id=" + id + " ]";
+        return "RefertoMedico [" + "id " + id + " " + "diagnosi " + diagnosi + " " + "lista_prescrizioni " + lista_prescrizioni + " " + "medico " + medico + " " + "paziente " + paziente + " " + "tipoVisita " + tipoVisita + "]";
     }
 
 }

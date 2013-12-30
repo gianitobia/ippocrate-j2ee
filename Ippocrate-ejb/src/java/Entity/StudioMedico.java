@@ -120,7 +120,7 @@ public class StudioMedico extends StrutturaMedica implements Serializable {
 
     @Override
     public String toString() {
-        return "StruttureMediche.StudioMedico[ id=" + id + " ]";
+        return "StudioMedico [" + "id " + id + " " + "lista_medici " + lista_medici + " " + "lista_pazienti " + lista_pazienti + " " + "lista_sale " + lista_sale + " " + "getIndirizzo " + getIndirizzo() + " " + "getNome " + getNome() + "]";
     }
 
 }
