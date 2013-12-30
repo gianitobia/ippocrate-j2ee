@@ -9,14 +9,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="css/quickinsert.css" rel="stylesheet">
+        <link href="../css/quickinsert.css" rel="stylesheet">
         <title>Quick insert</title>
     </head>
     <body>
         <h1>Quick insert di vari dati</h1>
         <div>
             <h1>Crea medico</h1>
-            <form id="form_medico" action="QuickInsert?action=crea_medico" method="post">           
+            <form id="form_medico" action="QuickInsert?action=crea_medico" method="post">
                 <label>
                     <input type="radio" name="tipo_medico" value="Medico esterno" checked>
                     Medico esterno
@@ -75,5 +75,12 @@
                 <input type="submit" value="Crea"/>
             </form>
         </div>
+
+        <div>Vai alle liste:
+            <ul>
+                <li><a href="QuickList?action=Ospedali">Ospedali</a></li>
+                <li><a href="QuickList?action=StudiMedici">Studi medici</a></li>
+                <li><a href="QuickList?action=Pazienti">Pazienti</a></li>
+            </ul></div>
     </body>
 </html>
