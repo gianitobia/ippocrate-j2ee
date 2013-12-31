@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 /**
@@ -22,6 +23,11 @@ import javax.persistence.OneToOne;
 public class Sala implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    @ManyToOne
+    private StudioMedico studioMedico;
+    @ManyToOne
+    private Reparto reparto;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 
@@ -36,6 +42,22 @@ public class Sala implements Serializable {
 
     @OneToOne
     private Agenda agenda;
+
+    public StudioMedico getStudioMedico() {
+        return studioMedico;
+    }
+
+    public void setStudioMedico(StudioMedico studioMedico) {
+        this.studioMedico = studioMedico;
+    }
+
+    public Reparto getReparto() {
+        return reparto;
+    }
+
+    public void setReparto(Reparto reparto) {
+        this.reparto = reparto;
+    }
 
     /**
      * Get the value of agenda

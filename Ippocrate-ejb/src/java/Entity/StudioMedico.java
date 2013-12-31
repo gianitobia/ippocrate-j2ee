@@ -25,8 +25,14 @@ public class StudioMedico extends StrutturaMedica implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany
+    @OneToMany(mappedBy = "studioMedico")
     private List<Paziente> lista_pazienti;
+
+    @OneToMany(mappedBy = "studioMedico")
+    private List<MedicoEsterno> lista_medici;
+
+    @OneToMany(mappedBy = "studioMedico")
+    private List<Sala> lista_sale;
 
     /**
      * Get the value of lista_pazienti
@@ -46,9 +52,6 @@ public class StudioMedico extends StrutturaMedica implements Serializable {
         this.lista_pazienti = lista_pazienti;
     }
 
-    @OneToMany
-    private List<MedicoEsterno> lista_medici;
-
     /**
      * Get the value of lista_medici
      *
@@ -66,9 +69,6 @@ public class StudioMedico extends StrutturaMedica implements Serializable {
     public void setLista_medici(List<MedicoEsterno> lista_medici) {
         this.lista_medici = lista_medici;
     }
-
-    @OneToMany
-    private List<Sala> lista_sale;
 
     /**
      * Get the value of lista_sale

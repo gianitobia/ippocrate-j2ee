@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -22,6 +23,8 @@ import javax.persistence.OneToOne;
 public class Reparto implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    @ManyToOne
+    private Ospedale ospedale;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -30,13 +33,21 @@ public class Reparto implements Serializable {
     @OneToMany
     private List<MedicoOspedaliero> lista_medici;
 
-    @OneToMany
+    @OneToMany(mappedBy = "reparto")
     private List<Sala> lista_sale;
 
-    @OneToMany
+    @OneToMany(mappedBy = "reparto_ricoverato")
     private List<Paziente> lista_pazienti;
     @OneToOne
     private MedicoOspedaliero primario;
+
+    public Ospedale getOspedale() {
+        return ospedale;
+    }
+
+    public void setOspedale(Ospedale ospedale) {
+        this.ospedale = ospedale;
+    }
 
     /**
      * Get the value of nome

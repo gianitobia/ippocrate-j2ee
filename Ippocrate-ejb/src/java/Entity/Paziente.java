@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
@@ -22,6 +23,10 @@ import javax.persistence.Temporal;
 public class Paziente implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    @ManyToOne
+    private StudioMedico studioMedico;
+    @ManyToOne
+    private Reparto reparto_ricoverato;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -46,6 +51,22 @@ public class Paziente implements Serializable {
 
     @OneToOne
     private CartellaClinica cartella_clinica;
+
+    public StudioMedico getStudioMedico() {
+        return studioMedico;
+    }
+
+    public void setStudioMedico(StudioMedico studioMedico) {
+        this.studioMedico = studioMedico;
+    }
+
+    public Reparto getReparto_ricoverato() {
+        return reparto_ricoverato;
+    }
+
+    public void setReparto_ricoverato(Reparto reparto_ricoverato) {
+        this.reparto_ricoverato = reparto_ricoverato;
+    }
 
     /**
      * Get the value of password

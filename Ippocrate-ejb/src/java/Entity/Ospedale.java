@@ -25,7 +25,7 @@ public class Ospedale extends StrutturaMedica implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany
+    @OneToMany(mappedBy = "ospedale")
     private List<Reparto> lista_reparti;
 
     /**

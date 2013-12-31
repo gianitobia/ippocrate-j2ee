@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
@@ -21,12 +22,22 @@ import javax.persistence.OneToMany;
 public class MedicoEsterno extends Medico implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    @ManyToOne
+    private StudioMedico studioMedico;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @OneToMany
     private List<Paziente> lista_pazienti;
+
+    public StudioMedico getStudioMedico() {
+        return studioMedico;
+    }
+
+    public void setStudioMedico(StudioMedico studioMedico) {
+        this.studioMedico = studioMedico;
+    }
 
     /**
      * Get the value of lista_pazienti
