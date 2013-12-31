@@ -30,7 +30,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>QuickList</servlet-name>
-        <url-pattern>/QuickList</url-pattern>
+        <url-pattern>/utils/QuickList</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

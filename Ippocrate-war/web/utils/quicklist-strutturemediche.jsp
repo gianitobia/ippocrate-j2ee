@@ -25,7 +25,7 @@
 
             <%
                 for (Ospedale o : ospedali) {
-            %><%= o.toString()%><%
+            %><p><%= o.toString()%></p><%
                     }
                 }
             %>
@@ -36,7 +36,7 @@
 
             <%
                 for (StudioMedico s : studimedici) {
-            %><%= s.toString()%><%
+            %><p><%= s.toString()%></p><%
                     }
                 }
             %>
