@@ -37,11 +37,11 @@
                         <li class="dropdown active">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Prenotazioni <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li class="active"><a href="PrenotazioneServlet?action=ottieni">Le mie prenotazioni</a></li>
+                                <li class="active"><a href="PrenotazioneServlet?action=ottieniPr">Le mie prenotazioni</a></li>
                                 <li><a href="#">Nuova prenotazione</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">Cartella clinica</a></li>
+                        <li><a href="CCServlet?action=miaCC">Cartella clinica</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="login.jsp">Logout</a></li>

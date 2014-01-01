@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package web;
 
-import Controller.GestorePrenotazioneLocal;
+import Controller.GestoreCartellaClinicaLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
@@ -19,10 +20,9 @@ import javax.servlet.http.HttpSession;
  *
  * @author Marco
  */
-public class PrenotazioneServlet extends HttpServlet {
-
+public class CCServlet extends HttpServlet {
     @EJB
-    private GestorePrenotazioneLocal gestorePrenotazione;
+    private GestoreCartellaClinicaLocal gestoreCartellaClinica;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +39,10 @@ public class PrenotazioneServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             HttpSession s = request.getSession();
 
-            if (request.getParameter("action").equals("ottieniPr")) {
+            if (request.getParameter("action").equals("miaCC")) {
                 long pazienteId = (long) s.getAttribute("user_id");
-                s.setAttribute("prenotazioni", gestorePrenotazione.ottieniPrenotazioni(pazienteId));
-                response.sendRedirect("mie-prenotazioni.jsp");
+                s.setAttribute("miaCC", gestoreCartellaClinica.ottieniCC(pazienteId));
+                response.sendRedirect("mia-cc.jsp");
             }
         }
     }
