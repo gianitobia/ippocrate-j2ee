@@ -75,12 +75,13 @@
                 <input type="submit" value="Crea"/>
             </form>
         </div>
-
-        <div>Vai alle liste:
+        <div>
+            Vai alle liste:
             <ul>
                 <li><a href="QuickList?action=Ospedali">Ospedali</a></li>
                 <li><a href="QuickList?action=StudiMedici">Studi medici</a></li>
                 <li><a href="QuickList?action=Pazienti">Pazienti</a></li>
-            </ul></div>
+            </ul>
+        </div>
     </body>
 </html>

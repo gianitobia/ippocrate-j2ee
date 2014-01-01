@@ -84,7 +84,7 @@ public class QuickInsert extends HttpServlet {
                     String indirizzo = request.getParameter("indirizzo");
                     String luogo_nascita = request.getParameter("luogo_nascita");
                     Date data_nascita = new Date(request.getParameter("data_nascita"));
-                    gestoreIns.addPaziente(nome, cognome, password, cf, sesso,
+                    gestoreIns.addPaziente(nome, cognome, cf, password, sesso,
                             indirizzo, data_nascita, luogo_nascita);
                     out.println("Inserimento avvenuto!");
                     break;

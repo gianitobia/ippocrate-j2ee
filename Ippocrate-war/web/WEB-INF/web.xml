@@ -22,7 +22,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>QuickInsert</servlet-name>
-        <url-pattern>/QuickInsert</url-pattern>
+        <url-pattern>/utils/QuickInsert</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PrenotazioneServlet</servlet-name>

@@ -31,7 +31,7 @@ import javax.ejb.Local;
 @Local
 public interface GestoreInserimentoDatiLocal {
 
-    Long addPaziente(String nome, String cognome, String password, String cf, String sesso, String indirizzo, Date data_nascita, String luogo_nascita);
+    Long addPaziente(String nome, String cognome, String cf, String password, String sesso, String indirizzo, Date data_nascita, String luogo_nascita);
 
     Long addMedicoEsterno(String nome, String cognome, String specializzazione, Date data_nascita, String username, String password, String pin_code);
 
