@@ -28,7 +28,9 @@ public class CartellaClinica implements Serializable {
 
     @OneToOne(mappedBy = "cartella_clinica")
     private Paziente paziente;
-
+    
+    
+    
     private String anamnesi;
 
     @OneToMany
