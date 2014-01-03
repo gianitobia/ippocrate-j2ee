@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Entity;
 
 import java.util.List;
@@ -13,7 +12,7 @@ import java.util.List;
  * @author Marco
  */
 public class CartellaClinicaTransient {
-    
+
     private String anamnesi;
     private List<RefertoMedicoTransient> referti;
 
@@ -34,7 +33,6 @@ public class CartellaClinicaTransient {
     public void setReferti(List<RefertoMedicoTransient> referti) {
         this.referti = referti;
     }
-
 
     /**
      * Get the value of anamnesi

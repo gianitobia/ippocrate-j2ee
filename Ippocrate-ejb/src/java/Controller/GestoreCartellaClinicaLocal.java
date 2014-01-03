@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Controller;
 
 import Entity.CartellaClinicaTransient;
@@ -17,5 +16,5 @@ import javax.ejb.Local;
 public interface GestoreCartellaClinicaLocal {
 
     CartellaClinicaTransient ottieniCC(long pazienteId);
-    
+
 }

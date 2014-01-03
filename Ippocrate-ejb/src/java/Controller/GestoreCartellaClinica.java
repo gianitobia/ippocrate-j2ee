@@ -6,7 +6,6 @@
 package Controller;
 
 import Entity.CartellaClinica;
-import Entity.CartellaClinicaFacadeLocal;
 import Entity.CartellaClinicaTransient;
 import Entity.Paziente;
 import Entity.PazienteFacadeLocal;
@@ -24,20 +23,17 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class GestoreCartellaClinica implements GestoreCartellaClinicaLocal {
-    
+
     @EJB
     private PazienteFacadeLocal pazienteFacade;
 
-    @EJB
-    private CartellaClinicaFacadeLocal cartellaClinicaFacade;
-    
     @Override
     public CartellaClinicaTransient ottieniCC(long pazienteId) {
         CartellaClinicaTransient cct = new CartellaClinicaTransient();
-        
+
         Paziente user = pazienteFacade.find(new Long(pazienteId));
         CartellaClinica cc = user.getCartella_clinica();
-        
+
         cct.setAnamnesi(cc.getAnamnesi());
         ArrayList referti = new ArrayList();
         cct.setReferti(referti);
@@ -63,8 +59,7 @@ public class GestoreCartellaClinica implements GestoreCartellaClinicaLocal {
             }//chiusura for sulle prescrizioni mediche
             referti.add(rmt);
         }//chiusura for sui referti medici
-            
-        
+
         return cct;
     }
 

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package web;
 
 import Controller.GestoreCartellaClinicaLocal;
@@ -21,6 +20,7 @@ import javax.servlet.http.HttpSession;
  * @author Marco
  */
 public class CCServlet extends HttpServlet {
+
     @EJB
     private GestoreCartellaClinicaLocal gestoreCartellaClinica;
 

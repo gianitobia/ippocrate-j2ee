@@ -54,7 +54,7 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
                 pt.setData(p.getData_prenotazione());
                 pt.setNomePr(p.getTipo_prestazione().getNome());
                 pt.setDurataPr(p.getTipo_prestazione().getDurata());
-                
+
                 if (p.getClass().getName().equals("Entity.PrenotazioneMedico")) {
                     pt.setTipo("M");
                     Medico m = ((PrenotazioneMedico) p).getMedico();
