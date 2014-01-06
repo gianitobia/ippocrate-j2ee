@@ -35,8 +35,6 @@ public class GestoreListeDati implements GestoreListeDatiLocal {
         return ospedaleFacade.findAll();
     }
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
     @Override
     public List<StudioMedico> ottieniListaStudiMedici() {
         return studioMedicoFacade.findAll();

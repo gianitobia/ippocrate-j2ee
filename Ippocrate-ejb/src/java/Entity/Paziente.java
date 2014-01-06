@@ -260,7 +260,16 @@ public class Paziente implements Serializable {
 
     @Override
     public String toString() {
-        return "Paziente [" + "id " + id + " " + "cartella_clinica " + cartella_clinica + " " + "cf " + cf + " " + "cognome " + cognome + " " + "data_nascita " + data_nascita + " " + "indirizzo " + indirizzo + " " + "luogo_nascita " + luogo_nascita + " " + "nome " + nome + " " + "password " + password + " " + "sesso " + sesso + "]";
+        return "Paziente [id "
+                + id.toString() + " " + "cf "
+                + cf + " " + "cognome "
+                + cognome + " " + "data_nascita "
+                + data_nascita.toString() + " " + "indirizzo "
+                + indirizzo + " " + "luogo_nascita "
+                + luogo_nascita + " " + "nome "
+                + nome + " " + "password "
+                + password + " " + "sesso "
+                + sesso + "]";
     }
 
 }

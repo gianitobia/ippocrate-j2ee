@@ -43,21 +43,39 @@ public class QuickList extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             HttpSession s = request.getSession();
             switch (request.getParameter("action")) {
-                case "Pazienti": {
+                case "Pazienti":
                     List<Paziente> pazienti = gestoreListeDati.ottieniListaPazienti();
+//                    for (Paziente o : pazienti) {
+//                        out.print(" > ");
+//                        out.print(o.getNome());
+//                        out.println(o.toString());
+//                    }
                     s.setAttribute("pazienti", pazienti);
                     response.sendRedirect("quicklist-pazienti.jsp");
-                }
-                case "Ospedali": {
+
+                    break;
+                case "Ospedali":
                     List<Ospedale> ospedali = gestoreListeDati.ottieniListaOspedali();
+//                    for (Ospedale o : ospedali) {
+//                        out.print(" > ");
+//                        out.print(o.getNome());
+//                        out.println(o.toString());
+//                    }
                     s.setAttribute("ospedali", ospedali);
                     response.sendRedirect("quicklist-strutturemediche.jsp");
-                }
-                case "StudiMedici": {
+
+                    break;
+                case "StudiMedici":
                     List<StudioMedico> studi = gestoreListeDati.ottieniListaStudiMedici();
+//                    for (StudioMedico o : studi) {
+//                        out.print(" > ");
+//                        out.print(o.getNome());
+//                        out.println(o.toString());
+//                    }
                     s.setAttribute("studimedici", studi);
                     response.sendRedirect("quicklist-strutturemediche.jsp");
-                }
+
+                    break;
             }
         }
     }
