@@ -42,7 +42,7 @@
         <div class="container">
             <div class="row">              
                 <div id="testa" class="col-md-4 col-md-offset-4">
-                    <h2>Tipologia login</h2>
+                    <h2>Tipo login</h2>
                     <div class="btn-group">
                         <button id="bl" type="button" class="btn btn-default" onclick="cambio_login(1)">Medico</button>
                         <button id="br" type="button" class="btn btn-default" onclick="cambio_login(2)">Paziente</button>

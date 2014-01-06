@@ -4,12 +4,15 @@
     Author     : Marco
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="Entity.PrescrizioneMedicaTransient"%>
 <%@page import="java.util.List"%>
 <%@page import="Entity.RefertoMedicoTransient"%>
 <jsp:useBean id="miaCC" class="Entity.CartellaClinicaTransient" scope="session" />
-<%  int numR = Integer.parseInt(request.getParameter("num"));
-    RefertoMedicoTransient referto = miaCC.getReferti().get(numR);%>
+<% SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    
+   int numR = Integer.parseInt(request.getParameter("num"));
+   RefertoMedicoTransient referto = miaCC.getReferti().get(numR);%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -58,14 +61,14 @@
             <div class="page-header">
                 <h1>Il mio referto medico</h1>
             </div>
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div class="panel-heading">Dettagli</div>
                 <div class="panel-body">
                     <dl class="dl-horizontal">
                         <dt>Tipo di visita</dt>
                         <dd><%= referto.getTipoVisita()%></dd>
                         <dt>Data visita</dt>
-                        <dd><%= referto.getDataVisita()%></dd>
+                        <dd><%= sdf.format(referto.getDataVisita())%></dd>
                         <dt>Medico</dt>
                         <dd><%= referto.getCognomeM()%></dd>
                         <dt>Diagnosi</dt>
@@ -73,13 +76,13 @@
                     </dl>
                 </div>
             </div>
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div class="panel-heading">Multimedia</div>
                 <div class="panel-body">
-                    ##foto e altri documenti multimediali##
+                    ## foto e altri documenti multimediali ##
                 </div>
             </div>
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div class="panel-heading">Prescrizioni mediche</div>
                 <table class="table table-condensed table-hover">
                     <thead>
@@ -96,8 +99,8 @@
                             for (int i = 0; i < prescrizioni.size(); i++) {%>
                         <tr>
                             <td><%= i + 1%></td>
-                            <td><%= prescrizioni.get(i).getDataPrescrizione()%></td>
-                            <td><%= prescrizioni.get(i).getDataScadenza()%></td>
+                            <td><%= sdf.format(prescrizioni.get(i).getDataPrescrizione())%></td>
+                            <td><%= sdf.format(prescrizioni.get(i).getDataScadenza())%></td>
                             <td><%= prescrizioni.get(i).getMedicinale()%></td>
                             <td><%= prescrizioni.get(i).getNumConfezioni()%></td>
                         </tr>

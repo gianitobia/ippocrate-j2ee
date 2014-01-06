@@ -4,9 +4,11 @@
     Author     : Marco
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="Entity.RefertoMedicoTransient"%>
 <%@page import="java.util.List"%>
 <jsp:useBean id="miaCC" class="Entity.CartellaClinicaTransient" scope="session" />
+<% SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -56,13 +58,13 @@
             <div class="page-header">
                 <h1>La mia cartella clinica</h1>
             </div>
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div class="panel-heading">Anamnesi</div>
                 <div class="panel-body">
                     <p><%= miaCC.getAnamnesi()%></p>
                 </div>
             </div>
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div class="panel-heading">Referti medici</div>
                 <table class="table table-condensed table-hover">
                     <thead>
@@ -81,7 +83,7 @@
                         <tr>
                             <td><%= i + 1%></td>
                             <td><%= referti.get(i).getTipoVisita()%></td>
-                            <td><%= referti.get(i).getDataVisita()%></td>
+                            <td><%= sdf.format(referti.get(i).getDataVisita())%></td>
                             <td><%= referti.get(i).getCognomeM()%></td>
                             <td><%= referti.get(i).getDiagnosi()%></td>
                             <td><a href="mio-rm.jsp?num=<%=i%>">visualizza</a></td>

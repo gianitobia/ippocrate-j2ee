@@ -4,9 +4,11 @@
     Author     : Marco
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="Entity.PrenotazioneTransient"%>
 <%@page import="java.util.List"%>
 <jsp:useBean id="prenotazioni" type="List<PrenotazioneTransient>" scope="session" />
+<% SimpleDateFormat sdf = new SimpleDateFormat("E' 'dd/MM/yyyy' ore 'HH:mm");%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -70,7 +72,7 @@
                     <tr>
                         <td><%= i + 1%></td>
                         <td><%= prenotazioni.get(i).getNomePr()%></td>
-                        <td><%= prenotazioni.get(i).getData()%></td>
+                        <td><%= sdf.format(prenotazioni.get(i).getData())%></td>
                         <td><%= prenotazioni.get(i).getNomeSM()%></td>
                         <td>
                             <div class="panel panel-default">
@@ -81,7 +83,7 @@
                                         <dt>Indirizzo</dt>
                                         <dd><%= prenotazioni.get(i).getIndirizzoSM()%></dd>
                                         <dt>Data</dt>
-                                        <dd><%= prenotazioni.get(i).getData()%></dd>
+                                        <dd><%= sdf.format(prenotazioni.get(i).getData())%></dd>
                                         <dt>Tipo visita</dt>
                                         <dd><%= prenotazioni.get(i).getNomePr()%></dd>
                                         <dt>Durata visita</dt>
