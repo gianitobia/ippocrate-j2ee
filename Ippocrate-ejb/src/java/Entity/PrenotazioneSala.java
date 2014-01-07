@@ -27,6 +27,27 @@ public class PrenotazioneSala extends Prenotazione implements Serializable {
     @OneToOne
     private Sala sala;
 
+    @OneToOne
+    private PrestazioneSala tipo_prestazione;
+
+    /**
+     * Get the value of tipo_prestazione
+     *
+     * @return the value of tipo_prestazione
+     */
+    public PrestazioneSala getTipo_prestazione() {
+        return tipo_prestazione;
+    }
+
+    /**
+     * Set the value of tipo_prestazione
+     *
+     * @param tipo_prestazione new value of tipo_prestazione
+     */
+    public void setTipo_prestazione(PrestazioneSala tipo_prestazione) {
+        this.tipo_prestazione = tipo_prestazione;
+    }
+
     /**
      * Get the value of sala
      *

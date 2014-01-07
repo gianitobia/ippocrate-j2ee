@@ -17,8 +17,10 @@ import Entity.Ospedale;
 import Entity.OspedaleFacadeLocal;
 import Entity.Paziente;
 import Entity.PazienteFacadeLocal;
-import Entity.Prestazione;
-import Entity.PrestazioneFacadeLocal;
+import Entity.PrestazioneMedico;
+import Entity.PrestazioneMedicoFacadeLocal;
+import Entity.PrestazioneSala;
+import Entity.PrestazioneSalaFacadeLocal;
 import Entity.RefertoMedico;
 import Entity.Reparto;
 import Entity.RepartoFacadeLocal;
@@ -47,7 +49,9 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
     @EJB
     private AgendaFacadeLocal agendaFacade;
     @EJB
-    private PrestazioneFacadeLocal prestazioneFacade;
+    private PrestazioneSalaFacadeLocal prestazioneSalaFacade;
+    @EJB
+    private PrestazioneMedicoFacadeLocal prestazioneMedicoFacade;
     @EJB
     private OspedaleFacadeLocal ospedaleFacade;
     @EJB
@@ -145,12 +149,21 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
     }
 
     @Override
-    public Long addPrestazione(int durata, String nome) {
-        Prestazione p = new Prestazione();
-        p.setNome(nome);
-        p.setDurata(durata);
-        prestazioneFacade.create(p);
-        return p.getId();
+    public Long addPrestazioneSala(int durata, String nome) {
+        PrestazioneSala ps = new PrestazioneSala();
+        ps.setNome(nome);
+        ps.setDurata(durata);
+        prestazioneSalaFacade.create(ps);
+        return ps.getId();
+    }
+
+    @Override
+    public Long addPrestazioneMedico(int durata, String nome) {
+        PrestazioneMedico pm = new PrestazioneMedico();
+        pm.setNome(nome);
+        pm.setDurata(durata);
+        prestazioneMedicoFacade.create(pm);
+        return pm.getId();
     }
 
     @Override
@@ -175,7 +188,7 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
         Agenda a = new Agenda();
         agendaFacade.create(a);
         s.setAgenda(a);
-        s.setLista_prestazioni(new ArrayList<Prestazione>());
+        s.setLista_prestazioni(new ArrayList<PrestazioneSala>());
         MedicoOspedaliero m = medicoOspedalieroFacade.find(id_medico_responsabile);
         s.setMedico_responsabile(m);
         salaFacade.create(s);
@@ -191,7 +204,7 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
         Agenda a = new Agenda();
         agendaFacade.create(a);
         s.setAgenda(a);
-        s.setLista_prestazioni(new ArrayList<Prestazione>());
+        s.setLista_prestazioni(new ArrayList<PrestazioneSala>());
         MedicoEsterno m = medicoEsternoFacade.find(id_medico_responsabile);
         s.setMedico_responsabile(m);
         salaFacade.create(s);
@@ -201,7 +214,7 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
     }
 
     @Override
-    public void addPrestazioniToSala(long id_sala, List<Prestazione> prestazioni) {
+    public void addPrestazioniToSala(long id_sala, List<PrestazioneSala> prestazioni) {
         Sala s = salaFacade.find(id_sala);
         s.getLista_prestazioni().addAll(prestazioni);
     }

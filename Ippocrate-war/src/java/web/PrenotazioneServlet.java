@@ -44,6 +44,10 @@ public class PrenotazioneServlet extends HttpServlet {
                 s.setAttribute("prenotazioni", gestorePrenotazione.ottieniPrenotazioni(pazienteId));
                 response.sendRedirect("mie-prenotazioni.jsp");
             }
+            else if (request.getParameter("action").equals("nuovaPr")) {
+                s.setAttribute("prestazioni", gestorePrenotazione.ottieniPrestazioniPrenotabili());
+                response.sendRedirect("prenotazione.jsp");
+            }
         }
     }
 

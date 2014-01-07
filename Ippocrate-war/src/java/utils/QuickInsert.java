@@ -90,11 +90,12 @@ public class QuickInsert extends HttpServlet {
                     break;
                 }
                 case "crea_prestazione": {
-                    String nome = request.getParameter("nome");
-                    String durata = request.getParameter("durata");
-                    gestoreIns.addPrestazione(Integer.parseInt(durata), nome);
-                    out.println("Inserimento avvenuto!");
-                    break;
+//                    FIX ME!!
+//                    String nome = request.getParameter("nome");
+//                    String durata = request.getParameter("durata");
+//                    gestoreIns.addPrestazione(Integer.parseInt(durata), nome);
+//                    out.println("Inserimento avvenuto!");
+//                    break;
                 }
                 case "crea_struttura": {
                     String tipo = request.getParameter("tipo_strutturaMedica");

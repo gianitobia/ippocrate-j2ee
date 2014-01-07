@@ -27,6 +27,27 @@ public class PrenotazioneMedico extends Prenotazione implements Serializable {
     @OneToOne
     private Medico medico;
 
+    @OneToOne
+    private PrestazioneMedico tipo_prestazione;
+
+    /**
+     * Get the value of tipo_prestazione
+     *
+     * @return the value of tipo_prestazione
+     */
+    public PrestazioneMedico getTipo_prestazione() {
+        return tipo_prestazione;
+    }
+
+    /**
+     * Set the value of tipo_prestazione
+     *
+     * @param tipo_prestazione new value of tipo_prestazione
+     */
+    public void setTipo_prestazione(PrestazioneMedico tipo_prestazione) {
+        this.tipo_prestazione = tipo_prestazione;
+    }
+
     /**
      * Get the value of medico
      *
