@@ -25,7 +25,7 @@
 
             <%
                 for (Ospedale o : ospedali) {
-            %><p><%= o.toString()%></p><%
+            %><p><%= o.toString()%> <a href="QuickList?action=reparti&ospedale=<%= o.getId()%>">Vai ai reparti</a></p><%
                     }
                 }
             %>
@@ -33,10 +33,10 @@
             <%
                 if (studimedici != null) {
             %>
-
+            <h1>Lista Studi medici</h1>
             <%
                 for (StudioMedico s : studimedici) {
-            %><p><%= s.toString()%></p><%
+            %><p><%= s.toString()%> <a href="QuickList?action=sale&studi=<%= s.getId()%>">Vai alle sale</a></p><%
                     }
                 }
             %>
