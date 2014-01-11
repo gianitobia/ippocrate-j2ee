@@ -6,8 +6,11 @@
 package web;
 
 import Controller.GestorePrenotazioneLocal;
+import Entity.Prestazione;
+import Entity.StrutturaMedica;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -43,10 +46,35 @@ public class PrenotazioneServlet extends HttpServlet {
                 long pazienteId = (long) s.getAttribute("user_id");
                 s.setAttribute("prenotazioni", gestorePrenotazione.ottieniPrenotazioni(pazienteId));
                 response.sendRedirect("mie-prenotazioni.jsp");
-            }
-            else if (request.getParameter("action").equals("nuovaPr")) {
+            } else if (request.getParameter("action").equals("nuovaPr")) {
                 s.setAttribute("prestazioni", gestorePrenotazione.ottieniPrestazioniPrenotabili());
                 response.sendRedirect("prenotazione.jsp");
+            } else if (request.getParameter("action").startsWith("cercaStrutture_")) {
+                int indexOfPrest = Integer.parseInt(request.getParameter("action").substring(15));
+                Prestazione p = ((List<Prestazione>) s.getAttribute("prestazioni")).get(indexOfPrest);
+                List<StrutturaMedica> lsm = gestorePrenotazione.ottieniStruttureMedichePerPrestazione(p);
+                s.setAttribute("strutture", lsm);
+
+                String fToCall;
+                if (p.getClass().getName().equals("Entity.PrestazioneSala")) {
+                    fToCall = "cercaAgendaSala";
+                } else { //caso PrestazioneMedico
+                    fToCall = "cercaMedico";
+                }
+                //stampa per l'aggiornamento della select struct
+                String str = "";
+                for (int i = 0; i < lsm.size(); i++) {
+                    str = str + "<option onclick=\"" + fToCall + "(" + i + ")\">" + lsm.get(i).getNome() + "</option>";
+                }
+//                out.write("<%@page import=\"Entity.StrutturaMedica\"%><jsp:useBean id=\"strutture\" type=\"List<StrutturaMedica>\" scope=\"session\" />"
+//                        + str);
+                out.write(str);
+            } else if (request.getParameter("action").startsWith("cercaAgendaSala_")) {
+
+            } else if (request.getParameter("action").startsWith("cercaAgendaMedico_")) {
+                
+            } else if (request.getParameter("action").startsWith("cercaMedico_")) {
+                //al click del medico devo invocare cercaAgendaMedico(indice medico)
             }
         }
     }

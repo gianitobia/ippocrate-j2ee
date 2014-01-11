@@ -24,10 +24,73 @@
         <!-- Custom styles for this template -->
         <link href="css/navbar.css" rel="stylesheet">
 
-        <script type="text/javascript">
-            $(function() {
-                $("#data").datepicker();
-            });
+        <script language="JavaScript">
+            function setXMLHttpRequest() {
+                var xhr = null;
+                if (window.XMLHttpRequest) { // browser standard con supporto nativo
+                    xhr = new XMLHttpRequest();
+                }
+                else if (window.ActiveXObject) { // browser MS Internet Explorer - ActiveX
+                    xhr = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                return xhr;
+            }
+
+            var xhrObj = setXMLHttpRequest();   // crea oggetto XMLHTTPRequest per gestire comunicazione asincrona con server
+            var indexOfPrest;
+            var indexOfStrut;
+            var indexOfMedi;
+
+            function cercaStrutture(iPrest) {
+                indexOfPrest = iPrest;
+                var url = "PrenotazioneServlet?action=cercaStrutture_" + indexOfPrest;
+                xhrObj.open("GET", url, true); // connessione asincrona (true) al server (indirizzo=url)
+                xhrObj.onreadystatechange = updatePage1; // indico funzione (updatePage) da invocare quando il server termina l’esecuzione della richiesta
+                xhrObj.send(null); // invio oggetto XMLHttpRequest a web server
+            }
+
+            function updatePage1() {
+                if (xhrObj.readyState === 4) {
+                    document.getElementById("strut").disabled = false;
+                    var risp = xhrObj.responseText;
+                    document.getElementById("strut").innerHTML = risp;
+                }
+            }
+
+            function cercaMedico(iStrut) {
+                indexOfStrut = iStrut;
+                //Cerca i medici di quella strut che fanno quella prestazione
+                var url = "PrenotazioneServlet?action=cercaMedico_" + indexOfPrest + "_" + indexOfStrut;
+                xhrObj.open("GET", url, true); // connessione asincrona (true) al server (indirizzo=url)
+                xhrObj.onreadystatechange = updatePage2; // indico funzione (updatePage) da invocare quando il server termina l’esecuzione della richiesta
+                xhrObj.send(null); // invio oggetto XMLHttpRequest a web server
+            }
+            
+            function updatePage2() {
+                //visualizza elenco dei medici
+            }
+
+            function cercaAgendaSala(iStrut) {
+                indexOfStrut = iStrut;
+                //Cerca l'agenda di una Sala(passando una StrutturaMedica)
+                var url = "PrenotazioneServlet?action=cercaAgendaSala_" + indexOfPrest + "_" + indexOfStrut;
+                xhrObj.open("GET", url, true); // connessione asincrona (true) al server (indirizzo=url)
+                xhrObj.onreadystatechange = updatePage3; // indico funzione (updatePage) da invocare quando il server termina l’esecuzione della richiesta
+                xhrObj.send(null); // invio oggetto XMLHttpRequest a web server
+            }
+            
+            function cercaAgendaMedico(iMedi) {
+                indexOfMedi = iMedi;
+                //Cerca l'agenda di un Medico
+                var url = "PrenotazioneServlet?action=cercaAgendaMedico_" + indexOfMedi;
+                xhrObj.open("GET", url, true); // connessione asincrona (true) al server (indirizzo=url)
+                xhrObj.onreadystatechange = updatePage3; // indico funzione (updatePage) da invocare quando il server termina l’esecuzione della richiesta
+                xhrObj.send(null); // invio oggetto XMLHttpRequest a web server
+            }
+            
+            function updatePage3() {
+                //stampa calendario google
+            }
         </script>
     </head>
     <body>
@@ -67,11 +130,11 @@
                 <div class="panel-body">
                     <form class="form-horizontal" role="form">
                         <div class="form-group">
-                            <label for="prest" class="col-sm-2 control-label">Prestazione</label>
+                            <label for="prest" class="col-sm-2 control-label">Tipo visita</label>
                             <div class="col-sm-10">
                                 <select class="form-control" id="prest">
                                     <% for (int i = 0; i < prestazioni.size(); i++) {%>
-                                    <option><%= prestazioni.get(i).getNome()%></option>
+                                    <option onclick="cercaStrutture(<%= i%>)"><%= prestazioni.get(i).getNome()%></option>
                                     <%}%>
                                 </select>
                             </div>
@@ -84,11 +147,19 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="form-group hidden">
+                            <label for="medi" class="col-sm-2 control-label">Medico</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" id="medi" disabled>
+                                    <option></option>
+                                </select>
+                            </div>
+                        </div>        
                         <!-- da leggere calendario di google-->
                         <div class="form-group">
                             <label for="data" class="col-sm-2 control-label">Data</label>
                             <div class="col-sm-10">
-                                <input type="input" class="form-control" id="data">
+                                <input type="input" class="form-control" id="data" disabled>
                             </div>
                         </div>
                         <div class="form-group">

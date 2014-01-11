@@ -7,6 +7,7 @@ package Controller;
 
 import Entity.AgendaFacadeLocal;
 import Entity.Medico;
+import Entity.MedicoEsterno;
 import Entity.MedicoOspedaliero;
 import Entity.Prenotazione;
 import Entity.PrenotazioneFacadeLocal;
@@ -15,6 +16,10 @@ import Entity.PrenotazioneSala;
 import Entity.PrenotazioneTransient;
 import Entity.Prestazione;
 import Entity.PrestazioneFacadeLocal;
+import Entity.PrestazioneMedico;
+import Entity.PrestazioneSala;
+import Entity.Reparto;
+import Entity.RepartoFacadeLocal;
 import Entity.Sala;
 import Entity.SalaFacadeLocal;
 import Entity.StrutturaMedica;
@@ -29,6 +34,8 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class GestorePrenotazione implements GestorePrenotazioneLocal {
+    @EJB
+    private RepartoFacadeLocal repartoFacade;
 
     @EJB
     private AgendaFacadeLocal agendaFacade;
@@ -81,20 +88,38 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
     }
 
     @Override
-    public List<Sala> ottieniSalePerPrestazione(Prestazione prestazione) {
-        //TODO
-        //List<Sala> sale = prestazione.getLista_sale();
-        //return sale;
-        return null;
-    }
-
-    @Override
-    public List<StrutturaMedica> ottieniStruttureMedichePerPrestazione(Prestazione prestazione) {
-        List<Sala> sale = ottieniSalePerPrestazione(prestazione);
-        for (Sala s : sale) {
-            //TODO da fare
+    public List<StrutturaMedica> ottieniStruttureMedichePerPrestazione(Prestazione p) {
+        List<StrutturaMedica> lsm = new ArrayList();
+        if (p.getClass().getName().equals("Entity.PrestazioneSala")) {
+            List<Sala> ls = ((PrestazioneSala) p).getLista_sale();
+            for (Sala s : ls) {
+                if (s.getStudioMedico() != null)
+                    lsm.add(s.getStudioMedico());
+                else if (s.getReparto() != null)
+                    lsm.add(s.getReparto().getOspedale());
+            }         
         }
-        return null;
+        else if (p.getClass().getName().equals("Entity.PrestazioneMedico")) {
+            List<Medico> lm = ((PrestazioneMedico) p).getLista_medici();
+            for (Medico m : lm) {
+                if(m.getClass().getName().equals("Entity.MedicoEsterno")) {
+                    lsm.add(((MedicoEsterno) m).getStudioMedico());
+                }
+                else if (m.getClass().getName().equals("Entity.MedicoOspedaliero")) {
+                    List<Reparto> lr = repartoFacade.findAll();
+                    for (Reparto r : lr) {
+                        List<MedicoOspedaliero> lmo = r.getLista_medici();
+                        for (MedicoOspedaliero mo : lmo) {
+                            if (m.getId().equals(mo.getId())) {
+                                lsm.add(r.getOspedale());
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return lsm;
     }
 
 }
