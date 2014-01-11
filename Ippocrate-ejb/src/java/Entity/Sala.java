@@ -34,7 +34,7 @@ public class Sala implements Serializable {
     private Long id;
 
     @ManyToMany
-    private List<Prestazione> lista_prestazioni;
+    private List<PrestazioneSala> lista_prestazioni;
 
     private String tipoLaboratorio;
     @OneToOne
@@ -100,7 +100,7 @@ public class Sala implements Serializable {
      *
      * @return the value of lista_prestazioni
      */
-    public List<Prestazione> getLista_prestazioni() {
+    public List<PrestazioneSala> getLista_prestazioni() {
         return lista_prestazioni;
     }
 
@@ -109,7 +109,7 @@ public class Sala implements Serializable {
      *
      * @param lista_prestazioni new value of lista_prestazioni
      */
-    public void setLista_prestazioni(List<Prestazione> lista_prestazioni) {
+    public void setLista_prestazioni(List<PrestazioneSala> lista_prestazioni) {
         this.lista_prestazioni = lista_prestazioni;
     }
 

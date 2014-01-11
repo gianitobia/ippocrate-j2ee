@@ -33,8 +33,6 @@ public abstract class Prenotazione implements Serializable {
     private Date data_prenotazione;
 
     @OneToOne
-    private Prestazione tipo_prestazione;
-    @OneToOne
     private Paziente paziente;
 
     /**
@@ -53,24 +51,6 @@ public abstract class Prenotazione implements Serializable {
      */
     public void setPaziente(Paziente paziente) {
         this.paziente = paziente;
-    }
-
-    /**
-     * Get the value of tipo_prestazione
-     *
-     * @return the value of tipo_prestazione
-     */
-    public Prestazione getTipo_prestazione() {
-        return tipo_prestazione;
-    }
-
-    /**
-     * Set the value of tipo_prestazione
-     *
-     * @param tipo_prestazione new value of tipo_prestazione
-     */
-    public void setTipo_prestazione(Prestazione tipo_prestazione) {
-        this.tipo_prestazione = tipo_prestazione;
     }
 
     /**
@@ -139,7 +119,7 @@ public abstract class Prenotazione implements Serializable {
 
     @Override
     public String toString() {
-        return "Prenotazione [" + "id " + id + " " + "data_prenotazione " + data_prenotazione + " " + "paziente " + paziente + " " + "tipo_prestazione " + tipo_prestazione + "]";
+        return "Prenotazione [" + "id " + id + " " + "data_prenotazione " + data_prenotazione + " " + "paziente " + paziente + "]";
     }
 
 }

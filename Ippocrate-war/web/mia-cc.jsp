@@ -40,7 +40,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Prenotazioni <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="PrenotazioneServlet?action=ottieniPr">Le mie prenotazioni</a></li>
-                                <li><a href="#">Nuova prenotazione</a></li>
+                                <li><a href="PrenotazioneServlet?action=nuovaPr">Nuova prenotazione</a></li>
                             </ul>
                         </li>
                         <li class="active"><a href="CCServlet?action=miaCC">Cartella clinica</a></li>

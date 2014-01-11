@@ -6,23 +6,18 @@
 package Entity;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 
 /**
  *
  * @author toby
  */
 @Entity
-public class Prestazione implements Serializable {
-
+public abstract class Prestazione implements Serializable {
     private static final long serialVersionUID = 1L;
-    @ManyToMany(mappedBy = "lista_prestazioni")
-    private List<Sala> lista_sale;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -30,14 +25,6 @@ public class Prestazione implements Serializable {
     private int durata;
 
     private String nome;
-
-    public List<Sala> getLista_sale() {
-        return lista_sale;
-    }
-
-    public void setLista_sale(List<Sala> lista_sale) {
-        this.lista_sale = lista_sale;
-    }
 
     /**
      * Get the value of durata

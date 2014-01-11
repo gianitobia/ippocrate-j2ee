@@ -7,10 +7,12 @@ package Entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
@@ -43,6 +45,28 @@ public abstract class Medico implements Serializable {
 
     @OneToOne
     private Agenda visite;
+    
+    @ManyToMany
+    private List<PrestazioneMedico> miePrestazioni;
+
+    /**
+     * Get the value of miePrestazioni
+     *
+     * @return the value of miePrestazioni
+     */
+    public List<PrestazioneMedico> getMiePrestazioni() {
+        return miePrestazioni;
+    }
+
+    /**
+     * Set the value of miePrestazioni
+     *
+     * @param miePrestazioni new value of miePrestazioni
+     */
+    public void setMiePrestazioni(List<PrestazioneMedico> miePrestazioni) {
+        this.miePrestazioni = miePrestazioni;
+    }
+
 
     public Agenda getVisite() {
         return visite;

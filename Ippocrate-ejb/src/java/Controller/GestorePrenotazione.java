@@ -52,11 +52,11 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
                 pt.setNomeSM(p.getStruttura_medica().getNome());
                 pt.setIndirizzoSM(p.getStruttura_medica().getIndirizzo());
                 pt.setData(p.getData_prenotazione());
-                pt.setNomePr(p.getTipo_prestazione().getNome());
-                pt.setDurataPr(p.getTipo_prestazione().getDurata());
 
                 if (p.getClass().getName().equals("Entity.PrenotazioneMedico")) {
                     pt.setTipo("M");
+                    pt.setNomePr(((PrenotazioneMedico) p).getTipo_prestazione().getNome());
+                    pt.setDurataPr(((PrenotazioneMedico) p).getTipo_prestazione().getDurata());
                     Medico m = ((PrenotazioneMedico) p).getMedico();
                     pt.setCognomeM(m.getCognome());
                     if (m.getClass().getName().equals("Entity.MedicoOspedaliero")) {
@@ -64,6 +64,8 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
                     }
                 } else {
                     pt.setTipo("S");
+                    pt.setNomePr(((PrenotazioneSala) p).getTipo_prestazione().getNome());
+                    pt.setDurataPr(((PrenotazioneSala) p).getTipo_prestazione().getDurata());
                     pt.setTipoLaboratorioS(((PrenotazioneSala) p).getSala().getTipoLaboratorio());
                 }
                 l.add(pt);
@@ -80,8 +82,10 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
 
     @Override
     public List<Sala> ottieniSalePerPrestazione(Prestazione prestazione) {
-        List<Sala> sale = prestazione.getLista_sale();
-        return sale;
+        //TODO
+        //List<Sala> sale = prestazione.getLista_sale();
+        //return sale;
+        return null;
     }
 
     @Override
