@@ -202,24 +202,6 @@ public abstract class Medico implements Serializable {
         this.data_nascita = data_nascita;
     }
 
-    /**
-     * Get the value of prenotazioni
-     *
-     * @return the value of prenotazioni
-     */
-    public Agenda getPrenotazioni() {
-        return visite;
-    }
-
-    /**
-     * Set the value of prenotazioni
-     *
-     * @param prenotazioni new value of prenotazioni
-     */
-    public void setPrenotazioni(Agenda prenotazioni) {
-        this.visite = prenotazioni;
-    }
-
     public Long getId() {
         return id;
     }

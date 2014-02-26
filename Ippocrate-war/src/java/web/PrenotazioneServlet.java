@@ -6,7 +6,10 @@
 package web;
 
 import Controller.GestorePrenotazioneLocal;
+import Entity.Agenda;
+import Entity.Medico;
 import Entity.Prestazione;
+import Entity.Sala;
 import Entity.StrutturaMedica;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -57,7 +60,7 @@ public class PrenotazioneServlet extends HttpServlet {
 
                 String fToCall;
                 if (p.getClass().getName().equals("Entity.PrestazioneSala")) {
-                    fToCall = "cercaAgendaSala";
+                    fToCall = "cercaAgendaSale";
                 } else { //caso PrestazioneMedico
                     fToCall = "cercaMedico";
                 }
@@ -69,12 +72,44 @@ public class PrenotazioneServlet extends HttpServlet {
 //                out.write("<%@page import=\"Entity.StrutturaMedica\"%><jsp:useBean id=\"strutture\" type=\"List<StrutturaMedica>\" scope=\"session\" />"
 //                        + str);
                 out.write(str);
-            } else if (request.getParameter("action").startsWith("cercaAgendaSala_")) {
+            } else if (request.getParameter("action").startsWith("cercaAgendaSale_")) {
+                String temp = request.getParameter("action").substring(16);
+                String[] tempArray = temp.split("_");
+                int indexOfPrest = Integer.parseInt(tempArray[0]);
+                int indexOfStrut = Integer.parseInt(tempArray[1]);
+                Prestazione p = ((List<Prestazione>) s.getAttribute("prestazioni")).get(indexOfPrest);
+                StrutturaMedica sm = ((List<StrutturaMedica>) s.getAttribute("strutture")).get(indexOfStrut);
+                List<Sala> ls = gestorePrenotazione.ottieniSalePerPrestazioneEStrutturaMedica(p, sm);
+                //agenda unica per tutte le sale di quella struttura: gestorePrenotazione.ottieniAgendePerSale(ls);
+                //Agenda aUnica
+                //s.setAttribute("agendaSale", aUnica);
+                
+                //out.write(Stampa il calendario delle sale);
 
             } else if (request.getParameter("action").startsWith("cercaAgendaMedico_")) {
+                int indexOfMedi = Integer.parseInt(request.getParameter("action").substring(18));
+                Medico m = ((List<Medico>) s.getAttribute("medici")).get(indexOfMedi);
+                Agenda a = gestorePrenotazione.ottieniAgendaMedico(m);
+                s.setAttribute("agendaMedico", a);
                 
+                //out.write(Stampa il calendario del medico);
+
             } else if (request.getParameter("action").startsWith("cercaMedico_")) {
-                //al click del medico devo invocare cercaAgendaMedico(indice medico)
+                String temp = request.getParameter("action").substring(12);
+                String[] tempArray = temp.split("_");
+                int indexOfPrest = Integer.parseInt(tempArray[0]);
+                int indexOfStrut = Integer.parseInt(tempArray[1]);
+                Prestazione p = ((List<Prestazione>) s.getAttribute("prestazioni")).get(indexOfPrest);
+                StrutturaMedica sm = ((List<StrutturaMedica>) s.getAttribute("strutture")).get(indexOfStrut);
+                List<Medico> lm = gestorePrenotazione.ottieniMediciPerPrestazioneEStrutturaMedica(p, sm);
+                s.setAttribute("medici", lm);
+
+                //stampa per l'aggiornamento della select struct
+                String str = "";
+                for (int i = 0; i < lm.size(); i++) {
+                    str = str + "<option onclick=\"cercaAgendaMedico(" + i + ")\">" + lm.get(i).getCognome() + "</option>";
+                }
+                out.write(str);
             }
         }
     }

@@ -75,7 +75,7 @@ public class MedicoOspedaliero extends Medico implements Serializable {
 
     @Override
     public String toString() {
-        return "MedicoOspedaliero [" + "id " + id + " " + "num_ufficio " + num_ufficio + " " + "getCognome " + getCognome() + " " + "getData_nascita " + getData_nascita() + " " + "getNome " + getNome() + " " + "getPassword " + getPassword() + " " + "getPin_code " + getPin_code() + " " + "getPrenotazioni " + getPrenotazioni() + " " + "getSpecializzazione " + getSpecializzazione() + " " + "getUsername " + getUsername() + "]";
+        return "MedicoOspedaliero [" + "id " + id + " " + "num_ufficio " + num_ufficio + " " + "getCognome " + getCognome() + " " + "getData_nascita " + getData_nascita() + " " + "getNome " + getNome() + " " + "getPassword " + getPassword() + " " + "getPin_code " + getPin_code() + " " + "getVisite " + getVisite() + " " + "getSpecializzazione " + getSpecializzazione() + " " + "getUsername " + getUsername() + "]";
     }
 
 }

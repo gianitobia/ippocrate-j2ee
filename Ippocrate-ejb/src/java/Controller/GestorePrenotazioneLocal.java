@@ -5,8 +5,11 @@
  */
 package Controller;
 
+import Entity.Agenda;
+import Entity.Medico;
 import Entity.PrenotazioneTransient;
 import Entity.Prestazione;
+import Entity.Sala;
 import Entity.StrutturaMedica;
 import java.util.List;
 import javax.ejb.Local;
@@ -22,6 +25,12 @@ public interface GestorePrenotazioneLocal {
 
     List<Prestazione> ottieniPrestazioniPrenotabili();
 
-    List<StrutturaMedica> ottieniStruttureMedichePerPrestazione(Prestazione prestazione);
+    List<StrutturaMedica> ottieniStruttureMedichePerPrestazione(Prestazione p);
+
+    List<Medico> ottieniMediciPerPrestazioneEStrutturaMedica(Prestazione p, StrutturaMedica sm);
+
+    Agenda ottieniAgendaMedico(Medico m);
+
+    List<Sala> ottieniSalePerPrestazioneEStrutturaMedica(Prestazione p, StrutturaMedica sm);
 
 }

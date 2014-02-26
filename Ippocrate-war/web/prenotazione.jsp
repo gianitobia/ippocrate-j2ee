@@ -52,6 +52,10 @@
             function updatePage1() {
                 if (xhrObj.readyState === 4) {
                     document.getElementById("strut").disabled = false;
+                    document.getElementById("medi").disabled = true;
+                    document.getElementById("medi").innerHTML = "<option></option>";
+                    //da sistemare gestendo il calendario google!!!
+                    document.getElementById("data").disabled = true;
                     var risp = xhrObj.responseText;
                     document.getElementById("strut").innerHTML = risp;
                 }
@@ -67,13 +71,19 @@
             }
             
             function updatePage2() {
-                //visualizza elenco dei medici
+                if (xhrObj.readyState === 4) {
+                    document.getElementById("medi").disabled = false;
+                    //da sistemare gestendo il calendario google!!!
+                    document.getElementById("data").disabled = true;
+                    var risp = xhrObj.responseText;
+                    document.getElementById("medi").innerHTML = risp;
+                }
             }
 
-            function cercaAgendaSala(iStrut) {
+            function cercaAgendaSale(iStrut) {
                 indexOfStrut = iStrut;
                 //Cerca l'agenda di una Sala(passando una StrutturaMedica)
-                var url = "PrenotazioneServlet?action=cercaAgendaSala_" + indexOfPrest + "_" + indexOfStrut;
+                var url = "PrenotazioneServlet?action=cercaAgendaSale_" + indexOfPrest + "_" + indexOfStrut;
                 xhrObj.open("GET", url, true); // connessione asincrona (true) al server (indirizzo=url)
                 xhrObj.onreadystatechange = updatePage3; // indico funzione (updatePage) da invocare quando il server termina l’esecuzione della richiesta
                 xhrObj.send(null); // invio oggetto XMLHttpRequest a web server
@@ -89,7 +99,11 @@
             }
             
             function updatePage3() {
-                //stampa calendario google
+                if (xhrObj.readyState === 4) {
+                    document.getElementById("data").disabled = false;
+                    var risp = xhrObj.responseText;
+                    document.getElementById("data").innerHTML = risp;
+                }
             }
         </script>
     </head>
@@ -147,7 +161,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group hidden">
+                        <div class="form-group">
                             <label for="medi" class="col-sm-2 control-label">Medico</label>
                             <div class="col-sm-10">
                                 <select class="form-control" id="medi" disabled>
@@ -159,7 +173,7 @@
                         <div class="form-group">
                             <label for="data" class="col-sm-2 control-label">Data</label>
                             <div class="col-sm-10">
-                                <input type="input" class="form-control" id="data" disabled>
+                               <input type="input" class="form-control" id="data" disabled>
                             </div>
                         </div>
                         <div class="form-group">
