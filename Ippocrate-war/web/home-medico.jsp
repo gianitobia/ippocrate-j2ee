@@ -32,15 +32,8 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="home-medico.jsp">Home</a></li>
-                        <li><a href="#">I miei pazienti</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Primo <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Secondo</a></li>
-                                <li><a href="#">Terzo</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Quarto</a></li>
+                        <li><a href="MedicoServlet?action=mieiPazienti">I miei pazienti</a></li>
+                        <li><a href="#">Il mio calendario</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="login.jsp">Logout</a></li>

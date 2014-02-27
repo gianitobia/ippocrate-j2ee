@@ -20,6 +20,10 @@
         <servlet-name>CCServlet</servlet-name>
         <servlet-class>web.CCServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MedicoServlet</servlet-name>
+        <servlet-class>web.MedicoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>CCServlet</servlet-name>
         <url-pattern>/CCServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MedicoServlet</servlet-name>
+        <url-pattern>/MedicoServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
