@@ -6,6 +6,7 @@
 package web;
 
 import Controller.GestoreUtenteLocal;
+import Entity.Medico;
 import Entity.MedicoTransient;
 import Entity.PazienteTransient;
 import java.io.IOException;
@@ -52,7 +53,8 @@ public class UtenteServlet extends HttpServlet {
                         s.setAttribute("paziente", p);
                         response.sendRedirect("home-paziente.jsp");
                     } else if (type.equals("medico")) {
-                        MedicoTransient m = gestoreUtente.ottieniMedico(user);
+//                        MedicoTransient m = gestoreUtente.ottieniMedicoT(user);
+                        Medico m = gestoreUtente.ottieniMedico(user);
                         s.setAttribute("medico", m);
                         response.sendRedirect("home-medico.jsp");
                     }

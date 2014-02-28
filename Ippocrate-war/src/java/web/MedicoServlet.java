@@ -6,6 +6,7 @@
 package web;
 
 import Controller.GestoreMedicoLocal;
+import Entity.CartellaClinica;
 import Entity.Paziente;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -50,6 +51,11 @@ public class MedicoServlet extends HttpServlet {
                 List<Paziente> lp = ((List<Paziente>) s.getAttribute("pazienti"));
                 s.setAttribute("CCpaziente", lp.get(paziente).getCartella_clinica());
                 response.sendRedirect("cc-paziente.jsp");
+            } else if (request.getParameter("action").startsWith("modificaAnamnesi_")) {
+                String nuovaAnamnesi = request.getParameter("action").substring(17);
+                CartellaClinica cc = (CartellaClinica) s.getAttribute("CCpaziente");
+                s.setAttribute("CCpaziente", gestoreMedico.modificaAnamnesi(cc.getId().longValue(), nuovaAnamnesi));
+                out.write(nuovaAnamnesi);
             }
         }
     }

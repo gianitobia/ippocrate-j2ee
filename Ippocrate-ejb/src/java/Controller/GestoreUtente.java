@@ -41,7 +41,7 @@ public class GestoreUtente implements GestoreUtenteLocal {
     }
 
     @Override
-    public MedicoTransient ottieniMedico(long user_id) {
+    public MedicoTransient ottieniMedicoT(long user_id) {
         Medico m = medicoFacade.find(user_id);
         MedicoTransient mt = new MedicoTransient();
         mt.setCognome(m.getCognome());
@@ -56,5 +56,10 @@ public class GestoreUtente implements GestoreUtenteLocal {
         }
 
         return mt;
+    }
+    
+    @Override
+    public Medico ottieniMedico(long user_id) {
+        return medicoFacade.find(user_id);     
     }
 }

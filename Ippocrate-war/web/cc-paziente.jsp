@@ -4,12 +4,15 @@
     Author     : Marco
 --%>
 
+<%@page import="Entity.PrestazioneMedico"%>
 <%@page import="Entity.CartellaClinica"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="Entity.RefertoMedico"%>
 <%@page import="java.util.List"%>
 <jsp:useBean id="CCpaziente" class="Entity.CartellaClinica" scope="session" />
-<% SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");%>
+<jsp:useBean id="medico" class="Entity.Medico" scope="session" />
+<% SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    List<PrestazioneMedico> prestazioni = medico.getMiePrestazioni();%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -26,6 +29,40 @@
 
         <!-- Custom styles for this template -->
         <link href="css/navbar.css" rel="stylesheet">
+
+        <script language="JavaScript">
+            function setXMLHttpRequest() {
+                var xhr = null;
+                if (window.XMLHttpRequest) { // browser standard con supporto nativo
+                    xhr = new XMLHttpRequest();
+                }
+                else if (window.ActiveXObject) { // browser MS Internet Explorer - ActiveX
+                    xhr = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                return xhr;
+            }
+
+            var xhrObj = setXMLHttpRequest();   // crea oggetto XMLHTTPRequest per gestire comunicazione asincrona con server
+
+            function annullaModifica() {
+                document.getElementById("textAnamnesi").value = <%= "\"" + CCpaziente.getAnamnesi() + "\""%>;
+            }
+
+            function confermaModifica() {
+                var nuovaAnamnesi = document.getElementById("textAnamnesi").value;
+                var url = "MedicoServlet?action=modificaAnamnesi_" + nuovaAnamnesi;
+                xhrObj.open("GET", url, true); // connessione asincrona (true) al server (indirizzo=url)
+                xhrObj.onreadystatechange = updatePage1; // indico funzione (updatePage) da invocare quando il server termina l’esecuzione della richiesta
+                xhrObj.send(null); // invio oggetto XMLHttpRequest a web server
+            }
+
+            function updatePage1() {
+                if (xhrObj.readyState === 4) {
+                    var risp = xhrObj.responseText;
+                    document.getElementById("anamnesi").innerHTML = risp;
+                }
+            }
+        </script>
     </head>
     <body>
         <div class="container">
@@ -51,17 +88,92 @@
                     del paziente.</p>
             </div>
             <div class="page-header">
-                <h1>Cartella clinica di <%= CCpaziente.getPaziente().getNome() 
-                        + " " + CCpaziente.getPaziente().getCognome() %></h1>
+                    <h1>Cartella clinica di <%= CCpaziente.getPaziente().getNome()
+                            + " " + CCpaziente.getPaziente().getCognome()%></h1>
             </div>
             <div class="panel panel-primary">
-                <div class="panel-heading">Anamnesi</div>
-                <div class="panel-body">
-                    <p><%= CCpaziente.getAnamnesi()%></p>
+                <div class="panel-heading">Anamnesi
+                    &nbsp;&nbsp;
+                    <button type="button" class="btn btn-primary btn-sm" 
+                            title="Modifica" data-toggle="modal" data-target="#modalAnamnesi">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
                 </div>
+                <div class="panel-body">
+                    <p id="anamnesi"><%= CCpaziente.getAnamnesi()%></p>
+                </div>
+                <div class="modal fade" id="modalAnamnesi">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Modifica anamnesi</h4>
+                            </div>
+                            <div class="modal-body">
+                                <textarea id="textAnamnesi" class="form-control" rows="3"
+                                          style="max-width: 100%; min-width: 100%; min-height: 2.5em;"><%= CCpaziente.getAnamnesi()%></textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="annullaModifica()">Annulla</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="confermaModifica()">Conferma</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
             </div>
             <div class="panel panel-primary">
-                <div class="panel-heading">Referti medici</div>
+                <div class="panel-heading">Referti medici
+                    &nbsp;&nbsp;
+                    <button type="button" class="btn btn-primary btn-sm" 
+                            title="Aggiungi referto" data-toggle="modal" data-target="#modalReferto">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </div>
+                <div class="modal fade" id="modalReferto">
+                    <div class="modal-dialog" style="width: 65%">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Aggiungi referto</h4>
+                            </div>
+                            <form class="form-horizontal" role="form">
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="prest" class="col-sm-2 control-label">Tipo visita</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" id="prest">
+                                                <% for (int i = 0; i < prestazioni.size(); i++) {%>
+                                                <option><%= prestazioni.get(i).getNome()%></option>
+                                                <%}%>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="data" class="col-sm-2 control-label">Data</label>
+                                        <div class="col-sm-10">
+                                            <input type="input" class="form-control" id="data">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="diagn" class="col-sm-2 control-label">Diagnosi</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="diagn">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="multim" class="col-sm-2 control-label">Allega file</label>
+                                        <div class="col-sm-10">
+                                            <input type="file" class="form-control" id="multim">
+                                        </div>
+                                    </div>
+<!--                                     div per le prescrizioni!       -->
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="">Annulla</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="">Conferma</button>
+                                </div>
+                            </form>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
                 <table class="table table-condensed table-hover">
                     <thead>
                         <tr>
@@ -77,7 +189,7 @@
                             for (int i = 0; i < referti.size(); i++) {%>
                         <tr>
                             <td><%= i + 1%></td>
-                            <td><%= referti.get(i).getTipoVisita().getNome() %></td>
+                            <td><%= referti.get(i).getTipoVisita().getNome()%></td>
                             <td><%= sdf.format(referti.get(i).getDataVisita())%></td>
                             <td><%= referti.get(i).getDiagnosi()%></td>
                             <td><a href="rm-paziente.jsp?num=<%=i%>">visualizza</a></td>

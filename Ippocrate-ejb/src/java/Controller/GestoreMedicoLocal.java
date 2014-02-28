@@ -6,6 +6,7 @@
 
 package Controller;
 
+import Entity.CartellaClinica;
 import Entity.Paziente;
 import java.util.List;
 import javax.ejb.Local;
@@ -18,5 +19,7 @@ import javax.ejb.Local;
 public interface GestoreMedicoLocal {
 
     List<Paziente> ottieniMieiPazienti(long medicoId);
+
+    CartellaClinica modificaAnamnesi(long ccId, String nuovaAnamnesi);
     
 }

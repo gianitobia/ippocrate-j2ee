@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import Entity.Medico;
 import Entity.MedicoTransient;
 import Entity.PazienteTransient;
 import javax.ejb.Local;
@@ -18,6 +19,8 @@ public interface GestoreUtenteLocal {
 
     PazienteTransient ottieniPaziente(long user_id);
 
-    MedicoTransient ottieniMedico(long user_id);
+    MedicoTransient ottieniMedicoT(long user_id);
+    
+    Medico ottieniMedico(long user_id);
 
 }

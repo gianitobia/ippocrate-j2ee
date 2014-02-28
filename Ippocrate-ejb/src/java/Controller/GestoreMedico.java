@@ -5,6 +5,8 @@
  */
 package Controller;
 
+import Entity.CartellaClinica;
+import Entity.CartellaClinicaFacadeLocal;
 import Entity.Medico;
 import Entity.MedicoEsterno;
 import Entity.MedicoFacadeLocal;
@@ -23,6 +25,8 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class GestoreMedico implements GestoreMedicoLocal {
+    @EJB
+    private CartellaClinicaFacadeLocal cartellaClinicaFacade;
 
     @EJB
     private RepartoFacadeLocal repartoFacade;
@@ -51,6 +55,13 @@ public class GestoreMedico implements GestoreMedicoLocal {
         }
 
         return lp;
+    }
+
+    @Override
+    public CartellaClinica modificaAnamnesi(long ccId, String nuovaAnamnesi) {
+        CartellaClinica cc = cartellaClinicaFacade.find(ccId);
+        cc.setAnamnesi(nuovaAnamnesi);
+        return cc;
     }
 
 }
