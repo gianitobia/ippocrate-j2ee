@@ -36,7 +36,7 @@
                     <ul class="nav navbar-nav">
                         <li><a href="home-medico.jsp">Home</a></li>
                         <li class="active"><a href="MedicoServlet?action=mieiPazienti">I miei pazienti</a></li>
-                        <li><a href="#">Il mio calendario</a></li>
+                        <li><a href="mia-agenda.jsp">La mia agenda</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="login.jsp">Logout</a></li>

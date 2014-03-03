@@ -42,7 +42,7 @@ public class RefertoMedico implements Serializable {
     @OneToOne
     private Paziente paziente;
 
-    private List<String> lista_images;
+    private String lista_images;
 
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataVisita;
@@ -88,7 +88,7 @@ public class RefertoMedico implements Serializable {
      *
      * @return the value of lista_images
      */
-    public List<String> getLista_images() {
+    public String getLista_images() {
         return lista_images;
     }
 
@@ -97,7 +97,7 @@ public class RefertoMedico implements Serializable {
      *
      * @param lista_images new value of lista_images
      */
-    public void setLista_images(List<String> lista_images) {
+    public void setLista_images(String lista_images) {
         this.lista_images = lista_images;
     }
 

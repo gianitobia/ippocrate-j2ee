@@ -42,7 +42,7 @@ public class PrescrizioneMedica implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date data_prescrizione;
 
-    private String consegnata;
+    private String consegnata = "NO";
 
     @OneToOne
     private Medico medico;

@@ -48,6 +48,15 @@
                 document.getElementById("textAnamnesi").value = <%= "\"" + CCpaziente.getAnamnesi() + "\""%>;
             }
 
+            function svuotaCreazione() {
+                document.getElementById("data").value = "";
+                document.getElementById("diagn").value = "";
+                document.getElementById("multim").value = "";
+                document.getElementById("medic").value = "";
+                document.getElementById("numConf").value = "";
+                document.getElementById("dataScad").value = "";
+            }
+
             function confermaModifica() {
                 var nuovaAnamnesi = document.getElementById("textAnamnesi").value;
                 var url = "MedicoServlet?action=modificaAnamnesi_" + nuovaAnamnesi;
@@ -60,6 +69,30 @@
                 if (xhrObj.readyState === 4) {
                     var risp = xhrObj.responseText;
                     document.getElementById("anamnesi").innerHTML = risp;
+                }
+            }
+
+            function creaReferto() {
+                var iPrest = document.getElementById("prest").value;
+                var dataVisita = document.getElementById("data").value;
+                var diagnosi = document.getElementById("diagn").value;
+                var file = document.getElementById("multim").value;
+                var medic = document.getElementById("medic").value;
+                var numConf = document.getElementById("numConf").value;
+                var dataScad = document.getElementById("dataScad").value;
+                var url = "MedicoServlet?action=creaReferto_" + iPrest + "_" +
+                        dataVisita + "_" + diagnosi + "_" + file + "_" + medic + "_" +
+                        numConf + "_" + dataScad;
+                xhrObj.open("GET", url, true); // connessione asincrona (true) al server (indirizzo=url)
+                xhrObj.onreadystatechange = updatePage2; // indico funzione (updatePage) da invocare quando il server termina l’esecuzione della richiesta
+                xhrObj.send(null); // invio oggetto XMLHttpRequest a web server
+            }
+
+            function updatePage2() {
+                if (xhrObj.readyState === 4) {
+                    var risp = xhrObj.responseText;
+                    document.getElementById("tabReferti").innerHTML += risp;
+                    svuotaCreazione();
                 }
             }
         </script>
@@ -75,7 +108,7 @@
                     <ul class="nav navbar-nav">
                         <li><a href="home-medico.jsp">Home</a></li>
                         <li class="active"><a href="MedicoServlet?action=mieiPazienti">I miei pazienti</a></li>
-                        <li><a href="#">Il mio calendario</a></li>
+                        <li><a href="mia-agenda.jsp">La mia agenda</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="login.jsp">Logout</a></li>
@@ -138,37 +171,56 @@
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <label for="prest" class="col-sm-2 control-label">Tipo visita</label>
-                                        <div class="col-sm-10">
+                                        <div class="col-sm-7">
                                             <select class="form-control" id="prest">
                                                 <% for (int i = 0; i < prestazioni.size(); i++) {%>
-                                                <option><%= prestazioni.get(i).getNome()%></option>
+                                                <option value="<%= i%>"><%= prestazioni.get(i).getNome()%></option>
                                                 <%}%>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="data" class="col-sm-2 control-label">Data</label>
-                                        <div class="col-sm-10">
-                                            <input type="input" class="form-control" id="data">
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control" id="data" placeholder="01/12/2013">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="diagn" class="col-sm-2 control-label">Diagnosi</label>
-                                        <div class="col-sm-10">
+                                        <div class="col-sm-7">
                                             <input type="text" class="form-control" id="diagn">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="multim" class="col-sm-2 control-label">Allega file</label>
-                                        <div class="col-sm-10">
-                                            <input type="file" class="form-control" id="multim">
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control" id="multim">
                                         </div>
                                     </div>
-<!--                                     div per le prescrizioni!       -->
+                                    <div class="well well-sm">
+                                        <div class="form-group">
+                                            <label for="medic" class="col-sm-3 control-label">Medicinale</label>
+                                            <div class="col-sm-5">
+                                                <input type="text" class="form-control" id="medic">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="numConf" class="col-sm-3 control-label">Quantità</label>
+                                            <div class="col-sm-1">
+                                                <input type="text" class="form-control" id="numConf">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="dataScad" class="col-sm-3 control-label">Data scadenza prescrizione</label>
+                                            <div class="col-sm-2">
+                                                <input type="text" class="form-control" id="dataScad" placeholder="01/12/2013">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="">Annulla</button>
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="">Conferma</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="svuotaCreazione()">Annulla</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="creaReferto()">Conferma</button>
                                 </div>
                             </form>
                         </div><!-- /.modal-content -->
@@ -184,7 +236,7 @@
                             <th>Altro</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="tabReferti">
                         <% List<RefertoMedico> referti = CCpaziente.getLista_referti();
                             for (int i = 0; i < referti.size(); i++) {%>
                         <tr>

@@ -7,7 +7,9 @@ package web;
 
 import Controller.GestoreMedicoLocal;
 import Entity.CartellaClinica;
+import Entity.Medico;
 import Entity.Paziente;
+import Entity.RefertoMedico;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -49,13 +51,36 @@ public class MedicoServlet extends HttpServlet {
             } else if (request.getParameter("action").startsWith("ottieniCC_")) {
                 int paziente = Integer.parseInt(request.getParameter("action").substring(10));
                 List<Paziente> lp = ((List<Paziente>) s.getAttribute("pazienti"));
-                s.setAttribute("CCpaziente", lp.get(paziente).getCartella_clinica());
+                s.setAttribute("CCpaziente", gestoreMedico.ottieniCCPaziente(lp.get(paziente).getId().longValue()));
                 response.sendRedirect("cc-paziente.jsp");
             } else if (request.getParameter("action").startsWith("modificaAnamnesi_")) {
                 String nuovaAnamnesi = request.getParameter("action").substring(17);
                 CartellaClinica cc = (CartellaClinica) s.getAttribute("CCpaziente");
                 s.setAttribute("CCpaziente", gestoreMedico.modificaAnamnesi(cc.getId().longValue(), nuovaAnamnesi));
                 out.write(nuovaAnamnesi);
+            } else if (request.getParameter("action").startsWith("creaReferto_")) {
+                String temp = request.getParameter("action").substring(12);
+                String[] tempArray = temp.split("_");
+                int indexOfPrest = Integer.parseInt(tempArray[0]);
+                String dataVisita = tempArray[1];
+                String diagnosi = tempArray[2];
+                String file = tempArray[3];
+                String medic = tempArray[4];
+                int numConf = Integer.parseInt(tempArray[5]);
+                String dataScad = tempArray[6];
+                CartellaClinica cc = (CartellaClinica) s.getAttribute("CCpaziente");
+                Medico m = (Medico) s.getAttribute("medico");
+                List<RefertoMedico> lrm = gestoreMedico.aggiungiReferto(m, indexOfPrest, diagnosi, 
+                        cc.getPaziente(), file, dataVisita, medic, numConf, dataScad);
+                cc.setLista_referti(lrm);
+                s.setAttribute("CCpaziente",cc);
+                
+                //stampa per l'aggiornamento della table dei referti
+                String risp = "<tr><td>" + lrm.size() + "</td><td>" + m.getMiePrestazioni().get(indexOfPrest).getNome() + 
+                        "</td><td>" + dataVisita + "</td><td>" + diagnosi + 
+                        "</td><td><a href=\"rm-paziente.jsp?num=" + (lrm.size() - 1) + "\">visualizza</a></td></tr>";
+                
+                out.write(risp);
             }
         }
     }

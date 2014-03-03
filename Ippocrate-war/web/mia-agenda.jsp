@@ -1,7 +1,7 @@
 <%-- 
-    Document   : home-medico
-    Created on : 17-dic-2013, 12.47.53
-    Author     : toby
+    Document   : mia-agenda
+    Created on : 1-mar-2014, 17.17.44
+    Author     : Marco
 --%>
 
 <%--<jsp:useBean id="medico" class="Entity.MedicoTransient" scope="session" />--%>
@@ -15,7 +15,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>Ippocrate :: Home Medico</title>
+        <title>Ippocrate :: La mia agenda</title>
 
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap.css" rel="stylesheet">
@@ -32,9 +32,9 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="home-medico.jsp">Home</a></li>
+                        <li><a href="home-medico.jsp">Home</a></li>
                         <li><a href="MedicoServlet?action=mieiPazienti">I miei pazienti</a></li>
-                        <li><a href="mia-agenda.jsp">La mia agenda</a></li>
+                        <li class="active"><a href="mia-agenda.jsp">La mia agenda</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="login.jsp">Logout</a></li>
@@ -43,9 +43,11 @@
             </div>
             <!-- Main component for a primary marketing message or call to action -->
             <div class="jumbotron">
-                <h1>Benvenuto,<br>dott. <%= medico.getCognome()%>!</h1>
-                <br>
-                <p>Il nuovo portale Ippocrate ti permette di vedere l'elenco dei tuoi pazienti.</p>
+                <p>Da questa pagina puoi visualizzare la tua agenda,
+                    <br> i tuoi appuntamenti e i tuoi impegni.</p>
+            </div>
+            <div class="page-header">
+                <h1>La mia agenda</h1>
             </div>
         </div> <!-- /container -->
         <!-- Bootstrap core JavaScript
