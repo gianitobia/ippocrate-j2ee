@@ -20,8 +20,9 @@ import javax.naming.NamingException;
  * @author: Varesano
  */
 public class PopolaTabelle {
+
     GestoreInserimentoDatiLocal gestoreInserimentoDati = lookupGestoreInserimentoDatiLocal();
-    
+
 //    public static void popolaCartellaClinica()
 //            throws SQLException, FileNotFoundException, IOException {
 //
@@ -37,14 +38,13 @@ public class PopolaTabelle {
 //        st.close();
 //        c.close();
 //    }
-
     public void popolaPaziente() throws FileNotFoundException {
 
         Scanner s = new Scanner(new File("src/java/Utility/Paziente.txt"));
         String[] valori;
         while (s.hasNextLine()) {
             valori = s.nextLine().split(",");
-            
+
             gestoreInserimentoDati.addPaziente(valori[1], valori[2], valori[4], valori[3], valori[5], valori[6], new Date(valori[7]), valori[8]);
 //            st.executeUpdate("INSERT INTO PAZIENTE(ID, NOME, COGNOME, PASSWORD"
 //                    + ", CF, SESSO, INDIRIZZO, DATA_NASCITA, LUOGO_NASCITA, CARTELLA_CLINICA_ID) "
@@ -70,7 +70,6 @@ public class PopolaTabelle {
 //           agendaFacade.create(a);
 //        }
 //    }
-
     public static void main(String[] args) {
         PopolaTabelle pt = new PopolaTabelle();
         try {

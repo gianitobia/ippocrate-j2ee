@@ -57,9 +57,9 @@ public class GestoreUtente implements GestoreUtenteLocal {
 
         return mt;
     }
-    
+
     @Override
     public Medico ottieniMedico(long user_id) {
-        return medicoFacade.find(user_id);     
+        return medicoFacade.find(user_id);
     }
 }

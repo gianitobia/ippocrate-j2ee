@@ -20,7 +20,7 @@ public interface GestoreUtenteLocal {
     PazienteTransient ottieniPaziente(long user_id);
 
     MedicoTransient ottieniMedicoT(long user_id);
-    
+
     Medico ottieniMedico(long user_id);
 
 }

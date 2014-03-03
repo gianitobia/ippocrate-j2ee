@@ -36,6 +36,7 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class GestoreMedico implements GestoreMedicoLocal {
+
     @EJB
     private PazienteFacadeLocal pazienteFacade;
 
@@ -91,10 +92,10 @@ public class GestoreMedico implements GestoreMedicoLocal {
         rm.setDiagnosi(diagn);
         rm.setPaziente(p);
         rm.setLista_images(file);
-        
+
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         DateFormat ndf = new SimpleDateFormat("yyyy-MM-dd");
-        
+
         Date dataVisita = new Date();
         try {
             dataVisita = df.parse(d);
@@ -107,7 +108,7 @@ public class GestoreMedico implements GestoreMedicoLocal {
 
         List<PrescrizioneMedica> lpm = new ArrayList();
         PrescrizioneMedica pm = new PrescrizioneMedica();
-        
+
         Date dataScad = new Date();
         try {
             dataScad = df.parse(dataScadenza);
@@ -117,7 +118,7 @@ public class GestoreMedico implements GestoreMedicoLocal {
             Logger.getLogger(GestoreMedico.class.getName()).log(Level.SEVERE, null, ex);
         }
         pm.setData_scadenza(dataScad);
-        
+
         pm.setReferto(rm);
         pm.setPaziente(p);
         pm.setMedicinale(medic);

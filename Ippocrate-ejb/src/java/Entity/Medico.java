@@ -45,7 +45,7 @@ public abstract class Medico implements Serializable {
 
     @OneToOne
     private Agenda visite;
-    
+
     @ManyToMany
     private List<PrestazioneMedico> miePrestazioni;
 
@@ -66,7 +66,6 @@ public abstract class Medico implements Serializable {
     public void setMiePrestazioni(List<PrestazioneMedico> miePrestazioni) {
         this.miePrestazioni = miePrestazioni;
     }
-
 
     public Agenda getVisite() {
         return visite;

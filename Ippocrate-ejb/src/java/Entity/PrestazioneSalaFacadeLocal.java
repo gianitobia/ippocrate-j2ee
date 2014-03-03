@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Entity;
 
 import java.util.List;
@@ -29,5 +28,5 @@ public interface PrestazioneSalaFacadeLocal {
     List<PrestazioneSala> findRange(int[] range);
 
     int count();
-    
+
 }

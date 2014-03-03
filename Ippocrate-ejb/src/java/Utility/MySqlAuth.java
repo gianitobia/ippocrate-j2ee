@@ -12,5 +12,5 @@ package Utility;
 public class MySqlAuth {
 
     public static String user = "root";
-    public static String pwd = "password";
+    public static String pwd = "More89!A";
 }

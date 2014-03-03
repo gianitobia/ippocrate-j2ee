@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Controller;
 
 import Entity.CartellaClinica;
@@ -29,5 +28,5 @@ public interface GestoreMedicoLocal {
             String file, String d, String medic, int numConf, String dataScadenza);
 
     CartellaClinica ottieniCCPaziente(long idP);
-    
+
 }

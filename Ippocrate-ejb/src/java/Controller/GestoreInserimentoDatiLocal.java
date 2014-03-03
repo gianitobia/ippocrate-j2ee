@@ -44,7 +44,7 @@ public interface GestoreInserimentoDatiLocal {
     Long addPrestazioneSala(int durata, String nome);
 
     Long addPrestazioneMedico(int durata, String nome);
-    
+
     Long addReparto(long id_ospedale, String nome, long id_primario);
 
     Long addSalaOspedale(long id_reparto, String tipo_laboratorio, long id_medico_responsabile);

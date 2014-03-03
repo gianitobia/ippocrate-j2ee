@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Entity;
 
 import javax.ejb.Stateless;
@@ -16,6 +15,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class PrestazioneSalaFacade extends AbstractFacade<PrestazioneSala> implements PrestazioneSalaFacadeLocal {
+
     @PersistenceContext(unitName = "Ippocrate-ejbPU")
     private EntityManager em;
 
@@ -27,5 +27,5 @@ public class PrestazioneSalaFacade extends AbstractFacade<PrestazioneSala> imple
     public PrestazioneSalaFacade() {
         super(PrestazioneSala.class);
     }
-    
+
 }
