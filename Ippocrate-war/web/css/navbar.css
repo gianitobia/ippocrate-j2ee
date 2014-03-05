@@ -1,0 +1,17 @@
+body {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.navbar {
+    margin-bottom: 20px;
+    background-color: white;
+    border-color: #428bca;
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus{
+    color: white;
+    background-color: #428bca;
+}
