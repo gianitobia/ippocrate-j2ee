@@ -22,7 +22,7 @@ import javax.jws.WebParam;
 @WebService(serviceName = "WSPaziente")
 @Stateless()
 public class WSPaziente {
-
+    
     @EJB
     private PazienteFacadeLocal ejbRef;// Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Web Service Operation")
@@ -32,34 +32,34 @@ public class WSPaziente {
     public void create(@WebParam(name = "paziente") Paziente paziente) {
         ejbRef.create(paziente);
     }
-
+    
     @WebMethod(operationName = "edit")
     @Oneway
     public void edit(@WebParam(name = "paziente") Paziente paziente) {
         ejbRef.edit(paziente);
     }
-
+    
     @WebMethod(operationName = "remove")
     @Oneway
     public void remove(@WebParam(name = "paziente") Paziente paziente) {
         ejbRef.remove(paziente);
     }
-
+    
     @WebMethod(operationName = "find")
     public Paziente find(@WebParam(name = "id") Object id) {
         return ejbRef.find(id);
     }
-
+    
     @WebMethod(operationName = "findAll")
     public List<Paziente> findAll() {
         return ejbRef.findAll();
     }
-
+    
     @WebMethod(operationName = "findRange")
     public List<Paziente> findRange(@WebParam(name = "range") int[] range) {
         return ejbRef.findRange(range);
     }
-
+    
     @WebMethod(operationName = "count")
     public int count() {
         return ejbRef.count();
@@ -69,14 +69,14 @@ public class WSPaziente {
      * Operazione che verifica l'esistenza di un paziente con CF dato in input
      */
     @WebMethod(operationName = "verificaCF")
-    public boolean verificaCF(@WebParam(name = "CF") String CF) {
+    public Long verificaCF(@WebParam(name = "CF") String CF) {
         List<Paziente> lp = ejbRef.findAll();
         for (Paziente p : lp) {
             if (p.getCf().equals(CF)) {
-                return true;
+                return p.getId();
             }
         }
-        return false;
+        return new Long(-1);
     }
-
+    
 }
