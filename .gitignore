@@ -25,7 +25,6 @@ Ippocrate-ejb/src/Utility/MySqlAuth.java
 # Logs and databases #
 ######################
 *.log
-*.sql
 *.sqlite
 
 # OS generated files #
