@@ -66,6 +66,9 @@ public class LoginServlet extends HttpServlet {
                     s.setAttribute("error", "Dati di accesso paziente errati.");
                     response.sendRedirect("errore.jsp");
                 }
+            } else if (request.getParameter("action").equals("invalida")) {
+                s.invalidate();
+                response.sendRedirect("login.jsp");
             } else {
                 response.sendRedirect("index.html");
             }

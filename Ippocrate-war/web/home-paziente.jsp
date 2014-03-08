@@ -42,7 +42,7 @@
                         <li><a href="CCServlet?action=miaCC">Cartella clinica</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="login.jsp">Logout</a></li>
+                        <li><a href="/Ippocrate-war/LoginServlet?action=invalida">Logout</a></li>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
