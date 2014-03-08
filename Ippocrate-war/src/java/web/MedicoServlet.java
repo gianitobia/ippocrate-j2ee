@@ -53,34 +53,27 @@ public class MedicoServlet extends HttpServlet {
                 List<Paziente> lp = ((List<Paziente>) s.getAttribute("pazienti"));
                 s.setAttribute("CCpaziente", gestoreMedico.ottieniCCPaziente(lp.get(paziente).getId().longValue()));
                 response.sendRedirect("cc-paziente.jsp");
-            } else if (request.getParameter("action").startsWith("modificaAnamnesi_")) {
-                String nuovaAnamnesi = request.getParameter("action").substring(17);
+            } else if (request.getParameter("action").equals("modificaAnamnesi")) {
+                String nuovaAnamnesi = request.getParameter("anamnesi");
                 CartellaClinica cc = (CartellaClinica) s.getAttribute("CCpaziente");
                 s.setAttribute("CCpaziente", gestoreMedico.modificaAnamnesi(cc.getId().longValue(), nuovaAnamnesi));
-                out.write(nuovaAnamnesi);
-            } else if (request.getParameter("action").startsWith("creaReferto_")) {
-                String temp = request.getParameter("action").substring(12);
-                String[] tempArray = temp.split("_");
-                int indexOfPrest = Integer.parseInt(tempArray[0]);
-                String dataVisita = tempArray[1];
-                String diagnosi = tempArray[2];
-                String file = tempArray[3];
-                String medic = tempArray[4];
-                int numConf = Integer.parseInt(tempArray[5]);
-                String dataScad = tempArray[6];
+                response.sendRedirect("cc-paziente.jsp");
+            } else if (request.getParameter("action").equals("creaReferto")) {
+                String[] v = request.getParameterValues("prest");
+                int indexOfPrest = Integer.parseInt(v[0]);
+                String dataVisita = request.getParameter("data");
+                String diagnosi = request.getParameter("diagn");
+                String file = request.getParameter("multim");
+                String medic = request.getParameter("medic");
+                int numConf = Integer.parseInt(request.getParameter("numConf"));
+                String dataScad = request.getParameter("dataScad");
                 CartellaClinica cc = (CartellaClinica) s.getAttribute("CCpaziente");
                 Medico m = (Medico) s.getAttribute("medico");
-                List<RefertoMedico> lrm = gestoreMedico.aggiungiReferto(m, indexOfPrest, diagnosi, 
+                List<RefertoMedico> lrm = gestoreMedico.aggiungiReferto(m, indexOfPrest, diagnosi,
                         cc.getPaziente(), file, dataVisita, medic, numConf, dataScad);
                 cc.setLista_referti(lrm);
-                s.setAttribute("CCpaziente",cc);
-                
-                //stampa per l'aggiornamento della table dei referti
-                String risp = "<tr><td>" + lrm.size() + "</td><td>" + m.getMiePrestazioni().get(indexOfPrest).getNome() + 
-                        "</td><td>" + dataVisita + "</td><td>" + diagnosi + 
-                        "</td><td><a href=\"rm-paziente.jsp?num=" + (lrm.size() - 1) + "\">visualizza</a></td></tr>";
-                
-                out.write(risp);
+                s.setAttribute("CCpaziente", cc);
+                response.sendRedirect("cc-paziente.jsp");
             }
         }
     }
