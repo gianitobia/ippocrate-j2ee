@@ -5,7 +5,7 @@
 --%>
 
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="Entity.PrenotazioneTransient"%>
+<%@page import="Transient.PrenotazioneTransient"%>
 <%@page import="java.util.List"%>
 <jsp:useBean id="prenotazioni" type="List<PrenotazioneTransient>" scope="session" />
 <% SimpleDateFormat sdf = new SimpleDateFormat("E' 'dd/MM/yyyy' ore 'HH:mm");%>

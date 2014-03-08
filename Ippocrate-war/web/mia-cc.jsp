@@ -5,9 +5,9 @@
 --%>
 
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="Entity.RefertoMedicoTransient"%>
+<%@page import="Transient.RefertoMedicoTransient"%>
 <%@page import="java.util.List"%>
-<jsp:useBean id="miaCC" class="Entity.CartellaClinicaTransient" scope="session" />
+<jsp:useBean id="miaCC" class="Transient.CartellaClinicaTransient" scope="session" />
 <% SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

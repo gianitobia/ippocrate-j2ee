@@ -7,8 +7,8 @@ package web;
 
 import Controller.GestoreUtenteLocal;
 import Entity.Medico;
-import Entity.MedicoTransient;
-import Entity.PazienteTransient;
+import Transient.MedicoTransient;
+import Transient.PazienteTransient;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;

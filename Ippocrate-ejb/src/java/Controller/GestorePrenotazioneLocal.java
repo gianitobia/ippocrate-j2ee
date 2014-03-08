@@ -7,7 +7,7 @@ package Controller;
 
 import Entity.Agenda;
 import Entity.Medico;
-import Entity.PrenotazioneTransient;
+import Transient.PrenotazioneTransient;
 import Entity.Prestazione;
 import Entity.Sala;
 import Entity.StrutturaMedica;

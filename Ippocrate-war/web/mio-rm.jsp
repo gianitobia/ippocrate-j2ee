@@ -5,10 +5,10 @@
 --%>
 
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="Entity.PrescrizioneMedicaTransient"%>
+<%@page import="Transient.PrescrizioneMedicaTransient"%>
 <%@page import="java.util.List"%>
-<%@page import="Entity.RefertoMedicoTransient"%>
-<jsp:useBean id="miaCC" class="Entity.CartellaClinicaTransient" scope="session" />
+<%@page import="Transient.RefertoMedicoTransient"%>
+<jsp:useBean id="miaCC" class="Transient.CartellaClinicaTransient" scope="session" />
 <% SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     int numR = Integer.parseInt(request.getParameter("num"));
@@ -80,14 +80,16 @@
                 <div class="panel-heading">Multimedia</div>
                 <div class="panel-body">
                     <% String listaImg = referto.getLista_images();
-                        String[] multim = listaImg.split(";");
-                        for (int i = 0; i < multim.length; i++) {%>
+                        if (listaImg != null && listaImg.equals("") == false) {
+                            String[] multim = listaImg.split(";");
+                            for (int i = 0; i < multim.length; i++) {%>
                     <div class="col-md-3">
                         <a href="<%= multim[i]%>">
                             <img src="<%= multim[i]%>" alt="Immagine <%= i + 1%>" 
                                  class="img-thumbnail" style="max-height: 250px; max-width: 250px;">
                         </a>
                     </div>
+                    <%}%>
                     <%}%>
                 </div>
             </div>

@@ -5,7 +5,9 @@
  */
 package Controller;
 
-import Entity.CartellaClinicaTransient;
+import Transient.CartellaClinicaTransient;
+import Transient.PrescrizioneMedicaTransient;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -16,5 +18,7 @@ import javax.ejb.Local;
 public interface GestoreCartellaClinicaLocal {
 
     CartellaClinicaTransient ottieniCC(long pazienteId);
+
+    List<PrescrizioneMedicaTransient> ottieniPM(Long pazienteId);
 
 }

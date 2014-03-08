@@ -15,7 +15,7 @@ import Entity.Prenotazione;
 import Entity.PrenotazioneFacadeLocal;
 import Entity.PrenotazioneMedico;
 import Entity.PrenotazioneSala;
-import Entity.PrenotazioneTransient;
+import Transient.PrenotazioneTransient;
 import Entity.Prestazione;
 import Entity.PrestazioneFacadeLocal;
 import Entity.PrestazioneMedico;
@@ -60,6 +60,7 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
         for (Prenotazione p : prenotazioneFacade.findAll()) {
             if (p.getPaziente().getId() == pazienteId) {
                 PrenotazioneTransient pt = new PrenotazioneTransient();
+                pt.setId(p.getId());
                 pt.setNomeSM(p.getStruttura_medica().getNome());
                 pt.setIndirizzoSM(p.getStruttura_medica().getIndirizzo());
                 pt.setData(p.getData_prenotazione());

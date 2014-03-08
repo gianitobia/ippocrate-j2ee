@@ -4,7 +4,7 @@
     Author     : Marco
 --%>
 
-<jsp:useBean id="paziente" class="Entity.PazienteTransient" scope="session" />
+<jsp:useBean id="paziente" class="Transient.PazienteTransient" scope="session" />
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

@@ -54,7 +54,7 @@
             </div>
             <div class="page-header">
                     <h1>Referto medico di <%= CCpaziente.getPaziente().getNome()
-                        + " " + CCpaziente.getPaziente().getCognome()%></h1>
+                            + " " + CCpaziente.getPaziente().getCognome()%></h1>
             </div>
             <div class="panel panel-primary">
                 <div class="panel-heading">Dettagli</div>
@@ -73,14 +73,16 @@
                 <div class="panel-heading">Multimedia</div>
                 <div class="panel-body">
                     <% String listaImg = referto.getLista_images();
-                        String[] multim = listaImg.split(";");
-                        for (int i = 0; i < multim.length; i++) {%>
+                        if (listaImg != null && listaImg.equals("") == false) {
+                            String[] multim = listaImg.split(";");
+                            for (int i = 0; i < multim.length; i++) {%>
                     <div class="col-md-3">
                         <a href="<%= multim[i]%>">
                             <img src="<%= multim[i]%>" alt="Immagine <%= i + 1%>" 
                                  class="img-thumbnail" style="max-height: 250px; max-width: 250px;">
                         </a>
                     </div>
+                    <%}%>
                     <%}%>
                 </div>
             </div>

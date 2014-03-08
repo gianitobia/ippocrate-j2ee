@@ -6,8 +6,8 @@
 package Controller;
 
 import Entity.Medico;
-import Entity.MedicoTransient;
-import Entity.PazienteTransient;
+import Transient.MedicoTransient;
+import Transient.PazienteTransient;
 import javax.ejb.Local;
 
 /**

@@ -4,7 +4,7 @@
     Author     : toby
 --%>
 
-<%--<jsp:useBean id="medico" class="Entity.MedicoTransient" scope="session" />--%>
+<%--<jsp:useBean id="medico" class="Transient.MedicoTransient" scope="session" />--%>
 <jsp:useBean id="medico" class="Entity.Medico" scope="session" />
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

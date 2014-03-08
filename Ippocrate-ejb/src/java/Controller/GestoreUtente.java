@@ -7,10 +7,10 @@ package Controller;
 
 import Entity.Medico;
 import Entity.MedicoFacadeLocal;
-import Entity.MedicoTransient;
+import Transient.MedicoTransient;
 import Entity.Paziente;
 import Entity.PazienteFacadeLocal;
-import Entity.PazienteTransient;
+import Transient.PazienteTransient;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -30,6 +30,7 @@ public class GestoreUtente implements GestoreUtenteLocal {
     public PazienteTransient ottieniPaziente(long user_id) {
         Paziente p = pazienteFacade.find(user_id);
         PazienteTransient pt = new PazienteTransient();
+        pt.setId(p.getId());
         pt.setCf(p.getCf());
         pt.setCognome(p.getCognome());
         pt.setData_nascita(p.getData_nascita());
@@ -44,6 +45,7 @@ public class GestoreUtente implements GestoreUtenteLocal {
     public MedicoTransient ottieniMedicoT(long user_id) {
         Medico m = medicoFacade.find(user_id);
         MedicoTransient mt = new MedicoTransient();
+        mt.setId(m.getId());
         mt.setCognome(m.getCognome());
         mt.setNome(m.getNome());
         mt.setData_nascita(m.getData_nascita());

@@ -4,6 +4,9 @@
     <service name="WSPaziente">
       <implementation-class>WebService.WSPaziente</implementation-class>
     </service>
+    <service name="WSPrescrizioneMedica">
+      <implementation-class>WebService.WSPrescrizioneMedica</implementation-class>
+    </service>
   </services>
   <clients/>
 </jax-ws>
