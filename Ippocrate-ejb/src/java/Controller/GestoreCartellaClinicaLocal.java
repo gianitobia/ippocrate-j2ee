@@ -21,4 +21,6 @@ public interface GestoreCartellaClinicaLocal {
 
     List<PrescrizioneMedicaTransient> ottieniPM(Long pazienteId);
 
+    PrescrizioneMedicaTransient segnaConsegnata(Long idPM);
+
 }

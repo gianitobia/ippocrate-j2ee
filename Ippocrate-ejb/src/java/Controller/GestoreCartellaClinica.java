@@ -10,6 +10,7 @@ import Transient.CartellaClinicaTransient;
 import Entity.Paziente;
 import Entity.PazienteFacadeLocal;
 import Entity.PrescrizioneMedica;
+import Entity.PrescrizioneMedicaFacadeLocal;
 import Transient.PrescrizioneMedicaTransient;
 import Entity.RefertoMedico;
 import Transient.RefertoMedicoTransient;
@@ -24,6 +25,9 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class GestoreCartellaClinica implements GestoreCartellaClinicaLocal {
+
+    @EJB
+    private PrescrizioneMedicaFacadeLocal prescrizioneMedicaFacade;
 
     @EJB
     private PazienteFacadeLocal pazienteFacade;
@@ -70,7 +74,45 @@ public class GestoreCartellaClinica implements GestoreCartellaClinicaLocal {
 
     @Override
     public List<PrescrizioneMedicaTransient> ottieniPM(Long pazienteId) {
-        return null;
+        Paziente p = pazienteFacade.find(pazienteId);
+        CartellaClinica cc = p.getCartella_clinica();
+        List<RefertoMedico> lrm = cc.getLista_referti();
+
+        List<PrescrizioneMedicaTransient> lpmt = new ArrayList();
+
+        for (RefertoMedico rm : lrm) {
+            List<PrescrizioneMedica> lpm = rm.getLista_prescrizioni();
+            for (PrescrizioneMedica pm : lpm) {
+                PrescrizioneMedicaTransient pmt = new PrescrizioneMedicaTransient();
+
+                pmt.setId(pm.getId());
+                pmt.setDataPrescrizione(pm.getData_prescrizione());
+                pmt.setDataScadenza(pm.getData_scadenza());
+                pmt.setMedicinale(pm.getMedicinale());
+                pmt.setNumConfezioni(pm.getNumero_confezioni());
+                pmt.setConsegnata(pm.getConsegnata());
+
+                lpmt.add(pmt);
+            }
+        }
+
+        return lpmt;
+    }
+
+    @Override
+    public PrescrizioneMedicaTransient segnaConsegnata(Long idPM) {
+        PrescrizioneMedica pm = prescrizioneMedicaFacade.find(idPM);
+        pm.setConsegnata("si");
+
+        PrescrizioneMedicaTransient pmt = new PrescrizioneMedicaTransient();
+        pmt.setId(pm.getId());
+        pmt.setDataPrescrizione(pm.getData_prescrizione());
+        pmt.setDataScadenza(pm.getData_scadenza());
+        pmt.setMedicinale(pm.getMedicinale());
+        pmt.setNumConfezioni(pm.getNumero_confezioni());
+        pmt.setConsegnata(pm.getConsegnata());
+
+        return pmt;
     }
 
 }

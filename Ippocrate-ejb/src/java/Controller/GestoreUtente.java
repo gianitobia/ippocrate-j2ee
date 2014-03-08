@@ -11,6 +11,7 @@ import Transient.MedicoTransient;
 import Entity.Paziente;
 import Entity.PazienteFacadeLocal;
 import Transient.PazienteTransient;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -64,4 +65,16 @@ public class GestoreUtente implements GestoreUtenteLocal {
     public Medico ottieniMedico(long user_id) {
         return medicoFacade.find(user_id);
     }
+
+    @Override
+    public Long verificaCF(String CF) {
+        List<Paziente> lp = pazienteFacade.findAll();
+        for (Paziente p : lp) {
+            if (p.getCf().equals(CF)) {
+                return p.getId();
+            }
+        }
+        return new Long(-1);
+    }
+
 }

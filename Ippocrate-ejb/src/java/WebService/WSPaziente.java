@@ -77,13 +77,7 @@ public class WSPaziente {
      */
     @WebMethod(operationName = "verificaCF")
     public Long verificaCF(@WebParam(name = "CF") String CF) {
-        List<Paziente> lp = ejbRef.findAll();
-        for (Paziente p : lp) {
-            if (p.getCf().equals(CF)) {
-                return p.getId();
-            }
-        }
-        return new Long(-1);
+        return gestoreUtente.verificaCF(CF);
     }
 
     /**

@@ -81,4 +81,14 @@ public class WSPrescrizioneMedica {
         return gestoreCartellaClinica.ottieniPM(idPaziente);
     }
 
+    /**
+     * Modifica la prescrizione medica impostando consegnata a si'
+     * @param idPM identificatore della PM da consegnare
+     * @return la PM Transient modificata
+     */
+    @WebMethod(operationName = "segnaConsegnata")
+    public PrescrizioneMedicaTransient segnaConsegnata(@WebParam(name = "idPM") Long idPM) {
+        return gestoreCartellaClinica.segnaConsegnata(idPM);
+    }
+
 }

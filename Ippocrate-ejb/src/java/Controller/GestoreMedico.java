@@ -124,7 +124,7 @@ public class GestoreMedico implements GestoreMedicoLocal {
         pm.setMedicinale(medic);
         pm.setNumero_confezioni(numConf);
         pm.setData_prescrizione(dataVisita);
-        //pm.setConsegnata("NO");
+        //pm.setConsegnata("no");
         pm.setMedico(m);
         lpm.add(pm);
 

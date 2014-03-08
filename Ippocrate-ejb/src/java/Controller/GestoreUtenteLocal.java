@@ -23,4 +23,6 @@ public interface GestoreUtenteLocal {
 
     Medico ottieniMedico(long user_id);
 
+    Long verificaCF(String CF);
+
 }
