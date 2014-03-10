@@ -19,6 +19,8 @@ import Entity.RefertoMedico;
 import Entity.RefertoMedicoFacadeLocal;
 import Entity.Reparto;
 import Entity.RepartoFacadeLocal;
+import Utility.FileUpload;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -29,6 +31,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.mail.MessagingException;
+import javax.servlet.http.Part;
 
 /**
  *
@@ -85,14 +89,22 @@ public class GestoreMedico implements GestoreMedicoLocal {
 
     @Override
     public List<RefertoMedico> aggiungiReferto(Medico m, int iPrest, String diagn,
-            Paziente p, String file, String d, String medic, int numConf, String dataScadenza) {
+            Paziente p, Part filePart, String file, String d, String medic, int numConf, String dataScadenza) {
         RefertoMedico rm = new RefertoMedico();
         rm.setMedico(m);
         rm.setTipoVisita(m.getMiePrestazioni().get(iPrest));
         rm.setDiagnosi(diagn);
         rm.setPaziente(p);
-        rm.setLista_images(file);
-
+        
+        try {
+            String path = FileUpload.caricaFile(filePart, file);
+            rm.setLista_images(path);
+        } catch (IOException ex) {
+            Logger.getLogger(GestoreMedico.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MessagingException ex) {
+            Logger.getLogger(GestoreMedico.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         DateFormat ndf = new SimpleDateFormat("yyyy-MM-dd");
 

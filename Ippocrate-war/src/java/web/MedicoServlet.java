@@ -15,15 +15,20 @@ import java.io.PrintWriter;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author Marco
  */
+@WebServlet(name = "MedicoServlet")
+@MultipartConfig
 public class MedicoServlet extends HttpServlet {
 
     @EJB
@@ -39,7 +44,7 @@ public class MedicoServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException{
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             HttpSession s = request.getSession();
@@ -63,14 +68,15 @@ public class MedicoServlet extends HttpServlet {
                 int indexOfPrest = Integer.parseInt(v[0]);
                 String dataVisita = request.getParameter("data");
                 String diagnosi = request.getParameter("diagn");
-                String file = request.getParameter("multim");
+                Part filePart = request.getPart("multim");
+                String fileName = getFileName(filePart);
                 String medic = request.getParameter("medic");
                 int numConf = Integer.parseInt(request.getParameter("numConf"));
                 String dataScad = request.getParameter("dataScad");
                 CartellaClinica cc = (CartellaClinica) s.getAttribute("CCpaziente");
                 Medico m = (Medico) s.getAttribute("medico");
                 List<RefertoMedico> lrm = gestoreMedico.aggiungiReferto(m, indexOfPrest, diagnosi,
-                        cc.getPaziente(), file, dataVisita, medic, numConf, dataScad);
+                        cc.getPaziente(), filePart, fileName, dataVisita, medic, numConf, dataScad);
                 cc.setLista_referti(lrm);
                 s.setAttribute("CCpaziente", cc);
                 response.sendRedirect("cc-paziente.jsp");
@@ -90,7 +96,7 @@ public class MedicoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+            processRequest(request, response); 
     }
 
     /**
@@ -104,7 +110,7 @@ public class MedicoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+            processRequest(request, response);     
     }
 
     /**
@@ -116,5 +122,16 @@ public class MedicoServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private String getFileName(Part filePart) {
+        String partHeader = filePart.getHeader("content-disposition");
+        for (String content : filePart.getHeader("content-disposition").split(";")) {
+            if (content.trim().startsWith("filename")) {
+                return content.substring(
+                        content.indexOf('=') + 1).trim().replace("\"", "");
+            }
+        }
+        return null;
+    }
 
 }

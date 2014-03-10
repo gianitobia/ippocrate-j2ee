@@ -48,7 +48,7 @@ CREATE TABLE `refertomedico` (
 
 LOCK TABLES `refertomedico` WRITE;
 /*!40000 ALTER TABLE `refertomedico` DISABLE KEYS */;
-INSERT INTO `refertomedico` VALUES (41,'2014-03-01','attività celebrale nella norma',NULL,2,11,40),(42,'2013-01-25','dolore addominale superiore. lacerazioni interne',NULL,6,12,39),(43,'2014-02-20','nessun problema cardiovascolare',NULL,8,13,34),(44,'2014-03-01','alterazione dischi vertebrali',NULL,2,14,37),(45,'2014-03-06','forti palpitazioni',NULL,9,11,34);
+INSERT INTO `refertomedico` VALUES (41,'2014-03-01','attività celebrale nella norma',NULL,2,11,40),(42,'2013-01-25','dolore addominale superiore. lacerazioni interne',NULL,6,12,39),(43,'2014-02-20','nessun problema cardiovascolare',NULL,8,13,34),(44,'2014-03-01','alterazione dischi vertebrali',NULL,2,14,37),(45,'2014-03-06','forti palpitazioni',NULL,9,11,34),(51,'2014-07-05','bruciore di stomaco causa gastrite','file2',2,11,36),(101,'2014-07-05','infiammazione della mucosa protettiva delle pareti dello stomaco','file1',2,12,36);
 /*!40000 ALTER TABLE `refertomedico` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -61,4 +61,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-03-06 23:14:23
+-- Dump completed on 2014-03-09 20:21:23

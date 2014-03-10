@@ -37,7 +37,7 @@ CREATE TABLE `cartellaclinica` (
 
 LOCK TABLES `cartellaclinica` WRITE;
 /*!40000 ALTER TABLE `cartellaclinica` DISABLE KEYS */;
-INSERT INTO `cartellaclinica` VALUES (3,'Scoliosi evidente.  Il padre all’età di 45 anni è stato colpito da angina pectoris, Il nonno materno era diabetico.'),(4,'Nella fase infantile è stata soggetta a tutte le malattie infantili, compresa la rosolia.  All’età di anni 16 si è manifestata l’allergia al glutine. Sin dall’età di 18 anni si è manifestata ipertensione  arteriosa.'),(5,'Nell’anno 2000 ha subito appendicectomia.  Nell’anno 2005 intervento per spina ossea all’arcata dentale superiore.  Nell’anno 2011 Angioplastica PTCA + Stent.'),(6,'Durante l’anno 2004 accusava problemi respiratori che intensificavano con l’abbassarsi della temperatura  atmosferica.  Nonostante la vaccinazione anti-influenzale, è stata colpita da sindrome influenzale nel mese di marzo.');
+INSERT INTO `cartellaclinica` VALUES (3,'Scoliosi evidente.  Il padre all\'età di 45 anni è stato colpito da angina pectoris, Il nonno materno era diabetico.'),(4,'Nella fase infantile è stata soggetta a tutte le malattie infantili, compresa la rosolia.  All\'età di anni 16 si è manifestata l\'allergia al glutine. Sin dall\'età di 18 anni si è manifestata ipertensione  arteriosa.'),(5,'Nell\'anno 2000 ha subito appendicectomia.  Nell\'anno 2005 intervento per spina ossea all\'arcata dentale superiore.  Nell\'anno 2011 Angioplastica PTCA + Stent.'),(6,'Durante l\'anno 2004 accusava problemi respiratori che intensificavano con l\'abbassarsi della temperatura  atmosferica.  Nonostante la vaccinazione anti-influenzale, è stata colpita da sindrome influenzale nel mese di marzo.');
 /*!40000 ALTER TABLE `cartellaclinica` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-03-06 23:14:21
+-- Dump completed on 2014-03-09 20:21:21

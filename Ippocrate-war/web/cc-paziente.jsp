@@ -14,11 +14,11 @@
 <% SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     List<PrestazioneMedico> prestazioni = medico.getMiePrestazioni();%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="it">
     <head>
-        <meta charset="utf-8">
+        <meta charset="ISO-8859-1">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -26,6 +26,7 @@
 
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/bootstrap.file.css" rel="stylesheet">
 
         <!-- Custom styles for this template -->
         <link href="css/navbar.css" rel="stylesheet">
@@ -59,7 +60,7 @@
                         <li><a href="mia-agenda.jsp">La mia agenda</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/Ippocrate-war/LoginServlet?action=invalida">Logout</a></li>
+                        <li><a href="LoginServlet?action=invalida">Logout</a></li>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
@@ -70,7 +71,7 @@
             </div>
             <div class="page-header">
                     <h1>Cartella clinica di <%= CCpaziente.getPaziente().getNome()
-                            + " " + CCpaziente.getPaziente().getCognome()%></h1>
+                        + " " + CCpaziente.getPaziente().getCognome()%></h1>
             </div>
             <div class="panel panel-primary">
                 <div class="panel-heading">Anamnesi
@@ -117,7 +118,7 @@
                             <div class="modal-header">
                                 <h4 class="modal-title">Aggiungi referto</h4>
                             </div>
-                            <form class="form-horizontal" action="MedicoServlet?action=creaReferto" role="form" method="POST">
+                            <form class="form-horizontal" action="MedicoServlet?action=creaReferto"  method="POST" enctype="multipart/form-data">
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <label for="prest" class="col-sm-2 control-label">Tipo visita</label>
@@ -143,8 +144,10 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="multim" class="col-sm-2 control-label">Allega file</label>
-                                        <div class="col-sm-7">
-                                            <input type="text" class="form-control" id="multim" name="multim">
+                                        <div class="col-sm-7">                                        
+                                            <span class="btn btn-default btn-file">
+                                                Allega <input type="file" accept="image/*" id="multim" name="multim">
+                                            </span>                                         
                                         </div>
                                     </div>
                                     <div class="well well-sm">
@@ -155,7 +158,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="numConf" class="col-sm-3 control-label">Quantit√†</label>
+                                            <label for="numConf" class="col-sm-3 control-label">Quantit‡</label>
                                             <div class="col-sm-1">
                                                 <input type="text" class="form-control" id="numConf" name="numConf">
                                             </div>

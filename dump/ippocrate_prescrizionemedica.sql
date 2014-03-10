@@ -50,7 +50,7 @@ CREATE TABLE `prescrizionemedica` (
 
 LOCK TABLES `prescrizionemedica` WRITE;
 /*!40000 ALTER TABLE `prescrizionemedica` DISABLE KEYS */;
-INSERT INTO `prescrizionemedica` VALUES (51,'si','2014-03-01','2014-03-22','Tegretol',2,2,11,41),(52,'no','2014-03-03','2014-03-06','Milicom',1,6,12,42),(53,'no','2014-03-18','2014-03-22','Benazepril',5,8,13,43),(54,'si','2013-07-24','2014-07-26','Meclizina',3,10,14,44),(55,'no','2014-03-21','2014-07-19','Palexia',6,6,11,45);
+INSERT INTO `prescrizionemedica` VALUES (51,'si','2014-03-01','2014-03-22','Tegretol',2,2,11,41),(52,'no','2014-07-05','2014-09-05','aspirina',1,2,11,51),(53,'no','2014-03-18','2014-03-22','Benazepril',5,8,13,43),(55,'no','2014-03-21','2014-07-19','Palexia',6,6,11,45),(102,'no','2014-07-05','2014-09-05','Maalox',3,2,12,101);
 /*!40000 ALTER TABLE `prescrizionemedica` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -63,4 +63,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-03-06 23:14:21
+-- Dump completed on 2014-03-09 20:21:21

@@ -40,7 +40,7 @@ CREATE TABLE `refertomedico_prescrizionemedica` (
 
 LOCK TABLES `refertomedico_prescrizionemedica` WRITE;
 /*!40000 ALTER TABLE `refertomedico_prescrizionemedica` DISABLE KEYS */;
-INSERT INTO `refertomedico_prescrizionemedica` VALUES (41,51),(42,52),(43,53),(44,54),(45,55);
+INSERT INTO `refertomedico_prescrizionemedica` VALUES (41,51),(51,52),(43,53),(45,55),(101,102);
 /*!40000 ALTER TABLE `refertomedico_prescrizionemedica` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-03-06 23:14:22
+-- Dump completed on 2014-03-09 20:21:22

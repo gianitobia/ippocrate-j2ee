@@ -40,7 +40,7 @@ CREATE TABLE `cartellaclinica_refertomedico` (
 
 LOCK TABLES `cartellaclinica_refertomedico` WRITE;
 /*!40000 ALTER TABLE `cartellaclinica_refertomedico` DISABLE KEYS */;
-INSERT INTO `cartellaclinica_refertomedico` VALUES (3,41),(4,42),(5,43),(6,44),(3,45);
+INSERT INTO `cartellaclinica_refertomedico` VALUES (3,41),(4,42),(5,43),(6,44),(3,45),(3,51),(4,101);
 /*!40000 ALTER TABLE `cartellaclinica_refertomedico` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-03-06 23:14:22
+-- Dump completed on 2014-03-09 20:21:22
