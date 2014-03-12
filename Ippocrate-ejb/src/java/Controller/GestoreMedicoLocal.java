@@ -9,7 +9,6 @@ import Entity.CartellaClinica;
 import Entity.Medico;
 import Entity.Paziente;
 import Entity.RefertoMedico;
-import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 import javax.servlet.http.Part;

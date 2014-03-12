@@ -5,10 +5,12 @@
  */
 package WebService;
 
+import Controller.GestoreMedicoLocal;
 import Controller.GestoreUtenteLocal;
 import Entity.Paziente;
 import Entity.PazienteFacadeLocal;
 import Transient.PazienteTransient;
+import Utility.JSONUtility;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.jws.WebService;
@@ -24,6 +26,9 @@ import javax.jws.WebParam;
 @WebService(serviceName = "WSPaziente")
 @Stateless()
 public class WSPaziente {
+
+    @EJB
+    private GestoreMedicoLocal gestoreMedico;
 
     @EJB
     private GestoreUtenteLocal gestoreUtente;
@@ -81,7 +86,8 @@ public class WSPaziente {
     }
 
     /**
-     * Recupera le informazioni del paziente in input restituendo un PazienteTransient
+     * Recupera le informazioni del paziente in input restituendo un
+     * PazienteTransient
      *
      * @param id del paziente
      * @return PazienteTransient che rappresenta il paziente
@@ -89,6 +95,18 @@ public class WSPaziente {
     @WebMethod(operationName = "getPazienteTransient")
     public PazienteTransient getPazienteTransient(@WebParam(name = "id") Long id) {
         return gestoreUtente.ottieniPaziente(id);
+    }
+
+    /**
+     * Restituisce i pazienti di un medico in formato JSON
+     *
+     * @param idM Long che rappresenta l'id del medico
+     * @return JSON che rappresenta la lista dei pazienti
+     */
+    @WebMethod(operationName = "trovaPazienti")
+    public String trovaPazientiJSON(@WebParam(name = "idM") Long idM) {
+        List<Paziente> lp = gestoreMedico.ottieniMieiPazienti(idM.longValue());
+        return JSONUtility.listaPazientiToJSON(lp);
     }
 
 }
