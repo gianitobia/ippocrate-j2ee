@@ -30,6 +30,7 @@
 
         <!-- Custom styles for this template -->
         <link href="css/navbar.css" rel="stylesheet">
+        <link href="css/datepicker.css" rel="stylesheet">
 
         <script language="JavaScript">
             function annullaModifica() {
@@ -70,8 +71,8 @@
                     del paziente.</p>
             </div>
             <div class="page-header">
-                    <h1>Cartella clinica di <%= CCpaziente.getPaziente().getNome()
-                        + " " + CCpaziente.getPaziente().getCognome()%></h1>
+                <h1>Cartella clinica di <%= CCpaziente.getPaziente().getNome()
+                            + " " + CCpaziente.getPaziente().getCognome()%></h1>
             </div>
             <div class="panel panel-primary">
                 <div class="panel-heading">Anamnesi
@@ -132,8 +133,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="data" class="col-sm-2 control-label">Data</label>
-                                        <div class="col-sm-2">
-                                            <input type="text" class="form-control" id="data" name="data" placeholder="01/12/2013">
+                                        <div class="col-sm-2 date">
+                                            <input type="text" data-provide="datepicker" class="form-control" id="data" name="data" placeholder="01/12/2013">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -166,7 +167,7 @@
                                         <div class="form-group">
                                             <label for="dataScad" class="col-sm-3 control-label">Data scadenza prescrizione</label>
                                             <div class="col-sm-2">
-                                                <input type="text" class="form-control" id="dataScad" name="dataScad" placeholder="01/12/2013">
+                                                <input type="text" data-provide="datepicker" class="form-control" id="dataScad" name="dataScad" placeholder="01/12/2013">
                                             </div>
                                         </div>
                                     </div>
@@ -209,5 +210,13 @@
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+        <script type="text/javascript" src="js/bootstrap-datepicker.it.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript">
+                                        $.fn.datepicker.defaults.format = "dd/mm/yyyy";
+                                        $.fn.datepicker.defaults.language = "it";
+                                        $.fn.datepicker.defaults.todayBtn = "linked";
+        </script>
     </body>
 </html>
