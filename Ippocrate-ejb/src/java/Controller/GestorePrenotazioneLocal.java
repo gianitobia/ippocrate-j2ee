@@ -21,7 +21,7 @@ import javax.ejb.Local;
 @Local
 public interface GestorePrenotazioneLocal {
 
-    List<PrenotazioneTransient> ottieniPrenotazioni(long pazienteId);
+    List<PrenotazioneTransient> ottieniPrenotazioni(Long pazienteId);
 
     List<Prestazione> ottieniPrestazioniPrenotabili();
 

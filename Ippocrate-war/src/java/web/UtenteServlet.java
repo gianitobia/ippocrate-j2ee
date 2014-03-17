@@ -45,8 +45,8 @@ public class UtenteServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             HttpSession s = request.getSession();
             String type = (String) s.getAttribute("type");
-            long user = (long) s.getAttribute("user_id");
-            if (type != null && user != -1) {
+            Long user = (Long) s.getAttribute("user_id");
+            if (type != null && user.equals(new Long(-1)) == false) {
                 if (request.getParameter("action").equals("pagina_personale")) {
                     if (type.equals("paziente")) {
                         PazienteTransient p = gestoreUtente.ottieniPaziente(user);

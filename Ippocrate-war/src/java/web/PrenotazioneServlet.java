@@ -46,7 +46,7 @@ public class PrenotazioneServlet extends HttpServlet {
             HttpSession s = request.getSession();
 
             if (request.getParameter("action").equals("ottieniPr")) {
-                long pazienteId = (long) s.getAttribute("user_id");
+                Long pazienteId = (Long) s.getAttribute("user_id");
                 s.setAttribute("prenotazioni", gestorePrenotazione.ottieniPrenotazioni(pazienteId));
                 response.sendRedirect("mie-prenotazioni.jsp");
             } else if (request.getParameter("action").equals("nuovaPr")) {

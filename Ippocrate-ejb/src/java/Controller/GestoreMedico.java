@@ -58,7 +58,7 @@ public class GestoreMedico implements GestoreMedicoLocal {
     private MedicoFacadeLocal medicoFacade;
 
     @Override
-    public List<Paziente> ottieniMieiPazienti(long medicoId) {
+    public List<Paziente> ottieniMieiPazienti(Long medicoId) {
         Medico m = medicoFacade.find(medicoId);
         List<Paziente> lp = new ArrayList();
 
@@ -81,7 +81,7 @@ public class GestoreMedico implements GestoreMedicoLocal {
     }
 
     @Override
-    public CartellaClinica modificaAnamnesi(long ccId, String nuovaAnamnesi) {
+    public CartellaClinica modificaAnamnesi(Long ccId, String nuovaAnamnesi) {
         CartellaClinica cc = cartellaClinicaFacade.find(ccId);
         cc.setAnamnesi(nuovaAnamnesi);
         return cc;
@@ -153,7 +153,7 @@ public class GestoreMedico implements GestoreMedicoLocal {
     }
 
     @Override
-    public CartellaClinica ottieniCCPaziente(long idP) {
+    public CartellaClinica ottieniCCPaziente(Long idP) {
         return pazienteFacade.find(idP).getCartella_clinica();
     }
 

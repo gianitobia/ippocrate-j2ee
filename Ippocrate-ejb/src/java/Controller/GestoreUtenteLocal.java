@@ -17,11 +17,11 @@ import javax.ejb.Local;
 @Local
 public interface GestoreUtenteLocal {
 
-    PazienteTransient ottieniPaziente(long user_id);
+    PazienteTransient ottieniPaziente(Long user_id);
 
-    MedicoTransient ottieniMedicoT(long user_id);
+    MedicoTransient ottieniMedicoT(Long user_id);
 
-    Medico ottieniMedico(long user_id);
+    Medico ottieniMedico(Long user_id);
 
     Long verificaCF(String CF);
 

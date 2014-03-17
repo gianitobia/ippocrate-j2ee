@@ -54,11 +54,11 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
     private PrenotazioneFacadeLocal prenotazioneFacade;
 
     @Override
-    public List<PrenotazioneTransient> ottieniPrenotazioni(long pazienteId) {
+    public List<PrenotazioneTransient> ottieniPrenotazioni(Long pazienteId) {
         ArrayList l = new ArrayList();
 
         for (Prenotazione p : prenotazioneFacade.findAll()) {
-            if (p.getPaziente().getId() == pazienteId) {
+            if (p.getPaziente().getId().equals(pazienteId)) {
                 PrenotazioneTransient pt = new PrenotazioneTransient();
                 pt.setId(p.getId());
                 pt.setNomeSM(p.getStruttura_medica().getNome());

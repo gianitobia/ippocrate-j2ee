@@ -26,23 +26,24 @@ public class GestoreLogin implements GestoreLoginLocal {
     private MedicoFacadeLocal medicoFacade;
 
     @Override
-    public long verificaLoginMedico(String username, String password, String pin_code) {
+    public Long verificaLoginMedico(String username, String pincode, String password) {
         for (Medico m : medicoFacade.findAll()) {
-            if (m.getUsername().equals(username) && m.getPassword().equals(password)
-                    && m.getPin_code().equals(pin_code)) {
+            if (m.getUsername().equals(username) && m.getPin_code().equals(pincode)
+                    && m.getPassword().equals(password)) {
                 return m.getId();
             }
         }
-        return -1;
+        return new Long(-1);
     }
 
     @Override
-    public long verificaLoginPaziente(String cf, String password) {
+    public Long verificaLoginPaziente(String cf, String password) {
         for (Paziente p : pazienteFacade.findAll()) {
             if (p.getCf().equals(cf) && p.getPassword().equals(password)) {
                 return p.getId();
             }
         }
-        return -1;
+        return new Long(-1);
     }
+
 }

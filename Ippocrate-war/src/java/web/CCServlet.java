@@ -40,7 +40,7 @@ public class CCServlet extends HttpServlet {
             HttpSession s = request.getSession();
 
             if (request.getParameter("action").equals("miaCC")) {
-                long pazienteId = (long) s.getAttribute("user_id");
+                Long pazienteId = (Long) s.getAttribute("user_id");
                 s.setAttribute("miaCC", gestoreCartellaClinica.ottieniCC(pazienteId));
                 response.sendRedirect("mia-cc.jsp");
             }

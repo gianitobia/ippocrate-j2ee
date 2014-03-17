@@ -28,7 +28,7 @@ public class GestoreUtente implements GestoreUtenteLocal {
     private PazienteFacadeLocal pazienteFacade;
 
     @Override
-    public PazienteTransient ottieniPaziente(long user_id) {
+    public PazienteTransient ottieniPaziente(Long user_id) {
         Paziente p = pazienteFacade.find(user_id);
         PazienteTransient pt = new PazienteTransient();
         pt.setId(p.getId());
@@ -43,7 +43,7 @@ public class GestoreUtente implements GestoreUtenteLocal {
     }
 
     @Override
-    public MedicoTransient ottieniMedicoT(long user_id) {
+    public MedicoTransient ottieniMedicoT(Long user_id) {
         Medico m = medicoFacade.find(user_id);
         MedicoTransient mt = new MedicoTransient();
         mt.setId(m.getId());
@@ -62,7 +62,7 @@ public class GestoreUtente implements GestoreUtenteLocal {
     }
 
     @Override
-    public Medico ottieniMedico(long user_id) {
+    public Medico ottieniMedico(Long user_id) {
         return medicoFacade.find(user_id);
     }
 

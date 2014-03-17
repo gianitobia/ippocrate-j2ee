@@ -45,8 +45,8 @@ public class LoginServlet extends HttpServlet {
                 String user = request.getParameter("username-medico");
                 String password = request.getParameter("password-medico");
                 String pincode = request.getParameter("pincode-medico");
-                long user_id = gestoreLogin.verificaLoginMedico(user, password, pincode);
-                if (user_id != -1) {
+                Long user_id = gestoreLogin.verificaLoginMedico(user, pincode, password);
+                if (user_id.equals(new Long(-1)) == false) {
                     s.setAttribute("user_id", user_id);
                     s.setAttribute("type", "medico");
                     response.sendRedirect("UtenteServlet?action=pagina_personale");
@@ -57,8 +57,8 @@ public class LoginServlet extends HttpServlet {
             } else if (request.getParameter("action").equals("login_paziente")) {
                 String cf = request.getParameter("codfisc-paziente");
                 String password = request.getParameter("password-paziente");
-                long user_id = gestoreLogin.verificaLoginPaziente(cf, password);
-                if (user_id != -1) {
+                Long user_id = gestoreLogin.verificaLoginPaziente(cf, password);
+                if (user_id.equals(new Long(-1)) == false) {
                     s.setAttribute("user_id", user_id);
                     s.setAttribute("type", "paziente");
                     response.sendRedirect("UtenteServlet?action=pagina_personale");

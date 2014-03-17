@@ -17,7 +17,7 @@ import javax.ejb.Local;
 @Local
 public interface GestoreCartellaClinicaLocal {
 
-    CartellaClinicaTransient ottieniCC(long pazienteId);
+    CartellaClinicaTransient ottieniCC(Long pazienteId);
 
     List<PrescrizioneMedicaTransient> ottieniPM(Long pazienteId);
 

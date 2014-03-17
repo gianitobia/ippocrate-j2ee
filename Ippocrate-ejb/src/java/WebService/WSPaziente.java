@@ -5,6 +5,7 @@
  */
 package WebService;
 
+import Controller.GestoreLoginLocal;
 import Controller.GestoreMedicoLocal;
 import Controller.GestoreUtenteLocal;
 import Entity.Paziente;
@@ -26,6 +27,8 @@ import javax.jws.WebParam;
 @WebService(serviceName = "WSPaziente")
 @Stateless()
 public class WSPaziente {
+    @EJB
+    private GestoreLoginLocal gestoreLogin;
 
     @EJB
     private GestoreMedicoLocal gestoreMedico;
@@ -74,6 +77,7 @@ public class WSPaziente {
         return ejbRef.count();
     }
 
+    /* --- Web Service operation utilizzate dal Client Farmacia ---*/
     /**
      * Operazione che verifica l'esistenza di un paziente con CF dato in input
      *
@@ -97,6 +101,21 @@ public class WSPaziente {
         return gestoreUtente.ottieniPaziente(id);
     }
 
+    /* --- Web Service operation utilizzate dal Client Android ---*/
+    /**
+     * Presi dati in input effettua il login sull'applicazione
+     * @param username del medico
+     * @param pincode del medico
+     * @param password del medico
+     * @return JSON "loginOk": id del medico se trovato, oppure -1
+     */
+    @WebMethod(operationName = "effettuaLogin")
+    public String effettuaLogin(@WebParam(name = "username") String username, 
+            @WebParam(name = "pincode") String pincode, @WebParam(name = "password") String password) {
+        Long risp = gestoreLogin.verificaLoginMedico(username, pincode, password);
+        return JSONUtility.creaGenericoJSON("loginOK", risp.toString());
+    }
+
     /**
      * Restituisce i pazienti di un medico in formato JSON
      *
@@ -105,7 +124,7 @@ public class WSPaziente {
      */
     @WebMethod(operationName = "trovaPazienti")
     public String trovaPazientiJSON(@WebParam(name = "idM") Long idM) {
-        List<Paziente> lp = gestoreMedico.ottieniMieiPazienti(idM.longValue());
+        List<Paziente> lp = gestoreMedico.ottieniMieiPazienti(idM);
         return JSONUtility.listaPazientiToJSON(lp);
     }
 

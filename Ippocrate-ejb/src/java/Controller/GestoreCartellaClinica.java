@@ -33,10 +33,10 @@ public class GestoreCartellaClinica implements GestoreCartellaClinicaLocal {
     private PazienteFacadeLocal pazienteFacade;
 
     @Override
-    public CartellaClinicaTransient ottieniCC(long pazienteId) {
+    public CartellaClinicaTransient ottieniCC(Long pazienteId) {
         CartellaClinicaTransient cct = new CartellaClinicaTransient();
 
-        Paziente user = pazienteFacade.find(new Long(pazienteId));
+        Paziente user = pazienteFacade.find(pazienteId);
         CartellaClinica cc = user.getCartella_clinica();
 
         cct.setId(cc.getId());

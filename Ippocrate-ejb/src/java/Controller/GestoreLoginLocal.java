@@ -5,7 +5,6 @@
  */
 package Controller;
 
-import Entity.Paziente;
 import javax.ejb.Local;
 
 /**
@@ -15,8 +14,8 @@ import javax.ejb.Local;
 @Local
 public interface GestoreLoginLocal {
 
-    long verificaLoginMedico(String username, String password, String pin_code);
+    Long verificaLoginMedico(String username, String pincode, String password);
 
-    long verificaLoginPaziente(String cf, String password);
+    Long verificaLoginPaziente(String cf, String password);
 
 }

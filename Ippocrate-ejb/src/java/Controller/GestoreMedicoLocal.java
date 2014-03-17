@@ -20,13 +20,13 @@ import javax.servlet.http.Part;
 @Local
 public interface GestoreMedicoLocal {
 
-    List<Paziente> ottieniMieiPazienti(long medicoId);
+    List<Paziente> ottieniMieiPazienti(Long medicoId);
 
-    CartellaClinica modificaAnamnesi(long ccId, String nuovaAnamnesi);
+    CartellaClinica modificaAnamnesi(Long ccId, String nuovaAnamnesi);
 
     List<RefertoMedico> aggiungiReferto(Medico m, int iPrest, String diagn, Paziente p,
             Part filePart, String file, String d, String medic, int numConf, String dataScadenza);
 
-    CartellaClinica ottieniCCPaziente(long idP);
+    CartellaClinica ottieniCCPaziente(Long idP);
 
 }

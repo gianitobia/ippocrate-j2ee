@@ -50,18 +50,18 @@ public class MedicoServlet extends HttpServlet {
             HttpSession s = request.getSession();
 
             if (request.getParameter("action").equals("mieiPazienti")) {
-                long medicoId = (long) s.getAttribute("user_id");
+                Long medicoId = (Long) s.getAttribute("user_id");
                 s.setAttribute("pazienti", gestoreMedico.ottieniMieiPazienti(medicoId));
                 response.sendRedirect("miei-pazienti.jsp");
             } else if (request.getParameter("action").startsWith("ottieniCC_")) {
                 int paziente = Integer.parseInt(request.getParameter("action").substring(10));
                 List<Paziente> lp = ((List<Paziente>) s.getAttribute("pazienti"));
-                s.setAttribute("CCpaziente", gestoreMedico.ottieniCCPaziente(lp.get(paziente).getId().longValue()));
+                s.setAttribute("CCpaziente", gestoreMedico.ottieniCCPaziente(lp.get(paziente).getId()));
                 response.sendRedirect("cc-paziente.jsp");
             } else if (request.getParameter("action").equals("modificaAnamnesi")) {
                 String nuovaAnamnesi = request.getParameter("anamnesi");
                 CartellaClinica cc = (CartellaClinica) s.getAttribute("CCpaziente");
-                s.setAttribute("CCpaziente", gestoreMedico.modificaAnamnesi(cc.getId().longValue(), nuovaAnamnesi));
+                s.setAttribute("CCpaziente", gestoreMedico.modificaAnamnesi(cc.getId(), nuovaAnamnesi));
                 response.sendRedirect("cc-paziente.jsp");
             } else if (request.getParameter("action").equals("creaReferto")) {
                 String[] v = request.getParameterValues("prest");
