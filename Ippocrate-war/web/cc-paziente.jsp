@@ -148,10 +148,15 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="multim" class="col-sm-2 control-label">Allega file</label>
-                                        <div class="col-sm-7">                                        
-                                            <span class="btn btn-default btn-file">
-                                                Allega <input type="file" accept="image/*" id="multim" name="multim">
-                                            </span>                                         
+                                        <div class="col-sm-7">  
+                                            <div class="input-group">
+                                                <span class="input-group-btn">
+                                                    <span class="btn btn-primary btn-file">
+                                                        Allega<input type="file" accept="image/*" id="multim" name="multim">
+                                                    </span>
+                                                </span>
+                                                <input type="text" class="form-control" readonly>
+                                            </div>                                       
                                         </div>
                                     </div>
                                     <div class="well well-sm">
@@ -223,6 +228,29 @@
                                         $.fn.datepicker.defaults.format = "dd/mm/yyyy";
                                         $.fn.datepicker.defaults.language = "it";
                                         $.fn.datepicker.defaults.todayBtn = "linked";
+                                        $(document)
+                                                .on('change', '.btn-file :file', function() {
+                                                    var input = $(this),
+                                                            numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                                                            label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+                                                    input.trigger('fileselect', [numFiles, label]);
+                                                });
+
+                                        $(document).ready(function() {
+                                            $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
+
+                                                var input = $(this).parents('.input-group').find(':text'),
+                                                        log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+                                                if (input.length) {
+                                                    input.val(log);
+                                                } else {
+                                                    if (log)
+                                                        alert(log);
+                                                }
+
+                                            });
+                                        });
         </script>
     </body>
 </html>
