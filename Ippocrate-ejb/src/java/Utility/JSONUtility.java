@@ -31,9 +31,9 @@ public class JSONUtility {
     public static String listaPazientiToJSON(List<Paziente> lp) {
 //ESEMPIO {
 //            "mieiPazienti": [
-//                              {"nome": "Marco", "cognome": "Busso"},
-//                              {"nome": "Marco", "cognome": "Varesano"},
-//                              {"nome": "Tobia", "cognome": "Giani"}
+//                              {"idP": "11", "nome": "Marco", "cognome": "Busso"},
+//                              {"idP": "12", "nome": "Marco", "cognome": "Varesano"},
+//                              {"idP": "13", "nome": "Tobia", "cognome": "Giani"}
 //                            ]
 //        }
 
@@ -43,6 +43,7 @@ public class JSONUtility {
 
         for (Paziente p : lp) {
             Map m = new HashMap();
+            m.put("idP", p.getId().toString());
             m.put("nome", p.getNome());
             m.put("cognome", p.getCognome());
             l.add(m);
