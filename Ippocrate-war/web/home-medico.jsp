@@ -45,7 +45,7 @@
             <div class="jumbotron">
                 <h1>Benvenuto,<br>dott. <%= medico.getCognome()%>!</h1>
                 <br>
-                <p>Il nuovo portale Ippocrate ti permette di vedere l'elenco dei tuoi pazienti.</p>
+                <p>Il nuovo portale Ippocrate ti permette di vedere l'elenco dei tuoi pazienti e la tua agenda.</p>
             </div>
         </div> <!-- /container -->
         <!-- Bootstrap core JavaScript

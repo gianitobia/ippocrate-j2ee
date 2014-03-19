@@ -21,7 +21,7 @@ import java.util.Map;
 public class JSONUtility {
 
     private static String JSONFail = "{\"result\":\"fail\"}";
-    
+
     /**
      * Realizza il JSON partendo da una lista di pazienti
      *
@@ -49,7 +49,15 @@ public class JSONUtility {
         }
         obj.put("mieiPazienti", l);
 
-        return obj.toJSONString();
+        StringWriter out = new StringWriter();
+        String jsonText = "";
+        try {
+            obj.writeJSONString(out);
+            jsonText = out.toString();
+        } catch (Exception e) {
+            return JSONFail;
+        }
+        return jsonText;
     }
 
     public static String creaGenericoJSON(String param1, String param2) {
