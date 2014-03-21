@@ -119,12 +119,12 @@ public class WSPaziente {
     /**
      * Restituisce i pazienti di un medico in formato JSON
      *
-     * @param idM Long che rappresenta l'id del medico
+     * @param idMedico Long che rappresenta l'id del medico
      * @return JSON che rappresenta la lista dei pazienti
      */
     @WebMethod(operationName = "trovaPazienti")
-    public String trovaPazientiJSON(@WebParam(name = "idM") Long idM) {
-        List<Paziente> lp = gestoreMedico.ottieniMieiPazienti(idM);
+    public String trovaPazientiJSON(@WebParam(name = "idMedico") Long idMedico) {
+        List<Paziente> lp = gestoreMedico.ottieniMieiPazienti(idMedico);
         return JSONUtility.listaPazientiToJSON(lp);
     }
 
