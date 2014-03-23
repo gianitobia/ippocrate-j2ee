@@ -23,126 +23,6 @@ public class Agenda implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String developer_key;
-
-    private String client_id;
-
-    private String secret_key;
-
-    private String id_calendario;
-
-    private String password;
-
-    private String nome_utente;
-
-    /**
-     * Get the value of developer_key
-     *
-     * @return the value of developer_key
-     */
-    public String getDeveloper_key() {
-        return developer_key;
-    }
-
-    /**
-     * Set the value of developer_key
-     *
-     * @param developer_key new value of developer_key
-     */
-    public void setDeveloper_key(String developer_key) {
-        this.developer_key = developer_key;
-    }
-
-    /**
-     * Get the value of client_id
-     *
-     * @return the value of client_id
-     */
-    public String getClient_id() {
-        return client_id;
-    }
-
-    /**
-     * Set the value of client_id
-     *
-     * @param client_id new value of client_id
-     */
-    public void setClient_id(String client_id) {
-        this.client_id = client_id;
-    }
-
-    /**
-     * Get the value of secret_key
-     *
-     * @return the value of secret_key
-     */
-    public String getSecret_key() {
-        return secret_key;
-    }
-
-    /**
-     * Set the value of secret_key
-     *
-     * @param secret_key new value of secret_key
-     */
-    public void setSecret_key(String secret_key) {
-        this.secret_key = secret_key;
-    }
-
-    /**
-     * Get the value of id_calendario
-     *
-     * @return the value of id_calendario
-     */
-    public String getId_calendario() {
-        return id_calendario;
-    }
-
-    /**
-     * Set the value of id_calendario
-     *
-     * @param id_calendario new value of id_calendario
-     */
-    public void setId_calendario(String id_calendario) {
-        this.id_calendario = id_calendario;
-    }
-
-    /**
-     * Get the value of password
-     *
-     * @return the value of password
-     */
-    public String getPassword() {
-        return password;
-    }
-
-    /**
-     * Set the value of password
-     *
-     * @param password new value of password
-     */
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    /**
-     * Get the value of nome_utente
-     *
-     * @return the value of nome_utente
-     */
-    public String getNome_utente() {
-        return nome_utente;
-    }
-
-    /**
-     * Set the value of nome_utente
-     *
-     * @param nome_utente new value of nome_utente
-     */
-    public void setNome_utente(String nome_utente) {
-        this.nome_utente = nome_utente;
-    }
-
     //Aggiungere informazioni account google calendar
     public Long getId() {
         return id;
@@ -174,7 +54,7 @@ public class Agenda implements Serializable {
 
     @Override
     public String toString() {
-        return "Agenda [" + "client_id " + client_id + " " + "developer_key " + developer_key + " " + "id " + id + " " + "id_calendario " + id_calendario + " " + "nome_utente " + nome_utente + " " + "password " + password + " " + "secret_key " + secret_key + "]";
+        return "Agenda [" + "id " + id + "]";
     }
 
 }
