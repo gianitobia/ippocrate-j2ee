@@ -92,7 +92,7 @@ public class GestoreMedico implements GestoreMedicoLocal {
             Paziente p, Part filePart, String file, String d, String medic, int numConf, String dataScadenza) {
         RefertoMedico rm = new RefertoMedico();
         rm.setMedico(m);
-        rm.setTipoVisita(m.getMiePrestazioni().get(iPrest));
+        rm.setTipoVisita(m.getPrestazioniEffettuabili().get(iPrest));
         rm.setDiagnosi(diagn);
         rm.setPaziente(p);
         

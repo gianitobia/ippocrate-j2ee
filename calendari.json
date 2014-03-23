@@ -1,0 +1,88 @@
+calendari = [
+{
+	ospedale : "Maria Vittoria",
+	entita_prenotabili : [
+		{
+			lab_radiologia : "2nh4f1491t7i59v3p6v58fmh6c@group.calendar.google.com",
+			lab_rmn : "calendar_id",
+			lab_analisi : "3avvmjscb7g1a2vf2sd41ih2sk@group.calendar.google.com",
+			dottor_rossi : "calendar_id",
+			dottor_amati : "calendar_id",
+			dottor_erba : "calendar_id",
+		}
+	]	
+},
+{
+	ospedale : "CTO",
+	entita_prenotabili : [
+		{
+			lab_gessi : "calendar_id",
+			lab_rmn : "calendar_id",
+			lab_analisi : "calendar_id",
+			dottor_rossi : "calendar_id",
+			dottor_grande : "calendar_id",
+			dottor_santisi : "calendar_id",
+		}
+	]		
+},
+{
+	ospedale : "Amedeo di Savoia",
+	entita_prenotabili : [
+		{
+			lab_radiologia : "calendar_id",
+			lab_rmn : "calendar_id",
+			lab_analisi : "calendar_id",
+			dottor_rossi : "calendar_id",
+			dottor_trenti : "calendar_id",
+			dottor_preni : "calendar_id"
+		}
+	]
+},
+{
+	ospedale : "Molinette",
+	entita_prenotabili : [
+		{
+			lab_radiologia : "calendar_id",
+			lab_rmn : "calendar_id",
+			lab_analisi : "calendar_id",
+			dottor_marchi : "calendar_id",
+			dottor_borelli : "calendar_id",
+			dottor_esposito : "calendar_id"
+		}
+	]
+		
+},
+{
+	studio_medico : "Corba",
+	entita_prenotabili : [
+		{
+			lab_radiologia : "calendar_id",
+			lab_rmn : "calendar_id",
+			lab_analisi : "calendar_id",
+			dottor_rossi : "calendar_id",
+			dottor_mancini : "calendar_id",
+			dottor_trenta : "calendar_id"
+		}
+	]
+},
+{
+	studio_medico : "R.I.B.A.",
+	entita_prenotabili : [
+		{
+			lab_radiologia : "calendar_id",
+			lab_rmn : "calendar_id",
+			dottor_corvi : "calendar_id"
+		}
+	]
+},
+{
+	studio_medico : "C.D.C.",
+	entita_prenotabili : [
+		{
+			lab_radiologia : "calendar_id",
+			lab_rmn : "calendar_id",
+			dottor_gentili : "calendar_id"
+		}
+	]
+}
+]

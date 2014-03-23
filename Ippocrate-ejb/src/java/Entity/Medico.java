@@ -47,24 +47,24 @@ public abstract class Medico implements Serializable {
     private Agenda visite;
 
     @ManyToMany
-    private List<PrestazioneMedico> miePrestazioni;
+    private List<PrestazioneMedico> prestazioniEffettuabili;
 
     /**
-     * Get the value of miePrestazioni
+     * Get the value of prestazioniEffettuabili
      *
      * @return the value of miePrestazioni
      */
-    public List<PrestazioneMedico> getMiePrestazioni() {
-        return miePrestazioni;
+    public List<PrestazioneMedico> getPrestazioniEffettuabili() {
+        return prestazioniEffettuabili;
     }
 
     /**
-     * Set the value of miePrestazioni
+     * Set the value of prestazioniEffettuabili
      *
-     * @param miePrestazioni new value of miePrestazioni
+     * @param prestazioniEffettuabili new value of miePrestazioni
      */
-    public void setMiePrestazioni(List<PrestazioneMedico> miePrestazioni) {
-        this.miePrestazioni = miePrestazioni;
+    public void setPrestazioniEffettuabili(List<PrestazioneMedico> prestazioniEffettuabili) {
+        this.prestazioniEffettuabili = prestazioniEffettuabili;
     }
 
     public Agenda getVisite() {
