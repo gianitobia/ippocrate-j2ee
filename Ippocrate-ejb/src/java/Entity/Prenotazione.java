@@ -35,6 +35,26 @@ public abstract class Prenotazione implements Serializable {
     @OneToOne
     private Paziente paziente;
 
+    private String id_google;
+
+    /**
+     * Get the value of id_google
+     *
+     * @return the value of id_google
+     */
+    public String getId_google() {
+        return id_google;
+    }
+
+    /**
+     * Set the value of id_google
+     *
+     * @param id_google new value of id_google
+     */
+    public void setId_google(String id_google) {
+        this.id_google = id_google;
+    }
+
     /**
      * Get the value of paziente
      *
