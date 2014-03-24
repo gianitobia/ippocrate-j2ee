@@ -25,7 +25,7 @@ public class PrestazioneMedico extends Prestazione implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToMany(mappedBy = "miePrestazioni")
+    @ManyToMany(mappedBy = "prestazioniEffettuabili")
     private List<Medico> lista_medici;
 
     /**

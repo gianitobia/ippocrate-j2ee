@@ -52,7 +52,7 @@ public abstract class Medico implements Serializable {
     /**
      * Get the value of prestazioniEffettuabili
      *
-     * @return the value of miePrestazioni
+     * @return the value of prestazioniEffettuabili
      */
     public List<PrestazioneMedico> getPrestazioniEffettuabili() {
         return prestazioniEffettuabili;
@@ -61,7 +61,7 @@ public abstract class Medico implements Serializable {
     /**
      * Set the value of prestazioniEffettuabili
      *
-     * @param prestazioniEffettuabili new value of miePrestazioni
+     * @param prestazioniEffettuabili new value of prestazioniEffettuabili
      */
     public void setPrestazioniEffettuabili(List<PrestazioneMedico> prestazioniEffettuabili) {
         this.prestazioniEffettuabili = prestazioniEffettuabili;
