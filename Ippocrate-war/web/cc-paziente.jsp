@@ -12,7 +12,7 @@
 <jsp:useBean id="CCpaziente" class="Entity.CartellaClinica" scope="session" />
 <jsp:useBean id="medico" class="Entity.Medico" scope="session" />
 <% SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-    List<PrestazioneMedico> prestazioni = medico.getMiePrestazioni();%>
+    List<PrestazioneMedico> prestazioni = medico.getPrestazioniEffettuabili();%>
 
 <%@page contentType="text/html" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
