@@ -133,7 +133,7 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
         if (sm.getClass().getName().equals("Entity.StudioMedico")) {
             List<MedicoEsterno> lme = ((StudioMedico) sm).getLista_medici();
             for (MedicoEsterno me : lme) {
-                List<PrestazioneMedico> lpm = me.getMiePrestazioni();
+                List<PrestazioneMedico> lpm = me.getPrestazioniEffettuabili();
                 for (PrestazioneMedico pm : lpm) {
                     if (p.getId().equals(pm.getId())) { //e' possibile controllare il nome anziche' id
                         lm.add(me);
@@ -146,7 +146,7 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
             for (Reparto r : lr) {
                 List<MedicoOspedaliero> lmo = r.getLista_medici();
                 for (MedicoOspedaliero mo : lmo) {
-                    List<PrestazioneMedico> lpm = mo.getMiePrestazioni();
+                    List<PrestazioneMedico> lpm = mo.getPrestazioniEffettuabili();
                     for (PrestazioneMedico pm : lpm) {
                         if (p.getId().equals(pm.getId())) { //e' possibile controllare il nome anziche' id
                             lm.add(mo);
