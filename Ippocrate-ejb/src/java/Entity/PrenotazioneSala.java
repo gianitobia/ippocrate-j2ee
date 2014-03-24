@@ -6,11 +6,14 @@
 package Entity;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import org.json.simple.JSONObject;
 
 /**
  *
@@ -66,10 +69,12 @@ public class PrenotazioneSala extends Prenotazione implements Serializable {
         this.sala = sala;
     }
 
+    @Override
     public Long getId() {
         return id;
     }
 
+    @Override
     public void setId(Long id) {
         this.id = id;
     }
@@ -97,6 +102,35 @@ public class PrenotazioneSala extends Prenotazione implements Serializable {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Metodo che trasforma una prenotazione di tipo sala in un JSON per
+     * l'aggiunta nel calendario google
+     *
+     * @return JSONObject che rappresenta la prenotazione
+     */
+    @Override
+    public JSONObject reservationToJSON() {
+        //utilizzo la libreria SimpleJSON
+        JSONObject obj = new JSONObject();
+        obj.put("prenotazione", this.id);
+        obj.put("struttura", super.getStruttura_medica().getNome());
+        obj.put("id_prestazione", this.sala.getId().toString());
+        //id_prestazione rappresenta l'id utilizzato per filtrare il calendario google su cui salvare l'evento
+
+        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm:ss.S'+01:00'");
+        obj.put("start", ft.format(super.getData_prenotazione()));
+
+        Date dataFine = new Date(super.getData_prenotazione().getTime()
+                + (60000 * this.getTipo_prestazione().getDurata()));
+
+        obj.put("end", ft.format(dataFine));
+        //imposto l'ID di google nel JSON
+        if (super.getGoogleId() != null) {
+            obj.put("id_google", super.getGoogleId());
+        }
+        return obj;
     }
 
 }

@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
+import org.json.simple.JSONObject;
 
 /**
  *
@@ -34,6 +35,28 @@ public abstract class Prenotazione implements Serializable {
 
     @OneToOne
     private Paziente paziente;
+
+    private String googleId;
+
+    /**
+     * Get the value of googleId
+     *
+     * @return the value of googleId
+     */
+    public String getGoogleId() {
+        return googleId;
+    }
+
+    /**
+     * Set the value of googleId
+     *
+     * @param googleId new value of googleId
+     */
+    public void setGoogleId(String googleId) {
+        this.googleId = googleId;
+    }
+
+    public abstract JSONObject reservationToJSON();
 
     /**
      * Get the value of paziente

@@ -8,6 +8,7 @@ package WebService;
 import Controller.GestoreLoginLocal;
 import Controller.GestoreMedicoLocal;
 import Controller.GestoreUtenteLocal;
+import Entity.CartellaClinica;
 import Entity.Paziente;
 import Entity.PazienteFacadeLocal;
 import Transient.PazienteTransient;
@@ -27,6 +28,7 @@ import javax.jws.WebParam;
 @WebService(serviceName = "WSPaziente")
 @Stateless()
 public class WSPaziente {
+
     @EJB
     private GestoreLoginLocal gestoreLogin;
 
@@ -104,13 +106,14 @@ public class WSPaziente {
     /* --- Web Service operation utilizzate dal Client Android ---*/
     /**
      * Presi dati in input effettua il login sull'applicazione
+     *
      * @param username del medico
      * @param pincode del medico
      * @param password del medico
      * @return JSON "loginOk": id del medico se trovato, oppure -1
      */
     @WebMethod(operationName = "effettuaLogin")
-    public String effettuaLogin(@WebParam(name = "username") String username, 
+    public String effettuaLogin(@WebParam(name = "username") String username,
             @WebParam(name = "pincode") String pincode, @WebParam(name = "password") String password) {
         Long risp = gestoreLogin.verificaLoginMedico(username, pincode, password);
         return JSONUtility.creaGenericoJSON("loginOK", risp.toString());
@@ -126,6 +129,18 @@ public class WSPaziente {
     public String trovaPazientiJSON(@WebParam(name = "idMedico") Long idMedico) {
         List<Paziente> lp = gestoreMedico.ottieniMieiPazienti(idMedico);
         return JSONUtility.listaPazientiToJSON(lp);
+    }
+
+    /**
+     * Restituisce la cartella clinica di un paziente in formato JSON
+     *
+     * @param idPaziente paziente di cui si vuole la cartella clinica
+     * @return JSON che rappresenta la cartella clinica del paziente
+     */
+    @WebMethod(operationName = "ottieniCC")
+    public String ottieniCCJSON(@WebParam(name = "idPaziente") Long idPaziente) {
+        CartellaClinica cc = gestoreMedico.ottieniCCPaziente(idPaziente);
+        return JSONUtility.cartellaClinicaToJSON(cc);
     }
 
 }

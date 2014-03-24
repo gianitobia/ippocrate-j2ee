@@ -9,6 +9,13 @@
             <name>Ippocrate-ejb</name>
             <minimum-ant-version>1.6.5</minimum-ant-version>
             <included-library dirs="200">libs.MySQLDriver.classpath</included-library>
+            <included-library dirs="200">file.reference.commons-codec-1.6.jar</included-library>
+            <included-library dirs="200">file.reference.commons-logging-1.1.3.jar</included-library>
+            <included-library dirs="200">file.reference.fluent-hc-4.3.3.jar</included-library>
+            <included-library dirs="200">file.reference.httpclient-4.3.3.jar</included-library>
+            <included-library dirs="200">file.reference.httpclient-cache-4.3.3.jar</included-library>
+            <included-library dirs="200">file.reference.httpcore-4.3.2.jar</included-library>
+            <included-library dirs="200">file.reference.httpmime-4.3.3.jar</included-library>
             <included-library dirs="200">file.reference.json-simple-1.1.1.jar</included-library>
             <source-roots>
                 <root id="src.dir"/>
