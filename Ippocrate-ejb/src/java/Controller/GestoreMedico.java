@@ -95,7 +95,7 @@ public class GestoreMedico implements GestoreMedicoLocal {
         rm.setTipoVisita(m.getPrestazioniEffettuabili().get(iPrest));
         rm.setDiagnosi(diagn);
         rm.setPaziente(p);
-        
+
         try {
             String path = FileUpload.caricaFile(filePart, file);
             rm.setLista_images(path);
@@ -104,7 +104,7 @@ public class GestoreMedico implements GestoreMedicoLocal {
         } catch (MessagingException ex) {
             Logger.getLogger(GestoreMedico.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         DateFormat ndf = new SimpleDateFormat("yyyy-MM-dd");
 

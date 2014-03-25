@@ -40,9 +40,6 @@ public class Sala implements Serializable {
     @OneToOne
     private Medico medico_responsabile;
 
-    @OneToOne
-    private Agenda agenda;
-
     public StudioMedico getStudioMedico() {
         return studioMedico;
     }
@@ -57,24 +54,6 @@ public class Sala implements Serializable {
 
     public void setReparto(Reparto reparto) {
         this.reparto = reparto;
-    }
-
-    /**
-     * Get the value of agenda
-     *
-     * @return the value of agenda
-     */
-    public Agenda getAgenda() {
-        return agenda;
-    }
-
-    /**
-     * Set the value of agenda
-     *
-     * @param agenda new value of agenda
-     */
-    public void setAgenda(Agenda agenda) {
-        this.agenda = agenda;
     }
 
     /**

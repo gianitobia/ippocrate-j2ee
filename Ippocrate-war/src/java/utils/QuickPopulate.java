@@ -1,0 +1,128 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package utils;
+
+import Entity.CartellaClinicaFacadeLocal;
+import Entity.MedicoEsternoFacadeLocal;
+import Entity.MedicoOspedalieroFacadeLocal;
+import Entity.Ospedale;
+import Entity.OspedaleFacadeLocal;
+import Entity.PazienteFacadeLocal;
+import Entity.RefertoMedicoFacadeLocal;
+import Entity.RepartoFacadeLocal;
+import Entity.SalaFacadeLocal;
+import Entity.StrutturaMedicaFacadeLocal;
+import Entity.StudioMedicoFacadeLocal;
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.ejb.EJB;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ *
+ * @author toby
+ */
+@WebServlet(name = "QuickPopulate", urlPatterns = {"/QuickPopulate"})
+public class QuickPopulate extends HttpServlet {
+
+    @EJB
+    private MedicoOspedalieroFacadeLocal medicoOspedalieroFacade;
+    @EJB
+    private MedicoEsternoFacadeLocal medicoEsternoFacade1;
+    @EJB
+    private OspedaleFacadeLocal ospedaleFacade;
+    @EJB
+    private PazienteFacadeLocal pazienteFacade;
+
+    @EJB
+    private RepartoFacadeLocal repartoFacade;
+
+    @EJB
+    private StrutturaMedicaFacadeLocal strutturaMedicaFacade;
+    @EJB
+    private StudioMedicoFacadeLocal studioMedicoFacade1;
+    @EJB
+    private MedicoEsternoFacadeLocal medicoEsternoFacade;
+    @EJB
+    private CartellaClinicaFacadeLocal cartellaClinicaFacade;
+    @EJB
+    private StudioMedicoFacadeLocal studioMedicoFacade;
+    @EJB
+    private SalaFacadeLocal salaFacade;
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        Ospedale[] ospedali = new Ospedale[4];
+
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet QuickPopulate</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet QuickPopulate at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
+    }
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
+}

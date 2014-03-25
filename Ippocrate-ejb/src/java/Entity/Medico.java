@@ -43,9 +43,6 @@ public abstract class Medico implements Serializable {
 
     private String pin_code;
 
-    @OneToOne
-    private Agenda visite;
-
     @ManyToMany
     private List<PrestazioneMedico> prestazioniEffettuabili;
 
@@ -65,14 +62,6 @@ public abstract class Medico implements Serializable {
      */
     public void setPrestazioniEffettuabili(List<PrestazioneMedico> prestazioniEffettuabili) {
         this.prestazioniEffettuabili = prestazioniEffettuabili;
-    }
-
-    public Agenda getVisite() {
-        return visite;
-    }
-
-    public void setVisite(Agenda visite) {
-        this.visite = visite;
     }
 
     /**

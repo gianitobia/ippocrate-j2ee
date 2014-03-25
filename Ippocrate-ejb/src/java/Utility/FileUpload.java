@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Utility;
 
 import java.io.File;
@@ -20,12 +19,13 @@ import javax.servlet.http.Part;
  * @author Marco
  */
 public class FileUpload {
+
     public static String caricaFile(Part filePart, String fileName) throws IOException, MessagingException {
         OutputStream out = null;
         InputStream filecontent = null;
 
         try {
-            String path= FileUpload.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+            String path = FileUpload.class.getProtectionDomain().getCodeSource().getLocation().getPath();
             String path2 = path.substring(1, path.indexOf("dist"));
             String path3 = path2 + "Ippocrate-war/web/img/" + fileName;
             out = new FileOutputStream(new File(path3));
@@ -49,6 +49,6 @@ public class FileUpload {
                 filecontent.close();
             }
         }
-        return "img/"+fileName;
+        return "img/" + fileName;
     }
 }

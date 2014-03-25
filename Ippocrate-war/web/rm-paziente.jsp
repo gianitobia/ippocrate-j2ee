@@ -53,7 +53,7 @@
                 <p>Da questa pagina puoi visualizzare i dettagli del referto medico del paziente.</p>
             </div>
             <div class="page-header">
-                    <h1>Referto medico di <%= CCpaziente.getPaziente().getNome()
+                <h1>Referto medico di <%= CCpaziente.getPaziente().getNome()
                             + " " + CCpaziente.getPaziente().getCognome()%></h1>
             </div>
             <div class="panel panel-primary">

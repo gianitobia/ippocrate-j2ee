@@ -6,7 +6,6 @@
 package web;
 
 import Controller.GestorePrenotazioneLocal;
-import Entity.Agenda;
 import Entity.Medico;
 import Entity.Prestazione;
 import Entity.Sala;
@@ -83,17 +82,13 @@ public class PrenotazioneServlet extends HttpServlet {
                 //agenda unica per tutte le sale di quella struttura: gestorePrenotazione.ottieniAgendePerSale(ls);
                 //Agenda aUnica
                 //s.setAttribute("agendaSale", aUnica);
-                
-                //out.write(Stampa il calendario delle sale);
 
+                //out.write(Stampa il calendario delle sale);
             } else if (request.getParameter("action").startsWith("cercaAgendaMedico_")) {
                 int indexOfMedi = Integer.parseInt(request.getParameter("action").substring(18));
                 Medico m = ((List<Medico>) s.getAttribute("medici")).get(indexOfMedi);
-                Agenda a = gestorePrenotazione.ottieniAgendaMedico(m);
-                s.setAttribute("agendaMedico", a);
-                
-                //out.write(Stampa il calendario del medico);
 
+                //out.write(Stampa il calendario del medico);
             } else if (request.getParameter("action").startsWith("cercaMedico_")) {
                 String temp = request.getParameter("action").substring(12);
                 String[] tempArray = temp.split("_");

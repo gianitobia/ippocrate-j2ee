@@ -83,5 +83,10 @@
                 <li><a href="QuickList?action=Pazienti">Pazienti</a></li>
             </ul>
         </div>
+        <div>
+            <form id="form_popolamento" action="QuickPopulate" method="get">
+                <button type="button">Populate</button>
+            </form>
+        </div>
     </body>
 </html>

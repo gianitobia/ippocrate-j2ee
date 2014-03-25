@@ -5,8 +5,6 @@
  */
 package Controller;
 
-import Entity.Agenda;
-import Entity.AgendaFacadeLocal;
 import Entity.CartellaClinica;
 import Entity.CartellaClinicaFacadeLocal;
 import Entity.MedicoEsterno;
@@ -46,8 +44,6 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
 
     @EJB
     private RepartoFacadeLocal repartoFacade;
-    @EJB
-    private AgendaFacadeLocal agendaFacade;
     @EJB
     private PrestazioneSalaFacadeLocal prestazioneSalaFacade;
     @EJB
@@ -99,9 +95,6 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
         m.setUsername(username);
         m.setPassword(password);
         m.setPin_code(pin_code);
-        Agenda a = new Agenda();
-        agendaFacade.create(a);
-        m.setVisite(a);
         m.setLista_pazienti(new ArrayList<Paziente>());
         medicoEsternoFacade.create(m);
         return m.getId();
@@ -118,9 +111,6 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
         m.setPassword(password);
         m.setPin_code(pin_code);
         m.setNum_ufficio(num_ufficio);
-        Agenda a = new Agenda();
-        agendaFacade.create(a);
-        m.setVisite(a);
         medicoOspedalieroFacade.create(m);
         return m.getId();
     }
@@ -185,9 +175,6 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
     public Long addSalaOspedale(long id_reparto, String tipo_laboratorio, long id_medico_responsabile) {
         Sala s = new Sala();
         s.setTipoLaboratorio(tipo_laboratorio);
-        Agenda a = new Agenda();
-        agendaFacade.create(a);
-        s.setAgenda(a);
         s.setLista_prestazioni(new ArrayList<PrestazioneSala>());
         MedicoOspedaliero m = medicoOspedalieroFacade.find(id_medico_responsabile);
         s.setMedico_responsabile(m);
@@ -201,9 +188,6 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
     public Long addSalaStudio(long id_studio_medico, String tipo_laboratorio, long id_medico_responsabile) {
         Sala s = new Sala();
         s.setTipoLaboratorio(tipo_laboratorio);
-        Agenda a = new Agenda();
-        agendaFacade.create(a);
-        s.setAgenda(a);
         s.setLista_prestazioni(new ArrayList<PrestazioneSala>());
         MedicoEsterno m = medicoEsternoFacade.find(id_medico_responsabile);
         s.setMedico_responsabile(m);

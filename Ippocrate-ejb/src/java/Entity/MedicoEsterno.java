@@ -89,7 +89,7 @@ public class MedicoEsterno extends Medico implements Serializable {
 
     @Override
     public String toString() {
-        return "MedicoEsterno [" + "id " + id + " " + "getCognome " + getCognome() + " " + "getData_nascita " + getData_nascita() + " " + "getNome " + getNome() + " " + "getPassword " + getPassword() + " " + "getPin_code " + getPin_code() + " " + "getVisite " + getVisite() + " " + "getSpecializzazione " + getSpecializzazione() + " " + "getUsername " + getUsername() + "]";
+        return "MedicoEsterno [" + "id " + id + " " + "getCognome " + getCognome() + " " + "getData_nascita " + getData_nascita() + " " + "getNome " + getNome() + " " + "getPassword " + getPassword() + " " + "getPin_code " + getPin_code() + " " + "getSpecializzazione " + getSpecializzazione() + " " + "getUsername " + getUsername() + "]";
     }
 
 }

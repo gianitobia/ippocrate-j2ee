@@ -5,8 +5,6 @@
  */
 package Controller;
 
-import Entity.Agenda;
-import Entity.AgendaFacadeLocal;
 import Entity.Medico;
 import Entity.MedicoEsterno;
 import Entity.MedicoOspedaliero;
@@ -40,9 +38,6 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
 
     @EJB
     private RepartoFacadeLocal repartoFacade;
-
-    @EJB
-    private AgendaFacadeLocal agendaFacade;
 
     @EJB
     private SalaFacadeLocal salaFacade;
@@ -157,11 +152,6 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
             }
         }
         return lm;
-    }
-
-    @Override
-    public Agenda ottieniAgendaMedico(Medico m) {
-        return m.getVisite();
     }
 
     @Override

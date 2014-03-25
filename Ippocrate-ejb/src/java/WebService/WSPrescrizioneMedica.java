@@ -83,6 +83,7 @@ public class WSPrescrizioneMedica {
 
     /**
      * Modifica la prescrizione medica impostando consegnata a si'
+     *
      * @param idPM identificatore della PM da consegnare
      * @return la PM Transient modificata
      */

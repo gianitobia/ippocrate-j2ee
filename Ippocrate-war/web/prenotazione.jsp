@@ -69,7 +69,7 @@
                 xhrObj.onreadystatechange = updatePage2; // indico funzione (updatePage) da invocare quando il server termina l’esecuzione della richiesta
                 xhrObj.send(null); // invio oggetto XMLHttpRequest a web server
             }
-            
+
             function updatePage2() {
                 if (xhrObj.readyState === 4) {
                     document.getElementById("medi").disabled = false;
@@ -88,7 +88,7 @@
                 xhrObj.onreadystatechange = updatePage3; // indico funzione (updatePage) da invocare quando il server termina l’esecuzione della richiesta
                 xhrObj.send(null); // invio oggetto XMLHttpRequest a web server
             }
-            
+
             function cercaAgendaMedico(iMedi) {
                 indexOfMedi = iMedi;
                 //Cerca l'agenda di un Medico
@@ -97,7 +97,7 @@
                 xhrObj.onreadystatechange = updatePage3; // indico funzione (updatePage) da invocare quando il server termina l’esecuzione della richiesta
                 xhrObj.send(null); // invio oggetto XMLHttpRequest a web server
             }
-            
+
             function updatePage3() {
                 if (xhrObj.readyState === 4) {
                     document.getElementById("data").disabled = false;
@@ -173,7 +173,7 @@
                         <div class="form-group">
                             <label for="data" class="col-sm-2 control-label">Data</label>
                             <div class="col-sm-10">
-                               <input type="input" class="form-control" id="data" disabled>
+                                <input type="input" class="form-control" id="data" disabled>
                             </div>
                         </div>
                         <div class="form-group">

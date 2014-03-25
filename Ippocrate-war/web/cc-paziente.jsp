@@ -71,7 +71,7 @@
                     del paziente.</p>
             </div>
             <div class="page-header">
-                    <h1>Cartella clinica di <%= CCpaziente.getPaziente().getNome()
+                <h1>Cartella clinica di <%= CCpaziente.getPaziente().getNome()
                         + " " + CCpaziente.getPaziente().getCognome()%></h1>
             </div>
             <div class="panel panel-primary">

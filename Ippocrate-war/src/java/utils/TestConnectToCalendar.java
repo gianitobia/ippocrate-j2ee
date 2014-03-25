@@ -54,19 +54,19 @@ public class TestConnectToCalendar extends HttpServlet {
             } catch (ParseException ex) {
                 Logger.getLogger(TestConnectToCalendar.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
             StrutturaMedica sm = new Ospedale();
             sm.setNome("Maria Vittoria");
             p.setStruttura_medica(sm);
-            
+
             PrestazioneSala ps = new PrestazioneSala();
             ps.setDurata(30);
             p.setTipo_prestazione(ps);
-            
+
             Sala s = new Sala();
             s.setId(new Long(128));
             p.setSala(s);
-            
+
             HttpCalendarClient o = new HttpCalendarClient();
             String ris = o.create_event(p);
             /* TODO output your page here. You may use following sample code. */
@@ -77,7 +77,7 @@ public class TestConnectToCalendar extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet NewServlet at " + request.getContextPath() + "</h1>");
-            out.println(p.toString()+"<br><br><br>");
+            out.println(p.toString() + "<br><br><br>");
             out.println(ris);
             out.println("</body>");
             out.println("</html>");
