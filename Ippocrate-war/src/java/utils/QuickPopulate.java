@@ -5,16 +5,15 @@
  */
 package utils;
 
+import Controller.GestoreInserimentoDatiLocal;
 import Entity.CartellaClinicaFacadeLocal;
 import Entity.MedicoEsternoFacadeLocal;
 import Entity.MedicoOspedalieroFacadeLocal;
 import Entity.Ospedale;
 import Entity.OspedaleFacadeLocal;
 import Entity.PazienteFacadeLocal;
-import Entity.RefertoMedicoFacadeLocal;
 import Entity.RepartoFacadeLocal;
 import Entity.SalaFacadeLocal;
-import Entity.StrutturaMedicaFacadeLocal;
 import Entity.StudioMedicoFacadeLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -31,29 +30,34 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "QuickPopulate", urlPatterns = {"/QuickPopulate"})
 public class QuickPopulate extends HttpServlet {
+    
+    @EJB
+    private GestoreInserimentoDatiLocal gestoreInserimentoDati;
 
     @EJB
     private MedicoOspedalieroFacadeLocal medicoOspedalieroFacade;
+    
     @EJB
     private MedicoEsternoFacadeLocal medicoEsternoFacade1;
+    
     @EJB
     private OspedaleFacadeLocal ospedaleFacade;
+    
     @EJB
     private PazienteFacadeLocal pazienteFacade;
-
+    
     @EJB
     private RepartoFacadeLocal repartoFacade;
-
-    @EJB
-    private StrutturaMedicaFacadeLocal strutturaMedicaFacade;
-    @EJB
-    private StudioMedicoFacadeLocal studioMedicoFacade1;
+    
     @EJB
     private MedicoEsternoFacadeLocal medicoEsternoFacade;
+    
     @EJB
     private CartellaClinicaFacadeLocal cartellaClinicaFacade;
+    
     @EJB
     private StudioMedicoFacadeLocal studioMedicoFacade;
+    
     @EJB
     private SalaFacadeLocal salaFacade;
 
