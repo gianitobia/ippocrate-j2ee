@@ -223,4 +223,8 @@ public abstract class Medico implements Serializable {
         return "Medico [" + "id " + id + " " + "cognome " + cognome + " " + "data_nascita " + data_nascita + " " + "nome " + nome + " " + "password " + password + " " + "pin_code " + pin_code + " " + "specializzazione " + specializzazione + " " + "username " + username + "]";
     }
 
+    public void addPrestazioniEffettuabili(PrestazioneMedico prestazione) {
+        prestazioniEffettuabili.add(prestazione);
+    }
+
 }

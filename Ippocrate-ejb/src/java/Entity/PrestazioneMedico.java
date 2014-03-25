@@ -79,4 +79,8 @@ public class PrestazioneMedico extends Prestazione implements Serializable {
         return "Entity.PrestazioneMedico[ id=" + id + " ]";
     }
 
+    public void addMedico(Medico m) {
+        lista_medici.add(m);
+    }
+
 }

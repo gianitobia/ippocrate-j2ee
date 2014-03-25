@@ -3,7 +3,7 @@ calendari = [
 struttura : "Maria Vittoria",
         entita_prenotabili : [
         {
-        lab_radiologia : "2nh4f1491t7i59v3p6v58fmh6c@group.calendar.google.com",
+        		lab_radiologia : "2nh4f1491t7i59v3p6v58fmh6c@group.calendar.google.com",
                 lab_rmn : "calendar_id",
                 lab_analisi : "3avvmjscb7g1a2vf2sd41ih2sk@group.calendar.google.com",
                 dottor_rossi : "calendar_id",

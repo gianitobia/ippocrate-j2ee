@@ -7,14 +7,17 @@ package Controller;
 
 import Entity.CartellaClinica;
 import Entity.CartellaClinicaFacadeLocal;
+import Entity.Medico;
 import Entity.MedicoEsterno;
 import Entity.MedicoEsternoFacadeLocal;
+import Entity.MedicoFacadeLocal;
 import Entity.MedicoOspedaliero;
 import Entity.MedicoOspedalieroFacadeLocal;
 import Entity.Ospedale;
 import Entity.OspedaleFacadeLocal;
 import Entity.Paziente;
 import Entity.PazienteFacadeLocal;
+import Entity.Prestazione;
 import Entity.PrestazioneMedico;
 import Entity.PrestazioneMedicoFacadeLocal;
 import Entity.PrestazioneSala;
@@ -38,6 +41,8 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
+    @EJB
+    private MedicoFacadeLocal medicoFacade;
 
     @EJB
     private SalaFacadeLocal salaFacade;
@@ -63,7 +68,7 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
 
     @Override
     public Long addPaziente(String nome, String cognome, String cf, String password,
-            String sesso, String indirizzo, Date data_nascita, String luogo_nascita, Long id_medico) {
+            String sesso, String indirizzo, Date data_nascita, String luogo_nascita) {
 
         Paziente p = new Paziente();
         p.setCf(cf);
@@ -133,7 +138,6 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
         sm.setIndirizzo(indirizzo);
         // da completare l'aggiunta dei pazienti
         sm.setLista_medici(new ArrayList<MedicoEsterno>());
-        sm.setLista_pazienti(new ArrayList<Paziente>());
         studioMedicoFacade.create(sm);
         return sm.getId();
     }
@@ -204,5 +208,30 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
     public void addPrestazioniToSala(long id_sala, List<PrestazioneSala> prestazioni) {
         Sala s = salaFacade.find(id_sala);
         s.getLista_prestazioni().addAll(prestazioni);
+    }
+    
+    @Override
+    public void addPrestazioni(String[] prestazioniMedico, String[] prestazioniSala){
+        List<Medico> medici = medicoFacade.findAll();
+        for(String pr : prestazioniMedico){
+            PrestazioneMedico p = new PrestazioneMedico();
+            p.setNome(pr);
+            p.setDurata(30);
+            prestazioneMedicoFacade.create(p);
+            int n = (int)(Math.random()*4+1);
+            for(int i = 0; i<=n; i++){
+                Medico m = medici.get((int)(Math.random()*medici.size()));
+                m.addPrestazioniEffettuabili(p);
+                p.addMedico(m);
+            }
+        }
+        
+        for(String pr : prestazioniSala){
+            PrestazioneSala p = new PrestazioneSala();
+            p.setNome(pr);
+            p.setDurata(30);
+            prestazioneSalaFacade.create(p);
+        }
+        
     }
 }
