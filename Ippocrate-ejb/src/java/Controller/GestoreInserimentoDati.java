@@ -166,6 +166,7 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
         r.setLista_pazienti(new ArrayList<Paziente>());
         r.setLista_sale(new ArrayList<Sala>());
         Ospedale o = ospedaleFacade.find(id_ospedale);
+        r.setOspedale(o);
         o.getLista_reparti().add(r);
         repartoFacade.create(r);
         return r.getId();
@@ -180,6 +181,7 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
         s.setMedico_responsabile(m);
         salaFacade.create(s);
         Reparto r = repartoFacade.find(id_reparto);
+        s.setReparto(r);
         r.getLista_sale().add(s);
         return s.getId();
     }
@@ -193,6 +195,7 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
         s.setMedico_responsabile(m);
         salaFacade.create(s);
         StudioMedico sm = studioMedicoFacade.find(id_studio_medico);
+        s.setStudioMedico(sm);
         sm.getLista_sale().add(s);
         return s.getId();
     }
