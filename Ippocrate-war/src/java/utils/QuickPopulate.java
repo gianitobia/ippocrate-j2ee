@@ -32,7 +32,7 @@ import javax.servlet.http.HttpServletResponse;
 public class QuickPopulate extends HttpServlet {
     
     @EJB
-    private GestoreInserimentoDatiLocal gestoreInserimentoDati;
+    private GestoreInserimentoDatiLocal insert;
 
     @EJB
     private MedicoOspedalieroFacadeLocal medicoOspedalieroFacade;
