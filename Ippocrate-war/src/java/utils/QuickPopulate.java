@@ -170,9 +170,18 @@ public class QuickPopulate extends HttpServlet {
         insert.addPaziente("Adelfina", "Pirozzi", "22000", "22000", "F", "Via Francesco Del Giudice, 109", new Date(1979,1,18), "Napoli");
         insert.addPaziente("Eligio", "Beneventi", "22200", "22200", "M", "Via Valpantena, 17", new Date(1985,2,29), "Genova");
         insert.addPaziente("Mara", "Rossi", "22220", "22220", "F", "Via Sergente Maggiore, 124", new Date(1989,5,5), "Cuneo");
-            
-            
+        insert.addPaziente("Irmina", "Pagnotto", "30000", "30000", "F", "Via Nizza, 148", new Date(1999,10,5), "Torino");
+        insert.addPaziente("Alina", "Mazzi", "33000", "33000", "F", "Via Volto San Luca, 30", new Date(1996,9,6), "Torino");
+        insert.addPaziente("Clotilde", "Beneventi", "33300", "33300", "F", "Via Loreto, 81", new Date(1976,6,24), "Livorno");
+        insert.addPaziente("Marco", "Onio", "33330", "33330", "M", "Via degli Aldobrandeschi, 77", new Date(1985,2,29), "Genova");
+        insert.addPaziente("Santo", "Castiglione", "33333", "33333", "M", "Piazza Trieste e Trento, 127", new Date(1995,12,19), "Torino");
+        insert.addPaziente("Luisa", "Pisano", "33303", "33303", "F", "Via Carlo Alberto, 18", new Date(1975,11,18), "Avellino");
+        insert.addPaziente("Livio", "Piccio", "33033", "33033", "M", "Corso Vittorio Emanuele, 15", new Date(1976,9,30), "Bari");
+        insert.addPaziente("Quinto", "Fallaci", "30333", "30333", "M", "Via San Pietro Ad Aram, 57", new Date(1948,6,6), "Modena");
+        insert.addPaziente("Anselmo", "Mancini", "40000", "40000", "M", "Via Antonio Cecchi, 94", new Date(1983,6,6), "Brindisi");
         
+        
+
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /*  String nome, String cognome, String cf, String password,
