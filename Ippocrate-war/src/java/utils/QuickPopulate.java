@@ -277,6 +277,7 @@ public class QuickPopulate extends HttpServlet {
         
         
         insert.linkStruttureMedici();
+        insert.linkRepartiPazienti();
 
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {

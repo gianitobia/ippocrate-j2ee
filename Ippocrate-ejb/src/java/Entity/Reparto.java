@@ -176,4 +176,8 @@ public class Reparto implements Serializable {
         lista_medici.add(m);
     }
 
+    public void addPaziente(Paziente p) {
+        lista_pazienti.add(p);
+    }
+
 }

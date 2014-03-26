@@ -57,4 +57,6 @@ public interface GestoreInserimentoDatiLocal {
 
     void linkStruttureMedici();
 
+    void linkRepartiPazienti();
+
 }

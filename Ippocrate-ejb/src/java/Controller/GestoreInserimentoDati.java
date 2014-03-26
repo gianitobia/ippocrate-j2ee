@@ -251,4 +251,15 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
             reparti.get(ind).addMedico(m);
         }
     }
+
+    @Override
+    public void linkRepartiPazienti() {
+        List<Paziente> pazienti = pazienteFacade.findAll();
+        List<Reparto> reparti = repartoFacade.findAll();
+        for(Paziente p : pazienti){
+            int ind = (int) (Math.random()*reparti.size());
+            if(Math.random()>0.8)
+               reparti.get(ind).addPaziente(p);
+        }
+    }
 }
