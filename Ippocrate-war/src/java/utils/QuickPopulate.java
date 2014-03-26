@@ -316,6 +316,9 @@ public class QuickPopulate extends HttpServlet {
         insert.addMedicoEsterno("Amerigo", "Marcelo", "Radiologia", new Date(1977,7,17), "6666", "6666", "6666");
         insert.addMedicoEsterno("Petronio", "Dellucci", "Chirurgia generale", new Date(1977,8,13), "7777", "7777", "7777");
         
+        insert.linkStruttureMedici();
+        insert.linkRepartiPazienti();
+        
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /*  String nome, String cognome, String cf, String password,
