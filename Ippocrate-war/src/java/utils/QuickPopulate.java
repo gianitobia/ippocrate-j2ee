@@ -73,7 +73,8 @@ public class QuickPopulate extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String[] prestazioniSala = {"Amniocentesi",
+        String[] prestazioniSala = {
+            "Amniocentesi",
             "Biopsia cervicovaginale ",
             "Ecocolordoppler del seno",
             "Ecocolordoppler ostetrico-ginecologico ",
@@ -132,7 +133,8 @@ public class QuickPopulate extends HttpServlet {
             "Ecocolordoppler del seno",
             "Ecografia del seno"};
         
-        String[] prestazioniMedico = {"Visita ginecologica",
+        String[] prestazioniMedico = {
+            "Visita ginecologica",
             "Visita ostetrica",
             "Visita senologica",
             "Visita internistica",
@@ -275,7 +277,45 @@ public class QuickPopulate extends HttpServlet {
         insert.addPaziente("Anselmo", "Mancini", "40000", "40000", "M", "Via Antonio Cecchi, 94", new Date(1983,6,6), "Brindisi");
         insert.addPaziente("Tolomeo", "Trevisano", "40004", "40004", "M", "Via di Santa Melania, 44", new Date(1984,9,17), "Venezia");
         
-
+        //inserimento medici
+        //medici ospedalieri
+        insert.addMedicoOspedaliero("Cassandra", "Trentini", "Ginecologia", new Date(1983,6,6), "1000", "1000", "1000", "28");
+        insert.addMedicoOspedaliero("Irma", "Folliero", "Immunologia", new Date(1982,16,6), "2000", "2000", "2000", "T4");
+        insert.addMedicoOspedaliero("Neera", "Li Fonti", "Cardiochirurgia", new Date(1937,15,4), "3000", "3000", "3000", "F6");
+        insert.addMedicoOspedaliero("Salomone", "Cocci", "Ematologia", new Date(1984,12,21), "4000", "4000", "4000", "C3");
+        insert.addMedicoOspedaliero("Alfio", "Panicucci", "Nefrologia", new Date(1980,3,1), "5000", "5000", "5000", "4A");
+        insert.addMedicoOspedaliero("Camilla", "Genovese", "Urologia", new Date(1978,13,15), "6000", "6000", "6000", "7V");
+        insert.addMedicoOspedaliero("Jacopo", "Zetticci", "Cardiologia", new Date(1977,11,25), "7000", "7000", "7000", "7S");
+        insert.addMedicoOspedaliero("Imelda", "Fanucci", "Endocrinologia", new Date(1977,12,2), "8000", "8000", "8000", "2R");
+        insert.addMedicoOspedaliero("Guglielma", "Bergamaschi", "Neurooncologia", new Date(1978,2,2), "9000", "9000", "9000", "2R");
+        insert.addMedicoOspedaliero("Luigina", "Longo", "Ginecologia", new Date(1976,7,22), "1001", "1001", "1001", "2T");
+        insert.addMedicoOspedaliero("Natale", "Milanesi", "Chirurgia generale", new Date(1974,9,18), "2002", "2002", "2002", "4E");
+        insert.addMedicoOspedaliero("Albertino", "Cremonesi", "Medicina generale", new Date(1975,11,8), "3003", "3003", "3003", "3R");
+        insert.addMedicoOspedaliero("Muzio", "Padovesi", "Radiologia", new Date(1977,1,17), "4004", "4004", "4004", "9R");
+        insert.addMedicoOspedaliero("Tolomeo", "Colombo", "Radiologia", new Date(1987,11,1), "5005", "5005", "5005", "4R");
+        insert.addMedicoOspedaliero("Immacolata", "Zetticci", "Neurologia", new Date(1986,2,14), "6006", "6006", "6006", "9N");
+        insert.addMedicoOspedaliero("Urania", "Sal", "Patologia orale", new Date(1988,4,17), "7007", "7007", "7007", "4O");
+        insert.addMedicoOspedaliero("Saverio", "Greco", "Ortopedia", new Date(1978,3,14), "8008", "8008", "8008", "O9");
+        insert.addMedicoOspedaliero("Quintilio", "Marcelo", "Medicina dello sport", new Date(1974,5,14), "9009", "9009", "9009", "S4");
+        insert.addMedicoOspedaliero("Imelda", "Bianchi", "Medicina interna", new Date(1975,7,13), "1101", "1101", "1101", "I2");
+        insert.addMedicoOspedaliero("Ubalda", "Bergamaschi", "Neurologia", new Date(1976,9,12), "2202", "2202", "2202", "N4");
+        insert.addMedicoOspedaliero("Stella", "De Luca", "Allergologia", new Date(1974,12,23), "3303", "3303", "3303", "A9");
+        insert.addMedicoOspedaliero("Tranquilla", "Nucci", "Anestesia", new Date(1976,2,24), "4404", "4404", "4404", "AN7");
+        insert.addMedicoOspedaliero("Silvio", "Lombardi", "Radiologia", new Date(1975,4,12), "5505", "5505", "5505", "R12");
+        insert.addMedicoOspedaliero("Jacopo", "Manfrin", "Cardiochirurgia", new Date(1975,4,12), "6606", "6606", "6606", "F7");
+        
+        //medici esterni
+        insert.addMedicoEsterno("Arcangela", "Greece", "Cardiochirurgia", new Date(1976,8,1), "7707", "7707", "7707");
+        insert.addMedicoEsterno("Consuelo", "Longo", "Nefrologia", new Date(1975,11,2), "8808", "8808", "8808");
+        insert.addMedicoEsterno("Armando", "Sal", "Endocrinologia", new Date(1978,1,26), "9909", "9909", "9909");
+        insert.addMedicoEsterno("Immacolata", "Mazzanti", "Radiologia", new Date(1972,4,18), "1111", "1111", "1111");
+        insert.addMedicoEsterno("Frediana", "Iadanza", "Chirurgia generale", new Date(1973,5,8), "2222", "2222", "2222");
+        insert.addMedicoEsterno("Massimo", "Padovano", "Patologia orale", new Date(1972,9,13), "3333", "3333", "3333");
+        insert.addMedicoEsterno("Germana", "Ferri", "Medicina del lavoro", new Date(1972,4,10), "4444", "4444", "4444");
+        insert.addMedicoEsterno("Landolfo", "Lettiere", "Radiologia", new Date(1972,7,17), "5555", "5555", "5555");
+        insert.addMedicoEsterno("Amerigo", "Marcelo", "Radiologia", new Date(1977,7,17), "6666", "6666", "6666");
+        insert.addMedicoEsterno("Petronio", "Dellucci", "Chirurgia generale", new Date(1977,8,13), "7777", "7777", "7777");
+        
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /*  String nome, String cognome, String cf, String password,
