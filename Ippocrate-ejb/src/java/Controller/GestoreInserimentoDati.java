@@ -63,7 +63,7 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
 
     @Override
     public Long addPaziente(String nome, String cognome, String cf, String password,
-            String sesso, String indirizzo, Date data_nascita, String luogo_nascita, Long id_medico) {
+            String sesso, String indirizzo, Date data_nascita, String luogo_nascita) {
 
         Paziente p = new Paziente();
         p.setCf(cf);

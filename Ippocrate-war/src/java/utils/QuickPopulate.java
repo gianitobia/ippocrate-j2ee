@@ -179,7 +179,7 @@ public class QuickPopulate extends HttpServlet {
         insert.addPaziente("Livio", "Piccio", "33033", "33033", "M", "Corso Vittorio Emanuele, 15", new Date(1976,9,30), "Bari");
         insert.addPaziente("Quinto", "Fallaci", "30333", "30333", "M", "Via San Pietro Ad Aram, 57", new Date(1948,6,6), "Modena");
         insert.addPaziente("Anselmo", "Mancini", "40000", "40000", "M", "Via Antonio Cecchi, 94", new Date(1983,6,6), "Brindisi");
-        
+        insert.addPaziente("Tolomeo", "Trevisano", "40004", "40004", "M", "Via di Santa Melania, 44", new Date(1984,9,17), "Venezia");
         
 
         response.setContentType("text/html;charset=UTF-8");
