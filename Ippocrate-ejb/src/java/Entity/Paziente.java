@@ -23,8 +23,7 @@ import javax.persistence.Temporal;
 public class Paziente implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @ManyToOne
-    private StudioMedico studioMedico;
+    
     @ManyToOne
     private Reparto reparto_ricoverato;
 
@@ -51,14 +50,6 @@ public class Paziente implements Serializable {
 
     @OneToOne
     private CartellaClinica cartella_clinica;
-
-    public StudioMedico getStudioMedico() {
-        return studioMedico;
-    }
-
-    public void setStudioMedico(StudioMedico studioMedico) {
-        this.studioMedico = studioMedico;
-    }
 
     public Reparto getReparto_ricoverato() {
         return reparto_ricoverato;

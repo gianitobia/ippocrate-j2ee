@@ -217,6 +217,7 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
             PrestazioneMedico p = new PrestazioneMedico();
             p.setNome(pr);
             p.setDurata(30);
+            p.setLista_medici(new ArrayList<Medico>());
             prestazioneMedicoFacade.create(p);
             int n = (int)(Math.random()*4+1);
             for(int i = 0; i<=n; i++){

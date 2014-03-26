@@ -167,7 +167,6 @@ public class QuickPopulate extends HttpServlet {
             "Visita senologica con ecografia",
             "Visita dermatologica"};
         
-        insert.addPrestazioni(prestazioniMedico,prestazioniSala);
         
         //creazione dio
         Long medico_dio = insert.addMedicoOspedaliero("Gregory", "House", "Patologo", new Date(1959, 5, 15), "house", "sonodio", "666", "1C");
@@ -316,6 +315,8 @@ public class QuickPopulate extends HttpServlet {
         insert.addMedicoEsterno("Amerigo", "Marcelo", "Radiologia", new Date(1977,7,17), "6666", "6666", "6666");
         insert.addMedicoEsterno("Petronio", "Dellucci", "Chirurgia generale", new Date(1977,8,13), "7777", "7777", "7777");
         
+        
+        insert.addPrestazioni(prestazioniMedico,prestazioniSala);
         insert.linkStruttureMedici();
         insert.linkRepartiPazienti();
         
