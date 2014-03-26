@@ -26,31 +26,10 @@ public class StudioMedico extends StrutturaMedica implements Serializable {
     private Long id;
 
     @OneToMany(mappedBy = "studioMedico")
-    private List<Paziente> lista_pazienti;
-
-    @OneToMany(mappedBy = "studioMedico")
     private List<MedicoEsterno> lista_medici;
 
     @OneToMany(mappedBy = "studioMedico")
     private List<Sala> lista_sale;
-
-    /**
-     * Get the value of lista_pazienti
-     *
-     * @return the value of lista_pazienti
-     */
-    public List<Paziente> getLista_pazienti() {
-        return lista_pazienti;
-    }
-
-    /**
-     * Set the value of lista_pazienti
-     *
-     * @param lista_pazienti new value of lista_pazienti
-     */
-    public void setLista_pazienti(List<Paziente> lista_pazienti) {
-        this.lista_pazienti = lista_pazienti;
-    }
 
     /**
      * Get the value of lista_medici
@@ -120,7 +99,7 @@ public class StudioMedico extends StrutturaMedica implements Serializable {
 
     @Override
     public String toString() {
-        return "StudioMedico [" + "id " + id + " " + "lista_medici " + lista_medici + " " + "lista_pazienti " + lista_pazienti + " " + "lista_sale " + lista_sale + " " + "getIndirizzo " + getIndirizzo() + " " + "getNome " + getNome() + "]";
+        return "StudioMedico [" + "id " + id + " " + "lista_medici " + lista_medici + " " + "lista_sale " + lista_sale + " " + "getIndirizzo " + getIndirizzo() + " " + "getNome " + getNome() + "]";
     }
 
 }

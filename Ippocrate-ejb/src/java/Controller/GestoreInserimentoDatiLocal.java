@@ -52,5 +52,7 @@ public interface GestoreInserimentoDatiLocal {
     Long addSalaStudio(long id_studio_medico, String tipo_laboratorio, long id_medico_responsabile);
 
     void addPrestazioniToSala(long id_sala, List<PrestazioneSala> prestazioni);
+    
+    public void addPrestazioni(String[] prestazioniMedico, String[] prestazioniSala);
 
 }

@@ -9,7 +9,6 @@ import Controller.GestoreInserimentoDatiLocal;
 import Entity.CartellaClinicaFacadeLocal;
 import Entity.MedicoEsternoFacadeLocal;
 import Entity.MedicoOspedalieroFacadeLocal;
-import Entity.Ospedale;
 import Entity.OspedaleFacadeLocal;
 import Entity.PazienteFacadeLocal;
 import Entity.RepartoFacadeLocal;
@@ -73,10 +72,105 @@ public class QuickPopulate extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        String[] prestazioniSala = {"Amniocentesi",
+            "Biopsia cervicovaginale ",
+            "Ecocolordoppler del seno",
+            "Ecocolordoppler ostetrico-ginecologico ",
+            "Ecografia del seno",
+            "Ecografia ginecologica",
+            "Ecografia ostetrica",
+            "Ecografia strutturale",
+            "Pap-test",
+            "Implantologia",
+            "Otturazione carie 3 pareti",
+            "Elettrocardiogramma",
+            "Infiltrazione articolare",
+            "Doppler vascolare",
+            "Terapia sclerosante",
+            "Trattamento delle ulcere varicose",
+            "Correnti di Kotz",
+            "Correnti interferenziali",
+            "Elettrostimolazioni",
+            "Elettroterapia antalgica",
+            "Ionoforesi",
+            "Linfodrenaggio manuale",
+            "Magnetoterapia a placche",
+            "Massoterapia terapeutica",
+            "Rieducazione motoria",
+            "Ultrasuonoterapia",
+            "Ecografia addome superiore",
+            "Rettoscopia – Proctoscopia",
+            "Chirurgia dermatologica",
+            "Crioterapia",
+            "Dermatoscopia",
+            "Elettrocoagulazione",
+            "Mesoterapia",
+            "Peeling cutaneo",
+            "Ricerca microscopica infezioni della pelle",
+            "Terapie dermatologiche topiche",
+            "Trattamento anticellulite",
+            "Trattamento antietà con crio-resurfacing",
+            "Trattamento laser dei capillari",
+            "Trattamento rughe con acido ialuronico",
+            "Trattamento smagliature",
+            "Tricogramma",
+            "Cura del piede",
+            "Massaggio circolatorio del piede",
+            "Esame audiometrico",
+            "Esame impedenzometrico",
+            "Esame vestibolare",
+            "Impedenzometria ",
+            "Laringoscopia",
+            "Otoscopia",
+            "Rinoscopia",
+            "Fondo oculare",
+            "Fonometria",
+            "Ago aspirato ecoguidato del seno",
+            "Agobiopsia del seno",
+            "Dermatoscopia del seno",
+            "Ecocolordoppler del seno",
+            "Ecografia del seno"};
+        
+        String[] prestazioniMedico = {"Visita ginecologica",
+            "Visita ostetrica",
+            "Visita senologica",
+            "Visita internistica",
+            "Ablazione tartaro",
+            "Tampone vaginale",
+            "Capsula in oro-ceramica",
+            "Estrazione dente permanente",
+            "Visita diabetologica ",
+            "Visita endocrinologica",
+            "Visita odontoiatrica",
+            "Visita ortodontica",
+            "Visita cardiologia",
+            "Visita ortopedica",
+            "Visita neonatologica",
+            "Visita pediatrica",
+            "Visita angiologia",
+            "Visita dermatologica",
+            "Visita chirurgica vascolare ",
+            "Visita epatologica",
+            "Visita gastroenterologica",
+            "Visite dietologiche ",
+            "Colloquio psicodiagnostico",
+            "Colloquio psicologico",
+            "Misurazione dello stress",
+            "Psicoterapia individuale",
+            "Visita otorino",
+            "Test psicodiagnostico",
+            "Visita oculistica",
+            "Visita senologica",
+            "Visita senologica con ecografia",
+            "Visita dermatologica"};
+        
+        insert.addPrestazioni(prestazioniMedico,prestazioniSala);
+        
         //creazione dio
         Long medico_dio = insert.addMedicoOspedaliero("Gregory", "House", "Patologo", new Date(1959, 5, 15), "house", "sonodio", "666", "1C");
         Long medico_pippa = insert.addMedicoEsterno("Hershel", "Greene", "Ginecologo", new Date(1942, 11, 17), "hershel", "sonopippa", "666");
-        
+
         //creazione ospedali
         Long id_o_1 = insert.addOspedale("Maria Vittoria", "Via Cibrario, 72, Torino");
         Long id_o_2 = insert.addOspedale("CTO", "Via Gianfranco Zuretti, 29, 10126 Torino");
@@ -87,7 +181,7 @@ public class QuickPopulate extends HttpServlet {
         Long id_sm_1 = insert.addStudioMedico("R.I.B.A.", "Corso Regina Margherita, 10, 10133 Torino");
         Long id_sm_2 = insert.addStudioMedico("Corba", "Via Roma, 1, 10012 Torino");
         Long id_sm_3 = insert.addStudioMedico("C.D.C", "Piazza Bernini, 5, 10136 Torino");
-        
+
         //creazione reparti
         Long id_r_1 = insert.addReparto(id_o_1, "Cardiologia", medico_dio);
         Long id_r_2 = insert.addReparto(id_o_1, "Chirurgia generale", medico_dio);
@@ -132,7 +226,7 @@ public class QuickPopulate extends HttpServlet {
         Long id_r_38 = insert.addReparto(id_o_4, "Laboratorio analisi", medico_dio);
         Long id_r_39 = insert.addReparto(id_o_4, "Medicina fisica e riabilitazione", medico_dio);
         Long id_r_40 = insert.addReparto(id_o_4, "Ortopedia e Traumatologia", medico_dio);
-        
+
         //inserimento sale ospedale
         insert.addSalaOspedale(id_r_6, "Radiografia", medico_dio);
         insert.addSalaOspedale(id_r_26, "Radiografia", medico_dio);
@@ -143,7 +237,7 @@ public class QuickPopulate extends HttpServlet {
         insert.addSalaOspedale(id_r_8, "Analisi", medico_dio);
         insert.addSalaOspedale(id_r_28, "Analisi", medico_dio);
         insert.addSalaOspedale(id_r_38, "Analisi", medico_dio);
-        
+
         //inserimento sale studi medici
         insert.addSalaStudio(id_sm_1, "Radiografia", medico_pippa);
         insert.addSalaStudio(id_sm_1, "RMN", medico_pippa);
@@ -153,7 +247,7 @@ public class QuickPopulate extends HttpServlet {
         insert.addSalaStudio(id_sm_1, "Analisi", medico_pippa);
         insert.addSalaStudio(id_sm_2, "Analisi", medico_pippa);
         insert.addSalaStudio(id_sm_3, "Analisi", medico_pippa);
-        
+
         //inserimento pazienti
         insert.addPaziente("Arrigo", "Toscano", "10000", "10000", "M", "via cocci, 7", new Date(1963,12,10), "Torino");
         insert.addPaziente("Raffaele", "Udinese", "11000", "11000", "M", "Via Acrone, 109", new Date(1980,8,6), "Sarezzano");
@@ -185,10 +279,8 @@ public class QuickPopulate extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /*  String nome, String cognome, String cf, String password,
-                String sesso, String indirizzo, Date data_nascita, String luogo_nascita */
-            
-            
-            
+             String sesso, String indirizzo, Date data_nascita, String luogo_nascita */
+
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
