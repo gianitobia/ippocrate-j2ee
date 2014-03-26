@@ -83,7 +83,7 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
         CartellaClinica cc = new CartellaClinica();
         cc.setPaziente(p);
         cc.setLista_referti(new ArrayList<RefertoMedico>());
-        cc.setAnamnesi("");
+        cc.setAnamnesi("Anamnesi vuota");
         cartellaClinicaFacade.create(cc);
         p.setCartella_clinica(cc);
         pazienteFacade.create(p);
@@ -232,6 +232,34 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
             p.setDurata(30);
             prestazioneSalaFacade.create(p);
         }
+    }
+
+    @Override
+    public void linkStruttureMedici() {
+    	List<MedicoEsterno> mediciE = medicoEsternoFacade.findAll();
+        List<StudioMedico> studi = studioMedicoFacade.findAll();
+        for(MedicoEsterno m : mediciE){
+            int ind = (int) (Math.random()*studi.size());
+            m.setStudioMedico(studi.get(ind));
+            studi.get(ind).addMedico(m);
+        }
         
+        List<MedicoOspedaliero> mediciO = medicoOspedalieroFacade.findAll();
+        List<Reparto> reparti = repartoFacade.findAll();
+        for(MedicoOspedaliero m : mediciO){
+            int ind = (int) (Math.random()*reparti.size());
+            reparti.get(ind).addMedico(m);
+        }
+    }
+
+    @Override
+    public void linkRepartiPazienti() {
+        List<Paziente> pazienti = pazienteFacade.findAll();
+        List<Reparto> reparti = repartoFacade.findAll();
+        for(Paziente p : pazienti){
+            int ind = (int) (Math.random()*reparti.size());
+            if(Math.random()>0.8)
+               reparti.get(ind).addPaziente(p);
+        }
     }
 }

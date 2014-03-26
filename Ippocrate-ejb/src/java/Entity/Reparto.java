@@ -172,4 +172,12 @@ public class Reparto implements Serializable {
         return "Reparto [" + "id " + id + " " + "nome " + nome + " " + "primario " + primario + "]";
     }
 
+    public void addMedico(MedicoOspedaliero m) {
+        lista_medici.add(m);
+    }
+
+    public void addPaziente(Paziente p) {
+        lista_pazienti.add(p);
+    }
+
 }

@@ -102,4 +102,8 @@ public class StudioMedico extends StrutturaMedica implements Serializable {
         return "StudioMedico [" + "id " + id + " " + "lista_medici " + lista_medici + " " + "lista_sale " + lista_sale + " " + "getIndirizzo " + getIndirizzo() + " " + "getNome " + getNome() + "]";
     }
 
+    public void addMedico(MedicoEsterno m) {
+        lista_medici.add(m);
+    }
+
 }

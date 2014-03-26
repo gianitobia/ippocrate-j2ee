@@ -55,4 +55,8 @@ public interface GestoreInserimentoDatiLocal {
     
     public void addPrestazioni(String[] prestazioniMedico, String[] prestazioniSala);
 
+    void linkStruttureMedici();
+
+    void linkRepartiPazienti();
+
 }
