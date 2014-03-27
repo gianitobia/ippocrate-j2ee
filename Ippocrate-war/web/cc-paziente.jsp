@@ -78,7 +78,7 @@
                 <div class="panel-heading">Anamnesi
                     &nbsp;&nbsp;
                     <button type="button" class="btn btn-primary btn-sm" 
-                            title="Modifica" data-toggle="modal" data-target="#modalAnamnesi">
+                            title="Modifica anamnesi" data-toggle="modal" data-target="#modalAnamnesi">
                         <span class="glyphicon glyphicon-pencil"></span>
                     </button>
                 </div>
@@ -135,7 +135,7 @@
                                         <label for="data" class="col-sm-2 control-label">Data</label>
                                         <div class="col-sm-3">
                                             <div class="input-group date" data-provide="datepicker">
-                                                <input type="text"  class="form-control" id="data" name="data" placeholder="01/12/2013">
+                                                <input type="text"  class="form-control" id="data" name="data" placeholder="01/12/2013" required>
                                                 <span class="input-group-addon" ><i class="glyphicon glyphicon-calendar"></i></span>
                                             </div>
                                         </div>
@@ -143,7 +143,7 @@
                                     <div class="form-group">
                                         <label for="diagn" class="col-sm-2 control-label">Diagnosi</label>
                                         <div class="col-sm-7">
-                                            <input type="text" class="form-control" id="diagn" name="diagn">
+                                            <input type="text" class="form-control" id="diagn" name="diagn" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -163,20 +163,20 @@
                                         <div class="form-group">
                                             <label for="medic" class="col-sm-3 control-label">Medicinale</label>
                                             <div class="col-sm-5">
-                                                <input type="text" class="form-control" id="medic" name="medic">
+                                                <input type="text" class="form-control" id="medic" name="medic" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="numConf" class="col-sm-3 control-label">Quantità</label>
                                             <div class="col-sm-1">
-                                                <input type="text" class="form-control" id="numConf" name="numConf">
+                                                <input type="text" class="form-control" id="numConf" name="numConf" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="dataScad" class="col-sm-3 control-label">Data scadenza prescrizione</label>
                                             <div class="col-sm-3">
                                                 <div class="input-group date" data-provide="datepicker">
-                                                    <input type="text"  class="form-control" id="dataScad" name="dataScad" placeholder="01/12/2013">
+                                                    <input type="text"  class="form-control" id="dataScad" name="dataScad" placeholder="01/12/2013" required>
                                                     <span class="input-group-addon" ><i class="glyphicon glyphicon-calendar"></i></span>
                                                 </div>
                                             </div>

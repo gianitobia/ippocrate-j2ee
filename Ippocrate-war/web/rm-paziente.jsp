@@ -91,7 +91,7 @@
                     &nbsp;&nbsp;
                     <% if (referto.getMedico().getCognome().equals(medico.getCognome())) {%>                  
                     <button type="button" class="btn btn-primary btn-sm" 
-                            title="Modifica" data-toggle="modal" data-target="#modalDettagliRefMedico">
+                            title="Modifica dettagli" data-toggle="modal" data-target="#modalDettagliRefMedico">
                         <span class="glyphicon glyphicon-pencil"></span>
                     </button>
                     <%}%>
@@ -118,7 +118,7 @@
                                         <label for="data" class="col-sm-2 control-label">Data</label>
                                         <div class="col-sm-3">
                                             <div class="input-group date" data-provide="datepicker">
-                                                <input type="text"  class="form-control" id="data" name="data" value=<%= "\"" + sdf.format(referto.getDataVisita()) + "\""%>>
+                                                <input type="text"  class="form-control" id="data" name="data" required value=<%= "\"" + sdf.format(referto.getDataVisita()) + "\""%> >
                                                 <span class="input-group-addon" ><i class="glyphicon glyphicon-calendar"></i></span>
                                             </div>
                                         </div>
@@ -126,7 +126,7 @@
                                     <div class="form-group">
                                         <label for="diagn" class="col-sm-2 control-label">Diagnosi</label>
                                         <div class="col-sm-7">
-                                            <input type="text" class="form-control" id="diagn" name="diagn" value=<%= "\"" + referto.getDiagnosi() + "\""%>>
+                                            <input type="text" class="form-control" id="diagn" name="diagn" required value=<%= "\"" + referto.getDiagnosi() + "\""%>>
                                         </div>
                                     </div>
                                 </div>
@@ -230,20 +230,20 @@
                                         <div class="form-group">
                                             <label for="medic" class="col-sm-3 control-label">Medicinale</label>
                                             <div class="col-sm-5">
-                                                <input type="text" class="form-control" id="medic" name="medic" >
+                                                <input type="text" class="form-control" id="medic" name="medic" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="numConf" class="col-sm-3 control-label">Quantità</label>
                                             <div class="col-sm-1">
-                                                <input type="text" class="form-control" id="numConf" name="numConf" >
+                                                <input type="text" class="form-control" id="numConf" name="numConf" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="dataPres" class="col-sm-3 control-label">Data prescrizione</label>
                                             <div class="col-sm-3">                                               
                                                 <div class="input-group date" data-provide="datepicker">
-                                                    <input type="text"  class="form-control" id="dataPres" name="dataPres" placeholder="01/12/2013">
+                                                    <input type="text"  class="form-control" id="dataPres" name="dataPres" placeholder="01/12/2013" required>
                                                     <span class="input-group-addon" ><i class="glyphicon glyphicon-calendar"></i></span>
                                                 </div>
                                             </div>
@@ -252,7 +252,7 @@
                                             <label for="dataScad" class="col-sm-3 control-label">Data scadenza prescrizione</label>
                                             <div class="col-sm-3">
                                                 <div class="input-group date" data-provide="datepicker">
-                                                    <input type="text"  class="form-control" id="dataScad" name="dataScad" placeholder="01/12/2014">
+                                                    <input type="text"  class="form-control" id="dataScad" name="dataScad" placeholder="01/12/2014" required>
                                                     <span class="input-group-addon" ><i class="glyphicon glyphicon-calendar"></i></span>
                                                 </div>
                                             </div>
@@ -283,20 +283,20 @@
                                         <div class="form-group">
                                             <label for="medicN" class="col-sm-3 control-label">Medicinale</label>
                                             <div class="col-sm-5">
-                                                <input type="text" class="form-control" id="medicN" name="medicN" value="" >
+                                                <input type="text" class="form-control" id="medicN" name="medicN" value="" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="numConfN" class="col-sm-3 control-label">Quantità</label>
                                             <div class="col-sm-1">
-                                                <input type="text" class="form-control" id="numConfN" name="numConfN" value="" >
+                                                <input type="text" class="form-control" id="numConfN" name="numConfN" value="" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="dataPresN" class="col-sm-3 control-label">Data prescrizione</label>
                                             <div class="col-sm-3">                                               
                                                 <div class="input-group date" data-provide="datepicker">
-                                                    <input type="text"  class="form-control" id="dataPresN" name="dataPresN" value="">
+                                                    <input type="text"  class="form-control" id="dataPresN" name="dataPresN" value="" required>
                                                     <span class="input-group-addon" ><i class="glyphicon glyphicon-calendar"></i></span>
                                                 </div>
                                             </div>
@@ -305,7 +305,7 @@
                                             <label for="dataScadN" class="col-sm-3 control-label">Data scadenza prescrizione</label>
                                             <div class="col-sm-3">
                                                 <div class="input-group date" data-provide="datepicker">
-                                                    <input type="text"  class="form-control" id="dataScadN" name="dataScadN" value="">
+                                                    <input type="text"  class="form-control" id="dataScadN" name="dataScadN" value="" required>
                                                     <span class="input-group-addon" ><i class="glyphicon glyphicon-calendar"></i></span>
                                                 </div>
                                             </div>
@@ -344,7 +344,7 @@
                             <td><%= prescrizioni.get(i).getNumero_confezioni()%></td>
                             <% if (referto.getMedico().getCognome().equals(medico.getCognome())) {%>
                             <td><button type="button" class="btn btn-primary btn-xs"   
-                                        title="Modifica" onclick="modificaPresMedica(<%= "\'" + referto.getLista_prescrizioni().get(i).getMedicinale() + "\'"%>,
+                                        title="Modifica prescrizione" onclick="modificaPresMedica(<%= "\'" + referto.getLista_prescrizioni().get(i).getMedicinale() + "\'"%>,
                                         <%= "\'" + referto.getLista_prescrizioni().get(i).getNumero_confezioni() + "\'"%>,
                                         <%= "\'" + sdf.format(referto.getLista_prescrizioni().get(i).getData_prescrizione()) + "\'"%>,
                                         <%= "\'" + sdf.format(referto.getLista_prescrizioni().get(i).getData_scadenza()) + "\'"%>,
