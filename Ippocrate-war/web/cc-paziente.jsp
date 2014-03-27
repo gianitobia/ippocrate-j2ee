@@ -71,7 +71,7 @@
                     del paziente.</p>
             </div>
             <div class="page-header">
-                <h1>Cartella clinica di <%= CCpaziente.getPaziente().getNome()
+                    <h1>Cartella clinica di <%= CCpaziente.getPaziente().getNome()
                         + " " + CCpaziente.getPaziente().getCognome()%></h1>
             </div>
             <div class="panel panel-primary">
@@ -197,6 +197,7 @@
                             <th>#</th>
                             <th>Tipo visita</th>
                             <th>Data</th>
+                            <th>Medico</th>
                             <th>Diagnosi</th>
                             <th>Altro</th>
                         </tr>
@@ -208,6 +209,7 @@
                             <td><%= i + 1%></td>
                             <td><%= referti.get(i).getTipoVisita().getNome()%></td>
                             <td><%= sdf.format(referti.get(i).getDataVisita())%></td>
+                            <td><%= referti.get(i).getMedico().getCognome()%></td>
                             <td><%= referti.get(i).getDiagnosi()%></td>
                             <td><a href="rm-paziente.jsp?num=<%=i%>">visualizza</a></td>
                         </tr>

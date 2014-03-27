@@ -9,6 +9,7 @@ import Controller.GestoreMedicoLocal;
 import Entity.CartellaClinica;
 import Entity.Medico;
 import Entity.Paziente;
+import Entity.PrescrizioneMedica;
 import Entity.RefertoMedico;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -80,6 +81,56 @@ public class MedicoServlet extends HttpServlet {
                 cc.setLista_referti(lrm);
                 s.setAttribute("CCpaziente", cc);
                 response.sendRedirect("cc-paziente.jsp");
+            } else if (request.getParameter("action").startsWith("modificaDettagliRefMedico_")) {
+                int numReferto = Integer.parseInt(request.getParameter("action").substring(26));
+                String[] v = request.getParameterValues("prest");
+                int nuovoIndexOfPrest = Integer.parseInt(v[0]);
+                String nuovaDataVisita = request.getParameter("data");
+                String nuovaDiagnosi = request.getParameter("diagn");
+                CartellaClinica cc = (CartellaClinica) s.getAttribute("CCpaziente");
+                Medico m = (Medico) s.getAttribute("medico");
+                Long idReferto = cc.getLista_referti().get(numReferto).getId();
+                RefertoMedico rm = gestoreMedico.modificaDettagliRefMedico(idReferto, m, nuovoIndexOfPrest, nuovaDiagnosi, nuovaDataVisita);
+                cc.getLista_referti().set(numReferto, rm);                               
+                s.setAttribute("CCpaziente", cc);
+                response.sendRedirect("rm-paziente.jsp?num=" + numReferto);
+            } else if (request.getParameter("action").startsWith("aggiungiMultimediaRefMedico_")) {
+                int numReferto = Integer.parseInt(request.getParameter("action").substring(28));
+                Part filePart = request.getPart("multim");
+                String fileName = getFileName(filePart);
+                CartellaClinica cc = (CartellaClinica) s.getAttribute("CCpaziente");
+                Long idReferto = cc.getLista_referti().get(numReferto).getId();
+                RefertoMedico rm = gestoreMedico.aggiungiMultimediaRefMedico(idReferto, filePart, fileName);
+                cc.getLista_referti().set(numReferto, rm);                
+                s.setAttribute("CCpaziente", cc);
+                response.sendRedirect("rm-paziente.jsp?num=" + numReferto);
+            } else if (request.getParameter("action").startsWith("modificaPresMedica_")) {
+                String[] temp = request.getParameter("action").substring(19).split("_");
+                int numReferto = Integer.parseInt(temp[0]);
+                int numPres = Integer.parseInt(temp[1]);
+                String medic = request.getParameter("medicN");
+                int numConf = Integer.parseInt(request.getParameter("numConfN"));
+                String dataPres = request.getParameter("dataPresN");
+                String dataScad = request.getParameter("dataScadN");
+                CartellaClinica cc = (CartellaClinica) s.getAttribute("CCpaziente");                
+                Long idPres = cc.getLista_referti().get(numReferto).getLista_prescrizioni().get(numPres).getId();
+                PrescrizioneMedica pm = gestoreMedico.modificaPresMedica(idPres, medic, numConf, dataPres, dataScad);
+                cc.getLista_referti().get(numReferto).getLista_prescrizioni().set(numPres, pm);
+                s.setAttribute("CCpaziente", cc);
+                response.sendRedirect("rm-paziente.jsp?num=" + numReferto);
+            } else if (request.getParameter("action").startsWith("aggiungiPresMedica_")) {
+                int numReferto = Integer.parseInt(request.getParameter("action").substring(19));
+                String medic = request.getParameter("medic");
+                int numConf = Integer.parseInt(request.getParameter("numConf"));
+                String dataPres = request.getParameter("dataPres");
+                String dataScad = request.getParameter("dataScad");
+                CartellaClinica cc = (CartellaClinica) s.getAttribute("CCpaziente"); 
+                Medico m = (Medico) s.getAttribute("medico");
+                Long idReferto = cc.getLista_referti().get(numReferto).getId();                
+                PrescrizioneMedica pm = gestoreMedico.aggiungiPresMedica(idReferto, medic, numConf, dataPres, dataScad, cc.getPaziente(), m);
+                cc.getLista_referti().get(numReferto).getLista_prescrizioni().add(pm);
+                s.setAttribute("CCpaziente", cc);
+                response.sendRedirect("rm-paziente.jsp?num=" + numReferto);
             }
         }
     }

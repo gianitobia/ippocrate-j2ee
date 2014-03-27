@@ -8,6 +8,7 @@ package Controller;
 import Entity.CartellaClinica;
 import Entity.Medico;
 import Entity.Paziente;
+import Entity.PrescrizioneMedica;
 import Entity.RefertoMedico;
 import java.util.List;
 import javax.ejb.Local;
@@ -28,5 +29,13 @@ public interface GestoreMedicoLocal {
             Part filePart, String file, String d, String medic, int numConf, String dataScadenza);
 
     CartellaClinica ottieniCCPaziente(Long idP);
+
+    public RefertoMedico modificaDettagliRefMedico(Long refId, Medico m, int nuovaPrest, String diagnosi, String dataVisita);
+
+    public RefertoMedico aggiungiMultimediaRefMedico(Long idReferto, Part filePart, String fileName);
+
+    public PrescrizioneMedica modificaPresMedica(Long idPres, String medic, int numConf, String dataPres, String dataScad);
+
+    public PrescrizioneMedica aggiungiPresMedica(Long idReferto, String medic, int numConf, String dataPres, String dataScad, Paziente paziente, Medico m);
 
 }

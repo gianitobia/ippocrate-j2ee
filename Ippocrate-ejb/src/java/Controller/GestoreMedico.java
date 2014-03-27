@@ -157,4 +157,104 @@ public class GestoreMedico implements GestoreMedicoLocal {
         return pazienteFacade.find(idP).getCartella_clinica();
     }
 
+    @Override
+    public RefertoMedico modificaDettagliRefMedico(Long refId, Medico m, int iPrest, String diagn, String d) {
+        RefertoMedico rm = refertoMedicoFacade.find(refId);
+        rm.setTipoVisita(m.getPrestazioniEffettuabili().get(iPrest));
+        rm.setDiagnosi(diagn);
+
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat ndf = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date dataVisita = new Date();
+        try {
+            dataVisita = df.parse(d);
+            String dTemp = new SimpleDateFormat("yyyy-MM-dd").format(dataVisita);
+            dataVisita = ndf.parse(dTemp);
+        } catch (ParseException ex) {
+            Logger.getLogger(GestoreMedico.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        rm.setDataVisita(dataVisita);
+
+        return rm;
+    }
+
+    @Override
+    public RefertoMedico aggiungiMultimediaRefMedico(Long idReferto, Part filePart, String fileName) {
+        RefertoMedico rm = refertoMedicoFacade.find(idReferto);
+        try {
+            String newFile = FileUpload.caricaFile(filePart, fileName);
+            String oldFiles = rm.getLista_images();
+            if (oldFiles.equals("") == false) {
+                rm.setLista_images(oldFiles + ";" + newFile);
+            } else {
+                rm.setLista_images(newFile);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(GestoreMedico.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MessagingException ex) {
+            Logger.getLogger(GestoreMedico.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return rm;
+    }
+
+    @Override
+    public PrescrizioneMedica modificaPresMedica(Long idPres, String medic, int numConf, String dataPres, String dataScad) {
+        PrescrizioneMedica pm = prescrizioneMedicaFacade.find(idPres);
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat ndf = new SimpleDateFormat("yyyy-MM-dd");
+        Date dataScadenza = new Date();
+        Date dataPrescrizione = new Date();
+        try {
+            dataPrescrizione = df.parse(dataPres);
+            String dTemp1 = new SimpleDateFormat("yyyy-MM-dd").format(dataPrescrizione);
+            dataPrescrizione = ndf.parse(dTemp1);
+            dataScadenza = df.parse(dataScad);
+            String dTemp2 = new SimpleDateFormat("yyyy-MM-dd").format(dataScadenza);
+            dataScadenza = ndf.parse(dTemp2);
+        } catch (ParseException ex) {
+            Logger.getLogger(GestoreMedico.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        pm.setData_prescrizione(dataPrescrizione);
+        pm.setData_scadenza(dataScadenza);
+        pm.setMedicinale(medic);
+        pm.setNumero_confezioni(numConf);
+
+        return pm;
+    }
+
+    @Override
+    public PrescrizioneMedica aggiungiPresMedica(Long idReferto, String medic, int numConf, String dataPres, String dataScad, Paziente paziente, Medico m) {
+        RefertoMedico rm = refertoMedicoFacade.find(idReferto);
+        List<PrescrizioneMedica> lpm = rm.getLista_prescrizioni();
+
+        PrescrizioneMedica pm = new PrescrizioneMedica();
+        pm.setMedicinale(medic);
+        pm.setNumero_confezioni(numConf);
+
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat ndf = new SimpleDateFormat("yyyy-MM-dd");
+        Date dataScadenza = new Date();
+        Date dataPrescrizione = new Date();
+        try {
+            dataPrescrizione = df.parse(dataPres);
+            String dTemp1 = new SimpleDateFormat("yyyy-MM-dd").format(dataPrescrizione);
+            dataPrescrizione = ndf.parse(dTemp1);
+            dataScadenza = df.parse(dataScad);
+            String dTemp2 = new SimpleDateFormat("yyyy-MM-dd").format(dataScadenza);
+            dataScadenza = ndf.parse(dTemp2);
+        } catch (ParseException ex) {
+            Logger.getLogger(GestoreMedico.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        pm.setData_prescrizione(dataPrescrizione);
+        pm.setData_scadenza(dataScadenza);
+        pm.setMedico(m);
+        pm.setPaziente(paziente);
+        pm.setReferto(rm);        
+        prescrizioneMedicaFacade.create(pm);
+        lpm.add(pm);
+
+        return pm;
+    }
 }
