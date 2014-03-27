@@ -329,7 +329,7 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
                 }
                 r.setDataVisita(d);
                 r.setDiagnosi(frasi_anamnesi[ind]);
-
+                
                 Medico m = med.get((int) (med.size() * Math.random()));
                 List<PrescrizioneMedica> pms = new ArrayList<PrescrizioneMedica>();
                 for (int j = 0; j < Math.random() * 3; j++) {
@@ -340,7 +340,7 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
                         pm.setConsegnata("Si");
                     }
                     pm.setData_prescrizione(d);
-                    String data1 = 2015+"/"+ 3+"/"+ ((int) (Math.random() * 30 + 1));
+                    String data1 = 2015+"/"+ 03+"/"+ ((int) (Math.random() * 30 + 1));
                     Date d1 = new Date();
                     try {
                         d1 = ndf.parse(data1);
@@ -349,7 +349,7 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
                     }
                     pm.setData_scadenza(d1);
                     pm.setMedicinale(medicinali[(int) (medicinali.length * Math.random())]);
-                    pm.setNumero_confezioni((int) (Math.random() * 4));
+                    pm.setNumero_confezioni((int) (Math.random() * 3+1));
                     pm.setMedico(m);
                     pm.setPaziente(p);
                     pm.setReferto(r);
