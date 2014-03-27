@@ -23,7 +23,7 @@ import javax.persistence.Temporal;
 public class Paziente implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @ManyToOne
     private Reparto reparto_ricoverato;
 

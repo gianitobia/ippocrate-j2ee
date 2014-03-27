@@ -32,9 +32,14 @@ import Entity.Sala;
 import Entity.SalaFacadeLocal;
 import Entity.StudioMedico;
 import Entity.StudioMedicoFacadeLocal;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -44,6 +49,7 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
+
     @EJB
     private RefertoMedicoFacadeLocal refertoMedicoFacade;
     @EJB
@@ -215,7 +221,7 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
     public void addPrestazioni(String[] prestazioniMedico, String[] prestazioniSala) {
         List<Medico> medici = medicoFacade.findAll();
         List<PrestazioneMedico> prestazioni = new ArrayList<>();
-        for(String pr : prestazioniMedico){
+        for (String pr : prestazioniMedico) {
             PrestazioneMedico p = new PrestazioneMedico();
             p.setNome(pr);
             p.setDurata(30);
@@ -223,9 +229,9 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
             prestazioneMedicoFacade.create(p);
             prestazioni.add(p);
         }
-        
+
         List<PrestazioneSala> prestazioniS = new ArrayList<>();
-        for(String pr : prestazioniSala){
+        for (String pr : prestazioniSala) {
             PrestazioneSala p = new PrestazioneSala();
             p.setNome(pr);
             p.setDurata(30);
@@ -233,11 +239,11 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
             prestazioneSalaFacade.create(p);
             prestazioniS.add(p);
         }
-        
+
         for (Medico m : medici) {
             int n = (int) (Math.random() * 4 + 1);
             for (int i = 0; i <= n; i++) {
-                int ind = (int)(Math.random()*prestazioni.size());
+                int ind = (int) (Math.random() * prestazioni.size());
                 m.addPrestazioniEffettuabili(prestazioni.get(ind));
                 prestazioni.get(ind).addMedico(m);
             }
@@ -277,7 +283,7 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
     @Override
     public void addCartelleCliniche() {
         List<Paziente> pazienti = pazienteFacade.findAll();
-        for(Paziente p : pazienti){
+        for (Paziente p : pazienti) {
             CartellaClinica cc = new CartellaClinica();
             cc.setPaziente(p);
             ArrayList<RefertoMedico> referti = new ArrayList<RefertoMedico>();
@@ -306,30 +312,44 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
 
             String anamnesi = "";
             List<Medico> med = medicoFacade.findAll();
-            int righe = (int) (Math.random() * 2)+1;
+            int righe = (int) (Math.random() * 2) + 1;
             for (int i = 0; i < righe; i++) {
-                int ind=(int) (Math.random() * frasi_anamnesi.length);
+                int ind = (int) (Math.random() * frasi_anamnesi.length);
                 anamnesi += "\n" + frasi_anamnesi[ind];
 
-
                 RefertoMedico r = new RefertoMedico();
-                Date d = new Date((int)(1960+Math.random()*55),(int)(Math.random()*11+1),(int)(Math.random()*30+1));
-                r.setDataVisita(new Date());
+                
+                DateFormat ndf = new SimpleDateFormat("yyyy-mm-dd");
+                String data = ((int) (1960 + Math.random() * 55)) + "/"+ ((int) (Math.random() * 11 + 1))+"/"+ ((int) (Math.random() * 30 + 1));
+                Date d = new Date();
+                try {
+                    d = ndf.parse(data);
+                } catch (ParseException ex) {
+                    Logger.getLogger(GestoreMedico.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                r.setDataVisita(d);
                 r.setDiagnosi(frasi_anamnesi[ind]);
 
-                Medico m = med.get((int)(med.size()*Math.random()));
+                Medico m = med.get((int) (med.size() * Math.random()));
                 List<PrescrizioneMedica> pms = new ArrayList<PrescrizioneMedica>();
-                for(int j = 0;j<Math.random()*3;j++)
-                {
+                for (int j = 0; j < Math.random() * 3; j++) {
                     PrescrizioneMedica pm = new PrescrizioneMedica();
-                    if(Math.random()<0.5)
+                    if (Math.random() < 0.5) {
                         pm.setConsegnata("No");
-                    else
+                    } else {
                         pm.setConsegnata("Si");
+                    }
                     pm.setData_prescrizione(d);
-                    pm.setData_scadenza(new Date(2015,3,(int)(Math.random()*30+1)));
-                    pm.setMedicinale(medicinali[(int)(medicinali.length*Math.random())]);
-                    pm.setNumero_confezioni((int)(Math.random()*4));
+                    String data1 = 2015+"/"+ 3+"/"+ ((int) (Math.random() * 30 + 1));
+                    Date d1 = new Date();
+                    try {
+                        d1 = ndf.parse(data1);
+                    } catch (ParseException ex) {
+                        Logger.getLogger(GestoreMedico.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    pm.setData_scadenza(d1);
+                    pm.setMedicinale(medicinali[(int) (medicinali.length * Math.random())]);
+                    pm.setNumero_confezioni((int) (Math.random() * 4));
                     pm.setMedico(m);
                     pm.setPaziente(p);
                     pm.setReferto(r);
@@ -340,7 +360,7 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
                 r.setMedico(m);
                 r.setPaziente(p);
                 r.setLista_images("");
-                r.setTipoVisita(m.getPrestazioniEffettuabili().get((int)(Math.random()*m.getPrestazioniEffettuabili().size())));
+                r.setTipoVisita(m.getPrestazioniEffettuabili().get((int) (Math.random() * m.getPrestazioniEffettuabili().size())));
                 refertoMedicoFacade.create(r);
                 referti.add(r);
             }

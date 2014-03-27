@@ -72,7 +72,7 @@ public class QuickPopulate extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String[] prestazioniSala = {
             "Amniocentesi",
             "Biopsia cervicovaginale ",
@@ -132,7 +132,7 @@ public class QuickPopulate extends HttpServlet {
             "Dermatoscopia del seno",
             "Ecocolordoppler del seno",
             "Ecografia del seno"};
-        
+
         String[] prestazioniMedico = {
             "Visita ginecologica",
             "Visita ostetrica",
@@ -166,8 +166,7 @@ public class QuickPopulate extends HttpServlet {
             "Visita senologica",
             "Visita senologica con ecografia",
             "Visita dermatologica"};
-        
-        
+
         //creazione dio
         Long medico_dio = insert.addMedicoOspedaliero("Gregory", "House", "Patologo", new Date(1959, 5, 15), "house", "sonodio", "666", "1C");
         Long medico_pippa = insert.addMedicoEsterno("Hershel", "Greene", "Ginecologo", new Date(1942, 11, 17), "hershel", "sonopippa", "666");
@@ -250,105 +249,103 @@ public class QuickPopulate extends HttpServlet {
         insert.addSalaStudio(id_sm_3, "Analisi", medico_pippa);
 
         //inserimento pazienti
-        insert.addPaziente("Arrigo", "Toscano", "10000", "10000", "M", "via Cocci, 7", new Date(1963,12,10), "Torino");
-        insert.addPaziente("Raffaele", "Udinese", "11000", "11000", "M", "Via Acrone, 109", new Date(1980,8,6), "Sarezzano");
-        insert.addPaziente("Francesco", "Arcuri", "11100", "11100", "M", "Corso Alcide De Gasperi, 32", new Date(1990,10,27), "Candide");
-        insert.addPaziente("Macario", "Napolitano", "11110", "11110", "M", "Via Galvani, 74", new Date(1992,5,23), "Roma");
-        insert.addPaziente("Teodata", "Lombardo", "11111", "11111", "F", "Via Nazionale, 131", new Date(1982,7,21), "Trafoi");
-        insert.addPaziente("Maia", "Gallo", "10111", "10111", "F", "Via Venezia, 43", new Date(1992,3,21), "Trento");
-        insert.addPaziente("Aldo", "Siciliano", "10011", "10011", "M", "Piazza Bovio, 71", new Date(1988,10,1), "Bologna");
-        insert.addPaziente("Damiana", "Lorenzo", "20000", "20000", "F", "Vico Giganti, 68", new Date(1997,1,5), "Milano");
-        insert.addPaziente("Simonetta", "Fiorentino", "20002", "20002", "F", "Via Agostino Depretis, 98", new Date(1987,10,5), "Prato");
-        insert.addPaziente("Rosita", "Buccho", "20022", "20022", "F", "Piazza Trieste e Trento, 70", new Date(1988,10,16), "Prunetto");
-        insert.addPaziente("Gaetana", "Panicucci", "20222", "20222", "F", "Viale Augusto, 10", new Date(1978,11,16), "Messina");
-        insert.addPaziente("Siro", "Greco", "22222", "22222", "M", "Corso Vittorio Emanuele, 95", new Date(1986,12,11), "Roma");
-        insert.addPaziente("Adelfina", "Pirozzi", "22000", "22000", "F", "Via Francesco Del Giudice, 109", new Date(1979,1,18), "Napoli");
-        insert.addPaziente("Eligio", "Beneventi", "22200", "22200", "M", "Via Valpantena, 17", new Date(1985,2,29), "Genova");
-        insert.addPaziente("Mara", "Rossi", "22220", "22220", "F", "Via Sergente Maggiore, 124", new Date(1989,5,5), "Cuneo");
-        insert.addPaziente("Irmina", "Pagnotto", "30000", "30000", "F", "Via Nizza, 148", new Date(1999,10,5), "Torino");
-        insert.addPaziente("Alina", "Mazzi", "33000", "33000", "F", "Via Volto San Luca, 30", new Date(1996,9,6), "Torino");
-        insert.addPaziente("Clotilde", "Beneventi", "33300", "33300", "F", "Via Loreto, 81", new Date(1976,6,24), "Livorno");
-        insert.addPaziente("Marco", "Onio", "33330", "33330", "M", "Via degli Aldobrandeschi, 77", new Date(1985,2,29), "Genova");
-        insert.addPaziente("Santo", "Castiglione", "33333", "33333", "M", "Piazza Trieste e Trento, 127", new Date(1995,12,19), "Torino");
-        insert.addPaziente("Luisa", "Pisano", "33303", "33303", "F", "Via Carlo Alberto, 18", new Date(1975,11,18), "Avellino");
-        insert.addPaziente("Livio", "Piccio", "33033", "33033", "M", "Corso Vittorio Emanuele, 15", new Date(1976,9,30), "Bari");
-        insert.addPaziente("Quinto", "Fallaci", "30333", "30333", "M", "Via San Pietro Ad Aram, 57", new Date(1948,6,6), "Modena");
-        insert.addPaziente("Anselmo", "Mancini", "40000", "40000", "M", "Via Antonio Cecchi, 94", new Date(1983,6,6), "Brindisi");
-        insert.addPaziente("Tolomeo", "Trevisano", "40004", "40004", "M", "Via di Santa Melania, 44", new Date(1984,9,17), "Venezia");
-        
-        insert.addPaziente("Giorgio", "Toscani", "10000", "10000", "M", "via Noci, 7", new Date(1963,12,10), "Torino");
-        insert.addPaziente("Roberto", "Marche", "11000", "11000", "M", "Via Acrone, 109", new Date(1980,8,6), "Sarezzano");
-        insert.addPaziente("Ugo", "Arcuri", "11100", "11100", "M", "Corso Alcide De Gasperi, 32", new Date(1990,10,27), "Candide");
-        insert.addPaziente("Marika", "Napoli", "11110", "11110", "M", "Via Galvani, 74", new Date(1992,5,23), "Roma");
-        insert.addPaziente("Olmo", "Lordo", "11111", "11111", "F", "Via Nazionale, 131", new Date(1982,7,21), "Trafoi");
-        insert.addPaziente("Maria", "Galli", "10111", "10111", "F", "Via Venezia, 43", new Date(1992,3,21), "Roma");
-        insert.addPaziente("Aldo", "Siciliano", "10011", "10011", "M", "Piazza Bovio, 71", new Date(1988,10,1), "Bologna");
-        insert.addPaziente("Damiano", "Tarantino", "20000", "20000", "F", "Vico Giganti, 68", new Date(1997,1,5), "Milano");
-        insert.addPaziente("Simonetta", "Scenna", "20002", "20002", "F", "Via Agostino Depretis, 98", new Date(1987,10,5), "Prato");
-        insert.addPaziente("Rosa", "Bucco", "20022", "20022", "F", "Piazza Trieste e Trento, 70", new Date(1988,10,16), "Prunetto");
-        insert.addPaziente("Gaetano", "Panucci", "20222", "20222", "F", "Viale Augusto, 10", new Date(1978,11,16), "Avellino");
-        insert.addPaziente("Matteo", "Greco", "22222", "22222", "M", "Corso Vittorio Emanuele, 95", new Date(1986,12,11), "Roma");
-        insert.addPaziente("Adelfina", "Pirozzi", "22000", "22000", "F", "Via Francesco Del Giudice, 109", new Date(1979,1,18), "Napoli");
-        insert.addPaziente("Eligio", "Beneventi", "22200", "22200", "M", "Via Valpantena, 17", new Date(1985,2,29), "Genova");
-        insert.addPaziente("Armanda", "Papa", "22220", "22220", "F", "Via Sergente Maggiore, 124", new Date(1989,5,5), "Cuneo");
-        insert.addPaziente("Gelmina", "Patto", "30000", "30000", "F", "Via Nizza, 148", new Date(1999,10,5), "Torino");
-        insert.addPaziente("Adelina", "Mazzi", "33000", "33000", "F", "Via Volto San Luca, 30", new Date(1996,9,6), "Torino");
-        insert.addPaziente("Cloe", "Benvenuti", "33300", "33300", "F", "Via Loreto, 81", new Date(1976,6,24), "Livorno");
-        insert.addPaziente("Garco", "Orio", "33330", "33330", "M", "Via degli Aldobrandeschi, 77", new Date(1985,2,29), "Genova");
-        insert.addPaziente("Santino", "Castiglione", "33333", "33333", "M", "Piazza Trieste e Trento, 127", new Date(1995,12,19), "Torino");
-        insert.addPaziente("Luca", "Pisano", "33303", "33303", "F", "Via Carlo Alberto, 18", new Date(1975,11,18), "Venezia");
-        insert.addPaziente("Livio", "Piccolo", "33033", "33033", "M", "Corso Vittorio Emanuele, 15", new Date(1976,9,30), "Bari");
-        insert.addPaziente("Mara", "Fellaci", "30333", "30333", "M", "Via San Pietro Ad Aram, 57", new Date(1948,6,6), "Modena");
-        insert.addPaziente("Gianna", "Mancini", "40000", "40000", "M", "Via Antonio Cecchi, 94", new Date(1983,6,6), "Brindisi");
-        insert.addPaziente("Arte", "Treviso", "40004", "40004", "M", "Via di Santa Melania, 44", new Date(1984,9,17), "Avellino");
-        
-        
+        insert.addPaziente("Arrigo", "Toscano", "10000", "10000", "M", "via Cocci, 7", new Date(1963, 12, 10), "Torino");
+        insert.addPaziente("Raffaele", "Udinese", "11000", "11000", "M", "Via Acrone, 109", new Date(1980, 8, 6), "Sarezzano");
+        insert.addPaziente("Francesco", "Arcuri", "11100", "11100", "M", "Corso Alcide De Gasperi, 32", new Date(1990, 10, 27), "Candide");
+        insert.addPaziente("Macario", "Napolitano", "11110", "11110", "M", "Via Galvani, 74", new Date(1992, 5, 23), "Roma");
+        insert.addPaziente("Teodata", "Lombardo", "11111", "11111", "F", "Via Nazionale, 131", new Date(1982, 7, 21), "Trafoi");
+        insert.addPaziente("Maia", "Gallo", "10111", "10111", "F", "Via Venezia, 43", new Date(1992, 3, 21), "Trento");
+        insert.addPaziente("Aldo", "Siciliano", "10011", "10011", "M", "Piazza Bovio, 71", new Date(1988, 10, 1), "Bologna");
+        insert.addPaziente("Damiana", "Lorenzo", "20000", "20000", "F", "Vico Giganti, 68", new Date(1997, 1, 5), "Milano");
+        insert.addPaziente("Simonetta", "Fiorentino", "20002", "20002", "F", "Via Agostino Depretis, 98", new Date(1987, 10, 5), "Prato");
+        insert.addPaziente("Rosita", "Buccho", "20022", "20022", "F", "Piazza Trieste e Trento, 70", new Date(1988, 10, 16), "Prunetto");
+        insert.addPaziente("Gaetana", "Panicucci", "20222", "20222", "F", "Viale Augusto, 10", new Date(1978, 11, 16), "Messina");
+        insert.addPaziente("Siro", "Greco", "22222", "22222", "M", "Corso Vittorio Emanuele, 95", new Date(1986, 12, 11), "Roma");
+        insert.addPaziente("Adelfina", "Pirozzi", "22000", "22000", "F", "Via Francesco Del Giudice, 109", new Date(1979, 1, 18), "Napoli");
+        insert.addPaziente("Eligio", "Beneventi", "22200", "22200", "M", "Via Valpantena, 17", new Date(1985, 2, 29), "Genova");
+        insert.addPaziente("Mara", "Rossi", "22220", "22220", "F", "Via Sergente Maggiore, 124", new Date(1989, 5, 5), "Cuneo");
+        insert.addPaziente("Irmina", "Pagnotto", "30000", "30000", "F", "Via Nizza, 148", new Date(1999, 10, 5), "Torino");
+        insert.addPaziente("Alina", "Mazzi", "33000", "33000", "F", "Via Volto San Luca, 30", new Date(1996, 9, 6), "Torino");
+        insert.addPaziente("Clotilde", "Beneventi", "33300", "33300", "F", "Via Loreto, 81", new Date(1976, 6, 24), "Livorno");
+        insert.addPaziente("Marco", "Onio", "33330", "33330", "M", "Via degli Aldobrandeschi, 77", new Date(1985, 2, 29), "Genova");
+        insert.addPaziente("Santo", "Castiglione", "33333", "33333", "M", "Piazza Trieste e Trento, 127", new Date(1995, 12, 19), "Torino");
+        insert.addPaziente("Luisa", "Pisano", "33303", "33303", "F", "Via Carlo Alberto, 18", new Date(1975, 11, 18), "Avellino");
+        insert.addPaziente("Livio", "Piccio", "33033", "33033", "M", "Corso Vittorio Emanuele, 15", new Date(1976, 9, 30), "Bari");
+        insert.addPaziente("Quinto", "Fallaci", "30333", "30333", "M", "Via San Pietro Ad Aram, 57", new Date(1948, 6, 6), "Modena");
+        insert.addPaziente("Anselmo", "Mancini", "40000", "40000", "M", "Via Antonio Cecchi, 94", new Date(1983, 6, 6), "Brindisi");
+        insert.addPaziente("Tolomeo", "Trevisano", "40004", "40004", "M", "Via di Santa Melania, 44", new Date(1984, 9, 17), "Venezia");
+
+        insert.addPaziente("Giorgio", "Toscani", "100001", "10000", "M", "via Noci, 7", new Date(1963, 12, 10), "Torino");
+        insert.addPaziente("Roberto", "Marche", "110001", "11000", "M", "Via Acrone, 109", new Date(1980, 8, 6), "Sarezzano");
+        insert.addPaziente("Ugo", "Arcuri", "111001", "11100", "M", "Corso Alcide De Gasperi, 32", new Date(1990, 10, 27), "Candide");
+        insert.addPaziente("Marika", "Napoli", "111101", "11110", "M", "Via Galvani, 74", new Date(1992, 5, 23), "Roma");
+        insert.addPaziente("Olmo", "Lordo", "111111", "11111", "F", "Via Nazionale, 131", new Date(1982, 7, 21), "Trafoi");
+        insert.addPaziente("Maria", "Galli", "101111", "10111", "F", "Via Venezia, 43", new Date(1992, 3, 21), "Roma");
+        insert.addPaziente("Aldo", "Siciliano", "100111", "10011", "M", "Piazza Bovio, 71", new Date(1988, 10, 1), "Bologna");
+        insert.addPaziente("Damiano", "Tarantino", "2030001", "20000", "F", "Vico Giganti, 68", new Date(1997, 1, 5), "Milano");
+        insert.addPaziente("Simonetta", "Scenna", "2400012", "20002", "F", "Via Agostino Depretis, 98", new Date(1987, 10, 5), "Prato");
+        insert.addPaziente("Rosa", "Bucco", "200222", "200122", "F", "Piazza Trieste e Trento, 70", new Date(1988, 10, 16), "Prunetto");
+        insert.addPaziente("Gaetano", "Panucci", "201222", "210222", "F", "Viale Augusto, 10", new Date(1978, 11, 16), "Avellino");
+        insert.addPaziente("Matteo", "Greco", "2222124", "222212", "M", "Corso Vittorio Emanuele, 95", new Date(1986, 12, 11), "Roma");
+        insert.addPaziente("Adelfina", "Pirozzi", "220400", "22000", "F", "Via Francesco Del Giudice, 109", new Date(1979, 1, 18), "Napoli");
+        insert.addPaziente("Eligio", "Beneventi", "222300", "22200", "M", "Via Valpantena, 17", new Date(1985, 2, 29), "Genova");
+        insert.addPaziente("Armanda", "Papa", "222230", "22220", "F", "Via Sergente Maggiore, 124", new Date(1989, 5, 5), "Cuneo");
+        insert.addPaziente("Gelmina", "Patto", "300030", "30000", "F", "Via Nizza, 148", new Date(1999, 10, 5), "Torino");
+        insert.addPaziente("Adelina", "Mazzi", "330006", "33000", "F", "Via Volto San Luca, 30", new Date(1996, 9, 6), "Torino");
+        insert.addPaziente("Cloe", "Benvenuti", "333050", "33300", "F", "Via Loreto, 81", new Date(1976, 6, 24), "Livorno");
+        insert.addPaziente("Garco", "Orio", "33330", "533330", "M", "Via degli Aldobrandeschi, 77", new Date(1985, 2, 29), "Genova");
+        insert.addPaziente("Santino", "Castiglione", "332333", "33333", "M", "Piazza Trieste e Trento, 127", new Date(1995, 12, 19), "Torino");
+        insert.addPaziente("Luca", "Pisano", "33303", "334303", "F", "Via Carlo Alberto, 18", new Date(1975, 11, 18), "Venezia");
+        insert.addPaziente("Livio", "Piccolo", "33033", "333033", "M", "Corso Vittorio Emanuele, 15", new Date(1976, 9, 30), "Bari");
+        insert.addPaziente("Mara", "Fellaci", "30333", "303433", "M", "Via San Pietro Ad Aram, 57", new Date(1948, 6, 6), "Modena");
+        insert.addPaziente("Gianna", "Mancini", "40000", "406000", "M", "Via Antonio Cecchi, 94", new Date(1983, 6, 6), "Brindisi");
+        insert.addPaziente("Arte", "Treviso", "40004", "4000774", "M", "Via di Santa Melania, 44", new Date(1984, 9, 17), "Avellino");
+
         //inserimento medici
         //medici ospedalieri
-        insert.addMedicoOspedaliero("Cassandra", "Trentini", "Ginecologia", new Date(1983,6,6), "1000", "1000", "1000", "28");
-        insert.addMedicoOspedaliero("Irma", "Folliero", "Immunologia", new Date(1982,16,6), "2000", "2000", "2000", "T4");
-        insert.addMedicoOspedaliero("Neera", "Li Fonti", "Cardiochirurgia", new Date(1937,15,4), "3000", "3000", "3000", "F6");
-        insert.addMedicoOspedaliero("Salomone", "Cocci", "Ematologia", new Date(1984,12,21), "4000", "4000", "4000", "C3");
-        insert.addMedicoOspedaliero("Alfio", "Panicucci", "Nefrologia", new Date(1980,3,1), "5000", "5000", "5000", "4A");
-        insert.addMedicoOspedaliero("Camilla", "Genovese", "Urologia", new Date(1978,13,15), "6000", "6000", "6000", "7V");
-        insert.addMedicoOspedaliero("Jacopo", "Zetticci", "Cardiologia", new Date(1977,11,25), "7000", "7000", "7000", "7S");
-        insert.addMedicoOspedaliero("Imelda", "Fanucci", "Endocrinologia", new Date(1977,12,2), "8000", "8000", "8000", "2R");
-        insert.addMedicoOspedaliero("Guglielma", "Bergamaschi", "Neurooncologia", new Date(1978,2,2), "9000", "9000", "9000", "2R");
-        insert.addMedicoOspedaliero("Luigina", "Longo", "Ginecologia", new Date(1976,7,22), "1001", "1001", "1001", "2T");
-        insert.addMedicoOspedaliero("Natale", "Milanesi", "Chirurgia generale", new Date(1974,9,18), "2002", "2002", "2002", "4E");
-        insert.addMedicoOspedaliero("Albertino", "Cremonesi", "Medicina generale", new Date(1975,11,8), "3003", "3003", "3003", "3R");
-        insert.addMedicoOspedaliero("Muzio", "Padovesi", "Radiologia", new Date(1977,1,17), "4004", "4004", "4004", "9R");
-        insert.addMedicoOspedaliero("Tolomeo", "Colombo", "Radiologia", new Date(1987,11,1), "5005", "5005", "5005", "4R");
-        insert.addMedicoOspedaliero("Immacolata", "Zetticci", "Neurologia", new Date(1986,2,14), "6006", "6006", "6006", "9N");
-        insert.addMedicoOspedaliero("Urania", "Sal", "Patologia orale", new Date(1988,4,17), "7007", "7007", "7007", "4O");
-        insert.addMedicoOspedaliero("Saverio", "Greco", "Ortopedia", new Date(1978,3,14), "8008", "8008", "8008", "O9");
-        insert.addMedicoOspedaliero("Quintilio", "Marcelo", "Medicina dello sport", new Date(1974,5,14), "9009", "9009", "9009", "S4");
-        insert.addMedicoOspedaliero("Imelda", "Bianchi", "Medicina interna", new Date(1975,7,13), "1101", "1101", "1101", "I2");
-        insert.addMedicoOspedaliero("Ubalda", "Bergamaschi", "Neurologia", new Date(1976,9,12), "2202", "2202", "2202", "N4");
-        insert.addMedicoOspedaliero("Stella", "De Luca", "Allergologia", new Date(1974,12,23), "3303", "3303", "3303", "A9");
-        insert.addMedicoOspedaliero("Tranquilla", "Nucci", "Anestesia", new Date(1976,2,24), "4404", "4404", "4404", "AN7");
-        insert.addMedicoOspedaliero("Silvio", "Lombardi", "Radiologia", new Date(1975,4,12), "5505", "5505", "5505", "R12");
-        insert.addMedicoOspedaliero("Jacopo", "Manfrin", "Cardiochirurgia", new Date(1975,4,12), "6606", "6606", "6606", "F7");
-        
+        insert.addMedicoOspedaliero("Cassandra", "Trentini", "Ginecologia", new Date(1983, 6, 6), "1000", "1000", "1000", "28");
+        insert.addMedicoOspedaliero("Irma", "Folliero", "Immunologia", new Date(1982, 16, 6), "2000", "2000", "2000", "T4");
+        insert.addMedicoOspedaliero("Neera", "Li Fonti", "Cardiochirurgia", new Date(1937, 15, 4), "3000", "3000", "3000", "F6");
+        insert.addMedicoOspedaliero("Salomone", "Cocci", "Ematologia", new Date(1984, 12, 21), "4000", "4000", "4000", "C3");
+        insert.addMedicoOspedaliero("Alfio", "Panicucci", "Nefrologia", new Date(1980, 3, 1), "5000", "5000", "5000", "4A");
+        insert.addMedicoOspedaliero("Camilla", "Genovese", "Urologia", new Date(1978, 13, 15), "6000", "6000", "6000", "7V");
+        insert.addMedicoOspedaliero("Jacopo", "Zetticci", "Cardiologia", new Date(1977, 11, 25), "7000", "7000", "7000", "7S");
+        insert.addMedicoOspedaliero("Imelda", "Fanucci", "Endocrinologia", new Date(1977, 12, 2), "8000", "8000", "8000", "2R");
+        insert.addMedicoOspedaliero("Guglielma", "Bergamaschi", "Neurooncologia", new Date(1978, 2, 2), "9000", "9000", "9000", "2R");
+        insert.addMedicoOspedaliero("Luigina", "Longo", "Ginecologia", new Date(1976, 7, 22), "1001", "1001", "1001", "2T");
+        insert.addMedicoOspedaliero("Natale", "Milanesi", "Chirurgia generale", new Date(1974, 9, 18), "2002", "2002", "2002", "4E");
+        insert.addMedicoOspedaliero("Albertino", "Cremonesi", "Medicina generale", new Date(1975, 11, 8), "3003", "3003", "3003", "3R");
+        insert.addMedicoOspedaliero("Muzio", "Padovesi", "Radiologia", new Date(1977, 1, 17), "4004", "4004", "4004", "9R");
+        insert.addMedicoOspedaliero("Tolomeo", "Colombo", "Radiologia", new Date(1987, 11, 1), "5005", "5005", "5005", "4R");
+        insert.addMedicoOspedaliero("Immacolata", "Zetticci", "Neurologia", new Date(1986, 2, 14), "6006", "6006", "6006", "9N");
+        insert.addMedicoOspedaliero("Urania", "Sal", "Patologia orale", new Date(1988, 4, 17), "7007", "7007", "7007", "4O");
+        insert.addMedicoOspedaliero("Saverio", "Greco", "Ortopedia", new Date(1978, 3, 14), "8008", "8008", "8008", "O9");
+        insert.addMedicoOspedaliero("Quintilio", "Marcelo", "Medicina dello sport", new Date(1974, 5, 14), "9009", "9009", "9009", "S4");
+        insert.addMedicoOspedaliero("Imelda", "Bianchi", "Medicina interna", new Date(1975, 7, 13), "1101", "1101", "1101", "I2");
+        insert.addMedicoOspedaliero("Ubalda", "Bergamaschi", "Neurologia", new Date(1976, 9, 12), "2202", "2202", "2202", "N4");
+        insert.addMedicoOspedaliero("Stella", "De Luca", "Allergologia", new Date(1974, 12, 23), "3303", "3303", "3303", "A9");
+        insert.addMedicoOspedaliero("Tranquilla", "Nucci", "Anestesia", new Date(1976, 2, 24), "4404", "4404", "4404", "AN7");
+        insert.addMedicoOspedaliero("Silvio", "Lombardi", "Radiologia", new Date(1975, 4, 12), "5505", "5505", "5505", "R12");
+        insert.addMedicoOspedaliero("Jacopo", "Manfrin", "Cardiochirurgia", new Date(1975, 4, 12), "6606", "6606", "6606", "F7");
+
         //medici esterni
-        insert.addMedicoEsterno("Arcangela", "Greece", "Cardiochirurgia", new Date(1976,8,1), "7707", "7707", "7707");
-        insert.addMedicoEsterno("Consuelo", "Longo", "Nefrologia", new Date(1975,11,2), "8808", "8808", "8808");
-        insert.addMedicoEsterno("Armando", "Sal", "Endocrinologia", new Date(1978,1,26), "9909", "9909", "9909");
-        insert.addMedicoEsterno("Immacolata", "Mazzanti", "Radiologia", new Date(1972,4,18), "1111", "1111", "1111");
-        insert.addMedicoEsterno("Frediana", "Iadanza", "Chirurgia generale", new Date(1973,5,8), "2222", "2222", "2222");
-        insert.addMedicoEsterno("Massimo", "Padovano", "Patologia orale", new Date(1972,9,13), "3333", "3333", "3333");
-        insert.addMedicoEsterno("Germana", "Ferri", "Medicina del lavoro", new Date(1972,4,10), "4444", "4444", "4444");
-        insert.addMedicoEsterno("Landolfo", "Lettiere", "Radiologia", new Date(1972,7,17), "5555", "5555", "5555");
-        insert.addMedicoEsterno("Amerigo", "Marcelo", "Radiologia", new Date(1977,7,17), "6666", "6666", "6666");
-        insert.addMedicoEsterno("Petronio", "Dellucci", "Chirurgia generale", new Date(1977,8,13), "7777", "7777", "7777");
-        
-        
-        insert.addPrestazioni(prestazioniMedico,prestazioniSala);
+        insert.addMedicoEsterno("Arcangela", "Greece", "Cardiochirurgia", new Date(1976, 8, 1), "7707", "7707", "7707");
+        insert.addMedicoEsterno("Consuelo", "Longo", "Nefrologia", new Date(1975, 11, 2), "8808", "8808", "8808");
+        insert.addMedicoEsterno("Armando", "Sal", "Endocrinologia", new Date(1978, 1, 26), "9909", "9909", "9909");
+        insert.addMedicoEsterno("Immacolata", "Mazzanti", "Radiologia", new Date(1972, 4, 18), "1111", "1111", "1111");
+        insert.addMedicoEsterno("Frediana", "Iadanza", "Chirurgia generale", new Date(1973, 5, 8), "2222", "2222", "2222");
+        insert.addMedicoEsterno("Massimo", "Padovano", "Patologia orale", new Date(1972, 9, 13), "3333", "3333", "3333");
+        insert.addMedicoEsterno("Germana", "Ferri", "Medicina del lavoro", new Date(1972, 4, 10), "4444", "4444", "4444");
+        insert.addMedicoEsterno("Landolfo", "Lettiere", "Radiologia", new Date(1972, 7, 17), "5555", "5555", "5555");
+        insert.addMedicoEsterno("Amerigo", "Marcelo", "Radiologia", new Date(1977, 7, 17), "6666", "6666", "6666");
+        insert.addMedicoEsterno("Petronio", "Dellucci", "Chirurgia generale", new Date(1977, 8, 13), "7777", "7777", "7777");
+
+        insert.addPrestazioni(prestazioniMedico, prestazioniSala);
         insert.linkStruttureMedici();
         insert.linkRepartiPazienti();
         insert.linkMediciPazienti();
         insert.addCartelleCliniche();
-        
+
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /*  String nome, String cognome, String cf, String password,
