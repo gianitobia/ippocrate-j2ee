@@ -17,12 +17,15 @@ import Entity.Ospedale;
 import Entity.OspedaleFacadeLocal;
 import Entity.Paziente;
 import Entity.PazienteFacadeLocal;
+import Entity.PrescrizioneMedica;
+import Entity.PrescrizioneMedicaFacadeLocal;
 import Entity.Prestazione;
 import Entity.PrestazioneMedico;
 import Entity.PrestazioneMedicoFacadeLocal;
 import Entity.PrestazioneSala;
 import Entity.PrestazioneSalaFacadeLocal;
 import Entity.RefertoMedico;
+import Entity.RefertoMedicoFacadeLocal;
 import Entity.Reparto;
 import Entity.RepartoFacadeLocal;
 import Entity.Sala;
@@ -41,6 +44,11 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
+    @EJB
+    private RefertoMedicoFacadeLocal refertoMedicoFacade;
+    @EJB
+    private PrescrizioneMedicaFacadeLocal prescrizioneMedicaFacade;
+
     @EJB
     private MedicoFacadeLocal medicoFacade;
 
@@ -79,13 +87,6 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
         p.setData_nascita(data_nascita);
         p.setLuogo_nascita(luogo_nascita);
         p.setIndirizzo(indirizzo);
-
-        CartellaClinica cc = new CartellaClinica();
-        cc.setPaziente(p);
-        cc.setLista_referti(new ArrayList<RefertoMedico>());
-        cc.setAnamnesi("Anamnesi vuota");
-        cartellaClinicaFacade.create(cc);
-        p.setCartella_clinica(cc);
         pazienteFacade.create(p);
         return p.getId();
     }
@@ -209,46 +210,54 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
         Sala s = salaFacade.find(id_sala);
         s.getLista_prestazioni().addAll(prestazioni);
     }
-    
+
     @Override
-    public void addPrestazioni(String[] prestazioniMedico, String[] prestazioniSala){
+    public void addPrestazioni(String[] prestazioniMedico, String[] prestazioniSala) {
         List<Medico> medici = medicoFacade.findAll();
+        List<PrestazioneMedico> prestazioni = new ArrayList<>();
         for(String pr : prestazioniMedico){
             PrestazioneMedico p = new PrestazioneMedico();
             p.setNome(pr);
             p.setDurata(30);
             p.setLista_medici(new ArrayList<Medico>());
             prestazioneMedicoFacade.create(p);
-            int n = (int)(Math.random()*4+1);
-            for(int i = 0; i<=n; i++){
-                Medico m = medici.get((int)(Math.random()*medici.size()));
-                m.addPrestazioniEffettuabili(p);
-                p.addMedico(m);
-            }
+            prestazioni.add(p);
         }
         
+        List<PrestazioneSala> prestazioniS = new ArrayList<>();
         for(String pr : prestazioniSala){
             PrestazioneSala p = new PrestazioneSala();
             p.setNome(pr);
             p.setDurata(30);
+            p.setLista_sale(new ArrayList<Sala>());
             prestazioneSalaFacade.create(p);
+            prestazioniS.add(p);
+        }
+        
+        for (Medico m : medici) {
+            int n = (int) (Math.random() * 4 + 1);
+            for (int i = 0; i <= n; i++) {
+                int ind = (int)(Math.random()*prestazioni.size());
+                m.addPrestazioniEffettuabili(prestazioni.get(ind));
+                prestazioni.get(ind).addMedico(m);
+            }
         }
     }
 
     @Override
     public void linkStruttureMedici() {
-    	List<MedicoEsterno> mediciE = medicoEsternoFacade.findAll();
+        List<MedicoEsterno> mediciE = medicoEsternoFacade.findAll();
         List<StudioMedico> studi = studioMedicoFacade.findAll();
-        for(MedicoEsterno m : mediciE){
-            int ind = (int) (Math.random()*studi.size());
+        for (MedicoEsterno m : mediciE) {
+            int ind = (int) (Math.random() * studi.size());
             m.setStudioMedico(studi.get(ind));
             studi.get(ind).addMedico(m);
         }
-        
+
         List<MedicoOspedaliero> mediciO = medicoOspedalieroFacade.findAll();
         List<Reparto> reparti = repartoFacade.findAll();
-        for(MedicoOspedaliero m : mediciO){
-            int ind = (int) (Math.random()*reparti.size());
+        for (MedicoOspedaliero m : mediciO) {
+            int ind = (int) (Math.random() * reparti.size());
             reparti.get(ind).addMedico(m);
         }
     }
@@ -257,10 +266,99 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
     public void linkRepartiPazienti() {
         List<Paziente> pazienti = pazienteFacade.findAll();
         List<Reparto> reparti = repartoFacade.findAll();
+        for (Paziente p : pazienti) {
+            int ind = (int) (Math.random() * reparti.size());
+            if (Math.random() > 0.6) {
+                reparti.get(ind).addPaziente(p);
+            }
+        }
+    }
+
+    @Override
+    public void addCartelleCliniche() {
+        List<Paziente> pazienti = pazienteFacade.findAll();
         for(Paziente p : pazienti){
-            int ind = (int) (Math.random()*reparti.size());
-            if(Math.random()>0.8)
-               reparti.get(ind).addPaziente(p);
+            CartellaClinica cc = new CartellaClinica();
+            cc.setPaziente(p);
+            ArrayList<RefertoMedico> referti = new ArrayList<RefertoMedico>();
+            String[] frasi_anamnesi = {"Scoliosi evidente.",
+                "Il padre all'età di 45 anni è stato colpito da angina pectoris",
+                "Il nonno materno era diabetico.",
+                "Nella fase infantile è stata soggetta a tutte le malattie infantili, compresa la rosolia.",
+                "Alletà di anni 16 si è manifestata l'allergia al glutine.",
+                "Sin dall'età di 18 anni si è manifestata ipertensione  arteriosa.",
+                "Nell'anno 2000 ha subito appendicectomia.",
+                "Nell'anno 2005 intervento per spina ossea all'arcata dentale superiore.",
+                "Nell'anno 2011 Angioplastica PTCA + Stent.",
+                "Durante l'anno 2004 accusava problemi respiratori che intensificavano con l'abbassarsi della temperatura  atmosferica.",
+                "Nonostante la vaccinazione anti-influenzale, è stata colpita da sindrome influenzale nel mese di marzo.",
+                "A seguito di un viaggio in Africa ha contratto la tubercolosi.",
+                "Contratto HIV per contatto con siringa.",
+                "Affetto da sindrome di Down diagnosticata all'eta di 4 anni.",
+                "Rottura del sopracciglio per aver sbattuto a una mensola.",
+                "Rottura del setto nasale causa pugno ricevuto in una rissa.",
+                "Frattura dello sterno in incidente d'auto, mentre era sotto effetto dell'alcool.",
+                "Lesione del legamento crociato anteriore durante una partita di calcetto."};
+
+            String[] medicinali = {
+                "Tegretol", "aspirina", "Benazepril", "Palexia", "Maalox", "Betadine", "Oki", "Dicloreum", "Diazepan", "Tachipirina", "Valontan", "Dolmen", "Sustanon", "Dissenten", "Enterostop", "Eskim", "Caravel", "Limpidex", "Levotuss", "Contramal", "Bonviva", "Mucosolvan", "Muscoril"
+            };
+
+            String anamnesi = "";
+            List<Medico> med = medicoFacade.findAll();
+            int righe = (int) (Math.random() * 2)+1;
+            for (int i = 0; i < righe; i++) {
+                int ind=(int) (Math.random() * frasi_anamnesi.length);
+                anamnesi += "\n" + frasi_anamnesi[ind];
+
+
+                RefertoMedico r = new RefertoMedico();
+                Date d = new Date((int)(1960+Math.random()*55),(int)(Math.random()*11+1),(int)(Math.random()*30+1));
+                r.setDataVisita(new Date());
+                r.setDiagnosi(frasi_anamnesi[ind]);
+
+                Medico m = med.get((int)(med.size()*Math.random()));
+                List<PrescrizioneMedica> pms = new ArrayList<PrescrizioneMedica>();
+                for(int j = 0;j<Math.random()*3;j++)
+                {
+                    PrescrizioneMedica pm = new PrescrizioneMedica();
+                    if(Math.random()<0.5)
+                        pm.setConsegnata("No");
+                    else
+                        pm.setConsegnata("Si");
+                    pm.setData_prescrizione(d);
+                    pm.setData_scadenza(new Date(2015,3,(int)(Math.random()*30+1)));
+                    pm.setMedicinale(medicinali[(int)(medicinali.length*Math.random())]);
+                    pm.setNumero_confezioni((int)(Math.random()*4));
+                    pm.setMedico(m);
+                    pm.setPaziente(p);
+                    pm.setReferto(r);
+                    prescrizioneMedicaFacade.create(pm);
+                    pms.add(pm);
+                }
+                r.setLista_prescrizioni(pms);
+                r.setMedico(m);
+                r.setPaziente(p);
+                r.setLista_images("");
+                r.setTipoVisita(m.getPrestazioniEffettuabili().get((int)(Math.random()*m.getPrestazioniEffettuabili().size())));
+                refertoMedicoFacade.create(r);
+                referti.add(r);
+            }
+            cc.setLista_referti(referti);
+            cc.setAnamnesi(anamnesi);
+            cartellaClinicaFacade.create(cc);
+            cc.setPaziente(p);
+            p.setCartella_clinica(cc);
+        }
+    }
+
+    @Override
+    public void linkMediciPazienti() {
+        List<Paziente> pazienti = pazienteFacade.findAll();
+        List<MedicoEsterno> medici = medicoEsternoFacade.findAll();
+        for (Paziente p : pazienti) {
+            int ind = (int) (Math.random() * medici.size());
+            medici.get(ind).getLista_pazienti().add(p);
         }
     }
 }

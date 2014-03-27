@@ -250,7 +250,7 @@ public class QuickPopulate extends HttpServlet {
         insert.addSalaStudio(id_sm_3, "Analisi", medico_pippa);
 
         //inserimento pazienti
-        insert.addPaziente("Arrigo", "Toscano", "10000", "10000", "M", "via cocci, 7", new Date(1963,12,10), "Torino");
+        insert.addPaziente("Arrigo", "Toscano", "10000", "10000", "M", "via Cocci, 7", new Date(1963,12,10), "Torino");
         insert.addPaziente("Raffaele", "Udinese", "11000", "11000", "M", "Via Acrone, 109", new Date(1980,8,6), "Sarezzano");
         insert.addPaziente("Francesco", "Arcuri", "11100", "11100", "M", "Corso Alcide De Gasperi, 32", new Date(1990,10,27), "Candide");
         insert.addPaziente("Macario", "Napolitano", "11110", "11110", "M", "Via Galvani, 74", new Date(1992,5,23), "Roma");
@@ -275,6 +275,33 @@ public class QuickPopulate extends HttpServlet {
         insert.addPaziente("Quinto", "Fallaci", "30333", "30333", "M", "Via San Pietro Ad Aram, 57", new Date(1948,6,6), "Modena");
         insert.addPaziente("Anselmo", "Mancini", "40000", "40000", "M", "Via Antonio Cecchi, 94", new Date(1983,6,6), "Brindisi");
         insert.addPaziente("Tolomeo", "Trevisano", "40004", "40004", "M", "Via di Santa Melania, 44", new Date(1984,9,17), "Venezia");
+        
+        insert.addPaziente("Giorgio", "Toscani", "10000", "10000", "M", "via Noci, 7", new Date(1963,12,10), "Torino");
+        insert.addPaziente("Roberto", "Marche", "11000", "11000", "M", "Via Acrone, 109", new Date(1980,8,6), "Sarezzano");
+        insert.addPaziente("Ugo", "Arcuri", "11100", "11100", "M", "Corso Alcide De Gasperi, 32", new Date(1990,10,27), "Candide");
+        insert.addPaziente("Marika", "Napoli", "11110", "11110", "M", "Via Galvani, 74", new Date(1992,5,23), "Roma");
+        insert.addPaziente("Olmo", "Lordo", "11111", "11111", "F", "Via Nazionale, 131", new Date(1982,7,21), "Trafoi");
+        insert.addPaziente("Maria", "Galli", "10111", "10111", "F", "Via Venezia, 43", new Date(1992,3,21), "Roma");
+        insert.addPaziente("Aldo", "Siciliano", "10011", "10011", "M", "Piazza Bovio, 71", new Date(1988,10,1), "Bologna");
+        insert.addPaziente("Damiano", "Tarantino", "20000", "20000", "F", "Vico Giganti, 68", new Date(1997,1,5), "Milano");
+        insert.addPaziente("Simonetta", "Scenna", "20002", "20002", "F", "Via Agostino Depretis, 98", new Date(1987,10,5), "Prato");
+        insert.addPaziente("Rosa", "Bucco", "20022", "20022", "F", "Piazza Trieste e Trento, 70", new Date(1988,10,16), "Prunetto");
+        insert.addPaziente("Gaetano", "Panucci", "20222", "20222", "F", "Viale Augusto, 10", new Date(1978,11,16), "Avellino");
+        insert.addPaziente("Matteo", "Greco", "22222", "22222", "M", "Corso Vittorio Emanuele, 95", new Date(1986,12,11), "Roma");
+        insert.addPaziente("Adelfina", "Pirozzi", "22000", "22000", "F", "Via Francesco Del Giudice, 109", new Date(1979,1,18), "Napoli");
+        insert.addPaziente("Eligio", "Beneventi", "22200", "22200", "M", "Via Valpantena, 17", new Date(1985,2,29), "Genova");
+        insert.addPaziente("Armanda", "Papa", "22220", "22220", "F", "Via Sergente Maggiore, 124", new Date(1989,5,5), "Cuneo");
+        insert.addPaziente("Gelmina", "Patto", "30000", "30000", "F", "Via Nizza, 148", new Date(1999,10,5), "Torino");
+        insert.addPaziente("Adelina", "Mazzi", "33000", "33000", "F", "Via Volto San Luca, 30", new Date(1996,9,6), "Torino");
+        insert.addPaziente("Cloe", "Benvenuti", "33300", "33300", "F", "Via Loreto, 81", new Date(1976,6,24), "Livorno");
+        insert.addPaziente("Garco", "Orio", "33330", "33330", "M", "Via degli Aldobrandeschi, 77", new Date(1985,2,29), "Genova");
+        insert.addPaziente("Santino", "Castiglione", "33333", "33333", "M", "Piazza Trieste e Trento, 127", new Date(1995,12,19), "Torino");
+        insert.addPaziente("Luca", "Pisano", "33303", "33303", "F", "Via Carlo Alberto, 18", new Date(1975,11,18), "Venezia");
+        insert.addPaziente("Livio", "Piccolo", "33033", "33033", "M", "Corso Vittorio Emanuele, 15", new Date(1976,9,30), "Bari");
+        insert.addPaziente("Mara", "Fellaci", "30333", "30333", "M", "Via San Pietro Ad Aram, 57", new Date(1948,6,6), "Modena");
+        insert.addPaziente("Gianna", "Mancini", "40000", "40000", "M", "Via Antonio Cecchi, 94", new Date(1983,6,6), "Brindisi");
+        insert.addPaziente("Arte", "Treviso", "40004", "40004", "M", "Via di Santa Melania, 44", new Date(1984,9,17), "Avellino");
+        
         
         //inserimento medici
         //medici ospedalieri
@@ -319,6 +346,8 @@ public class QuickPopulate extends HttpServlet {
         insert.addPrestazioni(prestazioniMedico,prestazioniSala);
         insert.linkStruttureMedici();
         insert.linkRepartiPazienti();
+        insert.linkMediciPazienti();
+        insert.addCartelleCliniche();
         
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
