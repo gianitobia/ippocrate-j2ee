@@ -214,6 +214,8 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
     public void addPrestazioniToSala(long id_sala, List<PrestazioneSala> prestazioni) {
         Sala s = salaFacade.find(id_sala);
         s.getLista_prestazioni().addAll(prestazioni);
+        for(PrestazioneSala p : prestazioni)
+            p.getLista_sale().add(s);
     }
 
     @Override
@@ -278,7 +280,7 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
         List<Reparto> reparti = repartoFacade.findAll();
         for (Paziente p : pazienti) {
             int ind = (int) (Math.random() * reparti.size());
-            if (Math.random() > 0.2) {
+            if (Math.random() > 0.3) {
                 reparti.get(ind).addPaziente(p);
                 p.setReparto_ricoverato(reparti.get(ind));
             }
