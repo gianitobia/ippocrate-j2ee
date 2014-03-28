@@ -24,6 +24,10 @@
         <servlet-name>MedicoServlet</servlet-name>
         <servlet-class>web.MedicoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>test_servlet</servlet-name>
+        <servlet-class>utils.test_servlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>MedicoServlet</servlet-name>
         <url-pattern>/MedicoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>test_servlet</servlet-name>
+        <url-pattern>/test_servlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
