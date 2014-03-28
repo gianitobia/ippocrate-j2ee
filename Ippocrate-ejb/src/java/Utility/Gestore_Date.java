@@ -9,6 +9,7 @@ package Utility;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -62,10 +63,11 @@ public class Gestore_Date {
             //imposto la data di prescrizione
             d = ndf.parse(data);
             dates[0] = d;
-            //calcolo il tempo successivo per la scadenza
-            long interval = interval_days * 86400000;
-            dates[1] = new Date();
-            dates[1].setTime(d.getTime() + interval);
+            //Prendo un calendario gli setto al data[0] e ci agigungo i giorni in input
+            Calendar c = Calendar.getInstance();
+            c.setTime(d);
+            c.add(Calendar.DATE, interval_days);
+            dates[1] = c.getTime();
         } catch (ParseException ex) {
             Logger.getLogger(Gestore_Date.class.getName()).log(Level.SEVERE, null, ex);
         }

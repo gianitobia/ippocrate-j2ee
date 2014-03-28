@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -45,7 +46,9 @@ public class test_servlet extends HttpServlet {
             out.println("<h1>Servlet test_servlet at " + request.getContextPath() + "</h1>");
 
             out.println(Gestore_Date.generateStringFromDate(Gestore_Date.generateDateFromString("12/10/1988", '/'), '/'));
-
+            Date[] ds = Gestore_Date.generateDateInterval(90);
+            out.println(Gestore_Date.generateStringFromDate(ds[0], '-'));
+            out.println(Gestore_Date.generateStringFromDate(ds[1], '-'));
             out.println("</body>");
             out.println("</html>");
         }
