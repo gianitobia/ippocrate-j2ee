@@ -7,6 +7,7 @@ package Utility;
 
 import Entity.CartellaClinica;
 import Entity.Paziente;
+import Entity.PrescrizioneMedica;
 import Entity.RefertoMedico;
 import java.io.IOException;
 import java.io.StringWriter;
@@ -127,6 +128,43 @@ public class JSONUtility {
             l.add(m);
         }
         obj.put("referti", l);
+
+        StringWriter out = new StringWriter();
+        String jsonText = "";
+        try {
+            obj.writeJSONString(out);
+            jsonText = out.toString();
+        } catch (IOException e) {
+            return JSONFail;
+        }
+        return jsonText;
+    }
+
+    public static String listaPMToJSON(List<PrescrizioneMedica> lpm) {
+//ESEMPIO {
+//            "prescrizioni": [
+//                              {"idPM": "34", "dataPrescrizione": "15/04/2013", "dataScadenza": "01/05/2013", "medicinale": "Analgesico", "quantita": "3"},
+//                              {"idPM": "33", "dataPrescrizione": "18/07/2013", "dataScadenza": "18/02/2014", "medicinale": "Antipiretico", "quantita": "1"},
+//                              {"idPM": "21", "dataPrescrizione": "22/02/2013", "dataScadenza": "15/04/2014", "medicinale": "Cerotti", "quantita": "5"}
+//                            ]
+//        }
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        
+        JSONObject obj = new JSONObject();
+
+        List l = new LinkedList();
+
+        for (PrescrizioneMedica pm : lpm) {
+            Map m = new HashMap();
+            m.put("idPM", pm.getId().toString());
+            m.put("dataPrescrizione", sdf.format(pm.getData_prescrizione()));
+            m.put("dataScadenza", sdf.format(pm.getData_scadenza()));
+            m.put("medicinale", pm.getMedicinale());
+            m.put("quantita", pm.getNumero_confezioni());
+            l.add(m);
+        }
+        obj.put("prescrizioni", l);
 
         StringWriter out = new StringWriter();
         String jsonText = "";

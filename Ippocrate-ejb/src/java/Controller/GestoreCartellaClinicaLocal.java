@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import Entity.PrescrizioneMedica;
 import Transient.CartellaClinicaTransient;
 import Transient.PrescrizioneMedicaTransient;
 import java.util.List;
@@ -19,8 +20,10 @@ public interface GestoreCartellaClinicaLocal {
 
     CartellaClinicaTransient ottieniCC(Long pazienteId);
 
-    List<PrescrizioneMedicaTransient> ottieniPM(Long pazienteId);
+    List<PrescrizioneMedicaTransient> ottieniPMT(Long pazienteId);
 
     PrescrizioneMedicaTransient segnaConsegnata(Long idPM);
+
+    List<PrescrizioneMedica> ottieniPM(Long idRM);
 
 }

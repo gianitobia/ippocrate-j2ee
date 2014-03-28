@@ -78,7 +78,7 @@ public class WSPrescrizioneMedica {
      */
     @WebMethod(operationName = "getPMTransient")
     public List<PrescrizioneMedicaTransient> getPMTransient(@WebParam(name = "idPaziente") Long idPaziente) {
-        return gestoreCartellaClinica.ottieniPM(idPaziente);
+        return gestoreCartellaClinica.ottieniPMT(idPaziente);
     }
 
     /**
