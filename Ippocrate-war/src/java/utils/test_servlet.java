@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package utils;
 
+import Utility.Gestore_Date;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
@@ -32,21 +32,20 @@ public class test_servlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
+
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet test_servlet</title>");            
+            out.println("<title>Servlet test_servlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet test_servlet at " + request.getContextPath() + "</h1>");
 
             out.println(Gestore_Date.generateStringFromDate(Gestore_Date.generateDateFromString("12/10/1988", '/'), '/'));
-            
+
             out.println("</body>");
             out.println("</html>");
         }

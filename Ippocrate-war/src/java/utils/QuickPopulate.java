@@ -23,7 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import static utils.Gestore_Date.*;
+import static Utility.Gestore_Date.*;
 
 /**
  *
@@ -248,7 +248,8 @@ public class QuickPopulate extends HttpServlet {
         insert.addSalaStudio(id_sm_1, "Analisi", medico_pippa);
         insert.addSalaStudio(id_sm_2, "Analisi", medico_pippa);
         insert.addSalaStudio(id_sm_3, "Analisi", medico_pippa);
-
+        
+        
         //inserimento pazienti
         insert.addPaziente("Arrigo", "Toscano", "10000", "10000", "M", "via Cocci, 7", generateDate(), "Torino");
         insert.addPaziente("Raffaele", "Udinese", "11000", "11000", "M", "Via Acrone, 109", generateDate(), "Sarezzano");
