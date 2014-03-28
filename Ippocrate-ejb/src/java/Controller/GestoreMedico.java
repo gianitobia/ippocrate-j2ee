@@ -251,7 +251,7 @@ public class GestoreMedico implements GestoreMedicoLocal {
         pm.setData_scadenza(dataScadenza);
         pm.setMedico(m);
         pm.setPaziente(paziente);
-        pm.setReferto(rm);        
+        pm.setReferto(rm);
         prescrizioneMedicaFacade.create(pm);
         lpm.add(pm);
 

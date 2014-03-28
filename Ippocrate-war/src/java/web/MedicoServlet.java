@@ -91,7 +91,7 @@ public class MedicoServlet extends HttpServlet {
                 Medico m = (Medico) s.getAttribute("medico");
                 Long idReferto = cc.getLista_referti().get(numReferto).getId();
                 RefertoMedico rm = gestoreMedico.modificaDettagliRefMedico(idReferto, m, nuovoIndexOfPrest, nuovaDiagnosi, nuovaDataVisita);
-                cc.getLista_referti().set(numReferto, rm);                               
+                cc.getLista_referti().set(numReferto, rm);
                 s.setAttribute("CCpaziente", cc);
                 response.sendRedirect("rm-paziente.jsp?num=" + numReferto);
             } else if (request.getParameter("action").startsWith("aggiungiMultimediaRefMedico_")) {
@@ -101,7 +101,7 @@ public class MedicoServlet extends HttpServlet {
                 CartellaClinica cc = (CartellaClinica) s.getAttribute("CCpaziente");
                 Long idReferto = cc.getLista_referti().get(numReferto).getId();
                 RefertoMedico rm = gestoreMedico.aggiungiMultimediaRefMedico(idReferto, filePart, fileName);
-                cc.getLista_referti().set(numReferto, rm);                
+                cc.getLista_referti().set(numReferto, rm);
                 s.setAttribute("CCpaziente", cc);
                 response.sendRedirect("rm-paziente.jsp?num=" + numReferto);
             } else if (request.getParameter("action").startsWith("modificaPresMedica_")) {
@@ -112,7 +112,7 @@ public class MedicoServlet extends HttpServlet {
                 int numConf = Integer.parseInt(request.getParameter("numConfN"));
                 String dataPres = request.getParameter("dataPresN");
                 String dataScad = request.getParameter("dataScadN");
-                CartellaClinica cc = (CartellaClinica) s.getAttribute("CCpaziente");                
+                CartellaClinica cc = (CartellaClinica) s.getAttribute("CCpaziente");
                 Long idPres = cc.getLista_referti().get(numReferto).getLista_prescrizioni().get(numPres).getId();
                 PrescrizioneMedica pm = gestoreMedico.modificaPresMedica(idPres, medic, numConf, dataPres, dataScad);
                 cc.getLista_referti().get(numReferto).getLista_prescrizioni().set(numPres, pm);
@@ -124,9 +124,9 @@ public class MedicoServlet extends HttpServlet {
                 int numConf = Integer.parseInt(request.getParameter("numConf"));
                 String dataPres = request.getParameter("dataPres");
                 String dataScad = request.getParameter("dataScad");
-                CartellaClinica cc = (CartellaClinica) s.getAttribute("CCpaziente"); 
+                CartellaClinica cc = (CartellaClinica) s.getAttribute("CCpaziente");
                 Medico m = (Medico) s.getAttribute("medico");
-                Long idReferto = cc.getLista_referti().get(numReferto).getId();                
+                Long idReferto = cc.getLista_referti().get(numReferto).getId();
                 PrescrizioneMedica pm = gestoreMedico.aggiungiPresMedica(idReferto, medic, numConf, dataPres, dataScad, cc.getPaziente(), m);
                 cc.getLista_referti().get(numReferto).getLista_prescrizioni().add(pm);
                 s.setAttribute("CCpaziente", cc);

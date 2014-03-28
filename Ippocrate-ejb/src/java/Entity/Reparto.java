@@ -38,6 +38,7 @@ public class Reparto implements Serializable {
 
     @OneToMany(mappedBy = "reparto_ricoverato")
     private List<Paziente> lista_pazienti;
+
     @OneToOne
     private MedicoOspedaliero primario;
 

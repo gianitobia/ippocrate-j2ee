@@ -11,19 +11,23 @@ import Entity.MedicoEsternoFacadeLocal;
 import Entity.MedicoOspedalieroFacadeLocal;
 import Entity.OspedaleFacadeLocal;
 import Entity.PazienteFacadeLocal;
+import Entity.PrestazioneMedico;
+import Entity.PrestazioneSala;
 import Entity.RepartoFacadeLocal;
 import Entity.SalaFacadeLocal;
 import Entity.StudioMedicoFacadeLocal;
+import static Utility.Gestore_Date.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import static Utility.Gestore_Date.*;
 
 /**
  *
@@ -74,8 +78,7 @@ public class QuickPopulate extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String[] prestazioniSala = {
-            "Amniocentesi",
+        String[] prestazioniSala = {"Amniocentesi",
             "Biopsia cervicovaginale ",
             "Ecocolordoppler del seno",
             "Ecocolordoppler ostetrico-ginecologico ",
@@ -128,11 +131,20 @@ public class QuickPopulate extends HttpServlet {
             "Rinoscopia",
             "Fondo oculare",
             "Fonometria",
+            "Risonanza magnetica",
             "Ago aspirato ecoguidato del seno",
             "Agobiopsia del seno",
             "Dermatoscopia del seno",
             "Ecocolordoppler del seno",
-            "Ecografia del seno"};
+            "Ecografia del seno",
+            "Analisi del sangue",
+            "Analisi delle feci",
+            "Test antidroga",
+            "Ingessatura di un arto superiore",
+            "Ingessatura di un arto inferiore",
+            "Sostituzione del gesso",
+            "Rimozione del gesso"
+        };
 
         String[] prestazioniMedico = {
             "Visita ginecologica",
@@ -185,71 +197,91 @@ public class QuickPopulate extends HttpServlet {
 
         //creazione reparti
         Long id_r_1 = insert.addReparto(id_o_1, "Cardiologia", medico_dio);
-        Long id_r_2 = insert.addReparto(id_o_1, "Chirurgia generale", medico_dio);
-        Long id_r_3 = insert.addReparto(id_o_1, "Dialisi", medico_dio);
-        Long id_r_4 = insert.addReparto(id_o_1, "Gastroenterologia", medico_dio);
-        Long id_r_5 = insert.addReparto(id_o_1, "Geriatria", medico_dio);
-        Long id_r_6 = insert.addReparto(id_o_1, "Radiologia", medico_dio);
+        //Long id_r_2 = insert.addReparto(id_o_1, "Chirurgia generale", medico_dio);
+        //Long id_r_3 = insert.addReparto(id_o_1, "Dialisi", medico_dio);
+        //Long id_r_4 = insert.addReparto(id_o_1, "Gastroenterologia", medico_dio);
+        //Long id_r_5 = insert.addReparto(id_o_1, "Geriatria", medico_dio);
+        //Long id_r_6 = insert.addReparto(id_o_1, "Radiologia", medico_dio);
         Long id_r_7 = insert.addReparto(id_o_1, "Ortopedia", medico_dio);
         Long id_r_8 = insert.addReparto(id_o_1, "Laboratorio analisi", medico_dio);
         Long id_r_9 = insert.addReparto(id_o_1, "Medicina fisica e riabilitazione", medico_dio);
-        Long id_r_10 = insert.addReparto(id_o_1, "Ortopedia e Traumatologia", medico_dio);
+        //Long id_r_10 = insert.addReparto(id_o_1, "Ortopedia e Traumatologia", medico_dio);
 
-        Long id_r_11 = insert.addReparto(id_o_2, "Cardiologia", medico_dio);
-        Long id_r_12 = insert.addReparto(id_o_2, "Chirurgia generale", medico_dio);
-        Long id_r_13 = insert.addReparto(id_o_2, "Dialisi", medico_dio);
-        Long id_r_14 = insert.addReparto(id_o_2, "Gastroenterologia", medico_dio);
-        Long id_r_15 = insert.addReparto(id_o_2, "Geriatria", medico_dio);
+        //Long id_r_11 = insert.addReparto(id_o_2, "Cardiologia", medico_dio);
+        //Long id_r_12 = insert.addReparto(id_o_2, "Chirurgia generale", medico_dio);
+        //Long id_r_13 = insert.addReparto(id_o_2, "Dialisi", medico_dio);
+        //Long id_r_14 = insert.addReparto(id_o_2, "Gastroenterologia", medico_dio);
+        //Long id_r_15 = insert.addReparto(id_o_2, "Geriatria", medico_dio);
         Long id_r_16 = insert.addReparto(id_o_2, "Radiologia", medico_dio);
         Long id_r_17 = insert.addReparto(id_o_2, "Ortopedia", medico_dio);
         Long id_r_18 = insert.addReparto(id_o_2, "Laboratorio analisi", medico_dio);
         Long id_r_19 = insert.addReparto(id_o_2, "Medicina fisica e riabilitazione", medico_dio);
-        Long id_r_20 = insert.addReparto(id_o_2, "Ortopedia e Traumatologia", medico_dio);
+        //Long id_r_20 = insert.addReparto(id_o_2, "Ortopedia e Traumatologia", medico_dio);
 
         Long id_r_21 = insert.addReparto(id_o_3, "Cardiologia", medico_dio);
-        Long id_r_22 = insert.addReparto(id_o_3, "Chirurgia generale", medico_dio);
-        Long id_r_23 = insert.addReparto(id_o_3, "Dialisi", medico_dio);
-        Long id_r_24 = insert.addReparto(id_o_3, "Gastroenterologia", medico_dio);
-        Long id_r_25 = insert.addReparto(id_o_3, "Geriatria", medico_dio);
+        //Long id_r_22 = insert.addReparto(id_o_3, "Chirurgia generale", medico_dio);
+        //Long id_r_23 = insert.addReparto(id_o_3, "Dialisi", medico_dio);
+        //Long id_r_24 = insert.addReparto(id_o_3, "Gastroenterologia", medico_dio);
+        //Long id_r_25 = insert.addReparto(id_o_3, "Geriatria", medico_dio);
         Long id_r_26 = insert.addReparto(id_o_3, "Radiologia", medico_dio);
-        Long id_r_27 = insert.addReparto(id_o_3, "Ortopedia", medico_dio);
-        Long id_r_28 = insert.addReparto(id_o_3, "Laboratorio analisi", medico_dio);
+        //Long id_r_27 = insert.addReparto(id_o_3, "Ortopedia", medico_dio);
+        //Long id_r_28 = insert.addReparto(id_o_3, "Laboratorio analisi", medico_dio);
         Long id_r_29 = insert.addReparto(id_o_3, "Medicina fisica e riabilitazione", medico_dio);
-        Long id_r_30 = insert.addReparto(id_o_3, "Ortopedia e Traumatologia", medico_dio);
+        //Long id_r_30 = insert.addReparto(id_o_3, "Ortopedia e Traumatologia", medico_dio);
 
         Long id_r_31 = insert.addReparto(id_o_4, "Cardiologia", medico_dio);
-        Long id_r_32 = insert.addReparto(id_o_4, "Chirurgia generale", medico_dio);
-        Long id_r_33 = insert.addReparto(id_o_4, "Dialisi", medico_dio);
-        Long id_r_34 = insert.addReparto(id_o_4, "Gastroenterologia", medico_dio);
-        Long id_r_35 = insert.addReparto(id_o_4, "Geriatria", medico_dio);
+        //Long id_r_32 = insert.addReparto(id_o_4, "Chirurgia generale", medico_dio);
+        //Long id_r_33 = insert.addReparto(id_o_4, "Dialisi", medico_dio);
+        //Long id_r_34 = insert.addReparto(id_o_4, "Gastroenterologia", medico_dio);
+        //Long id_r_35 = insert.addReparto(id_o_4, "Geriatria", medico_dio);
         Long id_r_36 = insert.addReparto(id_o_4, "Radiologia", medico_dio);
         Long id_r_37 = insert.addReparto(id_o_4, "Ortopedia", medico_dio);
-        Long id_r_38 = insert.addReparto(id_o_4, "Laboratorio analisi", medico_dio);
-        Long id_r_39 = insert.addReparto(id_o_4, "Medicina fisica e riabilitazione", medico_dio);
-        Long id_r_40 = insert.addReparto(id_o_4, "Ortopedia e Traumatologia", medico_dio);
+        //Long id_r_38 = insert.addReparto(id_o_4, "Laboratorio analisi", medico_dio);
+        //Long id_r_39 = insert.addReparto(id_o_4, "Medicina fisica e riabilitazione", medico_dio);
+        //Long id_r_40 = insert.addReparto(id_o_4, "Ortopedia e Traumatologia", medico_dio);
 
         //inserimento sale ospedale
-        insert.addSalaOspedale(id_r_6, "Radiografia", medico_dio);
-        insert.addSalaOspedale(id_r_26, "Radiografia", medico_dio);
-        insert.addSalaOspedale(id_r_36, "Radiografia", medico_dio);
-        insert.addSalaOspedale(id_r_6, "RMN", medico_dio);
-        insert.addSalaOspedale(id_r_26, "RMN", medico_dio);
-        insert.addSalaOspedale(id_r_36, "RMN", medico_dio);
-        insert.addSalaOspedale(id_r_8, "Analisi", medico_dio);
-        insert.addSalaOspedale(id_r_28, "Analisi", medico_dio);
-        insert.addSalaOspedale(id_r_38, "Analisi", medico_dio);
+        //Long id_s_1 = insert.addSalaOspedale(id_r_6, "Radiografia", medico_dio);
+        Long id_s_2 = insert.addSalaOspedale(id_r_16, "Radiografia", medico_dio);
+        Long id_s_3 = insert.addSalaOspedale(id_r_26, "Radiografia", medico_dio);
+        Long id_s_4 = insert.addSalaOspedale(id_r_36, "Radiografia", medico_dio);
+        //Long id_s_5 = insert.addSalaOspedale(id_r_6, "RMN", medico_dio);
+        Long id_s_6 = insert.addSalaOspedale(id_r_16, "RMN", medico_dio);
+        Long id_s_7 = insert.addSalaOspedale(id_r_26, "RMN", medico_dio);
+        Long id_s_8 = insert.addSalaOspedale(id_r_36, "RMN", medico_dio);
+        Long id_s_9 = insert.addSalaOspedale(id_r_8, "Analisi", medico_dio);
+        Long id_s_10 = insert.addSalaOspedale(id_r_18, "Analisi", medico_dio);
+        //Long id_s_11 = insert.addSalaOspedale(id_r_28, "Analisi", medico_dio);
+        //Long id_s_12 = insert.addSalaOspedale(id_r_38, "Analisi", medico_dio);
+        Long id_s_13 = insert.addSalaOspedale(id_r_7, "Sala gessi", medico_dio);
+        Long id_s_14 = insert.addSalaOspedale(id_r_17, "Sala gessi", medico_dio);
+        //Long id_s_15 = insert.addSalaOspedale(id_r_27, "Sala gessi", medico_dio);
+        Long id_s_16 = insert.addSalaOspedale(id_r_37, "Sala gessi", medico_dio);
+        Long id_s_17 = insert.addSalaOspedale(id_r_9, "Palestra per riabilitazione", medico_dio);
+        Long id_s_18 = insert.addSalaOspedale(id_r_19, "Palestra per riabilitazione", medico_dio);
+        Long id_s_19 = insert.addSalaOspedale(id_r_29, "Palestra per riabilitazione", medico_dio);
+        //Long id_s_20 = insert.addSalaOspedale(id_r_39, "Palestra per riabilitazione", medico_dio);
+        Long id_s_21 = insert.addSalaOspedale(id_r_1, "Elettrocardiografia", medico_dio);
+        //Long id_s_22 = insert.addSalaOspedale(id_r_11, "Elettrocardiografia", medico_dio);
+        Long id_s_23 = insert.addSalaOspedale(id_r_21, "Elettrocardiografia", medico_dio);
+        Long id_s_24 = insert.addSalaOspedale(id_r_31, "Elettrocardiografia", medico_dio);
 
         //inserimento sale studi medici
-        insert.addSalaStudio(id_sm_1, "Radiografia", medico_pippa);
-        insert.addSalaStudio(id_sm_1, "RMN", medico_pippa);
-        insert.addSalaStudio(id_sm_2, "Radiografia", medico_pippa);
-        insert.addSalaStudio(id_sm_2, "RMN", medico_pippa);
-        insert.addSalaStudio(id_sm_3, "RMN", medico_pippa);
-        insert.addSalaStudio(id_sm_1, "Analisi", medico_pippa);
-        insert.addSalaStudio(id_sm_2, "Analisi", medico_pippa);
-        insert.addSalaStudio(id_sm_3, "Analisi", medico_pippa);
-        
-        
+        Long id_s_25 = insert.addSalaStudio(id_sm_1, "Radiografia", medico_pippa);
+        Long id_s_26 = insert.addSalaStudio(id_sm_1, "RMN", medico_pippa);
+        Long id_s_27 = insert.addSalaStudio(id_sm_2, "Radiografia", medico_pippa);
+        Long id_s_28 = insert.addSalaStudio(id_sm_2, "RMN", medico_pippa);
+        Long id_s_29 = insert.addSalaStudio(id_sm_3, "RMN", medico_pippa);
+        Long id_s_30 = insert.addSalaStudio(id_sm_1, "Analisi", medico_pippa);
+        Long id_s_31 = insert.addSalaStudio(id_sm_2, "Analisi", medico_pippa);
+        Long id_s_32 = insert.addSalaStudio(id_sm_3, "Analisi", medico_pippa);
+        Long id_s_33 = insert.addSalaStudio(id_sm_1, "Palestra per riabilitazione", medico_pippa);
+        Long id_s_34 = insert.addSalaStudio(id_sm_2, "Palestra per riabilitazione", medico_pippa);
+        Long id_s_35 = insert.addSalaStudio(id_sm_3, "Palestra per riabilitazione", medico_pippa);
+        Long id_s_36 = insert.addSalaStudio(id_sm_1, "Elettrocardiografia", medico_pippa);
+        Long id_s_37 = insert.addSalaStudio(id_sm_2, "Elettrocardiografia", medico_pippa);
+        Long id_s_38 = insert.addSalaStudio(id_sm_3, "Elettrocardiografia", medico_pippa);
+
         //inserimento pazienti
         insert.addPaziente("Arrigo", "Toscano", "10000", "10000", "M", "via Cocci, 7", generateDate(), "Torino");
         insert.addPaziente("Raffaele", "Udinese", "11000", "11000", "M", "Via Acrone, 109", generateDate(), "Sarezzano");
@@ -342,7 +374,73 @@ public class QuickPopulate extends HttpServlet {
         insert.addMedicoEsterno("Amerigo", "Marcelo", "Radiologia", generateDate(), "6666", "6666", "6666");
         insert.addMedicoEsterno("Petronio", "Dellucci", "Chirurgia generale", generateDate(), "7777", "7777", "7777");
 
-        insert.addPrestazioni(prestazioniMedico, prestazioniSala);
+        List<PrestazioneMedico> listPrestazioniMedico = insert.addPrestazioniMedico(prestazioniMedico);
+        List<PrestazioneSala> listPrestazioniSala = insert.addPrestazioniSala(prestazioniSala);
+
+        List<PrestazioneSala> prest = new ArrayList<>();
+        prest.add(listPrestazioniSala.get(7));
+        prest.add(listPrestazioniSala.get(57));
+        //insert.addPrestazioniToSala(id_s_1, prest);
+        insert.addPrestazioniToSala(id_s_2, prest);
+        insert.addPrestazioniToSala(id_s_3, prest);
+        insert.addPrestazioniToSala(id_s_4, prest);
+        insert.addPrestazioniToSala(id_s_27, prest);
+        insert.addPrestazioniToSala(id_s_25, prest);
+
+        prest = new ArrayList<>();
+        prest.add(listPrestazioniSala.get(53));
+        //insert.addPrestazioniToSala(id_s_5, prest);
+        insert.addPrestazioniToSala(id_s_6, prest);
+        insert.addPrestazioniToSala(id_s_7, prest);
+        insert.addPrestazioniToSala(id_s_8, prest);
+        insert.addPrestazioniToSala(id_s_26, prest);
+        insert.addPrestazioniToSala(id_s_28, prest);
+        insert.addPrestazioniToSala(id_s_29, prest);
+
+        prest = new ArrayList<>();
+        prest.add(listPrestazioniSala.get(60));
+        prest.add(listPrestazioniSala.get(61));
+        prest.add(listPrestazioniSala.get(59));
+        insert.addPrestazioniToSala(id_s_9, prest);
+        insert.addPrestazioniToSala(id_s_10, prest);
+        //insert.addPrestazioniToSala(id_s_11, prest);
+        //insert.addPrestazioniToSala(id_s_12, prest);
+        insert.addPrestazioniToSala(id_s_30, prest);
+        insert.addPrestazioniToSala(id_s_31, prest);
+        insert.addPrestazioniToSala(id_s_32, prest);
+
+        prest = new ArrayList<>();
+        prest.add(listPrestazioniSala.get(64));
+        prest.add(listPrestazioniSala.get(65));
+        prest.add(listPrestazioniSala.get(62));
+        prest.add(listPrestazioniSala.get(63));
+        insert.addPrestazioniToSala(id_s_13, prest);
+        insert.addPrestazioniToSala(id_s_14, prest);
+        //insert.addPrestazioniToSala(id_s_15, prest);
+        insert.addPrestazioniToSala(id_s_16, prest);
+
+        prest = new ArrayList<>();
+        prest.add(listPrestazioniSala.get(24));
+        prest.add(listPrestazioniSala.get(46));
+        insert.addPrestazioniToSala(id_s_17, prest);
+        insert.addPrestazioniToSala(id_s_18, prest);
+        insert.addPrestazioniToSala(id_s_19, prest);
+        //insert.addPrestazioniToSala(id_s_20, prest);
+        insert.addPrestazioniToSala(id_s_33, prest);
+        insert.addPrestazioniToSala(id_s_34, prest);
+        insert.addPrestazioniToSala(id_s_35, prest);
+
+        prest = new ArrayList<>();
+        prest.add(listPrestazioniSala.get(11));
+        prest.add(listPrestazioniSala.get(31));
+        insert.addPrestazioniToSala(id_s_21, prest);
+        //insert.addPrestazioniToSala(id_s_22, prest);
+        insert.addPrestazioniToSala(id_s_23, prest);
+        insert.addPrestazioniToSala(id_s_24, prest);
+        insert.addPrestazioniToSala(id_s_36, prest);
+        insert.addPrestazioniToSala(id_s_37, prest);
+        insert.addPrestazioniToSala(id_s_38, prest);
+
         insert.linkStruttureMedici();
         insert.linkRepartiPazienti();
         insert.linkMediciPazienti();

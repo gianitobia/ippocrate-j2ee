@@ -217,7 +217,7 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
     }
 
     @Override
-    public void addPrestazioni(String[] prestazioniMedico, String[] prestazioniSala) {
+    public List<PrestazioneMedico> addPrestazioniMedico(String[] prestazioniMedico) {
         List<Medico> medici = medicoFacade.findAll();
         List<PrestazioneMedico> prestazioni = new ArrayList<>();
         for (String pr : prestazioniMedico) {
@@ -229,6 +229,19 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
             prestazioni.add(p);
         }
 
+        for (Medico m : medici) {
+            int n = (int) (Math.random() * 4 + 1);
+            for (int i = 0; i <= n; i++) {
+                int ind = (int) (Math.random() * prestazioni.size());
+                m.addPrestazioniEffettuabili(prestazioni.get(ind));
+                prestazioni.get(ind).addMedico(m);
+            }
+        }
+        return prestazioni;
+    }
+
+    @Override
+    public List<PrestazioneSala> addPrestazioniSala(String[] prestazioniSala) {
         List<PrestazioneSala> prestazioniS = new ArrayList<>();
         for (String pr : prestazioniSala) {
             PrestazioneSala p = new PrestazioneSala();
@@ -238,15 +251,7 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
             prestazioneSalaFacade.create(p);
             prestazioniS.add(p);
         }
-
-        for (Medico m : medici) {
-            int n = (int) (Math.random() * 4 + 1);
-            for (int i = 0; i <= n; i++) {
-                int ind = (int) (Math.random() * prestazioni.size());
-                m.addPrestazioniEffettuabili(prestazioni.get(ind));
-                prestazioni.get(ind).addMedico(m);
-            }
-        }
+        return prestazioniS;
     }
 
     @Override
@@ -273,8 +278,9 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
         List<Reparto> reparti = repartoFacade.findAll();
         for (Paziente p : pazienti) {
             int ind = (int) (Math.random() * reparti.size());
-            if (Math.random() > 0.6) {
+            if (Math.random() > 0.2) {
                 reparti.get(ind).addPaziente(p);
+                p.setReparto_ricoverato(reparti.get(ind));
             }
         }
     }
@@ -317,9 +323,9 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
                 anamnesi += "\n" + frasi_anamnesi[ind];
 
                 RefertoMedico r = new RefertoMedico();
-                
+
                 DateFormat ndf = new SimpleDateFormat("yyyy-mm-dd");
-                String data = ((int) (1960 + Math.random() * 55)) + "/"+ ((int) (Math.random() * 11 + 1))+"/"+ ((int) (Math.random() * 30 + 1));
+                String data = ((int) (1960 + Math.random() * 55)) + "/" + ((int) (Math.random() * 11 + 1)) + "/" + ((int) (Math.random() * 30 + 1));
                 Date d = new Date();
                 try {
                     d = ndf.parse(data);
@@ -328,9 +334,9 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
                 }
                 r.setDataVisita(d);
                 r.setDiagnosi(frasi_anamnesi[ind]);
-                
+
                 Medico m = med.get((int) (med.size() * Math.random()));
-                List<PrescrizioneMedica> pms = new ArrayList<PrescrizioneMedica>();
+                List<PrescrizioneMedica> pms = new ArrayList<>();
                 for (int j = 0; j < Math.random() * 3; j++) {
                     PrescrizioneMedica pm = new PrescrizioneMedica();
                     if (Math.random() < 0.5) {
@@ -339,7 +345,7 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
                         pm.setConsegnata("Si");
                     }
                     pm.setData_prescrizione(d);
-                    String data1 = 2015+"/"+ 03+"/"+ ((int) (Math.random() * 30 + 1));
+                    String data1 = 2015 + "/" + 03 + "/" + ((int) (Math.random() * 30 + 1));
                     Date d1 = new Date();
                     try {
                         d1 = ndf.parse(data1);
@@ -348,7 +354,7 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
                     }
                     pm.setData_scadenza(d1);
                     pm.setMedicinale(medicinali[(int) (medicinali.length * Math.random())]);
-                    pm.setNumero_confezioni((int) (Math.random() * 3+1));
+                    pm.setNumero_confezioni((int) (Math.random() * 3 + 1));
                     pm.setMedico(m);
                     pm.setPaziente(p);
                     pm.setReferto(r);
@@ -380,4 +386,5 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
             medici.get(ind).getLista_pazienti().add(p);
         }
     }
+
 }

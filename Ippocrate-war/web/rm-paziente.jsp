@@ -42,14 +42,14 @@
                 document.getElementById("data").value = <%= "\"" + sdf.format(referto.getDataVisita()) + "\""%>;
                 document.getElementById("diagn").value = <%= "\"" + referto.getDiagnosi() + "\""%>;
             }
-            
+
             function svuotaCreazione() {
                 document.getElementById("medic").value = "";
                 document.getElementById("numConf").value = "";
                 document.getElementById("dataPres").value = "";
                 document.getElementById("dataScad").value = "";
             }
-            
+
             function modificaPresMedica(medicinale, numConfezioni, dataPrescrizione, dataScadadenza, numR, i) {
                 document.getElementById("medicN").value = medicinale;
                 document.getElementById("numConfN").value = numConfezioni;
