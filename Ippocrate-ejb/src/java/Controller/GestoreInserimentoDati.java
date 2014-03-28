@@ -339,9 +339,9 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
                 for (int j = 0; j < Math.random() * 3; j++) {
                     PrescrizioneMedica pm = new PrescrizioneMedica();
                     if (Math.random() < 0.5) {
-                        pm.setConsegnata("No");
+                        pm.setConsegnata("no");
                     } else {
-                        pm.setConsegnata("Si");
+                        pm.setConsegnata("si");
                     }
                     pm.setData_prescrizione(d);
                     

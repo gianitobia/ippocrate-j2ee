@@ -319,7 +319,7 @@ public class QuickPopulate extends HttpServlet {
         insert.addPaziente("Damiano", "Tarantino", "2030001", "20000", "F", "Vico Giganti, 68", generateDate(), "Milano");
         insert.addPaziente("Simonetta", "Scenna", "2400012", "20002", "F", "Via Agostino Depretis, 98", generateDate(), "Prato");
         insert.addPaziente("Rosa", "Bucco", "200222", "200122", "F", "Piazza Trieste e Trento, 70", generateDate(), "Prunetto");
-        insert.addPaziente("Gaetano", "Panucci", "201222", "210222", "F", "Viale Augusto, 10", generateDate(), "Avellino");
+        insert.addPaziente("Gaetano", "Panucci", "201222", "210222", "M", "Viale Augusto, 10", generateDate(), "Avellino");
         insert.addPaziente("Matteo", "Greco", "2222124", "222212", "M", "Corso Vittorio Emanuele, 95", generateDate(), "Roma");
         insert.addPaziente("Adelfina", "Pirozzi", "220400", "22000", "F", "Via Francesco Del Giudice, 109", generateDate(), "Napoli");
         insert.addPaziente("Eligio", "Beneventi", "222300", "22200", "M", "Via Valpantena, 17", generateDate(), "Genova");
@@ -331,7 +331,7 @@ public class QuickPopulate extends HttpServlet {
         insert.addPaziente("Santino", "Castiglione", "332333", "33333", "M", "Piazza Trieste e Trento, 127", generateDate(), "Torino");
         insert.addPaziente("Luca", "Pisano", "33303", "334303", "F", "Via Carlo Alberto, 18", generateDate(), "Venezia");
         insert.addPaziente("Livio", "Piccolo", "33033", "333033", "M", "Corso Vittorio Emanuele, 15", generateDate(), "Bari");
-        insert.addPaziente("Mara", "Fellaci", "30333", "303433", "M", "Via San Pietro Ad Aram, 57", generateDate(), "Modena");
+        insert.addPaziente("Mara", "Fellaci", "30333", "303433", "F", "Via San Pietro Ad Aram, 57", generateDate(), "Modena");
         insert.addPaziente("Gianna", "Mancini", "40000", "406000", "M", "Via Antonio Cecchi, 94", generateDate(), "Brindisi");
         insert.addPaziente("Arte", "Treviso", "40004", "4000774", "M", "Via di Santa Melania, 44", generateDate(), "Avellino");
 
@@ -374,7 +374,7 @@ public class QuickPopulate extends HttpServlet {
         insert.addMedicoEsterno("Amerigo", "Marcelo", "Radiologia", generateDate(), "6666", "6666", "6666");
         insert.addMedicoEsterno("Petronio", "Dellucci", "Chirurgia generale", generateDate(), "7777", "7777", "7777");
 
-        List<PrestazioneMedico> listPrestazioniMedico = insert.addPrestazioniMedico(prestazioniMedico);
+        insert.addPrestazioniMedico(prestazioniMedico);
         List<PrestazioneSala> listPrestazioniSala = insert.addPrestazioniSala(prestazioniSala);
 
         List<PrestazioneSala> prest = new ArrayList<>();
