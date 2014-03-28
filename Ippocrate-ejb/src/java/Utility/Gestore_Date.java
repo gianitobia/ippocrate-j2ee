@@ -50,4 +50,25 @@ public class Gestore_Date {
         DateFormat ndf = new SimpleDateFormat("dd" + separator + "MM" + separator +"yyyy");
         return ndf.format(data);    
     }
+    
+    //Restituisce un array di due data (la prima precedente alla seconda) rispettivamente 
+    //per data creazione di una prescrizione e scadenza
+    public static Date[] generateDateInterval(int interval_days) {
+        Date[] dates = new Date[2];
+        DateFormat ndf = new SimpleDateFormat("yyyy-MM-dd");
+        String data = (2013 + "-" + ((int) (Math.random() * 11 + 1)) + "-" + ((int) (Math.random() * 30 + 1)));
+        Date d = new Date();
+        try {
+            //imposto la data di prescrizione
+            d = ndf.parse(data);
+            dates[0] = d;
+            //calcolo il tempo successivo per la scadenza
+            long interval = interval_days * 86400000;
+            dates[1] = new Date();
+            dates[1].setTime(d.getTime() + interval);
+        } catch (ParseException ex) {
+            Logger.getLogger(Gestore_Date.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return dates;
+    } 
 }
