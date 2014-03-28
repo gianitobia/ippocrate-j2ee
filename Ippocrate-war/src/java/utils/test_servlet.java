@@ -43,7 +43,9 @@ public class test_servlet extends HttpServlet {
             out.println("<h1>Servlet test_servlet at " + request.getContextPath() + "</h1>");
 
             out.println(Gestore_Date.generateStringFromDate(Gestore_Date.generateDateFromString("12/10/1988", '/'), '/'));
-
+            Date[] ds = Gestore_Date.generateDateInterval(365);
+            out.println(Gestore_Date.generateStringFromDate(ds[0], '-'));
+            out.println(Gestore_Date.generateStringFromDate(ds[1], '-'));
             out.println("</body>");
             out.println("</html>");
         }

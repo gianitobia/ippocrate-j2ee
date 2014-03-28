@@ -32,6 +32,7 @@ import Entity.Sala;
 import Entity.SalaFacadeLocal;
 import Entity.StudioMedico;
 import Entity.StudioMedicoFacadeLocal;
+import static Utility.Gestore_Date.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -290,33 +291,35 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
     @Override
     public void addCartelleCliniche() {
         List<Paziente> pazienti = pazienteFacade.findAll();
+        
+        String[] frasi_anamnesi = {"Scoliosi evidente.",
+            "Il padre all'età di 45 anni è stato colpito da angina pectoris",
+            "Il nonno materno era diabetico.",
+            "Nella fase infantile è stata soggetta a tutte le malattie infantili, compresa la rosolia.",
+            "Alletà di anni 16 si è manifestata l'allergia al glutine.",
+            "Sin dall'età di 18 anni si è manifestata ipertensione  arteriosa.",
+            "Nell'anno 2000 ha subito appendicectomia.",
+            "Nell'anno 2005 intervento per spina ossea all'arcata dentale superiore.",
+            "Nell'anno 2011 Angioplastica PTCA + Stent.",
+            "Durante l'anno 2004 accusava problemi respiratori che intensificavano con l'abbassarsi della temperatura  atmosferica.",
+            "Nonostante la vaccinazione anti-influenzale, è stata colpita da sindrome influenzale nel mese di marzo.",
+            "A seguito di un viaggio in Africa ha contratto la tubercolosi.",
+            "Contratto HIV per contatto con siringa.",
+            "Affetto da sindrome di Down diagnosticata all'eta di 4 anni.",
+            "Rottura del sopracciglio per aver sbattuto a una mensola.",
+            "Rottura del setto nasale causa pugno ricevuto in una rissa.",
+            "Frattura dello sterno in incidente d'auto, mentre era sotto effetto dell'alcool.",
+            "Lesione del legamento crociato anteriore durante una partita di calcetto."};
+
+        String[] medicinali = {
+            "Tegretol", "aspirina", "Benazepril", "Palexia", "Maalox", "Betadine", "Oki", "Dicloreum", "Diazepan", "Tachipirina", "Valontan", "Dolmen", "Sustanon", "Dissenten", "Enterostop", "Eskim", "Caravel", "Limpidex", "Levotuss", "Contramal", "Bonviva", "Mucosolvan", "Muscoril"
+        };
+        
         for (Paziente p : pazienti) {
             CartellaClinica cc = new CartellaClinica();
             cc.setPaziente(p);
-            ArrayList<RefertoMedico> referti = new ArrayList<RefertoMedico>();
-            String[] frasi_anamnesi = {"Scoliosi evidente.",
-                "Il padre all'età di 45 anni è stato colpito da angina pectoris",
-                "Il nonno materno era diabetico.",
-                "Nella fase infantile è stata soggetta a tutte le malattie infantili, compresa la rosolia.",
-                "Alletà di anni 16 si è manifestata l'allergia al glutine.",
-                "Sin dall'età di 18 anni si è manifestata ipertensione  arteriosa.",
-                "Nell'anno 2000 ha subito appendicectomia.",
-                "Nell'anno 2005 intervento per spina ossea all'arcata dentale superiore.",
-                "Nell'anno 2011 Angioplastica PTCA + Stent.",
-                "Durante l'anno 2004 accusava problemi respiratori che intensificavano con l'abbassarsi della temperatura  atmosferica.",
-                "Nonostante la vaccinazione anti-influenzale, è stata colpita da sindrome influenzale nel mese di marzo.",
-                "A seguito di un viaggio in Africa ha contratto la tubercolosi.",
-                "Contratto HIV per contatto con siringa.",
-                "Affetto da sindrome di Down diagnosticata all'eta di 4 anni.",
-                "Rottura del sopracciglio per aver sbattuto a una mensola.",
-                "Rottura del setto nasale causa pugno ricevuto in una rissa.",
-                "Frattura dello sterno in incidente d'auto, mentre era sotto effetto dell'alcool.",
-                "Lesione del legamento crociato anteriore durante una partita di calcetto."};
-
-            String[] medicinali = {
-                "Tegretol", "aspirina", "Benazepril", "Palexia", "Maalox", "Betadine", "Oki", "Dicloreum", "Diazepan", "Tachipirina", "Valontan", "Dolmen", "Sustanon", "Dissenten", "Enterostop", "Eskim", "Caravel", "Limpidex", "Levotuss", "Contramal", "Bonviva", "Mucosolvan", "Muscoril"
-            };
-
+            ArrayList<RefertoMedico> referti = new ArrayList<>();
+        
             String anamnesi = "";
             List<Medico> med = medicoFacade.findAll();
             int righe = (int) (Math.random() * 2) + 1;
@@ -325,15 +328,9 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
                 anamnesi += "\n" + frasi_anamnesi[ind];
 
                 RefertoMedico r = new RefertoMedico();
-
-                DateFormat ndf = new SimpleDateFormat("yyyy-mm-dd");
-                String data = ((int) (1960 + Math.random() * 55)) + "/" + ((int) (Math.random() * 11 + 1)) + "/" + ((int) (Math.random() * 30 + 1));
-                Date d = new Date();
-                try {
-                    d = ndf.parse(data);
-                } catch (ParseException ex) {
-                    Logger.getLogger(GestoreMedico.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                
+                Date[] ds = generateDateInterval(180);
+                Date d = ds[0];
                 r.setDataVisita(d);
                 r.setDiagnosi(frasi_anamnesi[ind]);
 
@@ -347,13 +344,8 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
                         pm.setConsegnata("Si");
                     }
                     pm.setData_prescrizione(d);
-                    String data1 = 2015 + "/" + 03 + "/" + ((int) (Math.random() * 30 + 1));
-                    Date d1 = new Date();
-                    try {
-                        d1 = ndf.parse(data1);
-                    } catch (ParseException ex) {
-                        Logger.getLogger(GestoreMedico.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    
+                    Date d1 = ds[1];
                     pm.setData_scadenza(d1);
                     pm.setMedicinale(medicinali[(int) (medicinali.length * Math.random())]);
                     pm.setNumero_confezioni((int) (Math.random() * 3 + 1));
