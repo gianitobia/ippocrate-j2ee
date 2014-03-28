@@ -1,1 +1,0 @@
-1,client_id,developer_key,id_calendario,utente,password,secret_key
