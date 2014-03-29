@@ -15,7 +15,6 @@ import Entity.PazienteFacadeLocal;
 import Entity.PrescrizioneMedica;
 import Transient.PazienteTransient;
 import Utility.JSONUtility;
-import java.io.IOException;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.jws.WebService;
@@ -157,7 +156,7 @@ public class WSPaziente {
      */
     @WebMethod(operationName = "ottieniMultimedia")
     public String ottieniMultimedia(@WebParam(name = "idRM") Long idRM) {
-        List<String> multimedia = gestoreMedico.ottieniMultimedia(idRM);        
+        List<String> multimedia = gestoreMedico.ottieniMultimedia(idRM);
         return JSONUtility.encodeImageToJSON(multimedia);
     }
 
