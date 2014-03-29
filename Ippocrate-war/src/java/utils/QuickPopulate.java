@@ -312,28 +312,28 @@ public class QuickPopulate extends HttpServlet {
         insert.addPaziente("Giorgio", "Toscani", "100001", "10000", "M", "via Noci, 7", generateDate(), "Torino");
         insert.addPaziente("Roberto", "Marche", "110001", "11000", "M", "Via Acrone, 109", generateDate(), "Sarezzano");
         insert.addPaziente("Ugo", "Arcuri", "111001", "11100", "M", "Corso Alcide De Gasperi, 32", generateDate(), "Candide");
-        insert.addPaziente("Marika", "Napoli", "111101", "11110", "M", "Via Galvani, 74", generateDate(), "Roma");
-        insert.addPaziente("Olmo", "Lordo", "111111", "11111", "F", "Via Nazionale, 131", generateDate(), "Trafoi");
+        insert.addPaziente("Marika", "Napoli", "111101", "11110", "F", "Via Galvani, 74", generateDate(), "Roma");
+        insert.addPaziente("Olmo", "Lordo", "111111", "11111", "M", "Via Nazionale, 131", generateDate(), "Trafoi");
         insert.addPaziente("Maria", "Galli", "101111", "10111", "F", "Via Venezia, 43", generateDate(), "Roma");
         insert.addPaziente("Aldo", "Siciliano", "100111", "10011", "M", "Piazza Bovio, 71", generateDate(), "Bologna");
-        insert.addPaziente("Damiano", "Tarantino", "2030001", "20000", "F", "Vico Giganti, 68", generateDate(), "Milano");
+        insert.addPaziente("Damiano", "Tarantino", "2030001", "20000", "M", "Vico Giganti, 68", generateDate(), "Milano");
         insert.addPaziente("Simonetta", "Scenna", "2400012", "20002", "F", "Via Agostino Depretis, 98", generateDate(), "Prato");
         insert.addPaziente("Rosa", "Bucco", "200222", "200122", "F", "Piazza Trieste e Trento, 70", generateDate(), "Prunetto");
         insert.addPaziente("Gaetano", "Panucci", "201222", "210222", "M", "Viale Augusto, 10", generateDate(), "Avellino");
         insert.addPaziente("Matteo", "Greco", "2222124", "222212", "M", "Corso Vittorio Emanuele, 95", generateDate(), "Roma");
         insert.addPaziente("Adelfina", "Pirozzi", "220400", "22000", "F", "Via Francesco Del Giudice, 109", generateDate(), "Napoli");
-        insert.addPaziente("Eligio", "Beneventi", "222300", "22200", "M", "Via Valpantena, 17", generateDate(), "Genova");
+        insert.addPaziente("Elisa", "Struzzo", "222300", "22200", "F", "Via Valpadana, 17", generateDate(), "Genova");
         insert.addPaziente("Armanda", "Papa", "222230", "22220", "F", "Via Sergente Maggiore, 124", generateDate(), "Cuneo");
         insert.addPaziente("Gelmina", "Patto", "300030", "30000", "F", "Via Nizza, 148", generateDate(), "Torino");
         insert.addPaziente("Adelina", "Mazzi", "330006", "33000", "F", "Via Volto San Luca, 30", generateDate(), "Torino");
         insert.addPaziente("Cloe", "Benvenuti", "333050", "33300", "F", "Via Loreto, 81", generateDate(), "Livorno");
         insert.addPaziente("Garco", "Orio", "33330", "533330", "M", "Via degli Aldobrandeschi, 77", generateDate(), "Genova");
         insert.addPaziente("Santino", "Castiglione", "332333", "33333", "M", "Piazza Trieste e Trento, 127", generateDate(), "Torino");
-        insert.addPaziente("Luca", "Pisano", "33303", "334303", "F", "Via Carlo Alberto, 18", generateDate(), "Venezia");
+        insert.addPaziente("Luca", "Pisano", "33303", "334303", "M", "Via Carlo Alberto, 18", generateDate(), "Venezia");
         insert.addPaziente("Livio", "Piccolo", "33033", "333033", "M", "Corso Vittorio Emanuele, 15", generateDate(), "Bari");
         insert.addPaziente("Mara", "Fellaci", "30333", "303433", "F", "Via San Pietro Ad Aram, 57", generateDate(), "Modena");
-        insert.addPaziente("Gianna", "Mancini", "40000", "406000", "M", "Via Antonio Cecchi, 94", generateDate(), "Brindisi");
-        insert.addPaziente("Arte", "Treviso", "40004", "4000774", "M", "Via di Santa Melania, 44", generateDate(), "Avellino");
+        insert.addPaziente("Gianna", "Mancini", "40000", "406000", "F", "Via Antonio Cecchi, 94", generateDate(), "Brindisi");
+        insert.addPaziente("Arturo", "Treviso", "40004", "4000774", "M", "Via di Santa Melania, 44", generateDate(), "Avellino");
 
         //inserimento medici
         //medici ospedalieri
