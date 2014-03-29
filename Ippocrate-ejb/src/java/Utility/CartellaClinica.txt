@@ -1,3 +1,0 @@
-1,Sospetta frattura del perone
-2,Emicrania e capogiri
-3,Nausea e vomito

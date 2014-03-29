@@ -13,6 +13,7 @@ import Entity.PrescrizioneMedica;
 import Entity.PrescrizioneMedicaFacadeLocal;
 import Transient.PrescrizioneMedicaTransient;
 import Entity.RefertoMedico;
+import Entity.RefertoMedicoFacadeLocal;
 import Transient.RefertoMedicoTransient;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,9 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class GestoreCartellaClinica implements GestoreCartellaClinicaLocal {
+
+    @EJB
+    private RefertoMedicoFacadeLocal refertoMedicoFacade;
 
     @EJB
     private PrescrizioneMedicaFacadeLocal prescrizioneMedicaFacade;
@@ -73,7 +77,7 @@ public class GestoreCartellaClinica implements GestoreCartellaClinicaLocal {
     }
 
     @Override
-    public List<PrescrizioneMedicaTransient> ottieniPM(Long pazienteId) {
+    public List<PrescrizioneMedicaTransient> ottieniPMT(Long pazienteId) {
         Paziente p = pazienteFacade.find(pazienteId);
         CartellaClinica cc = p.getCartella_clinica();
         List<RefertoMedico> lrm = cc.getLista_referti();
@@ -113,6 +117,11 @@ public class GestoreCartellaClinica implements GestoreCartellaClinicaLocal {
         pmt.setConsegnata(pm.getConsegnata());
 
         return pmt;
+    }
+
+    @Override
+    public List<PrescrizioneMedica> ottieniPM(Long idRM) {
+        return refertoMedicoFacade.find(idRM).getLista_prescrizioni();
     }
 
 }

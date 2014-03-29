@@ -257,4 +257,21 @@ public class GestoreMedico implements GestoreMedicoLocal {
 
         return pm;
     }
+
+    @Override
+    public List<String> ottieniMultimedia(Long idRM) {
+        RefertoMedico rm = refertoMedicoFacade.find(idRM);
+        String s = rm.getLista_images();
+
+        List<String> multimedia = new ArrayList<String>();
+
+        if (s != null && s.equals("") == false) {
+            String[] temp = s.split(";");
+            for (String t : temp) {
+                multimedia.add(t);
+            }
+        }
+
+        return multimedia;
+    }
 }

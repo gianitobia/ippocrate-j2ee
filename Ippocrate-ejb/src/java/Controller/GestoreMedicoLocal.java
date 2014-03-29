@@ -30,12 +30,14 @@ public interface GestoreMedicoLocal {
 
     CartellaClinica ottieniCCPaziente(Long idP);
 
-    public RefertoMedico modificaDettagliRefMedico(Long refId, Medico m, int nuovaPrest, String diagnosi, String dataVisita);
+    RefertoMedico modificaDettagliRefMedico(Long refId, Medico m, int nuovaPrest, String diagnosi, String dataVisita);
 
-    public RefertoMedico aggiungiMultimediaRefMedico(Long idReferto, Part filePart, String fileName);
+    RefertoMedico aggiungiMultimediaRefMedico(Long idReferto, Part filePart, String fileName);
 
-    public PrescrizioneMedica modificaPresMedica(Long idPres, String medic, int numConf, String dataPres, String dataScad);
+    PrescrizioneMedica modificaPresMedica(Long idPres, String medic, int numConf, String dataPres, String dataScad);
 
-    public PrescrizioneMedica aggiungiPresMedica(Long idReferto, String medic, int numConf, String dataPres, String dataScad, Paziente paziente, Medico m);
+    PrescrizioneMedica aggiungiPresMedica(Long idReferto, String medic, int numConf, String dataPres, String dataScad, Paziente paziente, Medico m);
+
+    List<String> ottieniMultimedia(Long idRM);
 
 }
