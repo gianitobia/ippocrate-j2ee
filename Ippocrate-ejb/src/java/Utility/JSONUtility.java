@@ -9,14 +9,21 @@ import Entity.CartellaClinica;
 import Entity.Paziente;
 import Entity.PrescrizioneMedica;
 import Entity.RefertoMedico;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.StringWriter;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import org.json.simple.*;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.apache.commons.codec.binary.Base64;
 
 /**
  * Classe utile per creare JSON
@@ -140,6 +147,71 @@ public class JSONUtility {
         return jsonText;
     }
 
+    private static byte[] loadFile(File file) throws IOException {
+        InputStream is = new FileInputStream(file);
+
+        long length = file.length();
+        if (length > Integer.MAX_VALUE) {
+            // File is too large
+            throw new IOException("File: " + file.getName() + "is too large");
+        }
+        byte[] bytes = new byte[(int) length];
+        int offset = 0;
+        int numRead = 0;
+        while (offset < bytes.length
+                && (numRead = is.read(bytes, offset, bytes.length - offset)) >= 0) {
+            offset += numRead;
+        }
+
+        if (offset < bytes.length) {
+            throw new IOException("Could not completely read file " + file.getName());
+        }
+
+        is.close();
+        return bytes;
+    }
+
+    public static String encodeImageToJSON(List<String> multimedia) {
+        //ESEMPIO {
+//            "multimedia": [
+//                              {"image": "image_1"},
+//                              {"image": "image_2"},
+//                              {"image": "image_3"}
+//                          ]
+//        }              
+
+        JSONObject obj = new JSONObject();
+        List l = new LinkedList();
+
+        for (String multim : multimedia) {
+            File imgFile = new File(multim);
+            if (imgFile.exists()) {
+                byte[] bytes;
+                try {
+                    bytes = loadFile(imgFile);
+                } catch (IOException ex) {
+                    return JSONFail;
+                }
+                byte[] encoded = Base64.encodeBase64(bytes);
+                String encodedString = new String(encoded);
+                Map m = new HashMap();
+                m.put("image", encodedString);
+                l.add(m);
+            }
+        }
+        obj.put("multimedia", l);
+
+        StringWriter out = new StringWriter();
+        String jsonText = "";
+        try {
+            obj.writeJSONString(out);
+            jsonText = out.toString();
+        } catch (IOException e) {
+            return JSONFail;
+        }
+        return jsonText;
+    }
+
     public static String listaPMToJSON(List<PrescrizioneMedica> lpm) {
 //ESEMPIO {
 //            "prescrizioni": [
@@ -150,7 +222,7 @@ public class JSONUtility {
 //        }
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        
+
         JSONObject obj = new JSONObject();
 
         List l = new LinkedList();
