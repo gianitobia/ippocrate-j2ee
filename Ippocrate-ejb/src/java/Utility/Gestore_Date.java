@@ -22,7 +22,7 @@ public class Gestore_Date {
     //Genera un data random
     public static Date generateDate() {
         DateFormat ndf = new SimpleDateFormat("yyyy-MM-dd");
-        String data = ((int) (1960 + Math.random() * 55)) + "-" + ((int) (Math.random() * 11 + 1)) + "-" + ((int) (Math.random() * 30 + 1));
+        String data = ((int) (1960 + Math.random() * 25)) + "-"+ ((int) (Math.random() * 11 + 1))+"-"+ ((int) (Math.random() * 30 + 1));
         Date d = new Date();
         try {
             d = ndf.parse(data);

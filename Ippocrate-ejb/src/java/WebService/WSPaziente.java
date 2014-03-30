@@ -152,13 +152,12 @@ public class WSPaziente {
      * Metodo che restituisce i file multimediali di un referto medico
      *
      * @param idRM referto medico di cui si vogliono i file multimediali
-     * @return file multimediali
+     * @return file multimediali     
      */
     @WebMethod(operationName = "ottieniMultimedia")
     public String ottieniMultimedia(@WebParam(name = "idRM") Long idRM) {
         List<String> multimedia = gestoreMedico.ottieniMultimedia(idRM);
-        //TODO
-        return null;
+        return JSONUtility.encodeImageToJSON(multimedia);
     }
 
     /**
