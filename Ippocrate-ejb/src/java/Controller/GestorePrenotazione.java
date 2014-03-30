@@ -84,6 +84,24 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
     @Override
     public List<Prestazione> ottieniPrestazioniPrenotabili() {
         List<Prestazione> prestazioni = prestazioneFacade.findAll();
+        List<Prestazione> prestazioniDisp = new ArrayList<>();
+        for(Prestazione p : prestazioni)
+            switch (p.getClass().getName()) {
+                case "Entity.PrestazioneSala":
+                    {
+                        PrestazioneSala prest = (PrestazioneSala) p;
+                        if(!prest.getLista_sale().isEmpty())
+                            prestazioniDisp.add(p);
+                        break;
+                    }
+                case "Entity.PrestazioneMedico":
+                    {
+                        PrestazioneMedico prest = (PrestazioneMedico) p;
+                        if(!prest.getLista_medici().isEmpty())
+                            prestazioniDisp.add(p);
+                        break;
+                    }
+            }
         return prestazioni;
     }
 
