@@ -169,8 +169,8 @@ public class QuickPopulate extends HttpServlet {
             "Visita dermatologica"};
 
         //creazione dio
-        Long medico_dio = insert.addMedicoOspedaliero("Gregory", "House", "Patologo", new Date(1959, 5, 15), "house", "sonodio", "666", "1C");
-        Long medico_pippa = insert.addMedicoEsterno("Hershel", "Greene", "Ginecologo", new Date(1942, 11, 17), "hershel", "sonopippa", "666");
+        Long medico_dio = insert.addMedicoOspedaliero("Gregory", "House", "Patologo", generateDate(), "house", "sonodio", "666", "1C");
+        Long medico_pippa = insert.addMedicoEsterno("Hershel", "Greene", "Ginecologo", generateDate(), "hershel", "sonopippa", "666");
 
         //creazione ospedali
         Long id_o_1 = insert.addOspedale("Maria Vittoria", "Via Cibrario, 72, Torino");
