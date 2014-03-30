@@ -5,10 +5,16 @@
  */
 package utils;
 
+import Entity.StrutturaMedica;
+import Entity.StrutturaMedicaFacadeLocal;
+import HttpClient.HttpCalendarClient;
 import Utility.Gestore_Date;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +25,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author Alex
  */
 public class test_servlet extends HttpServlet {
+    @EJB
+    private StrutturaMedicaFacadeLocal sM;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -47,6 +55,11 @@ public class test_servlet extends HttpServlet {
             Date[] ds = Gestore_Date.generateDateInterval(365);
             out.println(Gestore_Date.generateStringFromDate(ds[0], '-'));
             out.println(Gestore_Date.generateStringFromDate(ds[1], '-'));
+            
+            List<StrutturaMedica> str = sM.findAll();
+            HttpCalendarClient agenda = new HttpCalendarClient();            
+            out.println(agenda.createAllCalendars(str));
+
             out.println("</body>");
             out.println("</html>");
         }

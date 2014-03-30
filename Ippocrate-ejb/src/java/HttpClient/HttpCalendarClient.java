@@ -5,16 +5,21 @@
  */
 package HttpClient;
 
+import Entity.Medico;
+import Entity.Ospedale;
 import Entity.Prenotazione;
+import Entity.Reparto;
+import Entity.Sala;
+import Entity.StrutturaMedica;
+import Entity.StudioMedico;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-//Libreria per la connessione remota
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -36,7 +41,7 @@ public class HttpCalendarClient {
 
     private final String url = "http://localhost:5000/ippocrate/calendar/v1.0/";
     private final CloseableHttpClient httpclient;
-
+    
     public HttpCalendarClient() {
         httpclient = HttpClients.createDefault();
     }
@@ -150,7 +155,7 @@ public class HttpCalendarClient {
     public String slot_available(Prenotazione e) {
         return this.send_request(e.reservationToJSON(), "check_slot/");
     }
-
+    
     /*
      Funzione che richiede gli slot liberi di una settimana, ritorna 
      una lista di vettori di stringhe:
@@ -185,6 +190,52 @@ public class HttpCalendarClient {
             }
         }
         return disponibili;
+    }
+    
+    public String createAllCalendars(List<StrutturaMedica> str) {
+        //Creo l'oggetto richiesta
+        JSONObject req = new JSONObject();
+        JSONArray strutture = new JSONArray();
+        //Per ogni Struttura creo un componente della richiesta JSON
+        for(StrutturaMedica m : str) {
+            JSONObject temp = new JSONObject();
+            temp.put("nome", m.getNome());
+            
+            List<Sala> sale = new ArrayList<>();
+            List<Medico> medici = new ArrayList<>();
+            switch(m.getClass().getName()) {
+                case "Entity.Ospedale" : {
+                    //Se e' un ospedale devo scorreri i reparti per sale/medici
+                    for (Reparto r : ((Ospedale) m).getLista_reparti()) {
+                        sale.addAll(r.getLista_sale());
+                        medici.addAll(r.getLista_medici());
+                    } break;
+                }
+                case "Entity.StudioMedico" : {
+                    sale.addAll(((StudioMedico) m).getLista_sale());
+                    medici.addAll(((StudioMedico) m).getLista_medici());
+                }
+            }
+            
+            //creo un JSONArray di Sale
+            JSONArray sp = new JSONArray();
+            for(Sala s : sale)
+                sp.add(s.getTipoLaboratorio());
+            temp.put("sale", sp);
+            
+            //creo un JSONArray di Medici
+            JSONArray mp = new JSONArray();
+            for(Medico md : medici)
+                mp.add(md.getUsername());
+            temp.put("medici", mp);
+            
+            //Aggiungo l'oggetto al JSONArray di strutture
+            strutture.add(temp);
+        }
+        //Aggiungo il corpo della richiesta JSON
+        req.put("strutture", strutture);
+        
+        return this.send_request(req, "create_calendars/");
     }
 
 //    public static void main(String[] args) {
