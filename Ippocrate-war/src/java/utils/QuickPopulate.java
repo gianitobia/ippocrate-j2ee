@@ -301,11 +301,11 @@ public class QuickPopulate extends HttpServlet {
         insert.addPaziente("Irmina", "Pagnotto", "30000", "30000", "F", "Via Nizza, 148", generateDate(), "Torino");
         insert.addPaziente("Alina", "Mazzi", "33000", "33000", "F", "Via Volto San Luca, 30", generateDate(), "Torino");
         insert.addPaziente("Clotilde", "Beneventi", "33300", "33300", "F", "Via Loreto, 81", generateDate(), "Livorno");
-        insert.addPaziente("Marco", "Onio", "33330", "33330", "M", "Via degli Aldobrandeschi, 77", generateDate(), "Genova");
+        insert.addPaziente("Marco", "Onio", "33120", "33120", "M", "Via degli Aldobrandeschi, 77", generateDate(), "Genova");
         insert.addPaziente("Santo", "Castiglione", "33333", "33333", "M", "Piazza Trieste e Trento, 127", generateDate(), "Torino");
-        insert.addPaziente("Luisa", "Pisano", "33303", "33303", "F", "Via Carlo Alberto, 18", generateDate(), "Avellino");
-        insert.addPaziente("Livio", "Piccio", "33033", "33033", "M", "Corso Vittorio Emanuele, 15", generateDate(), "Bari");
-        insert.addPaziente("Quinto", "Fallaci", "30333", "30333", "M", "Via San Pietro Ad Aram, 57", generateDate(), "Modena");
+        insert.addPaziente("Luisa", "Pisano", "12303", "12303", "F", "Via Carlo Alberto, 18", generateDate(), "Avellino");
+        insert.addPaziente("Livio", "Piccio", "33133", "33033", "M", "Corso Vittorio Emanuele, 15", generateDate(), "Bari");
+        insert.addPaziente("Quinto", "Fallaci", "30133", "30133", "M", "Via San Pietro Ad Aram, 57", generateDate(), "Modena");
         insert.addPaziente("Anselmo", "Mancini", "40000", "40000", "M", "Via Antonio Cecchi, 94", generateDate(), "Brindisi");
         insert.addPaziente("Tolomeo", "Trevisano", "40004", "40004", "M", "Via di Santa Melania, 44", generateDate(), "Venezia");
 
