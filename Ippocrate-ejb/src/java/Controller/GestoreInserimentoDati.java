@@ -19,7 +19,6 @@ import Entity.Paziente;
 import Entity.PazienteFacadeLocal;
 import Entity.PrescrizioneMedica;
 import Entity.PrescrizioneMedicaFacadeLocal;
-import Entity.Prestazione;
 import Entity.PrestazioneMedico;
 import Entity.PrestazioneMedicoFacadeLocal;
 import Entity.PrestazioneSala;
@@ -32,15 +31,10 @@ import Entity.Sala;
 import Entity.SalaFacadeLocal;
 import Entity.StudioMedico;
 import Entity.StudioMedicoFacadeLocal;
-import static Utility.Gestore_Date.*;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import static Utility.Gestore_Date.generateDateInterval;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -215,8 +209,9 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
     public void addPrestazioniToSala(long id_sala, List<PrestazioneSala> prestazioni) {
         Sala s = salaFacade.find(id_sala);
         s.getLista_prestazioni().addAll(prestazioni);
-        for(PrestazioneSala p : prestazioni)
+        for (PrestazioneSala p : prestazioni) {
             p.getLista_sale().add(s);
+        }
     }
 
     @Override
@@ -291,7 +286,7 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
     @Override
     public void addCartelleCliniche() {
         List<Paziente> pazienti = pazienteFacade.findAll();
-        
+
         String[] frasi_anamnesi = {"Scoliosi evidente.",
             "Il padre all'età di 45 anni è stato colpito da angina pectoris",
             "Il nonno materno era diabetico.",
@@ -314,12 +309,12 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
         String[] medicinali = {
             "Tegretol", "aspirina", "Benazepril", "Palexia", "Maalox", "Betadine", "Oki", "Dicloreum", "Diazepan", "Tachipirina", "Valontan", "Dolmen", "Sustanon", "Dissenten", "Enterostop", "Eskim", "Caravel", "Limpidex", "Levotuss", "Contramal", "Bonviva", "Mucosolvan", "Muscoril"
         };
-        
+
         for (Paziente p : pazienti) {
             CartellaClinica cc = new CartellaClinica();
             cc.setPaziente(p);
             ArrayList<RefertoMedico> referti = new ArrayList<>();
-        
+
             String anamnesi = "";
             List<Medico> med = medicoFacade.findAll();
             int righe = (int) (Math.random() * 2) + 1;
@@ -328,7 +323,7 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
                 anamnesi += "\n" + frasi_anamnesi[ind];
 
                 RefertoMedico r = new RefertoMedico();
-                
+
                 Date[] ds = generateDateInterval(180);
                 Date d = ds[0];
                 r.setDataVisita(d);
@@ -344,7 +339,7 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
                         pm.setConsegnata("si");
                     }
                     pm.setData_prescrizione(d);
-                    
+
                     Date d1 = ds[1];
                     pm.setData_scadenza(d1);
                     pm.setMedicinale(medicinali[(int) (medicinali.length * Math.random())]);

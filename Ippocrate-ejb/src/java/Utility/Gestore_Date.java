@@ -51,7 +51,7 @@ public class Gestore_Date {
         DateFormat ndf = new SimpleDateFormat("dd" + separator + "MM" + separator + "yyyy");
         return ndf.format(data);
     }
-    
+
     //Restituisce un array di due data (la prima precedente alla seconda) rispettivamente 
     //per data creazione di una prescrizione e scadenza
     public static Date[] generateDateInterval(int interval_days) {
@@ -72,5 +72,5 @@ public class Gestore_Date {
             Logger.getLogger(Gestore_Date.class.getName()).log(Level.SEVERE, null, ex);
         }
         return dates;
-    } 
+    }
 }
