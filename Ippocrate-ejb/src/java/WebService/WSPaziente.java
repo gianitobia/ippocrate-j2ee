@@ -5,12 +5,14 @@
  */
 package WebService;
 
+import Controller.GestoreCartellaClinicaLocal;
 import Controller.GestoreLoginLocal;
 import Controller.GestoreMedicoLocal;
 import Controller.GestoreUtenteLocal;
 import Entity.CartellaClinica;
 import Entity.Paziente;
 import Entity.PazienteFacadeLocal;
+import Entity.PrescrizioneMedica;
 import Transient.PazienteTransient;
 import Utility.JSONUtility;
 import java.util.List;
@@ -28,6 +30,9 @@ import javax.jws.WebParam;
 @WebService(serviceName = "WSPaziente")
 @Stateless()
 public class WSPaziente {
+
+    @EJB
+    private GestoreCartellaClinicaLocal gestoreCartellaClinica;
 
     @EJB
     private GestoreLoginLocal gestoreLogin;
@@ -126,7 +131,7 @@ public class WSPaziente {
      * @return JSON che rappresenta la lista dei pazienti
      */
     @WebMethod(operationName = "trovaPazienti")
-    public String trovaPazientiJSON(@WebParam(name = "idMedico") Long idMedico) {
+    public String trovaPazienti(@WebParam(name = "idMedico") Long idMedico) {
         List<Paziente> lp = gestoreMedico.ottieniMieiPazienti(idMedico);
         return JSONUtility.listaPazientiToJSON(lp);
     }
@@ -138,9 +143,33 @@ public class WSPaziente {
      * @return JSON che rappresenta la cartella clinica del paziente
      */
     @WebMethod(operationName = "ottieniCC")
-    public String ottieniCCJSON(@WebParam(name = "idPaziente") Long idPaziente) {
+    public String ottieniCC(@WebParam(name = "idPaziente") Long idPaziente) {
         CartellaClinica cc = gestoreMedico.ottieniCCPaziente(idPaziente);
         return JSONUtility.cartellaClinicaToJSON(cc);
+    }
+
+    /**
+     * Metodo che restituisce i file multimediali di un referto medico
+     *
+     * @param idRM referto medico di cui si vogliono i file multimediali
+     * @return file multimediali     
+     */
+    @WebMethod(operationName = "ottieniMultimedia")
+    public String ottieniMultimedia(@WebParam(name = "idRM") Long idRM) {
+        List<String> multimedia = gestoreMedico.ottieniMultimedia(idRM);
+        return JSONUtility.encodeImageToJSON(multimedia);
+    }
+
+    /**
+     * Metodo che restituisce le prescrizioni mediche di un referto medico
+     *
+     * @param idRM referto medico di cui si vogliono le prescrizioni mediche
+     * @return prescrizioni mediche
+     */
+    @WebMethod(operationName = "ottieniPM")
+    public String ottieniPM(@WebParam(name = "idRM") Long idRM) {
+        List<PrescrizioneMedica> lpm = gestoreCartellaClinica.ottieniPM(idRM);
+        return JSONUtility.listaPMToJSON(lpm);
     }
 
 }

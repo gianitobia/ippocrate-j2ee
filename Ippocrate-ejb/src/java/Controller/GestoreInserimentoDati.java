@@ -215,10 +215,12 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
     public void addPrestazioniToSala(long id_sala, List<PrestazioneSala> prestazioni) {
         Sala s = salaFacade.find(id_sala);
         s.getLista_prestazioni().addAll(prestazioni);
+        for(PrestazioneSala p : prestazioni)
+            p.getLista_sale().add(s);
     }
 
     @Override
-    public void addPrestazioni(String[] prestazioniMedico, String[] prestazioniSala) {
+    public List<PrestazioneMedico> addPrestazioniMedico(String[] prestazioniMedico) {
         List<Medico> medici = medicoFacade.findAll();
         List<PrestazioneMedico> prestazioni = new ArrayList<>();
         for (String pr : prestazioniMedico) {
@@ -230,6 +232,19 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
             prestazioni.add(p);
         }
 
+        for (Medico m : medici) {
+            int n = (int) (Math.random() * 4 + 1);
+            for (int i = 0; i <= n; i++) {
+                int ind = (int) (Math.random() * prestazioni.size());
+                m.addPrestazioniEffettuabili(prestazioni.get(ind));
+                prestazioni.get(ind).addMedico(m);
+            }
+        }
+        return prestazioni;
+    }
+
+    @Override
+    public List<PrestazioneSala> addPrestazioniSala(String[] prestazioniSala) {
         List<PrestazioneSala> prestazioniS = new ArrayList<>();
         for (String pr : prestazioniSala) {
             PrestazioneSala p = new PrestazioneSala();
@@ -239,15 +254,7 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
             prestazioneSalaFacade.create(p);
             prestazioniS.add(p);
         }
-
-        for (Medico m : medici) {
-            int n = (int) (Math.random() * 4 + 1);
-            for (int i = 0; i <= n; i++) {
-                int ind = (int) (Math.random() * prestazioni.size());
-                m.addPrestazioniEffettuabili(prestazioni.get(ind));
-                prestazioni.get(ind).addMedico(m);
-            }
-        }
+        return prestazioniS;
     }
 
     @Override
@@ -274,8 +281,9 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
         List<Reparto> reparti = repartoFacade.findAll();
         for (Paziente p : pazienti) {
             int ind = (int) (Math.random() * reparti.size());
-            if (Math.random() > 0.6) {
+            if (Math.random() > 0.3) {
                 reparti.get(ind).addPaziente(p);
+                p.setReparto_ricoverato(reparti.get(ind));
             }
         }
     }
@@ -325,22 +333,22 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
                 Date d = ds[0];
                 r.setDataVisita(d);
                 r.setDiagnosi(frasi_anamnesi[ind]);
-                
+
                 Medico m = med.get((int) (med.size() * Math.random()));
                 List<PrescrizioneMedica> pms = new ArrayList<>();
                 for (int j = 0; j < Math.random() * 3; j++) {
                     PrescrizioneMedica pm = new PrescrizioneMedica();
                     if (Math.random() < 0.5) {
-                        pm.setConsegnata("No");
+                        pm.setConsegnata("no");
                     } else {
-                        pm.setConsegnata("Si");
+                        pm.setConsegnata("si");
                     }
                     pm.setData_prescrizione(d);
                     
                     Date d1 = ds[1];
                     pm.setData_scadenza(d1);
                     pm.setMedicinale(medicinali[(int) (medicinali.length * Math.random())]);
-                    pm.setNumero_confezioni((int) (Math.random() * 3+1));
+                    pm.setNumero_confezioni((int) (Math.random() * 3 + 1));
                     pm.setMedico(m);
                     pm.setPaziente(p);
                     pm.setReferto(r);
@@ -372,4 +380,5 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
             medici.get(ind).getLista_pazienti().add(p);
         }
     }
+
 }

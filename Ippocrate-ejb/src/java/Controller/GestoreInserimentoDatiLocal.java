@@ -19,6 +19,7 @@
 
 package Controller;
 
+import Entity.PrestazioneMedico;
 import Entity.PrestazioneSala;
 import java.util.Date;
 import java.util.List;
@@ -53,7 +54,7 @@ public interface GestoreInserimentoDatiLocal {
 
     void addPrestazioniToSala(long id_sala, List<PrestazioneSala> prestazioni);
 
-    public void addPrestazioni(String[] prestazioniMedico, String[] prestazioniSala);
+    List<PrestazioneMedico> addPrestazioniMedico(String[] prestazioniMedico);
 
     void linkStruttureMedici();
 
@@ -62,5 +63,7 @@ public interface GestoreInserimentoDatiLocal {
     void addCartelleCliniche();
 
     void linkMediciPazienti();
+
+    List<PrestazioneSala> addPrestazioniSala(String[] prestazioniSala);
 
 }

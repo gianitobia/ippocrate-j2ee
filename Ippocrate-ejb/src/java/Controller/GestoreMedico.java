@@ -251,10 +251,27 @@ public class GestoreMedico implements GestoreMedicoLocal {
         pm.setData_scadenza(dataScadenza);
         pm.setMedico(m);
         pm.setPaziente(paziente);
-        pm.setReferto(rm);        
+        pm.setReferto(rm);
         prescrizioneMedicaFacade.create(pm);
         lpm.add(pm);
 
         return pm;
+    }
+
+    @Override
+    public List<String> ottieniMultimedia(Long idRM) {
+        RefertoMedico rm = refertoMedicoFacade.find(idRM);
+        String s = rm.getLista_images();
+
+        List<String> multimedia = new ArrayList<String>();
+
+        if (s != null && s.equals("") == false) {
+            String[] temp = s.split(";");
+            for (String t : temp) {
+                multimedia.add(t);
+            }
+        }
+
+        return multimedia;
     }
 }

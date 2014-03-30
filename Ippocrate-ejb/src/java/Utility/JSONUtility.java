@@ -7,8 +7,12 @@ package Utility;
 
 import Entity.CartellaClinica;
 import Entity.Paziente;
+import Entity.PrescrizioneMedica;
 import Entity.RefertoMedico;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.StringWriter;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
@@ -16,6 +20,7 @@ import java.util.LinkedList;
 import org.json.simple.*;
 import java.util.List;
 import java.util.Map;
+import org.apache.commons.codec.binary.Base64;
 
 /**
  * Classe utile per creare JSON
@@ -127,6 +132,132 @@ public class JSONUtility {
             l.add(m);
         }
         obj.put("referti", l);
+
+        StringWriter out = new StringWriter();
+        String jsonText = "";
+        try {
+            obj.writeJSONString(out);
+            jsonText = out.toString();
+        } catch (IOException e) {
+            return JSONFail;
+        }
+        return jsonText;
+    }
+
+    /**
+     * Metodo che trasforma un file (un'immagine di un referto) in un array di
+     * byte
+     *
+     * @param file che rappresenta l'immagine in input
+     * @return array di byte
+     * @throws IOException in caso di trasformazione fallita
+     */
+    private static byte[] loadFile(File file) throws IOException {
+        InputStream is = new FileInputStream(file);
+
+        long length = file.length();
+        if (length > Integer.MAX_VALUE) {
+            // File is too large
+            throw new IOException("File: " + file.getName() + "is too large");
+        }
+        byte[] bytes = new byte[(int) length];
+        int offset = 0;
+        int numRead = 0;
+        while (offset < bytes.length
+                && (numRead = is.read(bytes, offset, bytes.length - offset)) >= 0) {
+            offset += numRead;
+        }
+
+        if (offset < bytes.length) {
+            throw new IOException("Could not completely read file " + file.getName());
+        }
+
+        is.close();
+        return bytes;
+    }
+
+    /**
+     * Realizza il JSON partendo da una lista di path di file
+     *
+     * @param multimedia lista di path di file multimediali
+     * @return JSON delle immagini dei referti medici (codificate in base64)
+     */
+    public static String encodeImageToJSON(List<String> multimedia) {
+//ESEMPIO {
+//            "multimedia": [
+//                            {"image": "image_1"},
+//                            {"image": "image_2"},
+//                            {"image": "image_3"}
+//                          ]
+//        }              
+
+        JSONObject obj = new JSONObject();
+        List l = new LinkedList();
+
+        String path = JSONUtility.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+        String path2 = path.substring(1, path.indexOf("dist")) + "Ippocrate-war/web/";
+
+        for (String multim : multimedia) {
+            String path3 = path2 + multim;
+            File imgFile = new File(path3);
+            if (imgFile.exists()) {
+                byte[] bytes;
+                try {
+                    bytes = loadFile(imgFile);
+                } catch (IOException ex) {
+                    return JSONFail;
+                }
+                byte[] encoded = Base64.encodeBase64(bytes);
+                String encodedString = new String(encoded);
+                Map m = new HashMap();
+                m.put("image", encodedString);
+                l.add(m);
+            }
+        }
+        obj.put("multimedia", l);
+
+        StringWriter out = new StringWriter();
+        String jsonText = "";
+        try {
+            obj.writeJSONString(out);
+            jsonText = out.toString();
+        } catch (IOException e) {
+            return JSONFail;
+        }
+        return jsonText;
+    }
+
+    /**
+     * Realizza il JSON partendo da una lista di prescrizioni mediche
+     *
+     * @param lpm lista di prescrizioni mediche
+     * @return JSON delle prescrizioni mediche
+     */
+    public static String listaPMToJSON(List<PrescrizioneMedica> lpm) {
+//ESEMPIO {
+//            "prescrizioni": [
+//                              {"idPM": "34", "dataPrescrizione": "15/04/2013", "dataScadenza": "01/05/2013", "medicinale": "Analgesico", "quantita": "3"},
+//                              {"idPM": "33", "dataPrescrizione": "18/07/2013", "dataScadenza": "18/02/2014", "medicinale": "Antipiretico", "quantita": "1"},
+//                              {"idPM": "21", "dataPrescrizione": "22/02/2013", "dataScadenza": "15/04/2014", "medicinale": "Cerotti", "quantita": "5"}
+//                            ]
+//        }
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+        JSONObject obj = new JSONObject();
+
+        List l = new LinkedList();
+
+        for (PrescrizioneMedica pm : lpm) {
+            Map m = new HashMap();
+            m.put("idPM", pm.getId().toString());
+            m.put("dataPrescrizione", sdf.format(pm.getData_prescrizione()));
+            m.put("dataScadenza", sdf.format(pm.getData_scadenza()));
+            m.put("medicinale", pm.getMedicinale());
+            m.put("quantita", pm.getNumero_confezioni());
+            l.add(m);
+        }
+        obj.put("prescrizioni", l);
 
         StringWriter out = new StringWriter();
         String jsonText = "";
