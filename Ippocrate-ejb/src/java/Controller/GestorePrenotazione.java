@@ -102,14 +102,14 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
         } else if (p.getClass().getName().equals("Entity.PrestazioneMedico")) {
             List<Medico> lm = ((PrestazioneMedico) p).getLista_medici();
             for (Medico m : lm) {
-                if (m.getClass().getName().equals("Entity.MedicoEsterno")) {
+                if (m.getClass().getName().equals("Entity.MedicoEsterno") && lsm.contains(((MedicoEsterno) m).getStudioMedico()) == false ) {
                     lsm.add(((MedicoEsterno) m).getStudioMedico());
                 } else if (m.getClass().getName().equals("Entity.MedicoOspedaliero")) {
                     List<Reparto> lr = repartoFacade.findAll();
                     for (Reparto r : lr) {
                         List<MedicoOspedaliero> lmo = r.getLista_medici();
                         for (MedicoOspedaliero mo : lmo) {
-                            if (m.getId().equals(mo.getId())) {
+                            if (m.getId().equals(mo.getId()) && lsm.contains(r.getOspedale()) == false  ) {
                                 lsm.add(r.getOspedale());
                                 break;
                             }
