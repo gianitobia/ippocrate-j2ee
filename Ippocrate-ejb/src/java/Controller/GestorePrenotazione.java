@@ -85,7 +85,7 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
     public List<Prestazione> ottieniPrestazioniPrenotabili() {
         List<Prestazione> prestazioni = prestazioneFacade.findAll();
         List<Prestazione> prestazioniDisp = new ArrayList<>();
-        for(Prestazione p : prestazioni)
+        for(Prestazione p : prestazioni){
             switch (p.getClass().getName()) {
                 case "Entity.PrestazioneSala":
                     {
@@ -93,48 +93,51 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
                         if(!prest.getLista_sale().isEmpty())
                             prestazioniDisp.add(p);
                         break;
+                        
                     }
                 case "Entity.PrestazioneMedico":
                     {
-                        PrestazioneMedico prest = (PrestazioneMedico) p;
+                       PrestazioneMedico prest = (PrestazioneMedico) p;
                         if(!prest.getLista_medici().isEmpty())
                             prestazioniDisp.add(p);
                         break;
                     }
             }
+        }
         return prestazioniDisp;
     }
 
     @Override
     public List<StrutturaMedica> ottieniStruttureMedichePerPrestazione(Prestazione p) {
         List<StrutturaMedica> lsm = new ArrayList();
-        if (p.getClass().getName().equals("Entity.PrestazioneSala")) {
-            List<Sala> ls = ((PrestazioneSala) p).getLista_sale();
-            for (Sala s : ls) {
-                if (s.getStudioMedico() != null) {
-                    lsm.add(s.getStudioMedico());
-                } else if (s.getReparto() != null) {
-                    lsm.add(s.getReparto().getOspedale());
-                }
-            }
-        } else if (p.getClass().getName().equals("Entity.PrestazioneMedico")) {
-            List<Medico> lm = ((PrestazioneMedico) p).getLista_medici();
-            for (Medico m : lm) {
-                if (m.getClass().getName().equals("Entity.MedicoEsterno")) {
-                    lsm.add(((MedicoEsterno) m).getStudioMedico());
-                } else if (m.getClass().getName().equals("Entity.MedicoOspedaliero")) {
-                    List<Reparto> lr = repartoFacade.findAll();
-                    for (Reparto r : lr) {
-                        List<MedicoOspedaliero> lmo = r.getLista_medici();
-                        for (MedicoOspedaliero mo : lmo) {
-                            if (m.getId().equals(mo.getId())) {
-                                lsm.add(r.getOspedale());
-                                break;
+        switch (p.getClass().getName()) {
+            case "Entity.PrestazioneSala":
+                List<Sala> ls = ((PrestazioneSala) p).getLista_sale();
+                for (Sala s : ls) {
+                    if (s.getStudioMedico() != null) {
+                        lsm.add(s.getStudioMedico());
+                    } else if (s.getReparto() != null) {
+                        lsm.add(s.getReparto().getOspedale());
+                    }
+                }   break;
+            case "Entity.PrestazioneMedico":
+                List<Medico> lm = ((PrestazioneMedico) p).getLista_medici();
+                for (Medico m : lm) {
+                    if (!lsm.contains(((MedicoEsterno) m).getStudioMedico()) && m.getClass().getName().equals("Entity.MedicoEsterno")) {
+                        lsm.add(((MedicoEsterno) m).getStudioMedico());
+                    } else if (m.getClass().getName().equals("Entity.MedicoOspedaliero")) {
+                        List<Reparto> lr = repartoFacade.findAll();
+                        for (Reparto r : lr) {
+                            List<MedicoOspedaliero> lmo = r.getLista_medici();
+                            for (MedicoOspedaliero mo : lmo) {
+                                if (m.getId().equals(mo.getId()) && !lsm.contains(r.getOspedale())) {
+                                    lsm.add(r.getOspedale());
+                                    break;
+                                }
                             }
                         }
                     }
-                }
-            }
+                }   break;
         }
         return lsm;
     }
