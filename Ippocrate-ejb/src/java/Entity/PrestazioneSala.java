@@ -28,6 +28,10 @@ public class PrestazioneSala extends Prestazione implements Serializable {
     @ManyToMany(mappedBy = "lista_prestazioni")
     private List<Sala> lista_sale;
 
+    public void addSala(Sala s) {
+        lista_sale.add(s);
+    }
+
     /**
      * Get the value of lista_sale
      *
@@ -46,10 +50,12 @@ public class PrestazioneSala extends Prestazione implements Serializable {
         this.lista_sale = lista_sale;
     }
 
+    @Override
     public Long getId() {
         return id;
     }
 
+    @Override
     public void setId(Long id) {
         this.id = id;
     }
@@ -76,7 +82,7 @@ public class PrestazioneSala extends Prestazione implements Serializable {
 
     @Override
     public String toString() {
-        return "Entity.PrestazioneSala[ id=" + id + " ]";
+        return "Entity.PrestazioneSala[ id=" + id + " , nome =" + getNome() + " , lista_sale =" + getLista_sale().size() + " ]";
     }
 
 }

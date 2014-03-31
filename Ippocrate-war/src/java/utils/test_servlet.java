@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Alex
  */
 public class test_servlet extends HttpServlet {
+
     @EJB
     private StrutturaMedicaFacadeLocal sM;
 
@@ -55,9 +56,9 @@ public class test_servlet extends HttpServlet {
             Date[] ds = Gestore_Date.generateDateInterval(365);
             out.println(Gestore_Date.generateStringFromDate(ds[0], '-'));
             out.println(Gestore_Date.generateStringFromDate(ds[1], '-'));
-            
+
             List<StrutturaMedica> str = sM.findAll();
-            HttpCalendarClient agenda = new HttpCalendarClient();            
+            HttpCalendarClient agenda = new HttpCalendarClient();
             out.println(agenda.createAllCalendars(str));
 
             out.println("</body>");

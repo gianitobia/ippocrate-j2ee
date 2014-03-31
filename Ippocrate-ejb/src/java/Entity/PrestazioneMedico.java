@@ -46,10 +46,12 @@ public class PrestazioneMedico extends Prestazione implements Serializable {
         this.lista_medici = lista_medici;
     }
 
+    @Override
     public Long getId() {
         return id;
     }
 
+    @Override
     public void setId(Long id) {
         this.id = id;
     }

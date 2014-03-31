@@ -208,9 +208,9 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
     @Override
     public void addPrestazioniToSala(long id_sala, List<PrestazioneSala> prestazioni) {
         Sala s = salaFacade.find(id_sala);
-        s.getLista_prestazioni().addAll(prestazioni);
+        s.addListaPrestazioni(prestazioni);
         for (PrestazioneSala p : prestazioni) {
-            p.getLista_sale().add(s);
+            p.addSala(s);
         }
     }
 

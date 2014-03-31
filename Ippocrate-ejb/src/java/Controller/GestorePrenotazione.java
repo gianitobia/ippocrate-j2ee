@@ -17,7 +17,9 @@ import Transient.PrenotazioneTransient;
 import Entity.Prestazione;
 import Entity.PrestazioneFacadeLocal;
 import Entity.PrestazioneMedico;
+import Entity.PrestazioneMedicoFacadeLocal;
 import Entity.PrestazioneSala;
+import Entity.PrestazioneSalaFacadeLocal;
 import Entity.Reparto;
 import Entity.RepartoFacadeLocal;
 import Entity.Sala;
@@ -35,6 +37,10 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class GestorePrenotazione implements GestorePrenotazioneLocal {
+    @EJB
+    private PrestazioneSalaFacadeLocal prestazioneSalaFacade;
+    @EJB
+    private PrestazioneMedicoFacadeLocal prestazioneMedicoFacade;
 
     @EJB
     private RepartoFacadeLocal repartoFacade;
@@ -83,25 +89,20 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
 
     @Override
     public List<Prestazione> ottieniPrestazioniPrenotabili() {
-        List<Prestazione> prestazioni = prestazioneFacade.findAll();
+        List<PrestazioneMedico> prestazioniMedico = prestazioneMedicoFacade.findAll();
+        List<PrestazioneSala> prestazioniSala = prestazioneSalaFacade.findAll();
         List<Prestazione> prestazioniDisp = new ArrayList<>();
-        for(Prestazione p : prestazioni){
-            switch (p.getClass().getName()) {
-                case "Entity.PrestazioneSala":
-                    {
-                        PrestazioneSala prest = (PrestazioneSala) p;
-                        if(!prest.getLista_sale().isEmpty())
-                            prestazioniDisp.add(p);
-                        break;
-                        
-                    }
-                case "Entity.PrestazioneMedico":
-                    {
-                       PrestazioneMedico prest = (PrestazioneMedico) p;
-                        if(!prest.getLista_medici().isEmpty())
-                            prestazioniDisp.add(p);
-                        break;
-                    }
+        
+        for (PrestazioneSala p : prestazioniSala) {
+            if (!p.getLista_sale().isEmpty()) {
+                System.out.println("ciao");
+                prestazioniDisp.add(p);
+            }
+            
+        }
+        for (PrestazioneMedico p : prestazioniMedico) {
+            if (!p.getLista_medici().isEmpty()) {
+                prestazioniDisp.add(p);
             }
         }
         return prestazioniDisp;
@@ -119,11 +120,12 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
                     } else if (s.getReparto() != null) {
                         lsm.add(s.getReparto().getOspedale());
                     }
-                }   break;
+                }
+                break;
             case "Entity.PrestazioneMedico":
                 List<Medico> lm = ((PrestazioneMedico) p).getLista_medici();
                 for (Medico m : lm) {
-                    if (!lsm.contains(((MedicoEsterno) m).getStudioMedico()) && m.getClass().getName().equals("Entity.MedicoEsterno")) {
+                    if (m.getClass().getName().equals("Entity.MedicoEsterno") && !lsm.contains(((MedicoEsterno) m).getStudioMedico())) {
                         lsm.add(((MedicoEsterno) m).getStudioMedico());
                     } else if (m.getClass().getName().equals("Entity.MedicoOspedaliero")) {
                         List<Reparto> lr = repartoFacade.findAll();
@@ -137,7 +139,8 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
                             }
                         }
                     }
-                }   break;
+                }
+                break;
         }
         return lsm;
     }

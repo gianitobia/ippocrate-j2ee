@@ -40,6 +40,10 @@ public class Sala implements Serializable {
     @OneToOne
     private Medico medico_responsabile;
 
+    public void addListaPrestazioni(List<PrestazioneSala> prest) {
+        lista_prestazioni.addAll(prest);
+    }
+
     public StudioMedico getStudioMedico() {
         return studioMedico;
     }
