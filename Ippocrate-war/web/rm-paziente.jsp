@@ -330,9 +330,9 @@
                             <th>Data scadenza prescrizione</th>
                             <th>Medicinale</th>
                             <th>Quantità</th>
-                            <% if (referto.getMedico().getCognome().equals(medico.getCognome())) {%>
+                                <% if (referto.getMedico().getCognome().equals(medico.getCognome())) {%>
                             <th>Altro</th>
-                            <%}%>
+                                <%}%>
                         </tr>
                     </thead>
                     <% List<PrescrizioneMedica> prescrizioni = referto.getLista_prescrizioni();

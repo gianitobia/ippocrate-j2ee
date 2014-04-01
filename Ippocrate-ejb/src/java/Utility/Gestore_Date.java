@@ -22,7 +22,7 @@ public class Gestore_Date {
     //Genera un data random
     public static Date generateDate() {
         DateFormat ndf = new SimpleDateFormat("yyyy-MM-dd");
-        String data = ((int) (1960 + Math.random() * 25)) + "-"+ ((int) (Math.random() * 11 + 1))+"-"+ ((int) (Math.random() * 30 + 1));
+        String data = ((int) (1960 + Math.random() * 25)) + "-" + ((int) (Math.random() * 11 + 1)) + "-" + ((int) (Math.random() * 30 + 1));
         Date d = new Date();
         try {
             d = ndf.parse(data);
@@ -62,7 +62,7 @@ public class Gestore_Date {
         DateFormat ndf = new SimpleDateFormat("dd" + separator + "MM" + separator + "yyyy");
         return ndf.format(data);
     }
-    
+
     //Restituisce un array di due data (la prima precedente alla seconda) rispettivamente 
     //per data creazione di una prescrizione e scadenza
     public static Date[] generateDateInterval(int interval_days) {
@@ -83,5 +83,5 @@ public class Gestore_Date {
             Logger.getLogger(Gestore_Date.class.getName()).log(Level.SEVERE, null, ex);
         }
         return dates;
-    } 
+    }
 }
