@@ -41,8 +41,8 @@
             var indexOfStrut;
             var indexOfMedi;
 
-            function cercaStrutture(iPrest) {
-                indexOfPrest = iPrest;
+            function cercaStrutture() {
+                indexOfPrest = document.getElementById("prest").selectedIndex;
                 var url = "PrenotazioneServlet?action=cercaStrutture_" + indexOfPrest;
                 xhrObj.open("GET", url, true); // connessione asincrona (true) al server (indirizzo=url)
                 xhrObj.onreadystatechange = updatePage1; // indico funzione (updatePage) da invocare quando il server termina l’esecuzione della richiesta
@@ -146,9 +146,9 @@
                         <div class="form-group">
                             <label for="prest" class="col-sm-2 control-label">Tipo visita</label>
                             <div class="col-sm-10">
-                                <select class="form-control" id="prest">
+                                <select class="form-control" id="prest" onchange="cercaStrutture()">
                                     <% for (int i = 0; i < prestazioni.size(); i++) {%>
-                                    <option onclick="cercaStrutture(<%= i%>)"><%= prestazioni.get(i).getNome()%></option>
+                                    <option><%= prestazioni.get(i).getNome()%></option>
                                     <%}%>
                                 </select>
                             </div>
