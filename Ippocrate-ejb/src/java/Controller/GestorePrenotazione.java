@@ -90,24 +90,24 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
     @Override
     public List<Prestazione> ottieniPrestazioniPrenotabili() {
         List<PrestazioneMedico> prestazioniMedico = prestazioneMedicoFacade.findAll();
-        //List<PrestazioneSala> prestazioniSala = prestazioneSalaFacade.findAll();
-        List<Sala> sale = salaFacade.findAll();
+        List<PrestazioneSala> prestazioniSala = prestazioneSalaFacade.findAll();
+        //List<Sala> sale = salaFacade.findAll();
         List<Prestazione> prestazioniDisp = new ArrayList<>();
-        for(Sala s : sale){
-            List<PrestazioneSala> prest = s.getLista_prestazioni();
-            for (PrestazioneSala p : prest) {
-                if (!prestazioniDisp.contains(p)) {
-                    prestazioniDisp.add(p);
-                }
-            }
-        }
-//        for (PrestazioneSala p : prestazioniSala) {
-//            if (!p.getLista_sale().isEmpty()) {
-//                System.out.println("ciao");
-//                prestazioniDisp.add(p);
+//        for(Sala s : sale){
+//            List<PrestazioneSala> prest = s.getLista_prestazioni();
+//            for (PrestazioneSala p : prest) {
+//                if (!prestazioniDisp.contains(p)) {
+//                    prestazioniDisp.add(p);
+//                }
 //            }
-//            
 //        }
+        for (PrestazioneSala p : prestazioniSala) {
+            if (!p.getLista_sale().isEmpty()) {
+                System.out.println("ciao");
+                prestazioniDisp.add(p);
+            }
+            
+        }
         for (PrestazioneMedico p : prestazioniMedico) {
             if (!p.getLista_medici().isEmpty()) {
                 prestazioniDisp.add(p);
