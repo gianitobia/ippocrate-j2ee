@@ -103,7 +103,6 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
 //        }
         for (PrestazioneSala p : prestazioniSala) {
             if (!p.getLista_sale().isEmpty()) {
-                System.out.println("ciao");
                 prestazioniDisp.add(p);
             }
             
