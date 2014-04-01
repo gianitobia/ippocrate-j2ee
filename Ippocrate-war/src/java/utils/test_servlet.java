@@ -65,8 +65,8 @@ public class test_servlet extends HttpServlet {
             
             List<StrutturaMedica> str = sM.findAll();
             HttpCalendarClient agenda = new HttpCalendarClient();            
-            //out.println(agenda.createAllCalendars(str));
-            
+            out.println(agenda.createAllCalendars(str));
+            /*
             PrenotazioneSala nuovo = new PrenotazioneSala();
             nuovo.setId(new Long(567));
             
@@ -85,7 +85,7 @@ public class test_servlet extends HttpServlet {
             
             
             out.println(agenda.create_event(nuovo));
-            
+            */
             out.println("</body>");
             out.println("</html>");
         }
