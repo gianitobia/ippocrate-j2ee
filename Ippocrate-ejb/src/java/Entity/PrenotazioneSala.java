@@ -119,17 +119,19 @@ public class PrenotazioneSala extends Prenotazione implements Serializable {
         obj.put("id_prestazione", this.sala.getId().toString());
         //id_prestazione rappresenta l'id utilizzato per filtrare il calendario google su cui salvare l'evento
 
-        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm:ss.S'+01:00'");
+        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm:ss.SSS'+02:00'");
         obj.put("start", ft.format(super.getData_prenotazione()));
 
         Date dataFine = new Date(super.getData_prenotazione().getTime()
                 + (60000 * this.getTipo_prestazione().getDurata()));
-
+        
         obj.put("end", ft.format(dataFine));
         //imposto l'ID di google nel JSON
         if (super.getGoogleId() != null) {
             obj.put("id_google", super.getGoogleId());
         }
+        
+        System.out.println(obj.toJSONString());
         return obj;
     }
 

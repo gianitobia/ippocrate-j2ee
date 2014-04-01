@@ -119,7 +119,7 @@ public class PrenotazioneMedico extends Prenotazione implements Serializable {
         obj.put("id_prestazione", this.medico.getId().toString());
         //id_prestazione rappresenta l'id utilizzato per filtrare il calendario google su cui salvare l'evento
 
-        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm:ss.S'+01:00'");
+        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm:ss.SSS'+02:00'");
         obj.put("start", ft.format(super.getData_prenotazione()));
 
         Date dataFine = new Date(super.getData_prenotazione().getTime()

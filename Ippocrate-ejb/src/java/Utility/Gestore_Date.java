@@ -45,6 +45,17 @@ public class Gestore_Date {
         }
         return d;
     }
+    
+    public static Date generateReservationFromString(String data) {
+        DateFormat ndf = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm:ss.SSS'+02:00'");
+        Date d = new Date();
+        try{
+            d = ndf.parse(data);
+        }catch(ParseException ex) {
+            Logger.getLogger(Gestore_Date.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return d;
+    }
 
     //Restituisce una stringa rappresentate la data in input formattata con un separatore scelto;
     public static String generateStringFromDate(Date data, char separator) {
