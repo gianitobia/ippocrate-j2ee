@@ -97,7 +97,6 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
             List<PrestazioneSala> prest = s.getLista_prestazioni();
             for (PrestazioneSala p : prest) {
                 if (!prestazioniDisp.contains(p)) {
-                    System.out.println("ciao");
                     prestazioniDisp.add(p);
                 }
             }
