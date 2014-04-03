@@ -131,6 +131,19 @@ public class MedicoServlet extends HttpServlet {
                 cc.getLista_referti().get(numReferto).getLista_prescrizioni().add(pm);
                 s.setAttribute("CCpaziente", cc);
                 response.sendRedirect("rm-paziente.jsp?num=" + numReferto);
+            } else if (request.getParameter("action").equals("getAgenda")) {
+                String primo = "https://www.google.com/calendar/embed?showTitle=0&amp;"
+                        + "showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;"
+                        + "showTz=0&amp;mode=WEEK&amp;height=600&amp;wkst=2&amp;"
+                        + "bgcolor=%23FFFFFF&amp;src=";
+                String terzo = ";color=%23125A12&amp;ctz=Europe%2FRome";
+
+//                HttpCalendarClient conn = new HttpCalendarClient();
+//                String agendaSrc = conn.get_calendar_id(struttura,medico);
+//                oppure invocando il gestoreMedico
+                String agendaSrc = "u900u44dorgt463iim5nd8g1c4%40group.calendar.google.com&amp";
+                s.setAttribute("agenda", primo + agendaSrc + terzo);
+                response.sendRedirect("mia-agenda.jsp");
             }
         }
     }
