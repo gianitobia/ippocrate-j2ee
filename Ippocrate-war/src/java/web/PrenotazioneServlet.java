@@ -7,6 +7,7 @@ package web;
 
 import Controller.GestorePrenotazioneLocal;
 import Entity.Medico;
+import Transient.PrenotazioneTransient;
 import Entity.Prestazione;
 import Entity.Sala;
 import Entity.StrutturaMedica;
@@ -105,6 +106,14 @@ public class PrenotazioneServlet extends HttpServlet {
                     str = str + "<option onclick=\"cercaAgendaMedico(" + i + ")\">" + lm.get(i).getCognome() + "</option>";
                 }
                 out.write(str);
+            } else if (request.getParameter("action").startsWith("cancellaPrenotazione_")) {
+                int numPrenotazione = Integer.parseInt(request.getParameter("action").substring(21));
+                Long idPaziente = (Long) s.getAttribute("user_id");
+                List<PrenotazioneTransient> pt = (List<PrenotazioneTransient>) s.getAttribute("prenotazioni");
+                Long idPrenotazione = pt.get(numPrenotazione).getId();
+                List<PrenotazioneTransient> prt = gestorePrenotazione.cancellaPrenotazione(idPaziente, idPrenotazione);                
+                s.setAttribute("prenotazioni", prt);
+                response.sendRedirect("mie-prenotazioni.jsp");
             }
         }
     }

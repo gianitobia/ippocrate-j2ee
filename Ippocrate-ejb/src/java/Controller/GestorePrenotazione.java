@@ -222,5 +222,13 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
         }
         return ls;
     }
+    
+    @Override
+    public List<PrenotazioneTransient> cancellaPrenotazione(Long idPaz, Long idPre) {
+         Prenotazione pr = prenotazioneFacade.find(idPre);
+         prenotazioneFacade.remove(pr);         
+         
+         return ottieniPrenotazioni(idPaz); 
+    }
 
 }
