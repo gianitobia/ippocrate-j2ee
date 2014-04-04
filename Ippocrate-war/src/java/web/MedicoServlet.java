@@ -138,10 +138,8 @@ public class MedicoServlet extends HttpServlet {
                         + "bgcolor=%23FFFFFF&amp;src=";
                 String terzo = ";color=%23125A12&amp;ctz=Europe%2FRome";
 
-//                HttpCalendarClient conn = new HttpCalendarClient();
-//                String agendaSrc = conn.get_calendar_id(struttura,medico);
-//                oppure invocando il gestoreMedico
-                String agendaSrc = "u900u44dorgt463iim5nd8g1c4%40group.calendar.google.com&amp";
+                Long medicoId = (Long) s.getAttribute("user_id");
+                String agendaSrc = gestoreMedico.getAgenda(medicoId);
                 s.setAttribute("agenda", primo + agendaSrc + terzo);
                 response.sendRedirect("mia-agenda.jsp");
             }
@@ -188,7 +186,6 @@ public class MedicoServlet extends HttpServlet {
     }// </editor-fold>
 
     private String getFileName(Part filePart) {
-        String partHeader = filePart.getHeader("content-disposition");
         for (String content : filePart.getHeader("content-disposition").split(";")) {
             if (content.trim().startsWith("filename")) {
                 return content.substring(
