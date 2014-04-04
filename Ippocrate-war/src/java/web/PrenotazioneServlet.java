@@ -109,8 +109,11 @@ public class PrenotazioneServlet extends HttpServlet {
                 Long idPaziente = (Long) s.getAttribute("user_id");
                 List<PrenotazioneTransient> pt = (List<PrenotazioneTransient>) s.getAttribute("prenotazioni");
                 Long idPrenotazione = pt.get(numPrenotazione).getId();
-                List<PrenotazioneTransient> prt = gestorePrenotazione.cancellaPrenotazione(idPaziente, idPrenotazione);
-                s.setAttribute("prenotazioni", prt);
+                boolean success = gestorePrenotazione.cancellaPrenotazione(idPaziente, idPrenotazione);
+                if (success) {
+                    pt.remove(numPrenotazione);
+                    s.setAttribute("prenotazioni", pt);
+                }                
                 response.sendRedirect("mie-prenotazioni.jsp");
             }
         }
