@@ -31,6 +31,6 @@ public interface GestorePrenotazioneLocal {
 
     List<Sala> ottieniSalePerPrestazioneEStrutturaMedica(Prestazione p, StrutturaMedica sm);
 
-    List<PrenotazioneTransient> cancellaPrenotazione(Long idPaz, Long idPre);
+    boolean cancellaPrenotazione(Long idPaz, Long idPre);
 
 }
