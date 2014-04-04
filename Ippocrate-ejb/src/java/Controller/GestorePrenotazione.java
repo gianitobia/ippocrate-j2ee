@@ -229,7 +229,10 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
             prenotazioneFacade.remove(pr);
             return true;
         }
-
+        
+        //effettuare la chiamata al WS Python per la cancellazione
+        //della prenotazione anche su google calendar!!!!
+        
         return false;
     }
 
