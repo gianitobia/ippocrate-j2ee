@@ -274,4 +274,15 @@ public class GestoreMedico implements GestoreMedicoLocal {
 
         return multimedia;
     }
+
+    @Override
+    public String getAgenda(Long medicoId) {
+
+//        HttpCalendarClient conn = new HttpCalendarClient();
+//        String agendaSrc = conn.get_calendar_id(struttura,medicoId);
+        String agendaSrc = "u900u44dorgt463iim5nd8g1c4%40group.calendar.google.com&amp";
+        
+        
+        return agendaSrc;
+    }
 }
