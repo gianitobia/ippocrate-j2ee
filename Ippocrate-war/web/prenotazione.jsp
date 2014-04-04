@@ -64,7 +64,7 @@
             function cercaMedico(iStrut) {
                 indexOfStrut = iStrut;
                 //Cerca i medici di quella strut che fanno quella prestazione
-                var url = "PrenotazioneServlet?action=cercaMedico_" + indexOfPrest + "_" + indexOfStrut;
+                var url = "PrenotazioneServlet?action=cercaMedico_" + indexOfStrut;
                 xhrObj.open("GET", url, true); // connessione asincrona (true) al server (indirizzo=url)
                 xhrObj.onreadystatechange = updatePage2; // indico funzione (updatePage) da invocare quando il server termina l’esecuzione della richiesta
                 xhrObj.send(null); // invio oggetto XMLHttpRequest a web server
@@ -83,7 +83,7 @@
             function cercaAgendaSale(iStrut) {
                 indexOfStrut = iStrut;
                 //Cerca l'agenda di una Sala(passando una StrutturaMedica)
-                var url = "PrenotazioneServlet?action=cercaAgendaSale_" + indexOfPrest + "_" + indexOfStrut;
+                var url = "PrenotazioneServlet?action=cercaAgendaSale_" + indexOfStrut;
                 xhrObj.open("GET", url, true); // connessione asincrona (true) al server (indirizzo=url)
                 xhrObj.onreadystatechange = updatePage3; // indico funzione (updatePage) da invocare quando il server termina l’esecuzione della richiesta
                 xhrObj.send(null); // invio oggetto XMLHttpRequest a web server

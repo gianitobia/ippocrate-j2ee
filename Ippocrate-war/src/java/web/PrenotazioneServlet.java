@@ -55,6 +55,7 @@ public class PrenotazioneServlet extends HttpServlet {
             } else if (request.getParameter("action").startsWith("cercaStrutture_")) {
                 int indexOfPrest = Integer.parseInt(request.getParameter("action").substring(15));
                 Prestazione p = ((List<Prestazione>) s.getAttribute("prestazioni")).get(indexOfPrest);
+                s.setAttribute("prestazioneSel", p);
                 List<StrutturaMedica> lsm = gestorePrenotazione.ottieniStruttureMedichePerPrestazione(p);
                 s.setAttribute("strutture", lsm);
 
@@ -73,12 +74,10 @@ public class PrenotazioneServlet extends HttpServlet {
 //                        + str);
                 out.write(str);
             } else if (request.getParameter("action").startsWith("cercaAgendaSale_")) {
-                String temp = request.getParameter("action").substring(16);
-                String[] tempArray = temp.split("_");
-                int indexOfPrest = Integer.parseInt(tempArray[0]);
-                int indexOfStrut = Integer.parseInt(tempArray[1]);
-                Prestazione p = ((List<Prestazione>) s.getAttribute("prestazioni")).get(indexOfPrest);
+                int indexOfStrut = Integer.parseInt(request.getParameter("action").substring(16));
                 StrutturaMedica sm = ((List<StrutturaMedica>) s.getAttribute("strutture")).get(indexOfStrut);
+                s.setAttribute("strutturaSel", sm);
+                Prestazione p = (Prestazione) s.getAttribute("prestazioneSel");
                 List<Sala> ls = gestorePrenotazione.ottieniSalePerPrestazioneEStrutturaMedica(p, sm);
                 //agenda unica per tutte le sale di quella struttura: gestorePrenotazione.ottieniAgendePerSale(ls);
                 //Agenda aUnica
@@ -88,15 +87,14 @@ public class PrenotazioneServlet extends HttpServlet {
             } else if (request.getParameter("action").startsWith("cercaAgendaMedico_")) {
                 int indexOfMedi = Integer.parseInt(request.getParameter("action").substring(18));
                 Medico m = ((List<Medico>) s.getAttribute("medici")).get(indexOfMedi);
+                s.setAttribute("medicoSel", m);
 
                 //out.write(Stampa il calendario del medico);
             } else if (request.getParameter("action").startsWith("cercaMedico_")) {
-                String temp = request.getParameter("action").substring(12);
-                String[] tempArray = temp.split("_");
-                int indexOfPrest = Integer.parseInt(tempArray[0]);
-                int indexOfStrut = Integer.parseInt(tempArray[1]);
-                Prestazione p = ((List<Prestazione>) s.getAttribute("prestazioni")).get(indexOfPrest);
+                int indexOfStrut = Integer.parseInt(request.getParameter("action").substring(12));
                 StrutturaMedica sm = ((List<StrutturaMedica>) s.getAttribute("strutture")).get(indexOfStrut);
+                s.setAttribute("strutturaSel", sm);
+                Prestazione p = (Prestazione) s.getAttribute("prestazioneSel");
                 List<Medico> lm = gestorePrenotazione.ottieniMediciPerPrestazioneEStrutturaMedica(p, sm);
                 s.setAttribute("medici", lm);
 
@@ -111,7 +109,7 @@ public class PrenotazioneServlet extends HttpServlet {
                 Long idPaziente = (Long) s.getAttribute("user_id");
                 List<PrenotazioneTransient> pt = (List<PrenotazioneTransient>) s.getAttribute("prenotazioni");
                 Long idPrenotazione = pt.get(numPrenotazione).getId();
-                List<PrenotazioneTransient> prt = gestorePrenotazione.cancellaPrenotazione(idPaziente, idPrenotazione);                
+                List<PrenotazioneTransient> prt = gestorePrenotazione.cancellaPrenotazione(idPaziente, idPrenotazione);
                 s.setAttribute("prenotazioni", prt);
                 response.sendRedirect("mie-prenotazioni.jsp");
             }
