@@ -28,6 +28,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -43,6 +44,7 @@ import javax.servlet.http.Part;
  */
 @Stateless
 public class GestoreMedico implements GestoreMedicoLocal {
+
     @EJB
     private OspedaleFacadeLocal ospedaleFacade;
 
@@ -61,7 +63,6 @@ public class GestoreMedico implements GestoreMedicoLocal {
 
     @EJB
     private MedicoFacadeLocal medicoFacade;
-    
 
     @Override
     public List<Paziente> ottieniMieiPazienti(Long medicoId) {
@@ -269,13 +270,11 @@ public class GestoreMedico implements GestoreMedicoLocal {
         RefertoMedico rm = refertoMedicoFacade.find(idRM);
         String s = rm.getLista_images();
 
-        List<String> multimedia = new ArrayList<String>();
+        List<String> multimedia = new ArrayList<>();
 
         if (s != null && s.equals("") == false) {
             String[] temp = s.split(";");
-            for (String t : temp) {
-                multimedia.add(t);
-            }
+            multimedia.addAll(Arrays.asList(temp));
         }
 
         return multimedia;
@@ -298,15 +297,16 @@ public class GestoreMedico implements GestoreMedicoLocal {
                         }
                     }
                     //esco dal ciclo degli ospedali se ho trovato la strutture che mi serve
-                    if(!struttura.equals("")) break;
-                }   
+                    if (!struttura.equals("")) {
+                        break;
+                    }
+                }
                 break;
             case "Entity.MedicoEsterno":
                 //prendo direttamente il nome dello studio medico
                 struttura = ((MedicoEsterno) m).getStudioMedico().getNome();
                 break;
         }
-        
         String agendaSrc = conn.get_calendar_id(struttura, m.getUsername());
         return agendaSrc;
     }

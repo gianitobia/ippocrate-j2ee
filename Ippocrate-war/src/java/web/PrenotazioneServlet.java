@@ -113,7 +113,7 @@ public class PrenotazioneServlet extends HttpServlet {
                 if (success) {
                     pt.remove(numPrenotazione);
                     s.setAttribute("prenotazioni", pt);
-                }                
+                }
                 response.sendRedirect("mie-prenotazioni.jsp");
             }
         }

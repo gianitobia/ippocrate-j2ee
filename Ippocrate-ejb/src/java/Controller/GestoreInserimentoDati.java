@@ -92,6 +92,41 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
     }
 
     @Override
+    public Long addMedicoEsterno(String nome, String cognome, String specializzazione, Date data_nascita, String username, String password, String pin_code, Long id_studio) {
+        MedicoEsterno m = new MedicoEsterno();
+        m.setNome(nome);
+        m.setCognome(cognome);
+        m.setSpecializzazione(specializzazione);
+        m.setData_nascita(data_nascita);
+        m.setUsername(username);
+        m.setPassword(password);
+        m.setPin_code(pin_code);
+        m.setLista_pazienti(new ArrayList<Paziente>());
+        StudioMedico sm = studioMedicoFacade.find(id_studio);
+        medicoEsternoFacade.create(m);
+        m.setStudioMedico(sm);
+        sm.addMedico(m);
+        return m.getId();
+    }
+
+    @Override
+    public Long addMedicoOspedaliero(String nome, String cognome, String specializzazione, Date data_nascita, String username, String password, String pin_code, String num_ufficio, Long id_reparto) {
+        MedicoOspedaliero m = new MedicoOspedaliero();
+        m.setNome(nome);
+        m.setCognome(cognome);
+        m.setSpecializzazione(specializzazione);
+        m.setData_nascita(data_nascita);
+        m.setUsername(username);
+        m.setPassword(password);
+        m.setPin_code(pin_code);
+        m.setNum_ufficio(num_ufficio);
+        medicoOspedalieroFacade.create(m);
+        Reparto r = repartoFacade.find(id_reparto);
+        r.addMedico(m);
+        return m.getId();
+    }
+
+    @Override
     public Long addMedicoEsterno(String nome, String cognome, String specializzazione, Date data_nascita, String username, String password, String pin_code) {
         MedicoEsterno m = new MedicoEsterno();
         m.setNome(nome);
@@ -376,4 +411,18 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
         }
     }
 
+    @Override
+    public void linkRepartoMedico(Long id_medico, Long id_reparto) {
+        MedicoOspedaliero m = medicoOspedalieroFacade.find(id_medico);
+        Reparto r = repartoFacade.find(id_reparto);
+        r.addMedico(m);
+    }
+
+    @Override
+    public void linkStudioMedico(Long id_medico, Long id_studio) {
+        MedicoEsterno m = medicoEsternoFacade.find(id_medico);
+        StudioMedico sm = studioMedicoFacade.find(id_studio);
+        sm.addMedico(m);
+        m.setStudioMedico(sm);
+    }
 }

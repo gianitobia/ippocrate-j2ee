@@ -38,6 +38,10 @@ public interface GestoreInserimentoDatiLocal {
 
     Long addMedicoOspedaliero(String nome, String cognome, String specializzazione, Date data_nascita, String username, String password, String pin_code, String num_ufficio);
 
+    Long addMedicoEsterno(String nome, String cognome, String specializzazione, Date data_nascita, String username, String password, String pin_code, Long id_studio);
+
+    Long addMedicoOspedaliero(String nome, String cognome, String specializzazione, Date data_nascita, String username, String password, String pin_code, String num_ufficio, Long id_reparto);
+
     Long addOspedale(String nome, String indrizzo);
 
     Long addStudioMedico(String nome, String indirizzo);
@@ -66,4 +70,7 @@ public interface GestoreInserimentoDatiLocal {
 
     List<PrestazioneSala> addPrestazioniSala(String[] prestazioniSala);
 
+    void linkRepartoMedico(Long id_medico, Long id_reparto);
+
+    void linkStudioMedico(Long id_medico, Long id_studio);
 }
