@@ -11,6 +11,8 @@ import Entity.Medico;
 import Entity.MedicoEsterno;
 import Entity.MedicoFacadeLocal;
 import Entity.MedicoOspedaliero;
+import Entity.Ospedale;
+import Entity.OspedaleFacadeLocal;
 import Entity.Paziente;
 import Entity.PazienteFacadeLocal;
 import Entity.PrescrizioneMedica;
@@ -19,6 +21,7 @@ import Entity.RefertoMedico;
 import Entity.RefertoMedicoFacadeLocal;
 import Entity.Reparto;
 import Entity.RepartoFacadeLocal;
+import HttpClient.HttpCalendarClient;
 import Utility.FileUpload;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -40,6 +43,8 @@ import javax.servlet.http.Part;
  */
 @Stateless
 public class GestoreMedico implements GestoreMedicoLocal {
+    @EJB
+    private OspedaleFacadeLocal ospedaleFacade;
 
     @EJB
     private PazienteFacadeLocal pazienteFacade;
@@ -56,6 +61,7 @@ public class GestoreMedico implements GestoreMedicoLocal {
 
     @EJB
     private MedicoFacadeLocal medicoFacade;
+    
 
     @Override
     public List<Paziente> ottieniMieiPazienti(Long medicoId) {
@@ -278,11 +284,30 @@ public class GestoreMedico implements GestoreMedicoLocal {
     @Override
     public String getAgenda(Long medicoId) {
 
-//        HttpCalendarClient conn = new HttpCalendarClient();
-//        String agendaSrc = conn.get_calendar_id(struttura,medicoId);
-        String agendaSrc = "u900u44dorgt463iim5nd8g1c4%40group.calendar.google.com&amp";
+        HttpCalendarClient conn = new HttpCalendarClient();
+        Medico m = medicoFacade.find(medicoId);
+        String struttura = "";
+        switch (m.getClass().getName()) {
+            case "MedicoOspedaliero":
+                //devo partire dalla strutture xke non c'e' il doppio riferimento
+                for (Ospedale o : ospedaleFacade.findAll()) {
+                    for (Reparto r : o.getLista_reparti()) {
+                        if (r.getLista_medici().contains(((MedicoOspedaliero) m))) {
+                            struttura = o.getNome();
+                            break;
+                        }
+                    }
+                    //esco dal ciclo degli ospedali se ho trovato la strutture che mi serve
+                    if(!struttura.equals("")) break;
+                }   
+                break;
+            case "MedicoEsterno":
+                //prendo direttamente il nome dello studio medico
+                struttura = ((MedicoEsterno) m).getStudioMedico().getNome();
+                break;
+        }
         
-        
+        String agendaSrc = conn.get_calendar_id(struttura, m.getUsername());
         return agendaSrc;
     }
 }

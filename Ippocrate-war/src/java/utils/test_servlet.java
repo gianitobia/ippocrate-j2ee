@@ -63,9 +63,6 @@ public class test_servlet extends HttpServlet {
             out.println(Gestore_Date.generateStringFromDate(ds[0], '-'));
             out.println(Gestore_Date.generateStringFromDate(ds[1], '-'));
 
-            List<StrutturaMedica> str = sM.findAll();
-            HttpCalendarClient agenda = new HttpCalendarClient();
-            out.println(agenda.createAllCalendars(str));
             /*
             PrenotazioneSala nuovo = new PrenotazioneSala();
             nuovo.setId(new Long(567));

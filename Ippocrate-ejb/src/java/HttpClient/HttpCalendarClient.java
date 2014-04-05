@@ -203,7 +203,8 @@ public class HttpCalendarClient {
         }
         return disponibili;
     }
-
+    
+    /*
     public String createAllCalendars(List<StrutturaMedica> str) {
         //Creo l'oggetto richiesta
         JSONObject req = new JSONObject();
@@ -252,7 +253,8 @@ public class HttpCalendarClient {
 
         return this.send_request(req, "create_calendars/");
     }
-
+    */
+    
 //    public static void main(String[] args) {
 //
 //        HttpCalendarClient test = new HttpCalendarClient();
