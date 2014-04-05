@@ -65,6 +65,7 @@
                         <th>Data</th>
                         <th>Luogo</th>
                         <th>Info</th>
+                        <th>Altro</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -102,6 +103,12 @@
                                     </dl>
                                 </div>
                             </div>
+                        </td>
+                        <td>
+                            <form action="PrenotazioneServlet?action=cancellaPrenotazione_<%= i%>"  method="POST" >
+                                <button type="submit" class="btn btn-primary btn-xs"   
+                                        title="Cancella prenotazione"><span class="glyphicon glyphicon-trash"></span></button>                        
+                            </form>
                         </td>
                     </tr>
                     <%}%>

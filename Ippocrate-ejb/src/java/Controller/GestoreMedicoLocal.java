@@ -40,4 +40,6 @@ public interface GestoreMedicoLocal {
 
     List<String> ottieniMultimedia(Long idRM);
 
+    String getAgenda(Long medicoId);
+
 }

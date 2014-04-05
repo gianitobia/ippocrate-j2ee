@@ -6,6 +6,7 @@
 package Controller;
 
 import Entity.Medico;
+import Entity.Prenotazione;
 import Transient.PrenotazioneTransient;
 import Entity.Prestazione;
 import Entity.Sala;
@@ -29,5 +30,7 @@ public interface GestorePrenotazioneLocal {
     List<Medico> ottieniMediciPerPrestazioneEStrutturaMedica(Prestazione p, StrutturaMedica sm);
 
     List<Sala> ottieniSalePerPrestazioneEStrutturaMedica(Prestazione p, StrutturaMedica sm);
+
+    boolean cancellaPrenotazione(Long idPaz, Long idPre);
 
 }

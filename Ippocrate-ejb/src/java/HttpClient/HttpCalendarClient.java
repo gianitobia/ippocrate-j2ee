@@ -157,6 +157,18 @@ public class HttpCalendarClient {
     }
 
     /*
+    Funzione che richiede l'id di un calendario al WS Python, in input prende il
+    nome della struttura medica, mentre entita e' riferito a medico o sala
+    */
+    public String get_calendar_id(String nomeStruttura, String entita) {
+        JSONObject obj = new JSONObject();
+        obj.put("struttura", nomeStruttura);
+        obj.put("entita", entita);
+        
+        return this.send_request(obj, "get_calendar/");
+    }
+    
+    /*
      Funzione che richiede gli slot liberi di una settimana, ritorna 
      una lista di vettori di stringhe:
      L = {
