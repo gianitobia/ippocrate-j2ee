@@ -288,7 +288,7 @@ public class GestoreMedico implements GestoreMedicoLocal {
         Medico m = medicoFacade.find(medicoId);
         String struttura = "";
         switch (m.getClass().getName()) {
-            case "MedicoOspedaliero":
+            case "Entity.MedicoOspedaliero":
                 //devo partire dalla strutture xke non c'e' il doppio riferimento
                 for (Ospedale o : ospedaleFacade.findAll()) {
                     for (Reparto r : o.getLista_reparti()) {
@@ -301,7 +301,7 @@ public class GestoreMedico implements GestoreMedicoLocal {
                     if(!struttura.equals("")) break;
                 }   
                 break;
-            case "MedicoEsterno":
+            case "Entity.MedicoEsterno":
                 //prendo direttamente il nome dello studio medico
                 struttura = ((MedicoEsterno) m).getStudioMedico().getNome();
                 break;
