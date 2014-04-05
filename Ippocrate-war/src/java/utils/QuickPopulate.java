@@ -335,42 +335,42 @@ public class QuickPopulate extends HttpServlet {
 
         //inserimento medici
         //medici ospedalieri
-        insert.addMedicoOspedaliero("Cassandra", "Trentini", "Ginecologia", generateDate(), "1000", "1000", "1000", "28");
-        insert.addMedicoOspedaliero("Irma", "Folliero", "Immunologia", generateDate(), "2000", "2000", "2000", "T4");
-        insert.addMedicoOspedaliero("Neera", "Li Fonti", "Cardiochirurgia", generateDate(), "3000", "3000", "3000", "F6");
-        insert.addMedicoOspedaliero("Salomone", "Cocci", "Ematologia", generateDate(), "4000", "4000", "4000", "C3");
-        insert.addMedicoOspedaliero("Alfio", "Panicucci", "Nefrologia", generateDate(), "5000", "5000", "5000", "4A");
-        insert.addMedicoOspedaliero("Camilla", "Genovese", "Urologia", generateDate(), "6000", "6000", "6000", "7V");
-        insert.addMedicoOspedaliero("Jacopo", "Zetticci", "Cardiologia", generateDate(), "7000", "7000", "7000", "7S");
-        insert.addMedicoOspedaliero("Imelda", "Fanucci", "Endocrinologia", generateDate(), "8000", "8000", "8000", "2R");
-        insert.addMedicoOspedaliero("Guglielma", "Bergamaschi", "Neurooncologia", generateDate(), "9000", "9000", "9000", "2R");
-        insert.addMedicoOspedaliero("Luigina", "Longo", "Ginecologia", generateDate(), "1001", "1001", "1001", "2T");
-        insert.addMedicoOspedaliero("Natale", "Milanesi", "Chirurgia generale", generateDate(), "2002", "2002", "2002", "4E");
-        insert.addMedicoOspedaliero("Albertino", "Cremonesi", "Medicina generale", generateDate(), "3003", "3003", "3003", "3R");
-        insert.addMedicoOspedaliero("Muzio", "Padovesi", "Radiologia", generateDate(), "4004", "4004", "4004", "9R");
-        insert.addMedicoOspedaliero("Tolomeo", "Colombo", "Radiologia", generateDate(), "5005", "5005", "5005", "4R");
-        insert.addMedicoOspedaliero("Immacolata", "Zetticci", "Neurologia", generateDate(), "6006", "6006", "6006", "9N");
-        insert.addMedicoOspedaliero("Urania", "Sal", "Patologia orale", generateDate(), "7007", "7007", "7007", "4O");
-        insert.addMedicoOspedaliero("Saverio", "Greco", "Ortopedia", generateDate(), "8008", "8008", "8008", "O9");
-        insert.addMedicoOspedaliero("Quintilio", "Marcelo", "Medicina dello sport", generateDate(), "9009", "9009", "9009", "S4");
-        insert.addMedicoOspedaliero("Imelda", "Bianchi", "Medicina interna", generateDate(), "1101", "1101", "1101", "I2");
-        insert.addMedicoOspedaliero("Ubalda", "Bergamaschi", "Neurologia", generateDate(), "2202", "2202", "2202", "N4");
-        insert.addMedicoOspedaliero("Stella", "De Luca", "Allergologia", generateDate(), "3303", "3303", "3303", "A9");
-        insert.addMedicoOspedaliero("Tranquilla", "Nucci", "Anestesia", generateDate(), "4404", "4404", "4404", "AN7");
-        insert.addMedicoOspedaliero("Silvio", "Lombardi", "Radiologia", generateDate(), "5505", "5505", "5505", "R12");
-        insert.addMedicoOspedaliero("Jacopo", "Manfrin", "Cardiochirurgia", generateDate(), "6606", "6606", "6606", "F7");
+        insert.addMedicoOspedaliero("Cassandra", "Trentini", "Ginecologia", generateDate(), "1000", "1000", "1000", "28", id_r_1);
+        insert.addMedicoOspedaliero("Irma", "Folliero", "Immunologia", generateDate(), "2000", "2000", "2000", "T4", id_r_1);
+        insert.addMedicoOspedaliero("Neera", "Li Fonti", "Cardiochirurgia", generateDate(), "3000", "3000", "3000", "F6", id_r_26);
+        insert.addMedicoOspedaliero("Salomone", "Cocci", "Ematologia", generateDate(), "4000", "4000", "4000", "C3", id_r_31);
+        insert.addMedicoOspedaliero("Alfio", "Panicucci", "Nefrologia", generateDate(), "5000", "5000", "5000", "4A", id_r_29);
+        insert.addMedicoOspedaliero("Camilla", "Genovese", "Urologia", generateDate(), "6000", "6000", "6000", "7V", id_r_1);
+        insert.addMedicoOspedaliero("Jacopo", "Zetticci", "Cardiologia", generateDate(), "7000", "7000", "7000", "7S", id_r_21);
+        insert.addMedicoOspedaliero("Imelda", "Fanucci", "Endocrinologia", generateDate(), "8000", "8000", "8000", "2R", id_r_1);
+        insert.addMedicoOspedaliero("Guglielma", "Bergamaschi", "Neurooncologia", generateDate(), "9000", "9000", "9000", "2R", id_r_18);
+        insert.addMedicoOspedaliero("Luigina", "Longo", "Ginecologia", generateDate(), "1001", "1001", "1001", "2T", id_r_37);
+        insert.addMedicoOspedaliero("Natale", "Milanesi", "Chirurgia generale", generateDate(), "2002", "2002", "2002", "4E", id_r_17);
+        insert.addMedicoOspedaliero("Albertino", "Cremonesi", "Medicina generale", generateDate(), "3003", "3003", "3003", "3R", id_r_1);
+        insert.addMedicoOspedaliero("Muzio", "Padovesi", "Radiologia", generateDate(), "4004", "4004", "4004", "9R", id_r_17);
+        insert.addMedicoOspedaliero("Tolomeo", "Colombo", "Radiologia", generateDate(), "5005", "5005", "5005", "4R", id_r_1);
+        insert.addMedicoOspedaliero("Immacolata", "Zetticci", "Neurologia", generateDate(), "6006", "6006", "6006", "9N", id_r_21);
+        insert.addMedicoOspedaliero("Urania", "Sal", "Patologia orale", generateDate(), "7007", "7007", "7007", "4O", id_r_7);
+        insert.addMedicoOspedaliero("Saverio", "Greco", "Ortopedia", generateDate(), "8008", "8008", "8008", "O9", id_r_37);
+        insert.addMedicoOspedaliero("Quintilio", "Marcelo", "Medicina dello sport", generateDate(), "9009", "9009", "9009", "S4", id_r_36);
+        insert.addMedicoOspedaliero("Imelda", "Bianchi", "Medicina interna", generateDate(), "1101", "1101", "1101", "I2", id_r_19);
+        insert.addMedicoOspedaliero("Ubalda", "Bergamaschi", "Neurologia", generateDate(), "2202", "2202", "2202", "N4", id_r_8);
+        insert.addMedicoOspedaliero("Stella", "De Luca", "Allergologia", generateDate(), "3303", "3303", "3303", "A9", id_r_1);
+        insert.addMedicoOspedaliero("Tranquilla", "Nucci", "Anestesia", generateDate(), "4404", "4404", "4404", "AN7", id_r_31);
+        insert.addMedicoOspedaliero("Silvio", "Lombardi", "Radiologia", generateDate(), "5505", "5505", "5505", "R12", id_r_29);
+        insert.addMedicoOspedaliero("Jacopo", "Manfrin", "Cardiochirurgia", generateDate(), "6606", "6606", "6606", "F7", id_r_1);
 
         //medici esterni
-        insert.addMedicoEsterno("Arcangela", "Greece", "Cardiochirurgia", generateDate(), "7707", "7707", "7707");
-        insert.addMedicoEsterno("Consuelo", "Longo", "Nefrologia", generateDate(), "8808", "8808", "8808");
-        insert.addMedicoEsterno("Armando", "Sal", "Endocrinologia", generateDate(), "9909", "9909", "9909");
-        insert.addMedicoEsterno("Immacolata", "Mazzanti", "Radiologia", generateDate(), "1111", "1111", "1111");
-        insert.addMedicoEsterno("Frediana", "Iadanza", "Chirurgia generale", generateDate(), "2222", "2222", "2222");
-        insert.addMedicoEsterno("Massimo", "Padovano", "Patologia orale", generateDate(), "3333", "3333", "3333");
-        insert.addMedicoEsterno("Germana", "Ferri", "Medicina del lavoro", generateDate(), "4444", "4444", "4444");
-        insert.addMedicoEsterno("Landolfo", "Lettiere", "Radiologia", generateDate(), "5555", "5555", "5555");
-        insert.addMedicoEsterno("Amerigo", "Marcelo", "Radiologia", generateDate(), "6666", "6666", "6666");
-        insert.addMedicoEsterno("Petronio", "Dellucci", "Chirurgia generale", generateDate(), "7777", "7777", "7777");
+        insert.addMedicoEsterno("Arcangela", "Greece", "Cardiochirurgia", generateDate(), "7707", "7707", "7707", id_sm_2);
+        insert.addMedicoEsterno("Consuelo", "Longo", "Nefrologia", generateDate(), "8808", "8808", "8808", id_sm_1);
+        insert.addMedicoEsterno("Armando", "Sal", "Endocrinologia", generateDate(), "9909", "9909", "9909", id_sm_2);
+        insert.addMedicoEsterno("Immacolata", "Mazzanti", "Radiologia", generateDate(), "1111", "1111", "1111", id_sm_1);
+        insert.addMedicoEsterno("Frediana", "Iadanza", "Chirurgia generale", generateDate(), "2222", "2222", "2222", id_sm_1);
+        insert.addMedicoEsterno("Massimo", "Padovano", "Patologia orale", generateDate(), "3333", "3333", "3333", id_sm_1);
+        insert.addMedicoEsterno("Germana", "Ferri", "Medicina del lavoro", generateDate(), "4444", "4444", "4444", id_sm_3);
+        insert.addMedicoEsterno("Landolfo", "Lettiere", "Radiologia", generateDate(), "5555", "5555", "5555", id_sm_1);
+        insert.addMedicoEsterno("Amerigo", "Marcelo", "Radiologia", generateDate(), "6666", "6666", "6666", id_sm_1);
+        insert.addMedicoEsterno("Petronio", "Dellucci", "Chirurgia generale", generateDate(), "7777", "7777", "7777", id_sm_1);
 
         insert.addPrestazioniMedico(prestazioniMedico);
         List<PrestazioneSala> listPrestazioniSala = insert.addPrestazioniSala(prestazioniSala);
@@ -439,7 +439,8 @@ public class QuickPopulate extends HttpServlet {
         insert.addPrestazioniToSala(id_s_37, prest);
         insert.addPrestazioniToSala(id_s_38, prest);
 
-        insert.linkStruttureMedici();
+        insert.linkRepartoMedico(medico_dio, id_r_16);
+        insert.linkStudioMedico(medico_pippa, id_sm_3);
         insert.linkRepartiPazienti();
         insert.linkMediciPazienti();
         insert.addCartelleCliniche();

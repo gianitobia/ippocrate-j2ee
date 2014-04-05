@@ -157,17 +157,17 @@ public class HttpCalendarClient {
     }
 
     /*
-    Funzione che richiede l'id di un calendario al WS Python, in input prende il
-    nome della struttura medica, mentre entita e' riferito a medico o sala
-    */
+     Funzione che richiede l'id di un calendario al WS Python, in input prende il
+     nome della struttura medica, mentre entita e' riferito a medico o sala
+     */
     public String get_calendar_id(String nomeStruttura, String entita) {
         JSONObject obj = new JSONObject();
         obj.put("struttura", nomeStruttura);
         obj.put("entita", entita);
-        
+
         return this.send_request(obj, "get_calendar/");
     }
-    
+
     /*
      Funzione che richiede gli slot liberi di una settimana, ritorna 
      una lista di vettori di stringhe:
@@ -203,58 +203,57 @@ public class HttpCalendarClient {
         }
         return disponibili;
     }
-    
+
     /*
-    public String createAllCalendars(List<StrutturaMedica> str) {
-        //Creo l'oggetto richiesta
-        JSONObject req = new JSONObject();
-        JSONArray strutture = new JSONArray();
-        //Per ogni Struttura creo un componente della richiesta JSON
-        for (StrutturaMedica m : str) {
-            JSONObject temp = new JSONObject();
-            temp.put("nome", m.getNome());
+     public String createAllCalendars(List<StrutturaMedica> str) {
+     //Creo l'oggetto richiesta
+     JSONObject req = new JSONObject();
+     JSONArray strutture = new JSONArray();
+     //Per ogni Struttura creo un componente della richiesta JSON
+     for (StrutturaMedica m : str) {
+     JSONObject temp = new JSONObject();
+     temp.put("nome", m.getNome());
 
-            List<Sala> sale = new ArrayList<>();
-            List<Medico> medici = new ArrayList<>();
-            switch (m.getClass().getName()) {
-                case "Entity.Ospedale": {
-                    //Se e' un ospedale devo scorreri i reparti per sale/medici
-                    for (Reparto r : ((Ospedale) m).getLista_reparti()) {
-                        sale.addAll(r.getLista_sale());
-                        medici.addAll(r.getLista_medici());
-                    }
-                    break;
-                }
-                case "Entity.StudioMedico": {
-                    sale.addAll(((StudioMedico) m).getLista_sale());
-                    medici.addAll(((StudioMedico) m).getLista_medici());
-                }
-            }
+     List<Sala> sale = new ArrayList<>();
+     List<Medico> medici = new ArrayList<>();
+     switch (m.getClass().getName()) {
+     case "Entity.Ospedale": {
+     //Se e' un ospedale devo scorreri i reparti per sale/medici
+     for (Reparto r : ((Ospedale) m).getLista_reparti()) {
+     sale.addAll(r.getLista_sale());
+     medici.addAll(r.getLista_medici());
+     }
+     break;
+     }
+     case "Entity.StudioMedico": {
+     sale.addAll(((StudioMedico) m).getLista_sale());
+     medici.addAll(((StudioMedico) m).getLista_medici());
+     }
+     }
 
-            //creo un JSONArray di Sale
-            JSONArray sp = new JSONArray();
-            for (Sala s : sale) {
-                sp.add(s.getTipoLaboratorio());
-            }
-            temp.put("sale", sp);
+     //creo un JSONArray di Sale
+     JSONArray sp = new JSONArray();
+     for (Sala s : sale) {
+     sp.add(s.getTipoLaboratorio());
+     }
+     temp.put("sale", sp);
 
-            //creo un JSONArray di Medici
-            JSONArray mp = new JSONArray();
-            for (Medico md : medici) {
-                mp.add(md.getUsername());
-            }
-            temp.put("medici", mp);
+     //creo un JSONArray di Medici
+     JSONArray mp = new JSONArray();
+     for (Medico md : medici) {
+     mp.add(md.getUsername());
+     }
+     temp.put("medici", mp);
 
-            //Aggiungo l'oggetto al JSONArray di strutture
-            strutture.add(temp);
-        }
-        //Aggiungo il corpo della richiesta JSON
-        req.put("strutture", strutture);
+     //Aggiungo l'oggetto al JSONArray di strutture
+     strutture.add(temp);
+     }
+     //Aggiungo il corpo della richiesta JSON
+     req.put("strutture", strutture);
 
-        return this.send_request(req, "create_calendars/");
-    }
-    */
-    
+     return this.send_request(req, "create_calendars/");
+     }
+     */
 //    public static void main(String[] args) {
 //
 //        HttpCalendarClient test = new HttpCalendarClient();

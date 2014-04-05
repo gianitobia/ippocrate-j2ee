@@ -124,13 +124,13 @@ public class PrenotazioneSala extends Prenotazione implements Serializable {
 
         Date dataFine = new Date(super.getData_prenotazione().getTime()
                 + (60000 * this.getTipo_prestazione().getDurata()));
-        
+
         obj.put("end", ft.format(dataFine));
         //imposto l'ID di google nel JSON
         if (super.getGoogleId() != null) {
             obj.put("id_google", super.getGoogleId());
         }
-        
+
         System.out.println(obj.toJSONString());
         return obj;
     }

@@ -44,6 +44,7 @@ import javax.servlet.http.Part;
  */
 @Stateless
 public class GestoreMedico implements GestoreMedicoLocal {
+
     @EJB
     private OspedaleFacadeLocal ospedaleFacade;
 
@@ -62,7 +63,6 @@ public class GestoreMedico implements GestoreMedicoLocal {
 
     @EJB
     private MedicoFacadeLocal medicoFacade;
-    
 
     @Override
     public List<Paziente> ottieniMieiPazienti(Long medicoId) {
@@ -297,15 +297,17 @@ public class GestoreMedico implements GestoreMedicoLocal {
                         }
                     }
                     //esco dal ciclo degli ospedali se ho trovato la strutture che mi serve
-                    if(!struttura.equals("")) break;
-                }   
+                    if (!struttura.equals("")) {
+                        break;
+                    }
+                }
                 break;
             case "MedicoEsterno":
                 //prendo direttamente il nome dello studio medico
                 struttura = ((MedicoEsterno) m).getStudioMedico().getNome();
                 break;
         }
-        
+
         String agendaSrc = conn.get_calendar_id(struttura, m.getUsername());
         return agendaSrc;
     }

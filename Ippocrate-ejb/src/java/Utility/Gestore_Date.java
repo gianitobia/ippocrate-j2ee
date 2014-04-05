@@ -45,13 +45,13 @@ public class Gestore_Date {
         }
         return d;
     }
-    
+
     public static Date generateReservationFromString(String data) {
         DateFormat ndf = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm:ss.SSS'+02:00'");
         Date d = new Date();
-        try{
+        try {
             d = ndf.parse(data);
-        }catch(ParseException ex) {
+        } catch (ParseException ex) {
             Logger.getLogger(Gestore_Date.class.getName()).log(Level.SEVERE, null, ex);
         }
         return d;
