@@ -307,7 +307,6 @@ public class GestoreMedico implements GestoreMedicoLocal {
                 struttura = ((MedicoEsterno) m).getStudioMedico().getNome();
                 break;
         }
-
         String agendaSrc = conn.get_calendar_id(struttura, m.getUsername());
         return agendaSrc;
     }
