@@ -19,12 +19,14 @@ import Entity.RefertoMedico;
 import Entity.RefertoMedicoFacadeLocal;
 import Entity.Reparto;
 import Entity.RepartoFacadeLocal;
+import HttpClient.HttpCalendarClient;
 import Utility.FileUpload;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -263,15 +265,24 @@ public class GestoreMedico implements GestoreMedicoLocal {
         RefertoMedico rm = refertoMedicoFacade.find(idRM);
         String s = rm.getLista_images();
 
-        List<String> multimedia = new ArrayList<String>();
+        List<String> multimedia = new ArrayList<>();
 
         if (s != null && s.equals("") == false) {
             String[] temp = s.split(";");
-            for (String t : temp) {
-                multimedia.add(t);
-            }
+            multimedia.addAll(Arrays.asList(temp));
         }
 
         return multimedia;
+    }
+
+    @Override
+    public String getAgenda(Long medicoId) {
+
+        HttpCalendarClient conn = new HttpCalendarClient();
+        String agendaSrc = conn.get_calendar_id("ciccio","ciccio");
+        //String agendaSrc = "u900u44dorgt463iim5nd8g1c4%40group.calendar.google.com&amp";
+        
+        
+        return agendaSrc;
     }
 }

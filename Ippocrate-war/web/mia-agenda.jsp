@@ -6,6 +6,7 @@
 
 <%--<jsp:useBean id="medico" class="Transient.MedicoTransient" scope="session" />--%>
 <jsp:useBean id="medico" class="Entity.Medico" scope="session" />
+<jsp:useBean id="agenda" type="String" scope="session" />
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -34,7 +35,7 @@
                     <ul class="nav navbar-nav">
                         <li><a href="home-medico.jsp">Home</a></li>
                         <li><a href="MedicoServlet?action=mieiPazienti">I miei pazienti</a></li>
-                        <li class="active"><a href="mia-agenda.jsp">La mia agenda</a></li>
+                        <li class="active"><a href="MedicoServlet?action=getAgenda">La mia agenda</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="LoginServlet?action=invalida">Logout</a></li>
@@ -48,6 +49,12 @@
             </div>
             <div class="page-header">
                 <h1>La mia agenda</h1>
+            </div>
+            <div style="text-align: center">
+            <iframe src="<%= agenda %>" 
+                    style=" border-width:0 " width="900" height="600" 
+                    frameborder="0" scrolling="no">                     
+            </iframe>
             </div>
         </div> <!-- /container -->
         <!-- Bootstrap core JavaScript

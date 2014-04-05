@@ -197,10 +197,17 @@ public class JSONUtility {
         String path = JSONUtility.class.getProtectionDomain().getCodeSource().getLocation().getPath();
         String path2 = path.substring(1, path.indexOf("dist")) + "Ippocrate-war/web/";
 
+        System.out.println(path2);
+        
+        
         for (String multim : multimedia) {
             String path3 = path2 + multim;
+            System.out.println(path3);
+                            System.out.println("Immagine");
+
             File imgFile = new File(path3);
             if (imgFile.exists()) {
+                System.out.println("Immagine esiste");
                 byte[] bytes;
                 try {
                     bytes = loadFile(imgFile);
