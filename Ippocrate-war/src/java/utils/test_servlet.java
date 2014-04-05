@@ -5,6 +5,10 @@
  */
 package utils;
 
+import Entity.Ospedale;
+import Entity.PrenotazioneSala;
+import Entity.PrenotazioneSalaFacadeLocal;
+import Entity.Sala;
 import Entity.StrutturaMedica;
 import Entity.StrutturaMedicaFacadeLocal;
 import HttpClient.HttpCalendarClient;
@@ -25,10 +29,12 @@ import javax.servlet.http.HttpServletResponse;
  * @author Alex
  */
 public class test_servlet extends HttpServlet {
-
+    
+    @EJB
+    private PrenotazioneSalaFacadeLocal pSala;
     @EJB
     private StrutturaMedicaFacadeLocal sM;
-
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -57,10 +63,26 @@ public class test_servlet extends HttpServlet {
             out.println(Gestore_Date.generateStringFromDate(ds[0], '-'));
             out.println(Gestore_Date.generateStringFromDate(ds[1], '-'));
 
-            List<StrutturaMedica> str = sM.findAll();
-            HttpCalendarClient agenda = new HttpCalendarClient();
-            out.println(agenda.createAllCalendars(str));
-
+            /*
+            PrenotazioneSala nuovo = new PrenotazioneSala();
+            nuovo.setId(new Long(567));
+            
+            Sala m = new Sala();
+            m.setId(new Long(1234));
+            m.setTipoLaboratorio("radiologia");
+            
+            StrutturaMedica sm = new Ospedale();
+            sm.setNome("Maria Vittoria");
+            
+            nuovo.setSala(m);
+            
+            nuovo.setStruttura_medica(sm);
+            nuovo.setData_prenotazione(Gestore_Date.generateReservationFromString("2014-04-02T10:00:00.000+02:00"));
+            
+            
+            
+            out.println(agenda.create_event(nuovo));
+            */
             out.println("</body>");
             out.println("</html>");
         }
