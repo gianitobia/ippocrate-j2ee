@@ -5,19 +5,12 @@
  */
 package HttpClient;
 
-import Entity.Medico;
-import Entity.Ospedale;
 import Entity.Prenotazione;
-import Entity.Reparto;
-import Entity.Sala;
-import Entity.StrutturaMedica;
-import Entity.StudioMedico;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -203,7 +196,7 @@ public class HttpCalendarClient {
         }
         return disponibili;
     }
-
+    
     /*
      public String createAllCalendars(List<StrutturaMedica> str) {
      //Creo l'oggetto richiesta
