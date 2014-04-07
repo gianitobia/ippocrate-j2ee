@@ -51,10 +51,7 @@
                 <h1>La mia agenda</h1>
             </div>
             <div style="text-align: center">
-                <iframe src="<%= agenda %>" 
-                        style=" border-width:0 " width="900" height="600" 
-                        frameborder="0" scrolling="no">                     
-                </iframe>
+                <iframe src="<%= agenda %>" style=" border-width:0 " width="1024" height="600" frameborder="0" scrolling="no"></iframe>
             </div>
         </div> <!-- /container -->
         <!-- Bootstrap core JavaScript

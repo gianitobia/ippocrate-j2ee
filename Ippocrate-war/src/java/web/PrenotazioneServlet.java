@@ -6,6 +6,7 @@
 package web;
 
 import Controller.GestorePrenotazioneLocal;
+import Controller.GestoreSalaLocal;
 import Entity.Medico;
 import Transient.PrenotazioneTransient;
 import Entity.Prestazione;
@@ -26,10 +27,14 @@ import javax.servlet.http.HttpSession;
  * @author Marco
  */
 public class PrenotazioneServlet extends HttpServlet {
+    @EJB
+    private GestoreSalaLocal gestoreSala;
 
     @EJB
     private GestorePrenotazioneLocal gestorePrenotazione;
-
+    
+    
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -79,6 +84,14 @@ public class PrenotazioneServlet extends HttpServlet {
                 s.setAttribute("strutturaSel", sm);
                 Prestazione p = (Prestazione) s.getAttribute("prestazioneSel");
                 List<Sala> ls = gestorePrenotazione.ottieniSalePerPrestazioneEStrutturaMedica(p, sm);
+                
+                //Diamo per scontato che per ora sia una sola sala per Struttura
+                String primo = "https://www.google.com/calendar/embed?showTitle=0&amp;showPrint=0&amp;showTabs=0&amp;showTz=0&amp;mode=WEEK&amp;height=600&amp;wkst=2&amp;bgcolor=%23FFFFFF&amp;src=";
+                String terzo = "&amp;color=%23853104&amp;ctz=Europe%2FRome";
+                String calendar = gestoreSala.getCalendar(ls.get(0).getId());
+                s.setAttribute("agendaSale", primo + calendar + terzo);
+                
+                
                 //agenda unica per tutte le sale di quella struttura: gestorePrenotazione.ottieniAgendePerSale(ls);
                 //Agenda aUnica
                 //s.setAttribute("agendaSale", aUnica);

@@ -170,6 +170,12 @@
                             </div>
                         </div>        
                         <!-- da leggere calendario di google-->
+                        <% if(session.getAttribute("agendaSale") != null) { %>
+                            <iframe src="<%= session.getAttribute("agendaSale") %>" style=" border-width:0 " width="1024" height="600" frameborder="0" scrolling="no"></iframe>
+                            
+                            <%  //session.setAttribute("agendaSale", null);
+                        } 
+                        %>
                         <div class="form-group">
                             <label for="data" class="col-sm-2 control-label">Data</label>
                             <div class="col-sm-10">

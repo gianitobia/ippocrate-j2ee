@@ -282,15 +282,9 @@ public class GestoreMedico implements GestoreMedicoLocal {
 
     @Override
     public String getAgenda(Long medicoId) {
-
+        
         HttpCalendarClient conn = new HttpCalendarClient();
-        Medico m = null;
-        for(Medico tmp : medicoFacade.findAll()) {
-            if(tmp.getUsername().equals(medicoId.toString())) {
-                m = tmp;
-                break;
-            }
-        }
+        Medico m = medicoFacade.find(medicoId);
         String struttura = "";
         switch (m.getClass().getName()) {
             case "Entity.MedicoOspedaliero":
