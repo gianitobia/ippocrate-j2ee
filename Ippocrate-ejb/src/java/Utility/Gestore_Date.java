@@ -56,6 +56,21 @@ public class Gestore_Date {
         }
         return d;
     }
+    
+    //Data nel formato dd-mm-yyyy, formato ora mm:ss
+    public static String generateStringForReservation(String data, char separator, String ora) {
+        DateFormat ndf = new SimpleDateFormat("dd" + separator + "MM" + separator + "yyyy");
+        Date tmp = new Date();
+        String prenotazione = "";
+        try{
+            tmp = ndf.parse(data);
+            ndf = new SimpleDateFormat("yyyy-MM-dd");
+            prenotazione = ndf.format(tmp) + "T" + ora + ":00.000+02:00";
+        }catch (ParseException ex) {
+            Logger.getLogger(Gestore_Date.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return prenotazione;
+    }
 
     //Restituisce una stringa rappresentate la data in input formattata con un separatore scelto;
     public static String generateStringFromDate(Date data, char separator) {
