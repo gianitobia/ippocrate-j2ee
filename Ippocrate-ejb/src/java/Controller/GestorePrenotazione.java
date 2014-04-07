@@ -251,7 +251,7 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
                                    Medico medico, Long id_utente, String data, String ora) {
         
         //formatto la data per la creazione dellévento
-        String dt_event = generateStringFromDate(generateDateFromString(data, '/'), '/') + "T" + ora + ":00.000+02:00";
+        String dt_event = generateStringForReservation(data , '/', ora);
         HttpCalendarClient client = new HttpCalendarClient();
         String result = "";
         switch (prestazione.getClass().getName()) {
