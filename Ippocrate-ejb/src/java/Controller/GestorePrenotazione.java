@@ -42,8 +42,10 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class GestorePrenotazione implements GestorePrenotazioneLocal {
+
     @EJB
     private PrenotazioneMedicoFacadeLocal prenotazioneMedicoFacade;
+
     @EJB
     private PrenotazioneSalaFacadeLocal prenotazioneSalaFacade;
     @EJB
@@ -247,13 +249,13 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
     }
 
     @Override
-    public String creaPrenotazione(Prestazione prestazione, StrutturaMedica struttura, 
-                                   Medico medico, Long id_utente, String data, String ora) {
-        
-        //formatto la data per la creazione dellévento
-        String dt_event = generateStringFromDate(generateDateFromString(data, '/'), '/') + "T" + ora + ":00.000+02:00";
+    public boolean creaPrenotazione(Prestazione prestazione, StrutturaMedica struttura,
+            Medico medico, Long id_utente, String data, String ora) {
+
+        //formatto la data per la creazione dell'evento
+        String dt_event = generateStringFromDate(generateDateFromString(data, '/'), '-') + "T" + ora + ":00.000+02:00";
         HttpCalendarClient client = new HttpCalendarClient();
-        String result = "";
+        boolean result = false;
         switch (prestazione.getClass().getName()) {
             case "Entity.PrestazioneSala":
                 PrenotazioneSala ps = new PrenotazioneSala();
@@ -262,15 +264,14 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
                 ps.setTipo_prestazione((PrestazioneSala) prestazione);
                 ps.setSala(ottieniSalePerPrestazioneEStrutturaMedica(ps.getTipo_prestazione(), struttura).get(0));
                 ps.setData_prenotazione(generateReservationFromString(dt_event));
-                
                 try {
                     ps.setGoogleId(client.create_event(ps));
                     prenotazioneSalaFacade.create(ps);
-                    result = "Creazione effettuata con successo";
-                }catch(Exception e) {
+                    result = true;
+                } catch (Exception e) {
                     e.printStackTrace();
-                    result = "Errore creazione fallita";
-                }              
+                    result = false;
+                }
                 break;
             case "Entity.PrestazioneMedico":
                 PrenotazioneMedico pm = new PrenotazioneMedico();
@@ -282,17 +283,14 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
                 try {
                     pm.setGoogleId(client.create_event(pm));
                     prenotazioneMedicoFacade.create(pm);
-                    result = "Creazione effettuata con successo";
-                }catch(Exception e) {
+                    result = true;
+                } catch (Exception e) {
                     e.printStackTrace();
-                    result = "Errore creazione fallita";
-                }              
+                    result = false;
+                }
                 break;
         }
-        
         return result;
     }
     
-    
-
 }

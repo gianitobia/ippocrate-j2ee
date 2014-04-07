@@ -25,8 +25,8 @@
         <link href="css/navbar.css" rel="stylesheet">
         <link href="css/datepicker.css" rel="stylesheet">
         <link href="css/bootstrap-timepicker.css" rel="stylesheet">   
-        
-        
+
+
 
         <script language="JavaScript">
             function setXMLHttpRequest() {
@@ -58,8 +58,9 @@
                     document.getElementById("strut").disabled = false;
                     document.getElementById("medi").disabled = true;
                     document.getElementById("medi").innerHTML = "<option></option>";
-                    //da sistemare gestendo il calendario google!!!
+                    document.getElementById("calendario").hidden = true;
                     document.getElementById("data").disabled = true;
+                    document.getElementById("ora").disabled = true;
                     var risp = xhrObj.responseText;
                     document.getElementById("strut").innerHTML = risp;
                 }
@@ -77,8 +78,9 @@
             function updatePage2() {
                 if (xhrObj.readyState === 4) {
                     document.getElementById("medi").disabled = false;
-                    //da sistemare gestendo il calendario google!!!
+                    document.getElementById("calendario").hidden = true;
                     document.getElementById("data").disabled = true;
+                    document.getElementById("ora").disabled = true;
                     var risp = xhrObj.responseText;
                     document.getElementById("medi").innerHTML = risp;
                 }
@@ -104,6 +106,8 @@
 
             function updatePage3() {
                 if (xhrObj.readyState === 4) {
+                    document.getElementById("divCalendario").hidden = false;
+                    document.getElementById("calendario").hidden = false;
                     document.getElementById("data").disabled = false;
                     document.getElementById("ora").disabled = false;
                     var risp = xhrObj.responseText;
@@ -175,27 +179,26 @@
                                 </select>
                             </div>
                         </div>
-
-                        <div id="calendario" style="text-align: right">
-
-                        </div>        
-
                         <div class="form-group">
                             <label for="dataora" class="col-sm-2 control-label">Data/Ora</label>
                             <div class="col-sm-3">
                                 <div class="input-group date" >
-                                    <input type="text"  class="form-control" id="data" name="data" data-provide="datepicker" placeholder="21/10/2014">
+                                    <input type="text"  class="form-control" id="data" name="data" data-provide="datepicker" placeholder="21/10/2014" disabled>
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                 </div>                                
                             </div>
                             <div class="col-sm-3">
                                 <div class="input-group bootstrap-timepicker">
-                                    <input type="text" class="form-control" id="ora" name="ora">
+                                    <input type="text" class="form-control" id="ora" name="ora" disabled>
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                                 </div>
                             </div> 
                         </div>                            
-
+                        <div id="divCalendario" class="form-group" hidden="true" style="height: 600px;">
+                            <label for="calendario" class="col-sm-2 control-label">Disponibilità</label>
+                            <div id="calendario" class="col-sm-10">
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
                                 <button type="submit" class="btn btn-default btn-primary">Prenota</button>
@@ -214,11 +217,11 @@
         <script type="text/javascript" src="js/bootstrap-datepicker.it.js"></script>
         <script type="text/javascript" src="js/bootstrap.js"></script>
         <script type="text/javascript" src="js/bootstrap-timepicker.js"></script>
-        
+
         <script type="text/javascript">
                                     $.fn.datepicker.defaults.format = "dd/mm/yyyy";
                                     $.fn.datepicker.defaults.language = "it";
-                                    $.fn.datepicker.defaults.todayBtn = "linked";                                    
+                                    $.fn.datepicker.defaults.todayBtn = "linked";
                                     $('#ora').timepicker({
                                         showMeridian: false
                                     });

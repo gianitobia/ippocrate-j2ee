@@ -54,6 +54,22 @@
             <div class="jumbotron">
                 <p>Da questa pagina puoi controllare la lista delle tue visite prenotate.</p>
             </div>
+            <% if (request.getParameter("risPrenotazione") != null) {
+                    boolean risPrenotazione = Boolean.parseBoolean(request.getParameter("risPrenotazione"));
+                    if (risPrenotazione) {
+            %>
+            <div class="alert alert-success alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <strong>Confermato!</strong> Prenotazione effettuata con successo.
+            </div>
+            <%} else {%>
+            <div class="alert alert-danger alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <strong>Errore!</strong> Prenotazione non avvenuta.
+            </div>
+            <%}
+                    session.setAttribute("risPrenotazione", null);
+                }%>
             <div class="page-header">
                 <h1>Le mie prenotazioni</h1>
             </div>

@@ -33,6 +33,6 @@ public interface GestorePrenotazioneLocal {
 
     boolean cancellaPrenotazione(Long idPaz, Long idPre);
 
-    String creaPrenotazione(Prestazione prestazione, StrutturaMedica struttura, Medico medico, Long id_utente, String data, String ora);
+    boolean creaPrenotazione(Prestazione prestazione, StrutturaMedica struttura, Medico medico, Long id_utente, String data, String ora);
 
 }

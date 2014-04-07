@@ -27,14 +27,13 @@ import javax.servlet.http.HttpSession;
  * @author Marco
  */
 public class PrenotazioneServlet extends HttpServlet {
+
     @EJB
     private GestoreSalaLocal gestoreSala;
 
     @EJB
     private GestorePrenotazioneLocal gestorePrenotazione;
-    
-    
-    
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -75,8 +74,6 @@ public class PrenotazioneServlet extends HttpServlet {
                 for (int i = 0; i < lsm.size(); i++) {
                     str = str + "<option onclick=\"" + fToCall + "(" + i + ")\">" + lsm.get(i).getNome() + "</option>";
                 }
-//                out.write("<%@page import=\"Entity.StrutturaMedica\"%><jsp:useBean id=\"strutture\" type=\"List<StrutturaMedica>\" scope=\"session\" />"
-//                        + str);
                 out.write(str);
             } else if (request.getParameter("action").startsWith("cercaAgendaSale_")) {
                 int indexOfStrut = Integer.parseInt(request.getParameter("action").substring(16));
@@ -84,18 +81,12 @@ public class PrenotazioneServlet extends HttpServlet {
                 s.setAttribute("strutturaSel", sm);
                 Prestazione p = (Prestazione) s.getAttribute("prestazioneSel");
                 List<Sala> ls = gestorePrenotazione.ottieniSalePerPrestazioneEStrutturaMedica(p, sm);
-                
+
                 //Diamo per scontato che per ora sia una sola sala per Struttura
                 String primo = "https://www.google.com/calendar/embed?showTitle=0&amp;showPrint=0&amp;showTabs=0&amp;showTz=0&amp;mode=WEEK&amp;height=600&amp;wkst=2&amp;bgcolor=%23FFFFFF&amp;src=";
                 String terzo = "&amp;color=%23853104&amp;ctz=Europe%2FRome";
                 String calendar = gestoreSala.getCalendar(ls.get(0).getId());
-                out.write("<iframe src=\""+ primo + calendar + terzo +"\" style=\" border-width:0 \" width=\"1024\" height=\"600\" frameborder=\"0\" scrolling=\"no\"></iframe>");
-                
-                //agenda unica per tutte le sale di quella struttura: gestorePrenotazione.ottieniAgendePerSale(ls);
-                //Agenda aUnica
-                //s.setAttribute("agendaSale", aUnica);
-
-                //out.write(Stampa il calendario delle sale);
+                out.write("<iframe src=\"" + primo + calendar + terzo + "\" style=\" border-width:0 \" width=\"100%\" height=\"600\" frameborder=\"0\" scrolling=\"no\"></iframe>");
             } else if (request.getParameter("action").startsWith("cercaAgendaMedico_")) {
                 int indexOfMedi = Integer.parseInt(request.getParameter("action").substring(18));
                 Medico m = ((List<Medico>) s.getAttribute("medici")).get(indexOfMedi);
@@ -127,14 +118,16 @@ public class PrenotazioneServlet extends HttpServlet {
                     s.setAttribute("prenotazioni", pt);
                 }
                 response.sendRedirect("mie-prenotazioni.jsp");
-            } else if (request.getParameter("action").equals("createPrenotazione")) {
+            } else if (request.getParameter("action").equals("creaPrenotazione")) {
                 Prestazione p = (Prestazione) s.getAttribute("prestazioneSel");
-                StrutturaMedica m = (StrutturaMedica) s.getAttribute("strutturaSel");
-                Medico md = (Medico) s.getAttribute("medicoSel");
+                StrutturaMedica sm = (StrutturaMedica) s.getAttribute("strutturaSel");
+                Medico m = (Medico) s.getAttribute("medicoSel");
                 String data = (String) request.getParameter("data");
                 String ora = (String) request.getParameter("ora");
                 Long id_p = (Long) s.getAttribute("user_id");
-                //gestorePrenotazione.
+                boolean risPrenotazione = gestorePrenotazione.creaPrenotazione(p, sm, m, id_p, data, ora);
+                s.setAttribute("risPrenotazione", risPrenotazione);
+                response.sendRedirect("PrenotazioneServlet?action=ottieniPr");
             }
         }
     }
