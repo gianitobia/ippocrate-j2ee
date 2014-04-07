@@ -23,6 +23,7 @@
 
         <!-- Custom styles for this template -->
         <link href="css/navbar.css" rel="stylesheet">
+        <link href="css/datepicker.css" rel="stylesheet">
 
         <script language="JavaScript">
             function setXMLHttpRequest() {
@@ -101,8 +102,10 @@
             function updatePage3() {
                 if (xhrObj.readyState === 4) {
                     document.getElementById("data").disabled = false;
+                    document.getElementById("ora").disabled = false;
                     var risp = xhrObj.responseText;
-                    document.getElementById("data").innerHTML = risp;
+                    document.getElementById("calendario").innerHTML = risp;
+                    
                 }
             }
         </script>
@@ -142,7 +145,7 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">Prenota</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form">
+                    <form class="form-horizontal" role="form" action="PrenotazioneServlet?action=createPrenotazione"  method="POST">
                         <div class="form-group">
                             <label for="prest" class="col-sm-2 control-label">Tipo visita</label>
                             <div class="col-sm-10">
@@ -168,20 +171,30 @@
                                     <option></option>
                                 </select>
                             </div>
-                        </div>        
-                        <!-- da leggere calendario di google-->
-                        <% if(session.getAttribute("agendaSale") != null) { %>
-                            <iframe src="<%= session.getAttribute("agendaSale") %>" style=" border-width:0 " width="1024" height="600" frameborder="0" scrolling="no"></iframe>
+                        </div>
+                        
+                        <div id="calendario" style="text-align: right">
                             
-                            <%  //session.setAttribute("agendaSale", null);
-                        } 
-                        %>
+                        </div>        
+                     
                         <div class="form-group">
                             <label for="data" class="col-sm-2 control-label">Data</label>
-                            <div class="col-sm-10">
-                                <input type="input" class="form-control" id="data" disabled>
+                            <div class="col-sm-3">
+                                <div class="input-group date" data-provide="datepicker">
+                                    <input type="text"  class="form-control" id="data" name="data" placeholder="21/10/2014" disabled>
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                </div>
                             </div>
                         </div>
+                        
+                        <div class="form-group">
+                            <label for="ora" class="col-sm-2 control-label">Ora</label>
+                            
+                            <div class="col-sm-10">
+                                <input type="text" id="ora" class="form-control" name="ora" placeholder="15:30" disabled>
+                            </div>
+                        </div>     
+                        
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
                                 <button type="submit" class="btn btn-default btn-primary">Prenota</button>
@@ -196,5 +209,21 @@
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+        <script type="text/javascript" src="js/bootstrap-datepicker.it.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript">
+                                            $.fn.datepicker.defaults.format = "dd/mm/yyyy";
+                                            $.fn.datepicker.defaults.language = "it";
+                                            $.fn.datepicker.defaults.todayBtn = "linked";
+                                            $(document)
+                                                    .on('change', '.btn-file :file', function() {
+                                                        var input = $(this),
+                                                                numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                                                                label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+                                                        input.trigger('fileselect', [numFiles, label]);
+                                            });
+                                            
+        </script>
     </body>
 </html>

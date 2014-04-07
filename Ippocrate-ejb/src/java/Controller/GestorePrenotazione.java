@@ -9,11 +9,13 @@ import Entity.Medico;
 import Entity.MedicoEsterno;
 import Entity.MedicoOspedaliero;
 import Entity.Ospedale;
+import Entity.PazienteFacadeLocal;
 import Entity.Prenotazione;
 import Entity.PrenotazioneFacadeLocal;
 import Entity.PrenotazioneMedico;
+import Entity.PrenotazioneMedicoFacadeLocal;
 import Entity.PrenotazioneSala;
-import Transient.PrenotazioneTransient;
+import Entity.PrenotazioneSalaFacadeLocal;
 import Entity.Prestazione;
 import Entity.PrestazioneFacadeLocal;
 import Entity.PrestazioneMedico;
@@ -26,6 +28,9 @@ import Entity.Sala;
 import Entity.SalaFacadeLocal;
 import Entity.StrutturaMedica;
 import Entity.StudioMedico;
+import HttpClient.HttpCalendarClient;
+import Transient.PrenotazioneTransient;
+import static Utility.Gestore_Date.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
@@ -37,6 +42,12 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class GestorePrenotazione implements GestorePrenotazioneLocal {
+    @EJB
+    private PrenotazioneMedicoFacadeLocal prenotazioneMedicoFacade;
+    @EJB
+    private PrenotazioneSalaFacadeLocal prenotazioneSalaFacade;
+    @EJB
+    private PazienteFacadeLocal pazienteFacade;
 
     @EJB
     private PrestazioneSalaFacadeLocal prestazioneSalaFacade;
@@ -234,5 +245,54 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
         //della prenotazione anche su google calendar!!!!
         return false;
     }
+
+    @Override
+    public String creaPrenotazione(Prestazione prestazione, StrutturaMedica struttura, 
+                                   Medico medico, Long id_utente, String data, String ora) {
+        
+        //formatto la data per la creazione dellévento
+        String dt_event = generateStringFromDate(generateDateFromString(data, '/'), '/') + "T" + ora + ":00.000+02:00";
+        HttpCalendarClient client = new HttpCalendarClient();
+        String result = "";
+        switch (prestazione.getClass().getName()) {
+            case "Entity.PrestazioneSala":
+                PrenotazioneSala ps = new PrenotazioneSala();
+                ps.setPaziente(pazienteFacade.find(id_utente));
+                ps.setStruttura_medica(struttura);
+                ps.setTipo_prestazione((PrestazioneSala) prestazione);
+                ps.setSala(ottieniSalePerPrestazioneEStrutturaMedica(ps.getTipo_prestazione(), struttura).get(0));
+                ps.setData_prenotazione(generateReservationFromString(dt_event));
+                
+                try {
+                    ps.setGoogleId(client.create_event(ps));
+                    prenotazioneSalaFacade.create(ps);
+                    result = "Creazione effettuata con successo";
+                }catch(Exception e) {
+                    e.printStackTrace();
+                    result = "Errore creazione fallita";
+                }              
+                break;
+            case "Entity.PrestazioneMedico":
+                PrenotazioneMedico pm = new PrenotazioneMedico();
+                pm.setData_prenotazione(generateReservationFromString(dt_event));
+                pm.setMedico(medico);
+                pm.setTipo_prestazione((PrestazioneMedico) prestazione);
+                pm.setPaziente(pazienteFacade.find(id_utente));
+                pm.setStruttura_medica(struttura);
+                try {
+                    pm.setGoogleId(client.create_event(pm));
+                    prenotazioneMedicoFacade.create(pm);
+                    result = "Creazione effettuata con successo";
+                }catch(Exception e) {
+                    e.printStackTrace();
+                    result = "Errore creazione fallita";
+                }              
+                break;
+        }
+        
+        return result;
+    }
+    
+    
 
 }

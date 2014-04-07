@@ -89,8 +89,7 @@ public class PrenotazioneServlet extends HttpServlet {
                 String primo = "https://www.google.com/calendar/embed?showTitle=0&amp;showPrint=0&amp;showTabs=0&amp;showTz=0&amp;mode=WEEK&amp;height=600&amp;wkst=2&amp;bgcolor=%23FFFFFF&amp;src=";
                 String terzo = "&amp;color=%23853104&amp;ctz=Europe%2FRome";
                 String calendar = gestoreSala.getCalendar(ls.get(0).getId());
-                s.setAttribute("agendaSale", primo + calendar + terzo);
-                
+                out.write("<iframe src=\""+ primo + calendar + terzo +"\" style=\" border-width:0 \" width=\"1024\" height=\"600\" frameborder=\"0\" scrolling=\"no\"></iframe>");
                 
                 //agenda unica per tutte le sale di quella struttura: gestorePrenotazione.ottieniAgendePerSale(ls);
                 //Agenda aUnica
@@ -128,6 +127,14 @@ public class PrenotazioneServlet extends HttpServlet {
                     s.setAttribute("prenotazioni", pt);
                 }
                 response.sendRedirect("mie-prenotazioni.jsp");
+            } else if (request.getParameter("action").equals("createPrenotazione")) {
+                Prestazione p = (Prestazione) s.getAttribute("prestazioneSel");
+                StrutturaMedica m = (StrutturaMedica) s.getAttribute("strutturaSel");
+                Medico md = (Medico) s.getAttribute("medicoSel");
+                String data = (String) request.getParameter("data");
+                String ora = (String) request.getParameter("ora");
+                Long id_p = (Long) s.getAttribute("user_id");
+                //gestorePrenotazione.
             }
         }
     }
