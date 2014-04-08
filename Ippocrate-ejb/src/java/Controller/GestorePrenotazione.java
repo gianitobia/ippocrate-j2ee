@@ -255,6 +255,7 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
     @Override
     public boolean creaPrenotazione(Prestazione prestazione, StrutturaMedica struttura, 
                                    Medico medico, Long id_utente, String data, String ora) {
+        
         //formatto la data per la creazione dell'evento
         String dt_event = generateStringForReservation(data , '/', ora);
         
