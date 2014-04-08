@@ -5,6 +5,7 @@
  */
 package web;
 
+import Controller.GestoreMedicoLocal;
 import Controller.GestorePrenotazioneLocal;
 import Controller.GestoreSalaLocal;
 import Entity.Medico;
@@ -27,6 +28,9 @@ import javax.servlet.http.HttpSession;
  * @author Marco
  */
 public class PrenotazioneServlet extends HttpServlet {
+
+    @EJB
+    private GestoreMedicoLocal gestoreMedico;
 
     @EJB
     private GestoreSalaLocal gestoreSala;
@@ -92,7 +96,10 @@ public class PrenotazioneServlet extends HttpServlet {
                 Medico m = ((List<Medico>) s.getAttribute("medici")).get(indexOfMedi);
                 s.setAttribute("medicoSel", m);
 
-                //out.write(Stampa il calendario del medico);
+                String primo = "https://www.google.com/calendar/embed?showTitle=0&amp;showPrint=0&amp;showTabs=0&amp;showTz=0&amp;mode=WEEK&amp;height=600&amp;wkst=2&amp;bgcolor=%23FFFFFF&amp;src=";
+                String terzo = "&amp;color=%23853104&amp;ctz=Europe%2FRome";
+                String calendar = gestoreMedico.getAgenda(m.getId());
+                out.write("<iframe src=\"" + primo + calendar + terzo + "\" style=\" border-width:0 \" width=\"100%\" height=\"600\" frameborder=\"0\" scrolling=\"no\"></iframe>");
             } else if (request.getParameter("action").startsWith("cercaMedico_")) {
                 int indexOfStrut = Integer.parseInt(request.getParameter("action").substring(12));
                 StrutturaMedica sm = ((List<StrutturaMedica>) s.getAttribute("strutture")).get(indexOfStrut);
@@ -121,7 +128,7 @@ public class PrenotazioneServlet extends HttpServlet {
                     s.setAttribute("errore", "Non e' stato possibile cancellare la prenotazione");
                     response.sendRedirect("errore.jsp");
                 }
-                
+
             } else if (request.getParameter("action").equals("creaPrenotazione")) {
                 Prestazione p = (Prestazione) s.getAttribute("prestazioneSel");
                 StrutturaMedica sm = (StrutturaMedica) s.getAttribute("strutturaSel");
@@ -130,10 +137,10 @@ public class PrenotazioneServlet extends HttpServlet {
                 String ora = (String) request.getParameter("ora");
                 Long id_p = (Long) s.getAttribute("user_id");
                 boolean risPrenotazione = gestorePrenotazione.creaPrenotazione(p, sm, m, id_p, data, ora);
-                if(risPrenotazione)
+                if (risPrenotazione) {
                     response.sendRedirect("PrenotazioneServlet?action=ottieniPr");
-                else {
-                    s.setAttribute("errore", "Non e' stato possibile creare la prenotazione");
+                } else {
+                    s.setAttribute("error", "Non e' stato possibile creare la prenotazione");
                     response.sendRedirect("errore.jsp");
                 }
             }
