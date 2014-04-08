@@ -114,9 +114,9 @@ public class PrenotazioneSala extends Prenotazione implements Serializable {
     public JSONObject reservationToJSON() {
         //utilizzo la libreria SimpleJSON
         JSONObject obj = new JSONObject();
-        obj.put("prenotazione", this.id);
+        obj.put("prenotazione", this.sala.getId());
         obj.put("struttura", super.getStruttura_medica().getNome());
-        obj.put("id_prestazione", this.sala.getId().toString());
+        obj.put("id_prestazione", this.sala.getTipoLaboratorio());
         //id_prestazione rappresenta l'id utilizzato per filtrare il calendario google su cui salvare l'evento
 
         SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm:ss.SSS'+02:00'");

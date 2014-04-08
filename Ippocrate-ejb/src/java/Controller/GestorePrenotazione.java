@@ -252,8 +252,10 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
     public boolean creaPrenotazione(Prestazione prestazione, StrutturaMedica struttura, 
                                    Medico medico, Long id_utente, String data, String ora) {
         
+        
         //formatto la data per la creazione dell'evento
         String dt_event = generateStringForReservation(data , '/', ora);
+        
         HttpCalendarClient client = new HttpCalendarClient();
         boolean result = false;
         switch (prestazione.getClass().getName()) {
@@ -290,7 +292,7 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
                 }
                 break;
         }
-        return result;
+        return false;
     }
     
 }
