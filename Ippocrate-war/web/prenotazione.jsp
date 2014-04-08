@@ -63,6 +63,7 @@
                     document.getElementById("ora").disabled = true;
                     var risp = xhrObj.responseText;
                     document.getElementById("strut").innerHTML = risp;
+                    document.getElementById("strut").selectedIndex = -1;
                 }
             }
 
@@ -83,6 +84,7 @@
                     document.getElementById("ora").disabled = true;
                     var risp = xhrObj.responseText;
                     document.getElementById("medi").innerHTML = risp;
+                    document.getElementById("medi").selectedIndex = -1;
                 }
             }
 
@@ -156,7 +158,7 @@
                         <div class="form-group">
                             <label for="prest" class="col-sm-2 control-label">Tipo visita</label>
                             <div class="col-sm-10">
-                                <select class="form-control" id="prest" onchange="cercaStrutture()">
+                                <select class="form-control" id="prest" onchange="cercaStrutture()" required>                                    
                                     <% for (int i = 0; i < prestazioni.size(); i++) {%>
                                     <option><%= prestazioni.get(i).getNome()%></option>
                                     <%}%>
@@ -166,7 +168,7 @@
                         <div class="form-group">
                             <label for="strut" class="col-sm-2 control-label">Struttura medica</label>
                             <div class="col-sm-10">
-                                <select class="form-control" id="strut" disabled>
+                                <select class="form-control" id="strut" disabled required>
                                     <option></option>
                                 </select>
                             </div>
@@ -174,7 +176,7 @@
                         <div class="form-group">
                             <label for="medi" class="col-sm-2 control-label">Medico</label>
                             <div class="col-sm-10">
-                                <select class="form-control" id="medi" disabled>
+                                <select class="form-control" id="medi" disabled required>
                                     <option></option>
                                 </select>
                             </div>
@@ -183,13 +185,13 @@
                             <label for="dataora" class="col-sm-2 control-label">Data/Ora</label>
                             <div class="col-sm-3">
                                 <div class="input-group date" >
-                                    <input type="text"  class="form-control" id="data" name="data" data-provide="datepicker" placeholder="21/10/2014" disabled>
+                                    <input type="text"  class="form-control" id="data" name="data" data-provide="datepicker" placeholder="21/10/2014" disabled required>
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                 </div>                                
                             </div>
                             <div class="col-sm-3">
                                 <div class="input-group bootstrap-timepicker">
-                                    <input type="text" class="form-control" id="ora" name="ora" disabled>
+                                    <input type="text" class="form-control" id="ora" name="ora" placeholder="00:00" disabled required>
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                                 </div>
                             </div> 
@@ -215,15 +217,16 @@
         <script src="js/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
         <script type="text/javascript" src="js/bootstrap-datepicker.it.js"></script>
-        <script type="text/javascript" src="js/bootstrap.js"></script>
         <script type="text/javascript" src="js/bootstrap-timepicker.js"></script>
 
         <script type="text/javascript">
+                                    document.getElementById("prest").selectedIndex = -1;
                                     $.fn.datepicker.defaults.format = "dd/mm/yyyy";
                                     $.fn.datepicker.defaults.language = "it";
                                     $.fn.datepicker.defaults.todayBtn = "linked";
                                     $('#ora').timepicker({
-                                        showMeridian: false
+                                        showMeridian: false,
+                                        defaultTime: false
                                     });
         </script>
     </body>
