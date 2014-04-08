@@ -116,8 +116,12 @@ public class PrenotazioneServlet extends HttpServlet {
                 if (success) {
                     pt.remove(numPrenotazione);
                     s.setAttribute("prenotazioni", pt);
+                    response.sendRedirect("mie-prenotazioni.jsp");
+                } else {
+                    s.setAttribute("errore", "Non e' stato possibile cancellare la prenotazione");
+                    response.sendRedirect("errore.jsp");
                 }
-                response.sendRedirect("mie-prenotazioni.jsp");
+                
             } else if (request.getParameter("action").equals("creaPrenotazione")) {
                 Prestazione p = (Prestazione) s.getAttribute("prestazioneSel");
                 StrutturaMedica sm = (StrutturaMedica) s.getAttribute("strutturaSel");
@@ -126,8 +130,12 @@ public class PrenotazioneServlet extends HttpServlet {
                 String ora = (String) request.getParameter("ora");
                 Long id_p = (Long) s.getAttribute("user_id");
                 boolean risPrenotazione = gestorePrenotazione.creaPrenotazione(p, sm, m, id_p, data, ora);
-                s.setAttribute("risPrenotazione", risPrenotazione);
-                response.sendRedirect("PrenotazioneServlet?action=ottieniPr");
+                if(risPrenotazione)
+                    response.sendRedirect("PrenotazioneServlet?action=ottieniPr");
+                else {
+                    s.setAttribute("errore", "Non e' stato possibile creare la prenotazione");
+                    response.sendRedirect("errore.jsp");
+                }
             }
         }
     }

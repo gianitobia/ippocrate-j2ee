@@ -238,20 +238,23 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
     @Override
     public boolean cancellaPrenotazione(Long idPaz, Long idPre) {
         Prenotazione pr = prenotazioneFacade.find(idPre);
+        boolean result = false;
         if (pr != null) {
-            prenotazioneFacade.remove(pr);
-            return true;
+            HttpCalendarClient client = new HttpCalendarClient();
+            if(client.delete_event(pr) != null)
+            {
+                prenotazioneFacade.remove(pr);
+                result = true;
+            }
         }
-
         //effettuare la chiamata al WS Python per la cancellazione
         //della prenotazione anche su google calendar!!!!
-        return false;
+        return result;
     }
 
     @Override
     public boolean creaPrenotazione(Prestazione prestazione, StrutturaMedica struttura, 
                                    Medico medico, Long id_utente, String data, String ora) {
-        
         
         //formatto la data per la creazione dell'evento
         String dt_event = generateStringForReservation(data , '/', ora);
@@ -267,9 +270,12 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
                 ps.setSala(ottieniSalePerPrestazioneEStrutturaMedica(ps.getTipo_prestazione(), struttura).get(0));
                 ps.setData_prenotazione(generateReservationFromString(dt_event));
                 try {
-                    ps.setGoogleId(client.create_event(ps));
-                    prenotazioneSalaFacade.create(ps);
-                    result = true;
+                    String id_event = client.create_event(ps);
+                    if(id_event != null) {
+                        ps.setGoogleId(id_event);
+                        prenotazioneSalaFacade.create(ps);
+                        result = true;
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                     result = false;
@@ -283,16 +289,19 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
                 pm.setPaziente(pazienteFacade.find(id_utente));
                 pm.setStruttura_medica(struttura);
                 try {
-                    pm.setGoogleId(client.create_event(pm));
-                    prenotazioneMedicoFacade.create(pm);
-                    result = true;
+                    String id_event = client.create_event(pm);
+                    if(id_event != null) {
+                        pm.setGoogleId(id_event);
+                        prenotazioneMedicoFacade.create(pm);
+                        result = true;
+                    } 
                 } catch (Exception e) {
                     e.printStackTrace();
                     result = false;
                 }
                 break;
         }
-        return false;
+        return result;
     }
     
 }
