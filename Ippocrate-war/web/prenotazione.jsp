@@ -191,7 +191,7 @@
                             </div>
                             <div class="col-sm-3">
                                 <div class="input-group bootstrap-timepicker">
-                                    <input type="text" class="form-control" id="ora" name="ora" placeholder="00:00" disabled required>
+                                    <input type="text" class="form-control" id="ora" name="ora" placeholder="12:30" disabled required>
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                                 </div>
                             </div> 
@@ -226,8 +226,9 @@
                                     $.fn.datepicker.defaults.todayBtn = "linked";
                                     $('#ora').timepicker({
                                         showMeridian: false,
-                                        defaultTime: false
+                                        defaultTime: '12:30'
                                     });
+                                    document.getElementById("ora").value = "";
         </script>
     </body>
 </html>

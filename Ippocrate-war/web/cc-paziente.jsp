@@ -227,6 +227,7 @@
         <script type="text/javascript" src="js/bootstrap-datepicker.it.js"></script>
         <script type="text/javascript" src="js/bootstrap.js"></script>
         <script type="text/javascript">
+            document.getElementById("prest").selectedIndex = -1;
                                         $.fn.datepicker.defaults.format = "dd/mm/yyyy";
                                         $.fn.datepicker.defaults.language = "it";
                                         $.fn.datepicker.defaults.todayBtn = "linked";

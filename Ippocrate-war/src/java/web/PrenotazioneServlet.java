@@ -125,7 +125,7 @@ public class PrenotazioneServlet extends HttpServlet {
                     s.setAttribute("prenotazioni", pt);
                     response.sendRedirect("mie-prenotazioni.jsp");
                 } else {
-                    s.setAttribute("errore", "Non e' stato possibile cancellare la prenotazione");
+                    s.setAttribute("errore", "Non è stato possibile cancellare la prenotazione.");
                     response.sendRedirect("errore.jsp");
                 }
 
@@ -140,7 +140,7 @@ public class PrenotazioneServlet extends HttpServlet {
                 if (risPrenotazione) {
                     response.sendRedirect("PrenotazioneServlet?action=ottieniPr");
                 } else {
-                    s.setAttribute("error", "Non e' stato possibile creare la prenotazione");
+                    s.setAttribute("error", "Non è stato possibile creare la prenotazione.");
                     response.sendRedirect("errore.jsp");
                 }
             }
