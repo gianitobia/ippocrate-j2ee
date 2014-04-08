@@ -251,7 +251,6 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
     @Override
     public boolean creaPrenotazione(Prestazione prestazione, StrutturaMedica struttura, 
                                    Medico medico, Long id_utente, String data, String ora) {
-        
         //formatto la data per la creazione dell'evento
         String dt_event = generateStringForReservation(data , '/', ora);
         HttpCalendarClient client = new HttpCalendarClient();
@@ -265,8 +264,8 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
                 ps.setSala(ottieniSalePerPrestazioneEStrutturaMedica(ps.getTipo_prestazione(), struttura).get(0));
                 ps.setData_prenotazione(generateReservationFromString(dt_event));
                 try {
-                    ps.setGoogleId(client.create_event(ps));
                     prenotazioneSalaFacade.create(ps);
+                    ps.setGoogleId(client.create_event(ps));
                     result = true;
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -281,8 +280,8 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
                 pm.setPaziente(pazienteFacade.find(id_utente));
                 pm.setStruttura_medica(struttura);
                 try {
-                    pm.setGoogleId(client.create_event(pm));
                     prenotazioneMedicoFacade.create(pm);
+                    pm.setGoogleId(client.create_event(pm));
                     result = true;
                 } catch (Exception e) {
                     e.printStackTrace();
