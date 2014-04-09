@@ -195,7 +195,7 @@ public class JSONUtility {
         List l = new LinkedList();
 
         String path = JSONUtility.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-        String path2 = path.substring(1, path.indexOf("dist")) + "Ippocrate-war/web/";
+        String path2 = path.substring(0, path.indexOf("dist")) + "Ippocrate-war/web/";
 
         System.out.println(path2);
 

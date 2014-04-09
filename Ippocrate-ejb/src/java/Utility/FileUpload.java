@@ -26,7 +26,7 @@ public class FileUpload {
 
         try {
             String path = FileUpload.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-            String path2 = path.substring(1, path.indexOf("dist"));
+            String path2 = path.substring(0, path.indexOf("dist"));
             String path3 = path2 + "Ippocrate-war/web/img/" + fileName;
             out = new FileOutputStream(new File(path3));
             filecontent = filePart.getInputStream();
