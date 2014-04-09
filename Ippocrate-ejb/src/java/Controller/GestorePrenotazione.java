@@ -253,14 +253,14 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
     }
 
     @Override
-    public boolean creaPrenotazione(Prestazione prestazione, StrutturaMedica struttura, 
+    public String creaPrenotazione(Prestazione prestazione, StrutturaMedica struttura, 
                                    Medico medico, Long id_utente, String data, String ora) {
         
         //formatto la data per la creazione dell'evento
         String dt_event = generateStringForReservation(data , '/', ora);
         
         HttpCalendarClient client = new HttpCalendarClient();
-        boolean result = false;
+        String result = "";
         switch (prestazione.getClass().getName()) {
             case "Entity.PrestazioneSala":
                 PrenotazioneSala ps = new PrenotazioneSala();
@@ -270,15 +270,17 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
                 ps.setSala(ottieniSalePerPrestazioneEStrutturaMedica(ps.getTipo_prestazione(), struttura).get(0));
                 ps.setData_prenotazione(generateReservationFromString(dt_event));
                 try {
-                    String id_event = client.create_event(ps);
-                    if(id_event != null) {
-                        ps.setGoogleId(id_event);
-                        prenotazioneSalaFacade.create(ps);
-                        result = true;
-                    }
+                    if(client.slot_available(ps) != null) {
+                        String id_event = client.create_event(ps);
+                        if(id_event != null) {
+                            ps.setGoogleId(id_event);
+                            prenotazioneSalaFacade.create(ps);
+                            result = "Prenotazione effettuata con successo";
+                        } else result = "Errore - Non e' stato possibile creare la prenotazione";
+                    } else result = "Errore - Orario scelto non disponibile";
                 } catch (Exception e) {
                     e.printStackTrace();
-                    result = false;
+                    result = "Errore - Non e' stato possibile creare la prenotazione";
                 }
                 break;
             case "Entity.PrestazioneMedico":
@@ -289,15 +291,17 @@ public class GestorePrenotazione implements GestorePrenotazioneLocal {
                 pm.setPaziente(pazienteFacade.find(id_utente));
                 pm.setStruttura_medica(struttura);
                 try {
-                    String id_event = client.create_event(pm);
-                    if(id_event != null) {
-                        pm.setGoogleId(id_event);
-                        prenotazioneMedicoFacade.create(pm);
-                        result = true;
-                    } 
+                    if(client.slot_available(pm) != null) {
+                        String id_event = client.create_event(pm);
+                        if(id_event != null) {
+                            pm.setGoogleId(id_event);
+                            prenotazioneMedicoFacade.create(pm);
+                            result = "Prenotazione effettuata con successo";
+                        } else result = "Errore - Non e' stato possibile creare la prenotazione";
+                    } else result = "Errore - Orario scelto non disponibile";
                 } catch (Exception e) {
                     e.printStackTrace();
-                    result = false;
+                    result = "Errore - Non e' stato possibile creare la prenotazione";
                 }
                 break;
         }

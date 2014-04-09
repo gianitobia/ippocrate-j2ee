@@ -146,7 +146,7 @@ public class HttpCalendarClient {
      2. Ricevo risultato di creazione/fallimento (201/400)
      */
     public String slot_available(Prenotazione e) {
-        return this.send_request(e.reservationToJSON(), "check_slot/");
+        return this.send_request(e.reservationToJSON(), "is_slot_free/");
     }
 
     /*
@@ -169,7 +169,7 @@ public class HttpCalendarClient {
      (2) -> ...
      ...
      }      
-     */
+     
     public ArrayList<String[]> slots_available_week(int n_week, String ospedale, String sala) {
         //oggetto da restituire
         ArrayList<String[]> disponibili = null;
@@ -196,7 +196,7 @@ public class HttpCalendarClient {
         }
         return disponibili;
     }
-    
+    */
     /*
      public String createAllCalendars(List<StrutturaMedica> str) {
      //Creo l'oggetto richiesta

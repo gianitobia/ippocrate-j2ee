@@ -256,7 +256,7 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
         for (String pr : prestazioniMedico) {
             PrestazioneMedico p = new PrestazioneMedico();
             p.setNome(pr);
-            p.setDurata(30);
+            p.setDurata(29);
             p.setLista_medici(new ArrayList<Medico>());
             prestazioneMedicoFacade.create(p);
             prestazioni.add(p);
@@ -279,7 +279,7 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
         for (String pr : prestazioniSala) {
             PrestazioneSala p = new PrestazioneSala();
             p.setNome(pr);
-            p.setDurata(30);
+            p.setDurata(29);
             p.setLista_sale(new ArrayList<Sala>());
             prestazioneSalaFacade.create(p);
             prestazioniS.add(p);

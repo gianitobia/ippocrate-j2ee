@@ -136,11 +136,11 @@ public class PrenotazioneServlet extends HttpServlet {
                 String data = (String) request.getParameter("data");
                 String ora = (String) request.getParameter("ora");
                 Long id_p = (Long) s.getAttribute("user_id");
-                boolean risPrenotazione = gestorePrenotazione.creaPrenotazione(p, sm, m, id_p, data, ora);
-                if (risPrenotazione) {
+                String risPrenotazione = gestorePrenotazione.creaPrenotazione(p, sm, m, id_p, data, ora);
+                if (!risPrenotazione.startsWith("Errore")) {
                     response.sendRedirect("PrenotazioneServlet?action=ottieniPr");
                 } else {
-                    s.setAttribute("error", "Non è stato possibile creare la prenotazione.");
+                    s.setAttribute("error", risPrenotazione);
                     response.sendRedirect("errore.jsp");
                 }
             }
