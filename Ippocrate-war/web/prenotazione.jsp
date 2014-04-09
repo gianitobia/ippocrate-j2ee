@@ -226,7 +226,9 @@
                                     $.fn.datepicker.defaults.todayBtn = "linked";
                                     $('#ora').timepicker({
                                         showMeridian: false,
-                                        defaultTime: '12:30'
+                                        defaultTime: '12:30',
+                                        minuteStep: 30
+                                        
                                     });
                                     document.getElementById("ora").value = "";
         </script>
