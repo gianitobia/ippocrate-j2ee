@@ -117,6 +117,18 @@
 
                 }
             }
+
+            function controllaOrario() {
+                var ora = document.getElementById("ora").value;
+                var hm = ora.split(":");
+                if (hm[0] < 8 | hm[0] > 19) {
+                    document.getElementById("footer").hidden = false;
+                    document.getElementById("footer").innerHTML = "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>\n\
+                                                                   <strong>ERRORE!</strong> non è possibile prenotare in orario notturno";
+                    return false;
+                }
+                return true;
+            }
         </script>
     </head>
     <body>
@@ -154,7 +166,7 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">Prenota</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" action="PrenotazioneServlet?action=creaPrenotazione"  method="POST">
+                    <form class="form-horizontal" role="form" action="PrenotazioneServlet?action=creaPrenotazione"  onSubmit="return controllaOrario()" method="POST">
                         <div class="form-group">
                             <label for="prest" class="col-sm-2 control-label">Tipo visita</label>
                             <div class="col-sm-10">
@@ -206,9 +218,11 @@
                                 <button type="submit" class="btn btn-default btn-primary">Prenota</button>
                             </div>
                         </div>
-                    </form>
-                </div>
-            </div>
+                    </form>       
+                    <div class="alert alert-danger alert-dismissable" id="footer" hidden="true">                                               
+                    </div>
+                </div>                                
+            </div>            
         </div> <!-- /container -->
         <!-- Bootstrap core JavaScript
         ================================================== -->
@@ -228,7 +242,7 @@
                                         showMeridian: false,
                                         defaultTime: '12:30',
                                         minuteStep: 30
-                                        
+
                                     });
                                     document.getElementById("ora").value = "";
         </script>
