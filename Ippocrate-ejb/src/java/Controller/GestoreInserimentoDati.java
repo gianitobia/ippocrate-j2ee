@@ -344,6 +344,11 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
         String[] medicinali = {
             "Tegretol", "aspirina", "Benazepril", "Palexia", "Maalox", "Betadine", "Oki", "Dicloreum", "Diazepan", "Tachipirina", "Valontan", "Dolmen", "Sustanon", "Dissenten", "Enterostop", "Eskim", "Caravel", "Limpidex", "Levotuss", "Contramal", "Bonviva", "Mucosolvan", "Muscoril"
         };
+        
+        String[] multimedia = {
+            "img/perone.png", "img/tibia.jpg", "img/caviglia.jpg", "img/ecografia.jpg", "img/ginocchio.jpg",
+            "img/panoramica.jpg", "img/polso.jpg", "img/spalla.png", "img/testa.jpg", "img/torace.jpg",
+        };
 
         for (Paziente p : pazienti) {
             CartellaClinica cc = new CartellaClinica();
@@ -388,7 +393,8 @@ public class GestoreInserimentoDati implements GestoreInserimentoDatiLocal {
                 r.setLista_prescrizioni(pms);
                 r.setMedico(m);
                 r.setPaziente(p);
-                r.setLista_images("");
+                r.setLista_images(multimedia[(int) (multimedia.length * Math.random())] 
+                        + ";" + multimedia[(int) (multimedia.length * Math.random())]);
                 r.setTipoVisita(m.getPrestazioniEffettuabili().get((int) (Math.random() * m.getPrestazioniEffettuabili().size())));
                 refertoMedicoFacade.create(r);
                 referti.add(r);
