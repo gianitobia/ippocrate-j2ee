@@ -123,8 +123,7 @@
                 var hm = ora.split(":");
                 if (hm[0] < 8 | hm[0] > 19) {
                     document.getElementById("footer").hidden = false;
-                    document.getElementById("footer").innerHTML = "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>\n\
-                                                                   <strong>ERRORE!</strong> non è possibile prenotare in orario notturno";
+                    document.getElementById("footer").innerHTML = "<strong>ERRORE!</strong> Non è possibile prenotare in orario notturno";
                     return false;
                 }
                 return true;
@@ -219,7 +218,7 @@
                             </div>
                         </div>
                     </form>       
-                    <div class="alert alert-danger alert-dismissable" id="footer" hidden="true">                                               
+                    <div class="alert alert-danger" id="footer" hidden="true">                                               
                     </div>
                 </div>                                
             </div>            
